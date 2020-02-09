@@ -1,0 +1,27 @@
+.side-menu-item {
+  width: 200px;
+  !background: red;
+  text-align: left;
+  font-size: 22px;
+  padding: 5px 0 5px 0;
+  color: black;
+}
+
+.item-link {
+  text-decoration: none;
+  text-decoration-line: none;
+  color: black;
+}
+
+.item-link:hover {
+  color: #4BCCFF;
+}
+
+.item-icon {
+  padding-right: 10px;
+  margin-left: 50px;
+}
+
+.item-name {
+  display: inline;
+}
