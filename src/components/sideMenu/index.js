@@ -4,14 +4,25 @@ import {menuList} from './menuList.js';
 
 import './style.css';
 
-import { Link } from "react-router-dom";
+import { Link, useRouteMatch } from "react-router-dom";
 
 const CreateItem =(props)=> {
+  let { path } = useRouteMatch();
+  let isOn = path === props.path;
+  let isOnColor = isOn ? '#4BCCFF' : 'black';
+  //console.log(path);
+
+  /*
+    if url is equal path of item ->
+    item color is blue and having arrow on left of item else item color is black.
+  */
+
   return (
       <div className={`${props.name}-box side-menu-item`}>
-        <Link className='item-link' to={props.path}>
+        {isOn && <i className="fas fa-caret-right item-on-cursor"></i>}
+        <Link className='item-link' to={props.path} style={{color: `${isOnColor}`}}>
           <i className={`${props.icon} item-icon`}></i>
-          <p className='item-name'>{props.name}</p>
+          <p className='item-name'><b>{props.name}</b></p>
         </Link>
       </div>
   );

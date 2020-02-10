@@ -9,12 +9,12 @@ export const menuList = [
     id: 2,
     icon: 'fas fa-mail-bulk',
     name: 'Posting',
-    path: '',
+    path: '/posting',
   },
   {
     id: 3,
     icon: 'fas fa-ticket-alt',
     name: 'Ticket',
-    path: '',
+    path: '/ticket',
   },
 ];

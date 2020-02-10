@@ -47,6 +47,10 @@
   width: 30px;
 }
 
+.coin-box:active .coin-logo {
+   color: #fef0a7;
+}
+
 .coin-box .coin-amount {
   width: 5px;
   padding-right: 10px;
