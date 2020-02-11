@@ -1,15 +1,15 @@
 import React from 'react'
-import { storeProduct } from '../../../../data'
 import './style.css'
+import {data} from '../../../../data'
 
-export default function Post() {
+export default function Post(props) {
     return (
         <div className="post">
-            <img src="img/product-8.png" className="img-post" />
+            <img src={props.img} className="img-post" />
             <div className="detail">
-                <h3>Subject</h3>
-                <h4>#Topic</h4>
-                <h4>@Location</h4>
+                <h2>{props.subject}</h2>
+                <h4>{props.topic}</h4>
+                <h4>{props.location}</h4>
             </div>
         </div>
     )
