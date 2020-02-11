@@ -10,6 +10,7 @@ export default function Post(props) {
                 <h2>{props.subject}</h2>
                 <h4>{props.topic}</h4>
                 <h4>{props.location}</h4>
+                <h4>{props.date}</h4>
             </div>
         </div>
     )

@@ -7,7 +7,8 @@ export const storeProduct = [
         location: "GOOGLE",
         amount: "1",
         full :"10",
-        type: "Math"
+        type: "Math",
+        date :"01/10/2020"
         
     },
     {
@@ -18,7 +19,8 @@ export const storeProduct = [
         location: "GOOGLE",
         amount: "1",
         full :"10",
-        type: "Math"
+        type: "Math",
+        date :"01/10/2020"
 
     },
     {
@@ -29,7 +31,9 @@ export const storeProduct = [
         location: "GOOGLE",
         amount: "1",
         full :"10",
-        type: "Math"
+        type: "Math",
+        date :"01/10/2020"
+
     },
     {
         id: 4,
@@ -39,7 +43,9 @@ export const storeProduct = [
         location: "GOOGLE",
         amount: "1",
         full :"10",
-        type: "Math"
+        type: "Math",
+        date :"01/10/2020"
+
     },
     {
         id: 5,
@@ -49,7 +55,9 @@ export const storeProduct = [
         location: "GOOGLE",
         amount: "1",
         full :"10",
-        type: "Math"
+        type: "Math",
+        date :"01/10/2020"
+
     },
     {
         id: 6,
@@ -59,7 +67,9 @@ export const storeProduct = [
         location: "GOOGLE",
         amount: "1",
         full :"10",
-        type: "Math"
+        type: "Math",
+        date :"01/10/2020"
+
     },
     {
         id: 7,
@@ -69,7 +79,9 @@ export const storeProduct = [
         location: "GOOGLE",
         amount: "1",
         full :"10",
-        type: "Math"
+        type: "Math",
+        date :"01/10/2020"
+
     },
     {
         id: 8,
@@ -79,7 +91,9 @@ export const storeProduct = [
         location: "GOOGLE",
         amount: "1",
         full :"10",
-        type: "Math"
+        type: "Math",
+        date :"01/10/2020"
+
     }
     
 ];

@@ -13,6 +13,7 @@
     margin-top: 20px;
     /* padding-top: ; */
     
+    
 }
 .img-post{
     /* margin: 5px 5px 0px; */
@@ -28,4 +29,8 @@
 }
 .detail{
     text-align: left;
+    font-size: 15px;
+}
+h4{
+    padding-top: 1px;
 }
