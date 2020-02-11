@@ -6,7 +6,7 @@ export default  () => {
     return (
         <div>
             {storeProduct.map(data => (
-                <Post key={data.id} subject={data.subject} img={data.img} topic={data.topic} location={data.location} type={data.type} date={data.date}/>
+                <Post key={data.id} subject={data.subject} img={data.img} topic={data.topic} location={data.location} type={data.type} date={data.date} amount={data.amount} full={data.full}/>
             ))}
             Hello from Postlist
             

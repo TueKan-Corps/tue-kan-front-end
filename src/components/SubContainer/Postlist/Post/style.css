@@ -9,7 +9,6 @@
     text-align: left;
     position: static;
     display: flex;
-    align-items: center;
     margin-top: 20px;
     /* padding-top: ; */
     
@@ -24,13 +23,23 @@
     position: static;
     margin-left: 50px;
     margin-right: 50px;
+    margin-top: auto;
+    margin-bottom: auto;
 
     
 }
 .detail{
     text-align: left;
-    font-size: 15px;
+    font-size: 13px;
+    width: 380px;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 h4{
     padding-top: 1px;
+}
+.numjoin{
+}
+p{
+    text-align: right;
 }

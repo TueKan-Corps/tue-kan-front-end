@@ -17,7 +17,7 @@ export const storeProduct = [
         img: "img/product-2.png",
         topic: "PAT 2",
         location: "GOOGLE",
-        amount: "1",
+        amount: "3",
         full :"10",
         type: "Math",
         date :"01/10/2020"
@@ -29,7 +29,7 @@ export const storeProduct = [
         img: "img/product-3.png",
         topic: "9 วิชาสามัญ",
         location: "GOOGLE",
-        amount: "1",
+        amount: "4",
         full :"10",
         type: "Math",
         date :"01/10/2020"
@@ -89,7 +89,7 @@ export const storeProduct = [
         img: "img/product-8.png",
         topic: "9 วิชาสามัญ",
         location: "GOOGLE",
-        amount: "1",
+        amount: "5",
         full :"10",
         type: "Math",
         date :"01/10/2020"
