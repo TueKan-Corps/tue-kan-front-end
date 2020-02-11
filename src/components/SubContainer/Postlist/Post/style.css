@@ -1,0 +1,27 @@
+.body{
+
+    background-color: white;
+}
+.post{
+    height: 150px;
+    width: 500px;
+    background-color: white;
+    text-align: left;
+    position: static;
+    display: flex;
+    align-items: center;
+    
+}
+.img-post{
+    /* margin: 5px 5px 0px; */
+    border-radius: 50%;
+    background-color: thistle;
+    height: 130px;
+    width: 130px;
+    position: static;
+
+    
+}
+.detail{
+    text-align: left;
+}

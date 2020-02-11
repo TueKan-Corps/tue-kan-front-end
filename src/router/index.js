@@ -1,6 +1,7 @@
 import React from "react";
 import Home from "../pages/home";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
 export default () => {
   return (
     <Router>
