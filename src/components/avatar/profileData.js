@@ -1,6 +1,6 @@
 export const profileData =
   {
-    firstName: 'Werawitabcdefghijklmnop',
-    lastName: 'Sirakunwat123456',
+    firstName: 'Pansa',
+    lastName: 'Bhuntฟหsaaxcva',
     img: require('./profile.jpg'),
   };
