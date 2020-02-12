@@ -22,14 +22,7 @@
 }
 .my-tue-list-container{
     grid-area: 1/9/12/12;
-    display: flex;
-    flex-direction: column;
-    /* justify-content: center; */
-    align-items: center;
-    /* border-left:1px solid rgb(200, 200,200); */
-    /* background-color: white; */
-    margin-left: 10px;
-
+    margin-left: 20px;
     width: 350px;
     height: 250px;
     background: rgb(250, 250, 250);
