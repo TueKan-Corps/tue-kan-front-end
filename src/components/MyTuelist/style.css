@@ -1,0 +1,92 @@
+.my-tue-list-container {
+  width: 350px;
+  height: 250px;
+  background: rgb(250, 250, 250);
+  overflow: auto;
+  text-align: left;
+  font-family: 'Quicksand', sans-serif;
+  border-radius: 25px;
+  border: 1px solid rgb(222, 222, 222);
+  box-sizing: border-box;
+  margin-top: 60px;
+}
+
+.my-tue-list-container .mtl-header  {
+  background: #8edfff;
+  overflow: auto;
+  padding: 5px;
+  box-sizing: border-box;
+  border-bottom: 1px solid rgb(222, 222, 222);
+}
+
+.my-tue-list-container .mtl-header .header-name {
+  display: inline;
+  float: left;
+  margin: 10px 0px 10px 25px;
+  font-size: 20px;
+}
+
+.my-tue-list-container .mtl-header .show-btn {
+  display: inline;
+  float: right;
+  margin: 10px 20px 10px 0px;
+  font-size: 20px;
+  color: black;
+  text-decoration: none;
+  text-decoration-line: none;
+}
+
+.my-tue-list-container .mtl-header .show-btn:hover {
+  color: white;
+}
+
+.my-tue-list-container .mtl-header .show-btn:active {
+  color: rgb(119,126,124);
+}
+
+.mtl-item-link:active {
+  color: black;
+}
+
+.mtl-item {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  height: 52px;
+  border-bottom: 1px solid rgb(244, 244, 244);
+  transition: background-color 0.2s;
+  color: black;
+}
+
+.mtl-item:hover {
+  background: rgb(218,246,252);
+  transition: background-color 0.2s;
+}
+
+.mtl-item:active {
+  background: rgb(206,236,242);
+  transition: background-color 0.2s;
+}
+
+.mtl-item .item-tag-color {
+  float: left;
+  display: inline;
+  background: red;
+  width: 15px;
+  height: 100%;
+}
+
+.mtl-item .item-text {
+  font-size: 16px;
+  display: inline;
+}
+
+.mtl-item .item-topic {
+  float: left;
+  margin-left: 15px;
+}
+
+.mtl-item .item-tutor {
+  float: right;
+  margin-right: 25px;
+}

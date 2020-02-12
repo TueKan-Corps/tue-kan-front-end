@@ -9,7 +9,6 @@
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 .sub-container{
-    width: 90%;
     grid-area: 1/4/12/9;
     margin-left: 10%;
     display: flex;
