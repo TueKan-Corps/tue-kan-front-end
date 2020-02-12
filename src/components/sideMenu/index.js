@@ -8,7 +8,7 @@ import { Link, useRouteMatch } from "react-router-dom";
 
 const CreateItem =(props)=> {
   let { path } = useRouteMatch();
-  let isOn = path === props.path;
+  let isOn = (path === props.path || path === props.path2);
   let isOnColor = isOn ? '#4BCCFF' : 'black';
   //console.log(path);
 
@@ -35,7 +35,7 @@ class SideMenu extends React.Component {
       <div className='side-menu-container'>
         {
           menuList.map(item => (
-            <CreateItem key={item.id} icon={item.icon} name={item.name} path={item.path} />
+            <CreateItem key={item.id} icon={item.icon} name={item.name} path={item.path} path2={item.path2} />
           ))
         }
       </div>
