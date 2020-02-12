@@ -7,10 +7,10 @@ export default function Post(props) {
         <div className="post">
             <img src={props.img} className="img-post" />
             <div className="detail">
-                <h2>{props.subject}</h2>
-                <h3>#Topic       : {props.topic}</h3>
-                <h4>@Location   : {props.location}</h4>
-                <h4>Date        : {props.date}</h4>
+                <div className="tag-subject"><span className="dot"/><h2 className="subject">{props.subject}</h2></div>
+                <div className="topic">#Topic       : {props.topic}</div>
+                <div className="topic">@Location   : {props.location}</div>
+                <div className="topic">Date        : {props.date}</div>
                 
             </div>
             <div className="numjoin"><p>Join {props.amount}/{props.full}</p></div>

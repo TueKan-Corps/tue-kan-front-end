@@ -1,4 +1,4 @@
-.my-tue-list-container {
+/* .my-tue-list-container {
   width: 350px;
   height: 250px;
   background: rgb(250, 250, 250);
@@ -9,7 +9,7 @@
   border: 1px solid rgb(222, 222, 222);
   box-sizing: border-box;
   margin-top: 60px;
-}
+} */
 
 .my-tue-list-container .mtl-header  {
   background: #8edfff;
@@ -17,7 +17,14 @@
   padding: 5px;
   box-sizing: border-box;
   border-bottom: 1px solid rgb(222, 222, 222);
+  position: sticky;
+  top: 0px;
+  z-index: 1;
+  height: 50px;
+  /* width: 50px; */
 }
+
+
 
 .my-tue-list-container .mtl-header .header-name {
   display: inline;
