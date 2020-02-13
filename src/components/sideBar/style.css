@@ -1,0 +1,11 @@
+ .side-bar-container {
+  width: 300px;
+  height: 400px;
+  margin: 20px 0px 20px 80px;
+  padding-right: 30px;
+
+  /* for fixed */
+  !margin: 80px 0px 20px 80px;
+  !position: fixed;
+  !top: 0px;
+}

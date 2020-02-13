@@ -1,0 +1,28 @@
+.post-button-box {
+  font-family: 'Quicksand', sans-serif;
+  text-align: left;
+  margin: 20px auto 20px 20px;
+  width: 100px;
+  transition: background-color 0.2s;
+}
+
+.post-button-box:hover .post-messege {
+  transition: background-color 0.2s;
+  background: rgb(38,199,231);
+}
+
+.post-button-box:active .post-messege {
+  transition: background-color 0.2s;
+  background: rgb(38,190,219);
+}
+
+.post-messege {
+  transition: background-color 0.2s;
+  color: white;
+  text-decoration: none;
+  background: #4BCCFF;
+  font-size: 20px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  padding: 10px 60px 10px 60px;
+}
