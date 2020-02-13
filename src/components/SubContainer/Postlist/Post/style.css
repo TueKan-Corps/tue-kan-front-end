@@ -4,7 +4,7 @@
 }
 .post{
     height: 180px;
-    width: 700px;
+    width: 800px;
     background-color: #FBFBFB;
     text-align: left;
     position: static;
@@ -36,7 +36,7 @@
 .detail{
     text-align: left;
     font-size: 13px;
-    width: 380px;
+    width: 480px;
     margin-top: auto;
     margin-bottom: auto;
 }
@@ -45,7 +45,7 @@
 .dot {
     height: 25px;
     width: 25px;
-    background-color: #bbb;
+    background: red;
     border-radius: 50%;
     display: inline-block;
     margin-right: 5px;

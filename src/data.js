@@ -8,7 +8,8 @@ export const storeProduct = [
         amount: "1",
         full :"10",
         type: "Math",
-        date :"01/10/2020"
+        date: "01/10/2020",
+        tagId: '0'
         
     },
     {
@@ -20,7 +21,8 @@ export const storeProduct = [
         amount: "3",
         full :"10",
         type: "Math",
-        date :"01/10/2020"
+        date :"01/10/2020",
+        tagId: '2'
 
     },
     {
@@ -32,7 +34,8 @@ export const storeProduct = [
         amount: "4",
         full :"10",
         type: "Math",
-        date :"01/10/2020"
+        date :"01/10/2020",
+        tagId: '3'
 
     },
     {
@@ -44,7 +47,8 @@ export const storeProduct = [
         amount: "1",
         full :"10",
         type: "Math",
-        date :"01/10/2020"
+        date :"01/10/2020",
+        tagId: '2'
 
     },
     {
@@ -56,7 +60,8 @@ export const storeProduct = [
         amount: "1",
         full :"10",
         type: "Math",
-        date :"01/10/2020"
+        date :"01/10/2020",
+        tagId: '1'
 
     },
     {
@@ -68,7 +73,8 @@ export const storeProduct = [
         amount: "1",
         full :"10",
         type: "Math",
-        date :"01/10/2020"
+        date :"01/10/2020",
+        tagId: '4'
 
     },
     {
@@ -80,7 +86,8 @@ export const storeProduct = [
         amount: "1",
         full :"10",
         type: "Math",
-        date :"01/10/2020"
+        date :"01/10/2020",
+        tagId: '3'
 
     },
     {
@@ -92,7 +99,8 @@ export const storeProduct = [
         amount: "5",
         full :"10",
         type: "Math",
-        date :"01/10/2020"
+        date :"01/10/2020",
+        tagId: '2'
 
     }
     
