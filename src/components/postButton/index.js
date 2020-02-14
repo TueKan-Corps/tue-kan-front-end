@@ -9,7 +9,7 @@ class PostButton extends React.Component {
   render () {
     return (
       <div className='post-button-box'>
-        <Link className='post-messege' to='/post'><b>POST!</b></Link>
+        <Link className='post-messege' to='/createPost'><b>POST!</b></Link>
       </div>
     );
   }

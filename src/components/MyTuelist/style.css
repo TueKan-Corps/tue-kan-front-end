@@ -1,6 +1,8 @@
 .my-tue-list-container{
   grid-area: 1/9/12/12;
-  width: 350px;
+  width: 90%;
+  max-width: 330px;
+  !min-width: 280px;
   height: 250px;
   background: rgb(250, 250, 250);
   overflow: auto;
@@ -96,7 +98,7 @@
   margin-left: 15px;
 }
 
-.mtl-item .item-tutor {
+.mtl-item .item-date {
   float: right;
   margin-right: 25px;
 }
