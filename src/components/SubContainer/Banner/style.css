@@ -1,0 +1,79 @@
+.slide {
+    width: 100%;
+    margin: 0 auto;
+    background-color: aqua;
+}
+.slide:hover {
+  cursor: grab;
+}
+.page {
+    overflow: hidden;
+    width: 100%;
+    !min-width: 100%;
+    box-sizing: border-box;
+}
+.banner-img {
+    width: 100%;
+    height: 100%;
+}
+.thumb{
+    width: 100%;
+    height: 100%;
+}
+.slick-dots{
+    bottom: 1px !important;
+    opacity: 0.1;
+    transition: 0.3s;
+
+    /* transform: translateY(20px); */
+}
+.slick-thumb{
+    !width: 100%;
+}
+/* .slick-dots li{
+    border:2px solid rgba(83, 83, 83, 0.404);
+    border-radius: 2px;
+    width: 13% !important;
+    height: 13% !important;
+    margin: 0 2px !important;
+}
+li.slick-active{
+    border: 2px solid rgb(247,167,10);
+
+} */
+.slick-slider:hover .slick-next{
+    /* transition: 0.3s; */
+    opacity: 1;
+    right: 1% !important;
+    /* background-color: rgba(59, 59, 59, 0.247) !important; */
+}
+.slick-slider:hover .slick-prev{
+    left: 1% !important;
+    opacity: 1;
+
+    /* background-color: rgba(59, 59, 59, 0.247) !important; */
+}
+.slick-slider:hover .slick-dots{
+    /* transform: translateY(-20px); */
+    opacity: 1;
+    bottom: 10px !important;
+    /* background-color: rgba(59, 59, 59, 0.247) !important; */
+}
+.slick-next,.slick-prev{
+    transition: 0.3s;
+    opacity: 0.3;
+    /* top: 23.5% !important; */
+    margin: 0 auto !important;
+    width: 50px !important;
+    transform: scale(2,2) !important;
+}
+
+.slick-next{
+    right: -1% !important;
+    /* height: 50% !important; */
+}
+.slick-prev{
+    left: -1% !important;
+    /* height: 50% !important; */
+    z-index: 1;
+}
