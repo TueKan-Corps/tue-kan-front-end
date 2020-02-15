@@ -106,21 +106,32 @@
   border: 0;
 }
 
+.detail-body .item .input:focus {
+  border-radius: 60px;
+  !outline-style: none;
+}
+
+.detail-body .item .radio-box {
+  overflow: auto;
+  width: 50%;
+  margin-left: 23%;
+  margin-top: 0.5%;
+}
+
 .detail-body .item .radio-option {
   !background: red;
   float: left;
-  width: 50%;
-  margin-left: 50px;
+  width: 35%;
+  font-family: 'Quicksand', sans-serif;
 }
 
 .detail-body .submit-btn {
-  margin: 20px 0px 0px 30px;
+  margin: 10px 0px 0px 30px;
   display: inline;
   font-size: 18px;
   padding: 15px;
   font-family: 'Quicksand', sans-serif;
   border-radius: 30px;
-  !box-shadow: 0;
   background: rgb(119,218,255);
   border: 0;
 }
@@ -128,10 +139,12 @@
 .detail-body .submit-btn:hover {
   cursor: pointer;
   background: rgb(111,205,240);
+  transition: background-color 0.2s;
 }
 
 .detail-body .submit-btn:active {
   background: rgb(104,196,231);
+  transition: background-color 0.2s;
 }
 
 .detail-body .item .big {
@@ -145,5 +158,29 @@
 
 .detail-body .item .normal {
   width: 30%;
-  margin-right: 47%;
+  margin-right: 45%;
+}
+
+.detail-body .item .select {
+  margin-right: 46.5%;
+}
+
+@media screen and (max-width: 1590px) {
+  .detail-body .item .head-text {
+    font-size: 18px;
+  }
+
+  .detail-body .item .radio-option {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .detail-body .item .head-text {
+    font-size: 16px;
+  }
+
+  .detail-body .item .radio-option {
+    font-size: 14px;
+  }
 }

@@ -33,18 +33,22 @@ const CreateItem =(props)=> {
       {/* radio button */}
       {
         props.type === 'radio' &&
-        props.option.map(item => (
-          <div key={item.id} className='radio-option'>
-            <input type='radio' id={item.value} name={item.name} value={item.value} required ></input>
-            <label>{item.value}</label>
-          </div>
-        ))
+        <div className='radio-box'>
+        {
+          props.option.map(item => (
+            <div className='radio-option'>
+              <input type='radio' id={item.value} name={item.name} value={item.value} required ></input>
+              <label>{item.value}</label>
+            </div>
+          ))
+        }
+        </div>
       }
 
       {/* select */}
       {
         props.type === 'select' &&
-        <select className={`input ${props.width}`} id={props.name} name={props.name} required>
+        <select className={`input select ${props.width}`} id={props.name} name={props.name} required>
         {
           props.option.map(item => (
             <>
@@ -62,7 +66,7 @@ const CreateItem =(props)=> {
 
       {/* text area */}
       {
-        props.type === 'textarea' && <textarea className={`input ${props.width} big`} form='create-post-form' ></textarea>
+        props.type === 'textarea' && <textarea className={`input ${props.width} big`} form='create-post-form' placeholder={props.placeholder}></textarea>
       }
     </div>
   );
@@ -83,7 +87,7 @@ class CreatePost extends React.Component {
 
             <div className='create-post-detail'>
               <div className='detail-header'>
-                <p className='detail-header-text'>Post setting</p>
+                <p className='detail-header-text'><b>Post setting</b></p>
               </div>
               <form className='detail-body' id='create-post-form' action='#'>
                 {

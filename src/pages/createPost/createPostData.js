@@ -2,7 +2,7 @@ export const createPostData = [
   {
     id: 1,
     headerName: 'Topic : ',
-    placeholder: 'Datacom or Movement',
+    placeholder: 'Datacom, Movement, Number Theory, ...',
     name: 'topic',
     type: 'text',
     width: 'long',
@@ -10,7 +10,7 @@ export const createPostData = [
   {
     id: 2,
     headerName: 'Location : ',
-    placeholder: 'ECC 801',
+    placeholder: 'ECC 801, E12 502, ...',
     name: 'location',
     type: 'text',
     width: 'long',
@@ -21,7 +21,7 @@ export const createPostData = [
     placeholder: 'DD/MM/YY',
     name: 'date',
     type: 'text',
-    width: 'long',
+    width: 'normal',
   },
   {
     id: 4,
@@ -105,6 +105,14 @@ export const createPostData = [
   },
   {
     id: 7,
+    headerName: 'Price : ',
+    placeholder: '99,999',
+    name: 'price',
+    type: 'text',
+    width: 'normal',
+  },
+  {
+    id: 8,
     headerName: 'Description : ',
     placeholder: 'tue detail ...',
     name: 'description',

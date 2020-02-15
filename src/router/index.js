@@ -23,6 +23,10 @@ export default () => {
           <SideBar />
         </Route>
 
+        <Route path="/ticket">
+          <SideBar />
+        </Route>
+
         <Route path="/createPost">
           <CreatePost />
         </Route>

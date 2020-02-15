@@ -32,7 +32,7 @@ export default function MyTuelist() {
         <div className ="my-tue-list-container">
             <div className='mtl-header'>
               <p className='header-name'><b>My tue list</b></p>
-              <Link className='show-btn' to='#'>show all</Link>
+              <Link className='show-btn' to='/ticket'>show all</Link>
             </div>
             <div className='mtl-body'>
               {
