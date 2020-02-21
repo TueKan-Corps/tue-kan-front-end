@@ -3,8 +3,9 @@ import React from "react";
 import Navbar from '../components/nav-bar/index.js';
 import SideBar from '../components/sideBar/index.js';
 
-import Home from "../pages/home";
-import CreatePost from '../pages/createPost/index.js';
+import Home from "../pages/home"; 
+import NewCreatePost from '../pages/newCreatePost/index.js';
+import Ticket from '../pages/ticket/index.js';
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -12,6 +13,7 @@ export default () => {
   return (
     <Router>
 
+      <SideBar />
       <Navbar />
 
       <Switch>
@@ -20,15 +22,14 @@ export default () => {
         </Route>
 
         <Route path="/posting">
-          <SideBar />
         </Route>
 
         <Route path="/ticket">
-          <SideBar />
+          <Ticket />
         </Route>
 
         <Route path="/createPost">
-          <CreatePost />
+          <NewCreatePost />
         </Route>
 
         <Route exact path="/">

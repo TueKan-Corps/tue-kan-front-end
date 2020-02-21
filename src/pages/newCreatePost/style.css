@@ -1,15 +1,3 @@
-
-
-.create-post-sub-container {
-  margin-left: 15%;
-  !background: blue;
-  border-left: 1px solid rgb(200, 200, 200);
-  border-right: 1px solid rgb(200, 200, 200);
-  grid-area: 1/3/12/9;
-  width: 45vw;
-  padding-bottom: 20px;
-}
-
 .create-post-sub-container .post-header {
   width: auto;
   !background: red;
@@ -63,54 +51,13 @@
 }
 
 .create-post-sub-container .create-post-detail .detail-body {
-  !background: rgb(166,255,201);
   background: rgb(184,240,255);
   width: 100%;
-  !height: 500px;
   border-top-right-radius: 25px;
   border-bottom-right-radius: 25px;
   border-bottom-left-radius: 25px;
   padding-top: 20px;
   padding-bottom: 20px;
-}
-
-.detail-body .item {
-  padding: 10px 10px 10px 10px;
-  margin: 0 auto;
-  overflow: auto;
-  width: 90%;
-  !background: rgb(249,193,200);
-}
-
-.detail-body .item .head-text {
-  margin: 0;
-  display: inline;
-  float: left;
-  font-size: 20px;
-}
-
-.detail-body .item .input {
-  margin: 0px 0 0 0;
-  display: inline;
-  float: right;
-  padding: 7px 0 7px 10px;
-  resize: none;
-  border-radius: 20px;
-  border: 0;
-}
-
-.detail-body .item .radio-box {
-  overflow: auto;
-  width: 50%;
-  margin-left: 23%;
-  margin-top: 0.5%;
-}
-
-.detail-body .item .radio-option {
-  !background: red;
-  float: left;
-  width: 35%;
-  font-family: 'Quicksand', sans-serif;
 }
 
 .detail-body .submit-btn {
@@ -120,55 +67,29 @@
   padding: 15px;
   font-family: 'Quicksand', sans-serif;
   border-radius: 30px;
-  background: rgb(119,218,255);
+  background: rgb(146,220,247);
   border: 0;
 }
 
 .detail-body .submit-btn:hover {
   cursor: pointer;
-  background: rgb(111,205,240);
+  background: rgb(135,212,241);
   transition: background-color 0.2s;
 }
 
 .detail-body .submit-btn:active {
-  background: rgb(104,196,231);
+  background: rgb(122,202,232);
   transition: background-color 0.2s;
 }
 
-.detail-body .item .big {
-  height: 80px;
-}
-
-.detail-body .item .long {
-  width: 70%;
-  margin-right: 5%;
-}
-
-.detail-body .item .normal {
-  width: 30%;
-  margin-right: 45%;
-}
-
-.detail-body .item .select {
-  margin-right: 46.5%;
-}
-
 @media screen and (max-width: 1590px) {
-  .detail-body .item .head-text {
+  .detail-body .form-item .header-text {
     font-size: 18px;
-  }
-
-  .detail-body .item .radio-option {
-    font-size: 16px;
   }
 }
 
 @media screen and (max-width: 1280px) {
-  .detail-body .item .head-text {
+  .detail-body .form-item .header-text {
     font-size: 16px;
-  }
-
-  .detail-body .item .radio-option {
-    font-size: 14px;
   }
 }

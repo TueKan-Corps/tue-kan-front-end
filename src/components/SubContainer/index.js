@@ -7,8 +7,8 @@ import './style.css'
 export default function SubContainer() {
     return (
         <div className="sub-container">
-            <Banner />
-            <Postlist />
+          <Banner />
+          <Postlist />
         </div>
     )
 }

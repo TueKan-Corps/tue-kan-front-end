@@ -24,19 +24,6 @@
   transition: background-color 0.2s;
 }
 
-.item-link:active {
-  background: rgb(206,236,242);
-  transition: background-color 0.2s;
-}
-
-.item-on-cursor {
-  padding-top: 3px;
-  padding-left: 5px;
-  color: #4BCCFF;
-  position: absolute;
-  transition: background-color 0.2s;
-}
-
 .item-icon {
   padding-right: 10px;
 }

@@ -4,16 +4,17 @@
     -- make tag select, radio-button, submit complete
     -- not complete form
     -- not responsive
+  .edit 20-Feb-20
+    -- change to use styled-components instead css
 */
 
 import React from 'react';
 
-import './style.css';
+//import './style.css';
 
-import {createPostData} from './createPostData.js';
+import {createPostData} from './createPostData.js'; 
 
-import { Link } from "react-router-dom";
-
+import MainDiv from '../mainDiv.js';
 import SideBar from '../../components/sideBar/index.js';
 import MyTueList from '../../components/MyTuelist/index.js';
 
@@ -78,7 +79,7 @@ class CreatePost extends React.Component {
     return (
       <>
         <SideBar />
-        <div className='create-post-main-container'>
+        <MainDiv>
           <div className='create-post-sub-container'>
             <div className='post-header' onClick={()=>window.history.back()}>
               <i className="header-item header-back-icon fas fa-chevron-left"></i>
@@ -102,7 +103,7 @@ class CreatePost extends React.Component {
           </div>
           <MyTueList />
 
-        </div>
+        </MainDiv>
       </>
     );
   }
