@@ -25,46 +25,46 @@ export default function Login() {
         <div className="loginpage">
             <div className="container-login" id="container">
                 <div className="form-container sign-up-container">
-                    <form action="#">
-                        <h1>Create Account</h1>
+                    <form className="form-login" action="#">
+                        <h1 className="header1-login">Create Account</h1>
                         <div className="social-container">
                             <a href="#" className="social"><i class="fab fa-facebook-f"></i></a>
                             <a href="#" className="social"><i class="fab fa-google-plus-g"></i></a>
                             <a href="#" className="social"><i class="fab fa-linkedin-in"></i></a>
                         </div>
-                        <span>or use your email for registration</span>
-                        <input type="text" placeholder="Name" />
-                        <input type="email" placeholder="Email" />
-                        <input type="password" placeholder="Password" />
-                        <button>Sign Up</button>
+                        <span className="span-login">or use your email for registration</span>
+                        <input className="input-login" type="text" placeholder="Name" />
+                        <input className="input-login" type="email" placeholder="Email" />
+                        <input className="input-login" type="password" placeholder="Password" />
+                        <button className="button-login">Sign Up</button>
                     </form>
                 </div>
                 <div className="form-container sign-in-container">
-                    <form action="#">
-                        <h1>Sign in</h1>
+                    <form className="form-login" action="#">
+                        <h1 className="header1-login">Sign in</h1>
                         <div class="social-container">
-                            <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                            <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" className="social"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" className="social"><i class="fab fa-google-plus-g"></i></a>
+                            <a href="#" className="social"><i class="fab fa-linkedin-in"></i></a>
                         </div>
-                        <span>or use your account</span>
-                        <input type="email" placeholder="Email" />
-                        <input type="password" placeholder="Password" />
-                        <a href="#">Forgot your password?</a>
-                        <button>Sign In</button>
+                        <span className="span-login">or use your account</span>
+                        <input className="input-login" type="email" placeholder="Email" />
+                        <input className="input-login" type="password" placeholder="Password" />
+                        <a href="#" class="social">Forgot your password?</a>
+                        <button className="button-login">Sign In</button>
                     </form>
                 </div>
                 <div class="overlay-container">
                     <div class="overlay">
                         <div id ="signInContainer" className="overlay-panel overlay-left">
-                            <h1>Welcome Back!</h1>
-                            <p>To keep connected with us please login with your personal info</p>
-                            <button className="ghost" id="signIn" onClick ={signInButton}>Sign In</button>
+                            <h1 className="header1-login">Welcome Back!</h1>
+                            <p className="p-login">To keep connected with us please login with your personal info</p>
+                            <button className="button-login ghost" id="signIn" onClick ={signInButton}>Sign In</button>
                         </div>
                         <div id ="signUpContainer "className="overlay-panel overlay-right">
-                            <h1>Hello, Friend!</h1>
-                            <p>Enter your personal details and start journey with us</p>
-                                <button className="ghost signUp" id="signUp" onClick={signUpButton}>Sign Up</button>
+                            <h1 className="header1-login">Hello, Friend!</h1>
+                            <p className="p-login">Enter your personal details and start journey with us</p>
+                                <button className="button-login ghost signUp" id="signUp" onClick={signUpButton}>Sign Up</button>
                         </div>
                     </div>
                 </div>
