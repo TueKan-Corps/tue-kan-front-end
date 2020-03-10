@@ -1,5 +1,5 @@
 /*
-  .edit 10-Mar-20
+  .edit 10-Mar-20 [Boat] 
     -- edit to pass object from parent instead of import object in this component. for flexible to use.
 */
 

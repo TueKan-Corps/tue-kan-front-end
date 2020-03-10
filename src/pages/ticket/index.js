@@ -1,10 +1,10 @@
 /*
-  .add this page in 15-Feb-20
+  .add this page in 15-Feb-20 [Boat]
     -- use similar main postin
     -- wait main post complete (click to watching detail, buy ticket)
     -- * but some diff
     -- main post link to buy, but this post link to watch your ticket
-  .edit 10-Mar-20
+  .edit 10-Mar-20 [Boat]
     -- edit ticket manage page like mainfeed
     -- wait complete data (img, joined, full, tutor, location)
     -- wait to route
@@ -33,8 +33,8 @@ import Postlist from '../../components/SubContainer/Postlist/index.js';
 
 const TicketDetail =(props)=> {
   let { ticketId } = useParams();
-  let ticket = listData[ticketId];
-  console.log(ticket);
+  let ticketData = listData[ticketId];
+  console.log(ticketData);
   return (
     <>
       <h1>Love {ticketId}</h1>
