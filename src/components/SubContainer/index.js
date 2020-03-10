@@ -10,7 +10,7 @@ export default function SubContainer() {
     return (
         <div className="sub-container">
           <Banner />
-          <Postlist postData={storeProduct}/>
+          <Postlist postData={storeProduct} linkType='main' />
         </div>
     )
 }

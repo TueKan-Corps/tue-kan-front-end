@@ -11,7 +11,7 @@ export default function Postlist(props) {
     return (
         <div className="post-list">
             {postData.map(data => (
-                <Post key={data.id} {...data}/>
+                <Post key={data.id} {...data} linkType={props.linkType}/>
             ))}
         </div>
     )

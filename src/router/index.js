@@ -1,38 +1,57 @@
+/*
+  .edit
+    -- edit <SideBar> into Route because loginpage don't have <Sidebar>
+*/
+
 import React from "react";
 
 import Navbar from '../components/nav-bar/index.js';
 import SideBar from '../components/sideBar/index.js';
 
-import Home from "../pages/home"; 
+import Home from "../pages/home";
 import NewCreatePost from '../pages/newCreatePost/index.js';
 import Ticket from '../pages/ticket/index.js';
+import Login from '../pages/loginPage/index.js';
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, useRouteMatch } from "react-router-dom";
 
 export default () => {
   return (
     <Router>
 
-      <SideBar />
       <Navbar />
 
       <Switch>
+
+        <Route path="/coinPayment">
+          <SideBar />
+        </Route>
+
+        <Route path="/profile">
+          <Login />
+        </Route>
+
         <Route path="/home">
+          <SideBar />
           <Home></Home>
         </Route>
 
         <Route path="/posting">
+          <SideBar />
         </Route>
 
         <Route path="/ticket">
+          <SideBar />
           <Ticket />
         </Route>
 
         <Route path="/createPost">
+          <SideBar />
           <NewCreatePost />
         </Route>
 
         <Route exact path="/">
+          <SideBar />
           <Home></Home>
         </Route>
 

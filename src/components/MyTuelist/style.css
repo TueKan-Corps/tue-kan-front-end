@@ -62,7 +62,7 @@
 .mtl-item {
   display: block;
   width: 100%;
-  overflow: auto;
+  !overflow: auto;
   height: 52px;
   border-bottom: 1px solid rgb(244, 244, 244);
   transition: background-color 0.2s;

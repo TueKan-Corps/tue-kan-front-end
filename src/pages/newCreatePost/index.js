@@ -77,7 +77,7 @@ const TextAreaBox = styled.textarea`
 const SelectBox = styled.select
 `
   width: 25%;
-  margin-right: 52%;
+  margin-right: 50%;
 `;
 
 class NewCreatePost extends React.Component {
