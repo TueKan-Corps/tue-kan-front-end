@@ -1,109 +1,105 @@
 export const storeProduct = [
     {
         id: 1,
-        subject: "Mathematic",
-        img: "img/product-1.png",
+        tag: 'math',
+        tagId: '0',
         topic: "PAT 1",
         location: "GOOGLE",
+        tutor: 'Kanat Krub',
         amount: "1",
         full :"10",
-        type: "Math",
         date: "01/10/2020",
-        tagId: '0'
-        
+        img: "img/product-1.png",
+
     },
     {
         id: 2,
-        subject: "Sicence",
-        img: "img/product-2.png",
+        tag: 'sci',
+        tagId: '1',
         topic: "PAT 2",
         location: "GOOGLE",
+        tutor: 'Kanat Krub',
         amount: "3",
         full :"10",
-        type: "Math",
-        date :"01/10/2020",
-        tagId: '2'
+        date: "01/10/2020",
+        img: "img/product-2.png",
 
     },
     {
         id: 3,
-        subject: "ภาษาไทย",
-        img: "img/product-3.png",
+        tag: 'thai',
+        tagId: '2',
         topic: "9 วิชาสามัญ",
         location: "GOOGLE",
+        tutor: 'Kanat Krub',
         amount: "4",
         full :"10",
-        type: "Math",
-        date :"01/10/2020",
-        tagId: '3'
-
+        date: "01/10/2020",
+        img: "img/product-3.png",
     },
     {
         id: 4,
-        subject: "English",
-        img: "img/product-4.png",
+        tag: "eng",
+        tagId: '3',
         topic: "9 วิชาสามัญ",
         location: "GOOGLE",
+        tutor: 'Kanat Krub',
         amount: "1",
         full :"10",
-        type: "Math",
         date :"01/10/2020",
-        tagId: '2'
-
+        img: "img/product-4.png",
     },
     {
         id: 5,
-        subject: "สังคมศึกษาฯ",
-        img: "img/product-5.png",
+        tag: 'soc',
+        tagId: '4',
         topic: "9 วิชาสามัญ",
         location: "GOOGLE",
-        amount: "1",
+        tutor: 'Kanat Krub',
+        amount: "4",
         full :"10",
-        type: "Math",
         date :"01/10/2020",
-        tagId: '1'
+        img: "img/product-5.png",
 
     },
     {
         id: 6,
-        subject: "ภาษาไทย",
-        img: "img/product-6.png",
+        tag: "thai",
+        tagId: '3',
         topic: "9 วิชาสามัญ",
         location: "GOOGLE",
+        tutor: 'Kanat Krub',
         amount: "1",
         full :"10",
-        type: "Math",
         date :"01/10/2020",
-        tagId: '4'
+        img: "img/product-6.png",
 
     },
     {
         id: 7,
-        subject: "Mathermatic",
-        img: "img/product-7.png",
+        tag: "math",
+        tagId: '0',
         topic: "9 วิชาสามัญ",
         location: "GOOGLE",
+        tutor: 'Kanat Krub',
         amount: "1",
         full :"10",
-        type: "Math",
         date :"01/10/2020",
-        tagId: '3'
-
+        img: "img/product-7.png",
     },
     {
         id: 8,
-        subject: "English",
-        img: "img/product-8.png",
+        tag: "eng",
+        tagId: '3',
         topic: "9 วิชาสามัญ",
         location: "GOOGLE",
+        tutor: 'Kanat Krub',
         amount: "5",
         full :"10",
-        type: "Math",
         date :"01/10/2020",
-        tagId: '2'
-
+        img: "img/product-8.png",
     }
-    
+
 ];
 
 export const detailProduct = {

@@ -4,6 +4,10 @@
     -- wait main post complete (click to watching detail, buy ticket)
     -- * but some diff
     -- main post link to buy, but this post link to watch your ticket
+  .edit 10-Mar-20
+    -- edit ticket manage page like mainfeed
+    -- wait complete data (img, joined, full, tutor, location)
+    -- wait to route
 */
 
 import React from 'react';
@@ -11,12 +15,11 @@ import React from 'react';
 import './style.css';
 
 import {listData} from '../../components/MyTuelist/listData.js';
-
-import styled from 'styled-components';
-
+ 
 import MainDiv from '../mainDiv.js';
 import SubDiv from '../subDiv.js';
 import MyTueList from '../../components/MyTuelist/index.js';
+import Postlist from '../../components/SubContainer/Postlist/index.js';
 
 const CreateItem =(props)=> {
   return (
@@ -37,13 +40,7 @@ class Ticket extends React.Component {
             <p className='header-item header-text'><b>Ticket Manage</b></p>
           </div>
 
-          <div className='ticket-detail'>
-          {
-            listData.map(item => (
-              <CreateItem key={item.id} {...item} />
-            ))
-          }
-          </div>
+        <Postlist postData={listData} />
         </SubDiv>
 
         <MyTueList />

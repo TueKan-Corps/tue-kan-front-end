@@ -24,6 +24,11 @@
   transition: background-color 0.2s;
 }
 
+.item-link:active {
+  background: rgb(193,241,251);
+  transition: background-color 0.2s;
+}
+
 .item-icon {
   padding-right: 10px;
 }
