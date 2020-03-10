@@ -9,7 +9,7 @@ export default () => {
   return (
     <Router>
 
-      <Navbar />
+      {/* <Navbar />x */}
 
       <Switch>
         <Route path="/home">

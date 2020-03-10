@@ -14,8 +14,7 @@
     "react-scripts": "3.3.1",
     "react-slick": "^0.25.2",
     "reactn": "^2.2.5",
-    "slick-carousel": "^1.8.1",
-    "styled-components": "^5.0.1"
+    "slick-carousel": "^1.8.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -45,6 +44,7 @@
     "@storybook/addon-links": "^5.3.12",
     "@storybook/addons": "^5.3.12",
     "@storybook/preset-create-react-app": "^1.5.2",
-    "@storybook/react": "^5.3.12"
+    "@storybook/react": "^5.3.12",
+    "styled-components": "^5.0.1"
   }
 }
