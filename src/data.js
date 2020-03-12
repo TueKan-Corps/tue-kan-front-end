@@ -9,6 +9,8 @@ export const storeProduct = [
         amount: "1",
         full :"10",
         date: "01/10/2020",
+        time: '',
+        price: '1200',
         img: "img/product-1.png",
 
     },
@@ -22,6 +24,8 @@ export const storeProduct = [
         amount: "3",
         full :"10",
         date: "01/10/2020",
+        time: '',
+        price: '1000',
         img: "img/product-2.png",
 
     },
@@ -35,6 +39,8 @@ export const storeProduct = [
         amount: "4",
         full :"10",
         date: "01/10/2020",
+        time: '',
+        price: '500',
         img: "img/product-3.png",
     },
     {
@@ -47,6 +53,8 @@ export const storeProduct = [
         amount: "1",
         full :"10",
         date :"01/10/2020",
+        time: '',
+        price: '120',
         img: "img/product-4.png",
     },
     {
@@ -59,6 +67,8 @@ export const storeProduct = [
         amount: "4",
         full :"10",
         date :"01/10/2020",
+        time: '',
+        price: '300',
         img: "img/product-5.png",
 
     },
@@ -72,6 +82,8 @@ export const storeProduct = [
         amount: "1",
         full :"10",
         date :"01/10/2020",
+        time: '',
+        price: '100',
         img: "img/product-6.png",
 
     },
@@ -85,6 +97,8 @@ export const storeProduct = [
         amount: "1",
         full :"10",
         date :"01/10/2020",
+        time: '',
+        price: '50',
         img: "img/product-7.png",
     },
     {
@@ -97,6 +111,8 @@ export const storeProduct = [
         amount: "5",
         full :"10",
         date :"01/10/2020",
+        time: '',
+        price: '250',
         img: "img/product-8.png",
     }
 

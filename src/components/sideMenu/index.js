@@ -43,7 +43,7 @@ class SideMenu extends React.Component {
       <div className='side-menu-container'>
         {
           menuList.map(item => (
-            <CreateItem key={item.id} icon={item.icon} name={item.name} path={item.path} path2={item.path2} />
+            <CreateItem key={item.id} icon={item.icon} name={item.name} path={item.path} />
           ))
         }
       </div>

@@ -1,4 +1,5 @@
 // date sorted from backend
+// add time, price, ticket
 
 export const listData = [
   {
@@ -11,6 +12,9 @@ export const listData = [
     amount: "1",
     full :"10",
     date: '03/02/20',
+    time: '',
+    price: '120',
+    ticket: '',
     img: "",
   },
   {
@@ -23,6 +27,9 @@ export const listData = [
     amount: "1",
     full :"10",
     date: '05/02/20',
+    time: '',
+    price: '200',
+    ticket: '',
     img: "",
   },
   {
@@ -35,6 +42,9 @@ export const listData = [
     amount: "1",
     full :"10",
     date: '05/02/20',
+    time: '',
+    price: '50',
+    ticket: '',
     img: "",
   },
   {
@@ -47,6 +57,9 @@ export const listData = [
     amount: "1",
     full :"10",
     date: '10/02/20',
+    time: '',
+    price: '1000',
+    ticket: '',
     img: "",
   },
   {
@@ -59,6 +72,9 @@ export const listData = [
     amount: "1",
     full :"10",
     date: '15/02/20',
+    time: '',
+    price: '25',
+    ticket: '',
     img: "",
   },
   {
@@ -71,6 +87,9 @@ export const listData = [
     amount: "1",
     full :"10",
     date: '17/02/20',
+    time: '',
+    price: '250',
+    ticket: '',
     img: "",
   },
   {
@@ -83,6 +102,9 @@ export const listData = [
     amount: "1",
     full :"10",
     date: '20/02/20',
+    time: '',
+    price: '300',
+    ticket: '',
     img: "",
   },
   {
@@ -95,6 +117,9 @@ export const listData = [
     amount: "1",
     full :"10",
     date: '22/02/20',
+    time: '',
+    price: '150',
+    ticket: '',
     img: "",
   },
 ];

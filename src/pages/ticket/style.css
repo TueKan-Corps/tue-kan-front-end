@@ -27,11 +27,58 @@
   font-size: 28px;
 }
 
-.ticket-sub-container .ticket-detail {
-  !background: coral;
-  width: 95%;
+.ticket-sub-container .detail-body {
+  overflow: auto;
+}
+
+.ticket-sub-container .detail-body .img-container {
+  !background: lightblue;
+  width: 31%;
+  margin-left: 4%;
+  padding-bottom: 3%;
+  float: left;
+}
+
+.ticket-sub-container .detail-body .img-container .img-box {
+  !background: red;
+  width: 80%;
+  margin-top: 10%;
+  margin-left: 10%;
+  border-radius: 150px;
+  !overflow: auto;
+  padding: 0;
+}
+
+.ticket-sub-container .detail-body .img-container .img-box .tutor-img {
+  !background: red;
+  width: 100%;
+  border-radius: 150px;
+}
+
+.ticket-sub-container .detail-body .ticket-description-box {
+  !background: lightgreen;
   !height: 200px;
-  margin-top: 20px;
-  margin-left: auto;
-  margin-right: auto;
+  width: 60%;
+  padding-top: 3%;
+  margin-right: 2%;
+  margin-left: 3%;
+  float: left;
+}
+
+.ticket-sub-container .detail-body .ticket-description-box .description-box {
+  !background: red;
+  margin-bottom: 20px;
+  width: 70%;
+  float: left;
+}
+
+.ticket-sub-container .detail-body .ticket-description-box .description-box .description-img {
+  font-size: 30px;
+  width: 20px;
+}
+
+.ticket-sub-container .detail-body .ticket-description-box .description-box .description-text {
+  font-size: 20px;
+  display: inline;
+  margin-left: 10%;
 }
