@@ -12,7 +12,7 @@
   .edit 11-Mar-20 [Boat]
     -- add div in ticket using style like <newCreatePost> (use styled)
   .edit 12-Mar-20 [Boat]
-    -- add ticket description (img, location, date, time, price)
+    -- add ticket description (img, location, date, time, price, join)
 */
 
 import React from 'react';
@@ -60,7 +60,7 @@ const TicketDetail =(props)=> {
           <div className='ticket-description-box'>
 
             {/*
-              don't use map because too complex.
+              don't use array.map() because too complex.
             */}
 
             <div className='description-box location-box'>
@@ -75,7 +75,7 @@ const TicketDetail =(props)=> {
 
             <div className='description-box time-box'>
               <i className="description-img fas fa-clock"></i>
-              <p className='description-text'>{`Time: ${ticketData.time}`}</p>
+              <p className='description-text'>{`Time: ${ticketData.startTime}  -  ${ticketData.stopTime}`}</p>
             </div>
 
             <div className='description-box price-box'>
@@ -90,17 +90,15 @@ const TicketDetail =(props)=> {
 
           </div>
 
+          <div className='ticket-joined-box'>
+            <div className='joined-box'>
+              <p className='joined-number'><b>{`${ticketData.amount} / ${ticketData.full}`}</b></p>
+            </div>
+          </div>
+
         </div>
       </DetailBody>
   </DetailContainer>
-  );
-}
-
-const CreateItem =(props)=> {
-  return (
-    <div className={`ticket-item-${props.id} ticket-item`}>
-      <h1>{props.topic}</h1>
-    </div>
   );
 }
 

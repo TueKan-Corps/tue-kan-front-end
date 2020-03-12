@@ -46,6 +46,10 @@ const FormItem = styled.div`
     border-radius: 20px;
     border: 0;
   }
+  > .item-input:focus {
+    outline: none;
+    box-shadow: 0px 0px 4px 2px rgb(43,204,255);
+  }
 `;
 
 const HeadText = styled.p`
@@ -65,16 +69,10 @@ const TextBox = styled.input.attrs({
 
 const TimeBox = styled(TextBox).attrs({
   type: 'time',
+  //value: '08:00',
 })`
   width: 15%;
   margin-right: 60%;
-`;
-
-const NumberBox = styled(TimeBox).attrs({
-  type: 'number',
-  min: '0.5',
-  max: '5',
-})`
 `;
 
 const DateBox = styled(TextBox).attrs({
@@ -100,8 +98,8 @@ class NewCreatePost extends React.Component {
     topic: '',
     location: '',
     date: '',
-    time: '',
-    duration: '',
+    startTime: '',
+    stopTime: '',
     category: '',
     type: '',
     price: '',
@@ -121,6 +119,9 @@ class NewCreatePost extends React.Component {
   }
 
   render () {
+    let startTimeArray = this.state.startTime.split(':');
+    let hrStart = parseInt(startTimeArray[0]);
+    let hrStop = parseInt(startTimeArray[1]) + 30;
     return (
       <MainDiv className='create-post-main-container'>
         <SubDiv className='create-post-sub-container'>
@@ -136,32 +137,33 @@ class NewCreatePost extends React.Component {
             <DetailBody className='detail-body' background='rgb(184,240,255)'>
               <form onSubmit={this.onSubmit}>
                 <FormItem className='form-item'>
-                  <HeadText className='header-text'>Topic :</HeadText>
+                  <HeadText className='header-text'><b>Topic :</b></HeadText>
                   <TextBox className='item-input' name='topic' placeholder='Datacomm, Movement, Number Theory' align='left' onChange={this.onInputChange} long required></TextBox>
                 </FormItem>
 
                 <FormItem className='form-item'>
-                  <HeadText className='header-text'>Location :</HeadText>
+                  <HeadText className='header-text'><b>Location :</b></HeadText>
                   <TextBox className='item-input' name='location' placeholder='ECC 801, E12 502 ...' onChange={this.onInputChange} long required></TextBox>
                 </FormItem>
 
                 <FormItem className='form-item'>
-                  <HeadText className='header-text'>Date :</HeadText>
+                  <HeadText className='header-text'><b>Date :</b></HeadText>
                   <DateBox className='item-input' name='date' placeholder='DD/MM/YY' align='left' onChange={this.onInputChange} short required></DateBox>
                 </FormItem>
 
+                {/* step 1800 = add 0.5 hour */}
                 <FormItem className='form-item'>
-                  <HeadText className='header-text'>Time :</HeadText>
-                  <TimeBox className='item-input' name='time' step='1800' align='center' onChange={this.onInputChange} required></TimeBox>
+                  <HeadText className='header-text'><b>Tue Start :</b></HeadText>
+                  <TimeBox className='item-input' name='startTime' step='1800' min='08:00' max='20:00' align='center' onChange={this.onInputChange} required></TimeBox>
                 </FormItem>
 
                 <FormItem className='form-item'>
-                  <HeadText className='header-text'>Duration :</HeadText>
-                  <NumberBox className='item-input' name='duration' step='0.5' placeholder='Hr' align='center' onChange={this.onInputChange} short required></NumberBox>
+                  <HeadText className='header-text'><b>Tue Stop :</b></HeadText>
+                  <TimeBox className='item-input' name='stopTime' step='1800' min={hrStart+':'+hrStop} align='center' onChange={this.onInputChange} required></TimeBox>
                 </FormItem>
 
                 <FormItem className='form-item'>
-                  <HeadText className='header-text'>Category :</HeadText>
+                  <HeadText className='header-text'><b>Category :</b></HeadText>
                   <SelectBox className='item-input' name='category' onChange={this.onInputChange} short required>
                   {
                     category.map(cate => (
@@ -172,7 +174,7 @@ class NewCreatePost extends React.Component {
                 </FormItem>
 
                 <FormItem className='form-item'>
-                  <HeadText className='header-text'>Tue-type :</HeadText>
+                  <HeadText className='header-text'><b>Tue-type :</b></HeadText>
                   <SelectBox className='item-input' name='type' onChange={this.onInputChange} short required>
                     <option value=''>--Select--</option>
                     <option value='0'>Free</option>
@@ -181,12 +183,12 @@ class NewCreatePost extends React.Component {
                 </FormItem>
 
                 <FormItem className='form-item'>
-                  <HeadText className='header-text'>Price :</HeadText>
+                  <HeadText className='header-text'><b>Price :</b></HeadText>
                   <TextBox className='item-input' name='price' placeholder='99999' onChange={this.onInputChange} short required></TextBox>
                 </FormItem>
 
                 <FormItem className='form-item'>
-                  <HeadText className='header-text'>Description :</HeadText>
+                  <HeadText className='header-text'><b>Description :</b></HeadText>
                   <TextAreaBox className='item-input' name='description' placeholder='tue detail ...' onChange={this.onInputChange} ></TextAreaBox>
                 </FormItem>
 

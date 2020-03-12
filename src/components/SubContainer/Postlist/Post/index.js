@@ -5,7 +5,6 @@
 
 import React from 'react'
 import './style.css'
-import {data} from '../../../../data'
 
 import { Link } from 'react-router-dom';
 
@@ -19,7 +18,7 @@ export default function Post(props) {
     return (
         <Link className='post-list-link' to={linkTo}>
           <div className="post">
-              <img src={props.img} className="img-post" />
+              <img src={props.img} className="img-post" alt='post-list-tutor-img'/>
               <div className="detail">
                   <div className="tag-subject"><span className="dot" style={{ background : `${colorTag[props.tagId]}` }}/><h2 className="subject">{props.subject}</h2></div>
                   <div className="topic">#Topic       : {props.topic}</div>
