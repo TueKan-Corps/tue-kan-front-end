@@ -1,0 +1,100 @@
+.create-post-sub-container .post-header {
+  width: auto;
+  !background: red;
+  border-bottom: 1px solid rgb(200, 200, 200);
+  padding: 20px 20px 20px 20px;
+}
+
+.create-post-sub-container {
+  !background: red;
+  !height: 100%;
+}
+
+.create-post-sub-container .post-header:hover {
+  cursor: pointer;
+  color: rgb(111,203,255);
+}
+
+.create-post-sub-container .post-header:active {
+  color: rgb(29,151,221);
+}
+
+.create-post-sub-container .post-header .header-item {
+  display: inline;
+}
+
+.create-post-sub-container .post-header .header-back-icon {
+  font-size: 32px;
+  margin-right: 10px;
+}
+
+.create-post-sub-container .post-header .header-text {
+  font-size: 28px;
+}
+
+.create-post-sub-container .create-post-detail {
+  !background: coral;
+  width: 95%;
+  !height: 750px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.create-post-sub-container .create-post-detail .detail-header {
+  background: rgb(119,218,255);
+  width: 50%;
+  height: 50px;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+}
+
+.create-post-sub-container .create-post-detail .detail-header-text {
+  font-size: 22px;
+  text-align: center;
+  padding-top: 10px;
+}
+
+.create-post-sub-container .create-post-detail .detail-body {
+  background: rgb(184,240,255);
+  width: 100%;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.detail-body .submit-btn {
+  margin: 10px 0px 0px 30px;
+  display: inline;
+  font-size: 18px;
+  padding: 15px;
+  font-family: 'Quicksand', sans-serif;
+  border-radius: 30px;
+  background: rgb(146,220,247);
+  border: 0;
+}
+
+.detail-body .submit-btn:hover {
+  cursor: pointer;
+  background: rgb(135,212,241);
+  transition: background-color 0.2s;
+}
+
+.detail-body .submit-btn:active {
+  background: rgb(122,202,232);
+  transition: background-color 0.2s;
+}
+
+@media screen and (max-width: 1590px) {
+  .detail-body .form-item .header-text {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .detail-body .form-item .header-text {
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,37 @@
+.ticket-sub-container .post-header {
+  width: auto;
+  !background: red;
+  border-bottom: 1px solid rgb(200, 200, 200);
+  padding: 20px 20px 20px 20px;
+}
+
+.ticket-sub-container .post-header:hover {
+  cursor: pointer;
+  color: rgb(111,203,255);
+}
+
+.ticket-sub-container .post-header:active {
+  color: rgb(29,151,221);
+}
+
+.ticket-sub-container .post-header .header-item {
+  display: inline;
+}
+
+.ticket-sub-container .post-header .header-back-icon {
+  font-size: 32px;
+  margin-right: 10px;
+}
+
+.ticket-sub-container .post-header .header-text {
+  font-size: 28px;
+}
+
+.ticket-sub-container .ticket-detail {
+  !background: coral;
+  width: 95%;
+  !height: 200px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
