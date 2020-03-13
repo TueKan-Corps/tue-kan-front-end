@@ -13,7 +13,7 @@ import NewCreatePost from '../pages/newCreatePost/index.js';
 import Ticket from '../pages/ticket/index.js';
 import Login from '../pages/loginPage/index.js';
 
-import { BrowserRouter as Router, Switch, Route, useRouteMatch } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 export default () => {
   return (

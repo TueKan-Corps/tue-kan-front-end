@@ -17,7 +17,7 @@ const CreateListItem =(props)=> {
   let isTopicOverLen = props.topic.length > 16;
   let topicDisplay = isTopicOverLen ? props.topic.substring(0, 15) + '...' : props.topic;
   return (
-    <Link className='mtl-item-link' to='#'>
+    <Link className='mtl-item-link' to={`/ticket/${props.id}`}>
       <div className='mtl-item'>
         <span className='item-tag-color' style={{background: `${colorTag[props.tagId]}`}}> </span>
         <p className='item-topic item-text'>{topicDisplay}</p>
@@ -37,11 +37,11 @@ export default function MyTuelist() {
             <div className='mtl-body'>
               {
                 listData.map(list => {
-                  let {id, ...other} = list;
+                  //let {id, ...other} = list;
                   //console.log(other);
                   return (
                     /* can use <CreateListItem key={list.id} {...list} /> */
-                    <CreateListItem key={id} {...other}  />
+                    <CreateListItem key={list.id} {...list}  />
                   )
                 })
               }

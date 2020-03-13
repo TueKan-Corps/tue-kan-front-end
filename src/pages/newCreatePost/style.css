@@ -32,37 +32,10 @@
   font-size: 28px;
 }
 
-.create-post-sub-container .create-post-detail {
-  !background: coral;
-  width: 95%;
-  !height: 750px;
-  margin-top: 20px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.create-post-sub-container .create-post-detail .detail-header {
-  background: rgb(119,218,255);
-  width: 50%;
-  height: 50px;
-  border-top-left-radius: 25px;
-  border-top-right-radius: 25px;
-}
-
-.create-post-sub-container .create-post-detail .detail-header-text {
+.detail-header-text {
   font-size: 22px;
   text-align: center;
   padding-top: 10px;
-}
-
-.create-post-sub-container .create-post-detail .detail-body {
-  background: rgb(184,240,255);
-  width: 100%;
-  border-top-right-radius: 25px;
-  border-bottom-right-radius: 25px;
-  border-bottom-left-radius: 25px;
-  padding-top: 20px;
-  padding-bottom: 20px;
 }
 
 .detail-body .submit-btn {
@@ -85,6 +58,11 @@
 .detail-body .submit-btn:active {
   background: rgb(122,202,232);
   transition: background-color 0.2s;
+}
+
+.detail-body .submit-btn:focus {
+  outline: none;
+  box-shadow: 0px 0px 4px 2px rgb(43,204,255);
 }
 
 @media screen and (max-width: 1590px) {
