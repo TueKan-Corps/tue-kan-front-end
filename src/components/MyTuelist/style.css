@@ -1,6 +1,7 @@
 .my-tue-list-container{
   grid-area: 1/9/12/12;
-  width: 350px;
+  width: 90%;
+  max-width: 330px;
   height: 250px;
   background: rgb(250, 250, 250);
   overflow: auto;
@@ -9,7 +10,7 @@
   border-radius: 25px;
   border: 1px solid rgb(222, 222, 222);
   box-sizing: border-box;
-  margin-top: 60px;
+  margin-top: 50px;
   margin-left: auto;
   margin-right: auto ;
 }
@@ -61,7 +62,7 @@
 .mtl-item {
   display: block;
   width: 100%;
-  overflow: auto;
+  !overflow: auto;
   height: 52px;
   border-bottom: 1px solid rgb(244, 244, 244);
   transition: background-color 0.2s;
@@ -96,7 +97,7 @@
   margin-left: 15px;
 }
 
-.mtl-item .item-tutor {
+.mtl-item .item-date {
   float: right;
   margin-right: 25px;
 }

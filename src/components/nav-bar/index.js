@@ -11,7 +11,7 @@ class Navbar extends React.Component {
   render () {
     return (
       <nav className='navbar-container'>
-        <Link to='/home'>
+        <Link to='/'>
           <div className='logo-box'>
             <img className='logo' src={logo} alt='web-logo' />
           </div>

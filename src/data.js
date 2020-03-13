@@ -1,109 +1,121 @@
 export const storeProduct = [
     {
         id: 1,
-        subject: "Mathematic",
-        img: "img/product-1.png",
+        tag: 'Mathematic',
+        tagId: '0',
         topic: "PAT 1",
         location: "GOOGLE",
+        tutor: 'Kanat Krub',
         amount: "1",
         full :"10",
-        type: "Math",
         date: "01/10/2020",
-        tagId: '0'
-        
+        time: '',
+        price: '1200',
+        img: "img/product-1.png",
+
     },
     {
         id: 2,
-        subject: "Sicence",
-        img: "img/product-2.png",
+        tag: 'Science',
+        tagId: '1',
         topic: "PAT 2",
         location: "GOOGLE",
+        tutor: 'Kanat Krub',
         amount: "3",
         full :"10",
-        type: "Math",
-        date :"01/10/2020",
-        tagId: '2'
+        date: "01/10/2020",
+        time: '',
+        price: '1000',
+        img: "img/product-2.png",
 
     },
     {
         id: 3,
-        subject: "ภาษาไทย",
-        img: "img/product-3.png",
+        tag: 'Thai',
+        tagId: '2',
         topic: "9 วิชาสามัญ",
         location: "GOOGLE",
+        tutor: 'Kanat Krub',
         amount: "4",
         full :"10",
-        type: "Math",
-        date :"01/10/2020",
-        tagId: '3'
-
+        date: "01/10/2020",
+        time: '',
+        price: '500',
+        img: "img/product-3.png",
     },
     {
         id: 4,
-        subject: "English",
-        img: "img/product-4.png",
+        tag: "English",
+        tagId: '3',
         topic: "9 วิชาสามัญ",
         location: "GOOGLE",
+        tutor: 'Kanat Krub',
         amount: "1",
         full :"10",
-        type: "Math",
         date :"01/10/2020",
-        tagId: '2'
-
+        time: '',
+        price: '120',
+        img: "img/product-4.png",
     },
     {
         id: 5,
-        subject: "สังคมศึกษาฯ",
-        img: "img/product-5.png",
+        tag: 'Social',
+        tagId: '4',
         topic: "9 วิชาสามัญ",
         location: "GOOGLE",
-        amount: "1",
+        tutor: 'Kanat Krub',
+        amount: "4",
         full :"10",
-        type: "Math",
         date :"01/10/2020",
-        tagId: '1'
+        time: '',
+        price: '300',
+        img: "img/product-5.png",
 
     },
     {
         id: 6,
-        subject: "ภาษาไทย",
-        img: "img/product-6.png",
+        tag: "Thai",
+        tagId: '3',
         topic: "9 วิชาสามัญ",
         location: "GOOGLE",
+        tutor: 'Kanat Krub',
         amount: "1",
         full :"10",
-        type: "Math",
         date :"01/10/2020",
-        tagId: '4'
+        time: '',
+        price: '100',
+        img: "img/product-6.png",
 
     },
     {
         id: 7,
-        subject: "Mathermatic",
-        img: "img/product-7.png",
+        tag: "Mathematic",
+        tagId: '0',
         topic: "9 วิชาสามัญ",
         location: "GOOGLE",
+        tutor: 'Kanat Krub',
         amount: "1",
         full :"10",
-        type: "Math",
         date :"01/10/2020",
-        tagId: '3'
-
+        time: '',
+        price: '50',
+        img: "img/product-7.png",
     },
     {
         id: 8,
-        subject: "English",
-        img: "img/product-8.png",
+        tag: "English",
+        tagId: '3',
         topic: "9 วิชาสามัญ",
         location: "GOOGLE",
+        tutor: 'Kanat Krub',
         amount: "5",
         full :"10",
-        type: "Math",
         date :"01/10/2020",
-        tagId: '2'
-
+        time: '',
+        price: '250',
+        img: "img/product-8.png",
     }
-    
+
 ];
 
 export const detailProduct = {

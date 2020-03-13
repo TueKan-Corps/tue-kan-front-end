@@ -1,12 +1,17 @@
+/*
+  .edit 10-Mar-20 [Boat]
+    -- edit to pass object from parent instead of import object in this component. for flexible to use.
+*/
+
 import React from 'react'
 import Post from './Post/index'
-import { storeProduct } from '../../../data'
 
-export default function Postlist() {
+export default function Postlist(props) {
+  let postData = props.postData;
     return (
         <div className="post-list">
-            {storeProduct.map(data => (
-                <Post key={data.id} subject={data.subject} img={data.img} topic={data.topic} location={data.location} type={data.type} date={data.date} amount={data.amount} full={data.full} tagId={data.tagId}/>
+            {postData.map(data => (
+                <Post key={data.id} {...data} linkTo={props.linkTo}/>
             ))}
         </div>
     )
