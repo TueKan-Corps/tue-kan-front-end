@@ -17,7 +17,7 @@ const Main =()=> {
   return (
     <>
       <Banner />
-      <Postlist postData={storeProduct} linkType='main' />
+      <Postlist postData={storeProduct} linkTo='/home' />
     </>
   );
 }

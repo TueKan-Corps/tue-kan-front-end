@@ -117,7 +117,7 @@ const TicketDetail =(props)=> {
 
 const TicketList =()=> {
   return (
-    <Postlist postData={listData} linkType='ticket' />
+    <Postlist postData={listData} linkTo='/ticket' />
   );
 }
 

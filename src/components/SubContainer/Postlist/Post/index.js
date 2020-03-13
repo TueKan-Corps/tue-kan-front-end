@@ -1,6 +1,8 @@
 /*
   .edit 10-Mar-20 [Boat]
     -- edit to route (main, ticket)
+  .edit 13-Mar-20 [Boat]
+    -- edit to pass props instead define in function.
 */
 
 import React from 'react'
@@ -11,8 +13,7 @@ import { Link } from 'react-router-dom';
 let colorTag = ['skyblue', 'rgb(255,197,130)', 'pink', 'rgb(241,184,255)', 'lightgreen'];
 
 export default function Post(props) {
-    let linkType = props.linkType === 'main' ? 'main' : 'ticket';
-    let linkTo = linkType === 'main' ? '/home' : '/ticket'
+    let linkTo = props.linkTo;
     linkTo = `${linkTo}/${props.id}`;
     //console.log(linkType);
     return (
