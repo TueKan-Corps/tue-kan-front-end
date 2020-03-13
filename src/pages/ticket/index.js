@@ -85,7 +85,7 @@ const TicketDetail =(props)=> {
 
             <div className='description-box ticket-box'>
               <i className="description-img fas fa-ticket-alt"></i>
-              <p className='description-text'>{`Ticket: ${ticketData.ticket}`}</p>
+              <p className='description-text'>{`Your Code: ${ticketData.ticket}`}</p>
             </div>
 
           </div>
@@ -93,6 +93,19 @@ const TicketDetail =(props)=> {
           <div className='ticket-joined-box'>
             <div className='joined-box'>
               <p className='joined-number'><b>{`${ticketData.amount} / ${ticketData.full}`}</b></p>
+            </div>
+          </div>
+
+          <div className='description-box ticket-box description-detail-box'>
+            <i className="description-img fas fa-book" style={{margin: '5px 0 0 35px'}}></i>
+            <p className='description-text'>Description</p>
+            <div className='description-detail-text-box'>
+              {
+                ticketData.description != '' ?
+                <p className='description-detail-text'>{`${ticketData.description}`}</p>
+                :
+                <p className='description-detail-text'>This tue has not description.</p>
+              }
             </div>
           </div>
 

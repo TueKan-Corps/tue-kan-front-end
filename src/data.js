@@ -1,7 +1,7 @@
 export const storeProduct = [
     {
         id: 1,
-        tag: 'math',
+        tag: 'Mathematic',
         tagId: '0',
         topic: "PAT 1",
         location: "GOOGLE",
@@ -16,7 +16,7 @@ export const storeProduct = [
     },
     {
         id: 2,
-        tag: 'sci',
+        tag: 'Science',
         tagId: '1',
         topic: "PAT 2",
         location: "GOOGLE",
@@ -31,7 +31,7 @@ export const storeProduct = [
     },
     {
         id: 3,
-        tag: 'thai',
+        tag: 'Thai',
         tagId: '2',
         topic: "9 วิชาสามัญ",
         location: "GOOGLE",
@@ -45,7 +45,7 @@ export const storeProduct = [
     },
     {
         id: 4,
-        tag: "eng",
+        tag: "English",
         tagId: '3',
         topic: "9 วิชาสามัญ",
         location: "GOOGLE",
@@ -59,7 +59,7 @@ export const storeProduct = [
     },
     {
         id: 5,
-        tag: 'soc',
+        tag: 'Social',
         tagId: '4',
         topic: "9 วิชาสามัญ",
         location: "GOOGLE",
@@ -74,7 +74,7 @@ export const storeProduct = [
     },
     {
         id: 6,
-        tag: "thai",
+        tag: "Thai",
         tagId: '3',
         topic: "9 วิชาสามัญ",
         location: "GOOGLE",
@@ -89,7 +89,7 @@ export const storeProduct = [
     },
     {
         id: 7,
-        tag: "math",
+        tag: "Mathematic",
         tagId: '0',
         topic: "9 วิชาสามัญ",
         location: "GOOGLE",
@@ -103,7 +103,7 @@ export const storeProduct = [
     },
     {
         id: 8,
-        tag: "eng",
+        tag: "English",
         tagId: '3',
         topic: "9 วิชาสามัญ",
         location: "GOOGLE",

@@ -1,10 +1,11 @@
 // date sorted from backend
-// add time, price, ticket
+// 12-Mar-20 add time, price, ticket
+// 13-Mar-20 add description
 
 export const listData = [
   {
     id: 1,
-    tag: 'math',
+    tag: 'Mathematic',
     tagId: '0',
     topic: 'Calculus 2',
     location: "ECC 801",
@@ -17,10 +18,11 @@ export const listData = [
     price: '120',
     ticket: '',
     img: "",
+    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
   },
   {
     id: 2,
-    tag: 'sci',
+    tag: 'Science',
     tagId: '1',
     topic: 'Movement',
     location: "Hardware Lab",
@@ -33,10 +35,11 @@ export const listData = [
     price: '200',
     ticket: '',
     img: "",
+    description: '',
   },
   {
     id: 3,
-    tag: 'thai',
+    tag: 'Thai',
     tagId: '2',
     topic: 'Wan na ka dee',
     location: "ISAG",
@@ -49,12 +52,13 @@ export const listData = [
     price: '50',
     ticket: '',
     img: "",
+    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
   },
   {
     id: 4,
-    tag: 'eng',
+    tag: 'English',
     tagId: '3',
-    topic: 'Toeic300',
+    topic: 'TOEIC 300++',
     location: "HCRL",
     tutor: 'Somsri Jah',
     amount: "5",
@@ -65,10 +69,11 @@ export const listData = [
     price: '1000',
     ticket: '',
     img: "",
+    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
   },
   {
     id: 5,
-    tag: 'social',
+    tag: 'Social',
     tagId: '4',
     topic: 'Na tee pol la mueng',
     location: "E12 501",
@@ -81,10 +86,11 @@ export const listData = [
     price: '25',
     ticket: '',
     img: "",
+    description: '',
   },
   {
     id: 6,
-    tag: 'math',
+    tag: 'Mathematic',
     tagId: '0',
     topic: 'Number Theory',
     location: "D 403",
@@ -97,10 +103,11 @@ export const listData = [
     price: '250',
     ticket: '',
     img: "",
+    description: '',
   },
   {
     id: 7,
-    tag: 'sci',
+    tag: 'Science',
     tagId: '1',
     topic: 'Kingdom',
     location: "HM 305",
@@ -113,10 +120,11 @@ export const listData = [
     price: '300',
     ticket: '',
     img: "",
+    description: '',
   },
   {
     id: 8,
-    tag: 'social',
+    tag: 'Social',
     tagId: '3',
     topic: 'Coup by P Yuth',
     location: "ECC 811",
@@ -129,5 +137,6 @@ export const listData = [
     price: '150',
     ticket: '',
     img: "",
+    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
   },
 ];

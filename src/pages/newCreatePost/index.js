@@ -120,8 +120,11 @@ class NewCreatePost extends React.Component {
 
   render () {
     let startTimeArray = this.state.startTime.split(':');
-    let hrStart = parseInt(startTimeArray[0]);
-    let hrStop = parseInt(startTimeArray[1]) + 30;
+    let hrStart = parseInt(startTimeArray[0]) + 1;
+    let hrStop = parseInt(startTimeArray[1]);
+    let minHr = hrStop > 0 ? hrStart+':'+hrStop : hrStart+':'+hrStop+0;
+    console.log(hrStart);
+    console.log(hrStart+':'+hrStop);
     return (
       <MainDiv className='create-post-main-container'>
         <SubDiv className='create-post-sub-container'>
@@ -159,7 +162,7 @@ class NewCreatePost extends React.Component {
 
                 <FormItem className='form-item'>
                   <HeadText className='header-text'><b>Tue Stop :</b></HeadText>
-                  <TimeBox className='item-input' name='stopTime' step='1800' min={hrStart+':'+hrStop} align='center' onChange={this.onInputChange} required></TimeBox>
+                  <TimeBox className='item-input' name='stopTime' step='1800' min={minHr} max='20:00' align='center' onChange={this.onInputChange} required></TimeBox>
                 </FormItem>
 
                 <FormItem className='form-item'>
