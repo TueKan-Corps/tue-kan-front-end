@@ -4,22 +4,21 @@
 	box-sizing: border-box;
 }
 
-/*
-body {
-	background: #f6f5f7;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-	font-family: 'Montserrat', sans-serif;
+
+/* body {
 	height: 100vh;
-	margin: -20px 0 50px;
-}
-*/
+	width: 100vw;
+} */
+
 
 .loginpage {
   display: block;
   transform: translate(25%, 25%); 
+  /* width: 100vw;
+  height: 100vh;
+  justify-items: center;
+  align-items: center;
+  margin-left: 3.5vw; */
 }
 
 .header1-login {

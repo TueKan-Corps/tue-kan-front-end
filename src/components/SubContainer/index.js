@@ -5,6 +5,9 @@ import TicketDetail from '../../'
 import DetailBody from '../../pages/newCreatePost/detailBody'
 import DetailContainer from '../../pages/newCreatePost/detailContainer'
 import DetailHeader from '../../pages/newCreatePost/detailHeader'
+import MainDiv from '../../pages/mainDiv'
+import SubDiv from '../../pages/mainDiv'
+
 import { storeProduct } from '../../data'
 import { listData } from '../MyTuelist/listData.js';
 import tempPic from '../avatar/profile.jpg';
@@ -27,15 +30,19 @@ const Main =()=> {
 
 const Sub =(props)=> {
   let { postId } = useParams();
-  let postData = listData[postId-1];
+  let postData = storeProduct[postId-1];
   return (
+    
     <DetailContainer className='ticket-detail'>
+      <div className='post-header ticket-detail-header' onClick={()=>window.history.back()}>
+        <i className="header-item header-back-icon fas fa-chevron-left"></i>
+        <p className='header-item header-text'><b>Back</b></p>
+      </div>
     <DetailHeader className='detail-header' background='rgb(255,216,212)'>
       <p className='detail-header-text'><b>{postData.topic}</b></p>
     </DetailHeader>
     <DetailBody className='detail-body' background='rgb(255,238,238)'>
       <div className='body-container'>
-
         <div className='img-container'>
           <div className='img-box'>
             {/*<img className='tutor-img' src={ticketData.img} alt='tutor-img' />*/}
@@ -92,7 +99,9 @@ const Sub =(props)=> {
               :
               <p className='description-detail-text'>This tue has not description.</p>
             }
-          </div>
+            </div>
+              <button className="buy-button">BuyTicket Now!!</button>
+          
         </div>
 
       </div>
@@ -104,7 +113,6 @@ const Sub =(props)=> {
 export default function SubContainer() {
     return (
         <div className="sub-container">
-
           <Switch>
 
             {/*
@@ -116,8 +124,6 @@ export default function SubContainer() {
             <Route exact path={`/home/:postId`} component={Sub} />
 
           </Switch>
-
-
         </div>
     )
 }
