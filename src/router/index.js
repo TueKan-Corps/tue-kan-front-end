@@ -11,6 +11,7 @@ import SideBar from '../components/sideBar/index.js';
 import Home from "../pages/home";
 import NewCreatePost from '../pages/newCreatePost/index.js';
 import Ticket from '../pages/ticket/index.js';
+import Posting from '../pages/posting/index.js';
 import Login from '../pages/loginPage/index.js';
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -38,6 +39,7 @@ export default () => {
 
         <Route path="/posting">
           <SideBar />
+          <Posting />
         </Route>
 
         <Route path="/ticket">
