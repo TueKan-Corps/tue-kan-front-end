@@ -76,10 +76,10 @@ const Sub =(props)=> {
             <p className='description-text'>{`Price: ${postData.price} TC`}</p>
           </div>
 
-          <div className='description-box ticket-box'>
+          {/* <div className='description-box ticket-box'>
             <i className="description-img fas fa-ticket-alt"></i>
             <p className='description-text'>{`Your Code: ${postData.ticket}`}</p>
-          </div>
+          </div> */}
 
         </div>
 
@@ -100,9 +100,13 @@ const Sub =(props)=> {
               <p className='description-detail-text'>This tue has not description.</p>
             }
             </div>
-              <button className="buy-button">BuyTicket Now!!</button>
+              <button className="buy-button"  type="button" data-hover="BuyTicket Now!!" data-active="You bought tricket"><span>{`${postData.price} TC`}</span></button>
           
         </div>
+
+          <div >
+
+          </div>
 
       </div>
     </DetailBody>

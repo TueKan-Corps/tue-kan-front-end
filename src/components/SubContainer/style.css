@@ -147,8 +147,9 @@
     margin: 0;
     margin-top: 8%;
 }
+
 .description-detail-box .buy-button{
-    background:#ffeb99;
+    /* background:#ffeb99;
     padding: 10px 20px;
     font-size:20px;
     font-family:"montserrat";
@@ -157,12 +158,104 @@
     color: #000000;
     transition: 0.8s;
     width: 80%;
-    margin-left: 10%;
+    margin-left: 10%; */
     border-radius: 10px;
+    background-color: #ffeb99;
+    display: inline-block;
+    position: relative;
+    margin: 1em;
+    padding: 0.67em;
+    border: 2px solid #FFF;
+    overflow: hidden;
+    text-decoration: none;
+    font-size: 20px;
+    outline: none;
+    color: #000000;
+    /* font-family: 'raleway', sans-serif; */
+    width: 40%;
+    margin-left: 30%;
 
 }
-.description-detail-box .buy-button:hover{
 
+.description-detail-box .buy-button span {
+    -webkit-transition: 0.6s;
+    -moz-transition: 0.6s;
+    -o-transition: 0.6s;
+    transition: 0.6s;
+    -webkit-transition-delay: 0.2s;
+    -moz-transition-delay: 0.2s;
+    -o-transition-delay: 0.2s;
+    transition-delay: 0.2s;
+}
+
+.description-detail-box .buy-button:before,
+.description-detail-box .buy-button:after {
+    content: '';
+    position: absolute;
+    top: 0.67em;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    opacity: 0;
+    -webkit-transition: .4s,opacity .6s;
+    -moz-transition: .4s,opacity .6s;
+    -o-transition: .4s,opacity .6s;
+    transition: .4s,opacity .6s;
+}
+
+.description-detail-box .buy-button:before {
+    content: attr(data-hover);
+    -webkit-transform: translate(-150%,0);
+    -moz-transform: translate(-150%,0);
+    -ms-transform: translate(-150%,0);
+    -o-transform: translate(-150%,0);
+    transform: translate(-150%,0);
+}
+
+
+.description-detail-box .buy-button:after {
+    content: attr(data-active);
+    -webkit-transform: translate(150%,0);
+    -moz-transform: translate(150%,0);
+    -ms-transform: translate(150%,0);
+    -o-transform: translate(150%,0);
+    transform: translate(150%,0);
+}
+
+.description-detail-box .buy-button:hover span,
+.description-detail-box .buy-button:active span {
+    opacity: 0;
+    -webkit-transform: scale(0.3);
+    -moz-transform: scale(0.3);
+    -ms-transform: scale(0.3);
+    -o-transform: scale(0.3);
+    transform: scale(0.3);
+}
+
+.description-detail-box .buy-button:hover:before,
+.description-detail-box .buy-button:active:after {
+    opacity: 1;
+    -webkit-transform: translate(0,0);
+    -moz-transform: translate(0,0);
+    -ms-transform: translate(0,0);
+    -o-transform: translate(0,0);
+    transform: translate(0,0);
+    -webkit-transition-delay: .4s;
+    -moz-transition-delay: .4s;
+    -o-transition-delay: .4s;
+    transition-delay: .4s;
+}
+
+.description-detail-box .buy-button:active:before {
+    -webkit-transform: translate(-150%,0);
+    -moz-transform: translate(-150%,0);
+    -ms-transform: translate(-150%,0);
+    -o-transform: translate(-150%,0);
+    transform: translate(-150%,0);
+    -webkit-transition-delay: 0s;
+    -moz-transition-delay: 0s;
+    -o-transition-delay: 0s;
+    transition-delay: 0s;
 }
 
 /* .description-detail-box .buy-button::before{
