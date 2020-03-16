@@ -9,22 +9,17 @@ import './style.css';
 
 const CreateList =(props)=> {
 
-  //const [isRedeem, setRedeem] = React.useState(0);
-  let [firstName, lastName] = props.name.split(' ');
-  let bgColor = props.redeemThisTicket === props.ticket ? 'lightgreen' : 'pink';
-  //let bgColor = 'skyblue';
-  console.log(props.redeemThisTicket);
+  let bgColor = !props.isRedeem ? 'rgb(249,198,203)' : 'rgb(184,242,193)';
+  bgColor = props.ticketId === props.ticket ? 'skyblue' : bgColor;
+  //console.log(props.ticketId);
   return (
-    <>
-      {/*<tr className='table-body table-row' onClick={()=>setRedeem(prev => !prev)}>*/}
-      <tr className='table-body table-row' style={{background: bgColor}}>
-        <td className='table-detail'>{props.counter}</td>
-        <td className='table-detail'>{props.id}</td>
-        <td className='table-detail left'>{firstName}</td>
-        <td className='table-detail left'>{lastName}</td>
-        <td className='table-detail ticket-for-redeem' id={`${props.topic}-ticket-${props.counter-1}`}>{props.ticket}</td>
-      </tr>
-    </>
+    <tr className='table-body table-row' id={`name-list-row-${props.counter}`} style={{background: bgColor}}>
+      <td className='table-detail'>{props.counter}</td>
+      <td className='table-detail'>{props.id}</td>
+      <td className='table-detail left'>{props.firstName}</td>
+      <td className='table-detail left'>{props.lastName}</td>
+      <td className='table-detail ticket-for-redeem' >{props.ticket}</td>
+    </tr>
   );
 }
 
@@ -34,7 +29,7 @@ class NameListTable extends React.Component {
     let data = this.props.data;
     //console.log(this.state.numberCounter);
     return (
-      <table className='posting-name-list-table'>
+      <table className='posting-name-list-table' id='name-list-table-table'>
         <thead className='posting-name-list-header'>
           <tr className='table-header table-row'>
             <td className='table-detail'><b>No</b></td>
@@ -48,7 +43,7 @@ class NameListTable extends React.Component {
         <tbody className='posting-name-list-body'>
         {
           data.map((data, iteration) => (
-            <CreateList key={data.name} counter={iteration + 1} {...data} redeemThisTicket={this.props.redeemThisTicket} topic={this.props.topic} />
+            <CreateList key={iteration} counter={iteration + 1} {...data} ticketId={this.props.ticketId} />
           ))
         }
         </tbody>

@@ -1,7 +1,6 @@
 import React from 'react'
 import Banner from './Banner/index'
-import Postlist from './Postlist/index'
-import TicketDetail from '../../'
+import Postlist from './Postlist/index' 
 
 import { storeProduct } from '../../data'
 

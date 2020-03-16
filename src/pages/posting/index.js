@@ -2,6 +2,10 @@
   .add 13-Mar-20
     -- reuse component <MainDiv>, <SubDiv>, components from ticket.
     -- have not {myPostingData}, using data form {listData}.
+  .edit 16-Mar-20
+    -- add participant table.
+    -- add redeem ticket, can verify id by ticketCode.
+    -- ** remaining [POST] to DB.
 */
 
 import React from 'react';
@@ -34,24 +38,43 @@ const findTicket =(length)=> {
   /// get all ticket of this tue.
   let item = document.getElementsByClassName('ticket-for-redeem');
 
-  //console.log('ticket ' + ticket);
   /// if ticket is not empty, it can continue.
   let i = ticket !== '' ? 0 : length;
   let canFind = false;
-  for (i ; i < length; i++)
-  {
-    //console.log(item[i].innerText);
+  for (i ; i < length; i++) {
     /// check value of ticket from input and ticket of tue list data.
     canFind = item[i].innerText === ticket ? true : false;
     if (canFind)
       break;
   }
-  return (canFind);
+  /// return canFind(boolean), i(id of row in table).
+  return {canFind, i};
+}
+
+const scrollTable =(length)=> {
+  if(findTicket(length).canFind) {
+    /// get highlight row.
+    let name = 'name-list-row-' + (findTicket(length).i + 1);
+    let myElement = document.getElementById(name);
+    /// get current topPos.
+    let topPos = myElement.offsetTop;
+    /// auto scrolling.
+    document.getElementById('name-list-table-id').scrollTop = topPos - 80;
+  }
 }
 
 const PostingDetail =(props)=> {
-  const [redeemThisTicket, setRedeemThisTicket] = React.useState(0);
-  const [isHaveTicket, setIsHaveTicket] = React.useState(0);
+  const [ticketId, setticketId] = React.useState(0);
+
+  const checkAndHighLight =(length)=> {
+    if(findTicket(length).canFind) {
+      setticketId(document.getElementById('redeem-box').value);
+      scrollTable(length);
+    }
+    else {
+      setticketId('999999');
+    }
+  }
 
   let { postingId } = useParams();
   let postingData = myPostingData[postingId-1];
@@ -106,7 +129,7 @@ const PostingDetail =(props)=> {
           </div>
 
           <div className='description-box posting-box description-detail-box'>
-            <i className="description-img fas fa-book" style={{margin: '5px 0 0 35px'}}></i>
+            <i className="description-img fas fa-book" style={{margin: '5px 0 0 40px'}}></i>
             <p className='description-text'>Description</p>
             <div className='description-detail-text-box'>
               {
@@ -123,12 +146,12 @@ const PostingDetail =(props)=> {
               <i className="description-img fas fa-users"></i>
               <p className='description-text'>Participant List :</p>
 
-              <div className='name-list-table-container'>
+              <div className='name-list-table-container' id='name-list-table-id'>
 
                 {/*
-                  - pass redeemThisTicket to set background color of this row.
+                  - pass ticketId to set background color of this row.
                 */}
-                <NameListTable topic={postingData.topic} data={postingData.participant} redeemThisTicket={redeemThisTicket} />
+                <NameListTable topic={postingData.topic} data={postingData.participant} ticketId={ticketId} />
 
               </div>
 
@@ -141,21 +164,26 @@ const PostingDetail =(props)=> {
               <p className='description-text'>Redeem Ticket :</p>
 
               <div className='redeem-container'>
-                <input id='redeem-box' type='text' name='redeem-input'></input>
+                <input className='redeem-input' id='redeem-box' type='text' placeholder='Enter ticket here ...'></input>
 
-                {/*
-                  - must check ticket input from <input id='redeem-box'> before redeem.
-                  - if can find ticket on list, findTicket() return true.
-                  - setIsHaveTicket with returned value.
-                */}
-                <p onClick={()=>setIsHaveTicket(findTicket(postingData.participant.length))}>Check</p>
+                <div className='redeem-button-box'>
+                  <div className='redeem-button-small-box'>
+                    {/*
+                      - must check ticket input from <input id='redeem-box'> before redeem.
+                      - if can find ticket on list, findTicket() return true.
+                      - setIsHaveTicket with returned value.
+                      - highlight row.
+                    */}
+                    <p className='redeem-button redeem-check' onClick={()=>checkAndHighLight(postingData.participant.length)}><b>Check</b></p>
 
-                {/*
-                  - if isHaveTicket, setRedeemThisTicket by input <input id='redeem-box'>
-                  - have alert to confirm.
-                  - must have to update in DB.
-                */}
-                <p onClick={()=>setRedeemThisTicket(document.getElementById('redeem-box').value) && isHaveTicket}>OK</p>
+                    {/*
+                      - if isHaveTicket, setticketId by input <input id='redeem-box'>
+                      - have alert to confirm.
+                      - *** must have to update in DB.
+                    */}
+                    <p className='redeem-button redeem-ok'><b>OK</b></p>
+                  </div>
+                </div>
 
               </div>
 

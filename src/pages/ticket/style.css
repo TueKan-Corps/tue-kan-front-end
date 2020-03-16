@@ -96,7 +96,7 @@
 .ticket-sub-container .detail-body .description-detail-box .description-detail-text-box {
   width: 90%;
   margin: 0 auto;
-  background: rgb(248, 248, 248);
+  background: rgb(252, 252, 252);
   border: 3px dashed rgb(255,216,212);
   box-sizing: border-box;
   border-radius: 15px;
@@ -121,7 +121,7 @@
 }
 
 .ticket-sub-container .detail-body .ticket-joined-box .joined-box {
-  background: rgb(248, 248, 248);
+  background: rgb(252, 252, 252);
   width: 100%;
   height: 55px;
   border: 4px solid rgb(255,216,212);
