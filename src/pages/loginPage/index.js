@@ -33,7 +33,8 @@ export default function Login() {
                             <a href="#" className="social"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                         <span className="span-login">or use your email for registration</span>
-                        <input className="input-login" type="text" placeholder="Name" />
+                        <input className="input-login" type="firstname" placeholder="Firstname" />
+                        <input className="input-login" type="lastname" placeholder="Lastname" />
                         <input className="input-login" type="email" placeholder="Email" />
                         <input className="input-login" type="password" placeholder="Password" />
                         <button className="button-login">Sign Up</button>
