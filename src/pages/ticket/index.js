@@ -27,14 +27,14 @@ import './style.css';
 
 import tempPic from '../../components/avatar/profile.jpg';
 
+import MainDiv from '../mainDiv.js';
+import SubDiv from '../subDiv.js';
 import DetailContainer from '../newCreatePost/detailContainer.js';
 import DetailBody from '../newCreatePost/detailBody.js';
 import DetailHeader from '../newCreatePost/detailHeader.js';
 
 import {listData} from '../../components/MyTuelist/listData.js';
-
-import MainDiv from '../mainDiv.js';
-import SubDiv from '../subDiv.js';
+ 
 import MyTueList from '../../components/MyTuelist/index.js';
 import Postlist from '../../components/SubContainer/Postlist/index.js';
 
