@@ -1,5 +1,6 @@
 import React from 'react'
 import Banner from './Banner/index'
+
 import Postlist from './Postlist/index'
 import TicketDetail from '../../'
 import DetailBody from '../../pages/newCreatePost/detailBody'
@@ -7,6 +8,7 @@ import DetailContainer from '../../pages/newCreatePost/detailContainer'
 import DetailHeader from '../../pages/newCreatePost/detailHeader'
 import MainDiv from '../../pages/mainDiv'
 import SubDiv from '../../pages/mainDiv'
+
 
 import { storeProduct } from '../../data'
 import { listData } from '../MyTuelist/listData.js';
@@ -27,6 +29,7 @@ const Main =()=> {
     </>
   );
 }
+
 
 const Sub =(props)=> {
   let { postId } = useParams();
