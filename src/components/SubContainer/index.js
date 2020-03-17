@@ -1,9 +1,18 @@
 import React from 'react'
 import Banner from './Banner/index'
-import Postlist from './Postlist/index' 
+
+import Postlist from './Postlist/index'
+import TicketDetail from '../../'
+import DetailBody from '../../pages/newCreatePost/detailBody'
+import DetailContainer from '../../pages/newCreatePost/detailContainer'
+import DetailHeader from '../../pages/newCreatePost/detailHeader'
+import MainDiv from '../../pages/mainDiv'
+import SubDiv from '../../pages/mainDiv'
+
 
 import { storeProduct } from '../../data'
-
+import { listData } from '../MyTuelist/listData.js';
+import tempPic from '../avatar/profile.jpg';
 import './style.css'
 
 import {
@@ -21,28 +30,97 @@ const Main =()=> {
   );
 }
 
-const Sub =()=> {
+
+const Sub =(props)=> {
   let { postId } = useParams();
   let postData = storeProduct[postId-1];
-  console.log(postId);
   return (
-    <div>
-      <p>{postId}</p>
-      <p>{postId}</p>
-      <p>{postData.topic}</p>
-      <p>Love U</p>
-      <p>Love U</p>
-      <p>Love U</p>
-      <p>Love U</p>
-      <p>Love U</p>
-    </div>
+    
+    <DetailContainer className='ticket-detail'>
+      <div className='post-header ticket-detail-header' onClick={()=>window.history.back()}>
+        <i className="header-item header-back-icon fas fa-chevron-left"></i>
+        <p className='header-item header-text'><b>Back</b></p>
+      </div>
+    <DetailHeader className='detail-header' background='rgb(255,216,212)'>
+      <p className='detail-header-text'><b>{postData.topic}</b></p>
+    </DetailHeader>
+    <DetailBody className='detail-body' background='rgb(255,238,238)'>
+      <div className='body-container'>
+        <div className='img-container'>
+          <div className='img-box'>
+            {/*<img className='tutor-img' src={ticketData.img} alt='tutor-img' />*/}
+            {<img className='tutor-img' src={tempPic} alt='tutor-img' />}
+          </div>
+        </div>
+
+        <div className='ticket-description-box'>
+
+          {/*
+            don't use array.map() because too complex.
+          */}
+
+          <div className='description-box location-box'>
+            <i className="description-img fas fa-map-marker-alt"></i>
+            <p className='description-text'>{`Location: ${postData.location}`}</p>
+          </div>
+
+          <div className='description-box date-box'>
+            <i className="description-img fas fa-calendar-alt"></i>
+            <p className='description-text'>{`Date: ${postData.date}`}</p>
+          </div>
+
+          <div className='description-box time-box'>
+            <i className="description-img fas fa-clock"></i>
+            <p className='description-text'>{`Time: ${postData.startTime}  -  ${postData.stopTime}`}</p>
+          </div>
+
+          <div className='description-box price-box'>
+            <i className="description-img fas fa-coins"></i>
+            <p className='description-text'>{`Price: ${postData.price} TC`}</p>
+          </div>
+
+          {/* <div className='description-box ticket-box'>
+            <i className="description-img fas fa-ticket-alt"></i>
+            <p className='description-text'>{`Your Code: ${postData.ticket}`}</p>
+          </div> */}
+
+        </div>
+
+        <div className='ticket-joined-box'>
+          <div className='joined-box'>
+            <p className='joined-number'><b>{`${postData.amount} / ${postData.full}`}</b></p>
+          </div>
+        </div>
+
+        <div className='description-box ticket-box description-detail-box'>
+          <i className="description-img fas fa-book" style={{margin: '5px 0 0 35px'}}></i>
+          <p className='description-text'>Description</p>
+          <div className='description-detail-text-box'>
+            {
+              postData.description != '' ?
+              <p className='description-detail-text'>{`${postData.description}`}</p>
+              :
+              <p className='description-detail-text'>This tue has not description.</p>
+            }
+            </div>
+              <button className="buy-button"  type="button" data-hover="BuyTicket Now!!" data-active="You bought tricket"><span>{`Price : ${postData.price} TC`}</span></button>
+          
+        </div>
+
+          <div >
+
+          </div>
+
+      </div>
+    </DetailBody>
+</DetailContainer>
+
   );
 }
 
 export default function SubContainer() {
     return (
         <div className="sub-container">
-
           <Switch>
 
             {/*
@@ -54,8 +132,6 @@ export default function SubContainer() {
             <Route exact path={`/home/:postId`} component={Sub} />
 
           </Switch>
-
-
         </div>
     )
 }

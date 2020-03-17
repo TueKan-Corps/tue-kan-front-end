@@ -14,6 +14,7 @@ export const storeProduct = [
         price: '1200',
         img: "img/product-1.png",
 
+
     },
     {
         id: 2,
@@ -29,6 +30,7 @@ export const storeProduct = [
         stopTime: '12:00',
         price: '1000',
         img: "img/product-2.png",
+
 
     },
     {
@@ -71,6 +73,7 @@ export const storeProduct = [
         amount: "4",
         full :"10",
         date :"01/10/2020",
+
         startTime: '09:30',
         stopTime: '12:00',
         price: '300',
@@ -118,6 +121,7 @@ export const storeProduct = [
         amount: "5",
         full :"10",
         date :"01/10/2020",
+
         startTime: '09:30',
         stopTime: '12:00',
         price: '250',

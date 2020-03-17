@@ -1,12 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 
-* {
+/* * {
 	box-sizing: border-box;
-}
+} */
 
-
-/* .loginpage body {
-
+/* body {
 	background: #f6f5f7;
 	display: flex;
 	justify-content: center;
@@ -18,27 +16,19 @@
 	margin: -20px 0 50px;
 } */
 
-
-.loginpage {
-  display: block;
-  transform: translate(25%, 25%); 
-
+.loginpage{
+	width: 100%;
+	height: 100%;
 }
+
 
 .header1-login {
-  /* width: 100vw;
-  height: 100vh; */
-  /* justify-items: center;
-  align-items: center; */
-  /* margin-left: 30px;  */
-}
-
-.loginpage .header1-login {
 	font-weight: bold;
 	margin: 0;
 }
 
-.loginpage .p-login {
+
+.p-login {
 	font-size: 14px;
 	font-weight: 100;
 	line-height: 20px;
@@ -46,21 +36,18 @@
 	margin: 20px 0 30px;
 }
 
-
-.loginpage .span {
+.span {
 	font-size: 12px;
 }
 
-.loginpage .social {
+.social {
 	color: #333;
 	font-size: 14px;
 	text-decoration: none;
 	margin: 15px 0;
 }
 
-
-.loginpage .button-login{
-
+.button-login{
 	border-radius: 20px;
 	border: 1px solid #4BCCFF;
 	background-color: #4BCCFF;
@@ -73,22 +60,20 @@
 	transition: transform 80ms ease-in;
 }
 
-
-.loginpage .button-login:active {
+.button-login:active {
 	transform: scale(0.95);
 }
 
-.loginpage .button-login:focus {
+.button-login:focus {
 	outline: none;
 }
 
-.loginpage .ghost {
+.ghost {
 	background-color: transparent;
 	border-color: #FFFFFF;
 }
 
-
-.loginpage .form-login {
+.form-login {
 	background-color: #FFFFFF;
 	display: flex;
 	align-items: center;
@@ -99,9 +84,7 @@
 	text-align: center;
 }
 
-
-.loginpage .input-login {
-
+.input-login {
 	background-color: #eee;
 	border: none;
 	padding: 12px 15px;
@@ -109,8 +92,7 @@
 	width: 100%;
 }
 
-.loginpage .container-login {
-
+.container-login {
 	background-color: #fff;
 	border-radius: 10px;
   	box-shadow: 0 14px 28px rgba(0,0,0,0.25),0 10px 10px rgba(0,0,0,0.22);
@@ -121,16 +103,14 @@
 	min-height: 480px;
 }
 
-
-.loginpage .form-container {
+.form-container {
 	position: absolute;
 	top: 0;
 	height: 100%;
 	transition: all 0.6s ease-in-out;
 }
 
-
-.loginpage .sign-in-container {
+.sign-in-container {
 	left: 0;
 	width: 50%;
 	z-index: 2;
@@ -139,9 +119,7 @@
 
 
 
-
-.loginpage .sign-up-container {
-
+.sign-up-container {
 	left: 0;
 	width: 50%;
 	opacity: 0;
@@ -155,15 +133,14 @@
 		opacity: 0;
 		z-index: 1;
 	}
-
+	
 	50%, 100% {
 		opacity: 1;
 		z-index: 5;
 	}
 }
 
-
-.loginpage .overlay-container {
+.overlay-container {
 	position: absolute;
 	top: 0;
 	left: 50%;
@@ -175,8 +152,7 @@
 }
 
 
-
-.loginpage .overlay {
+.overlay {
 	background: #FF416C;
 	background: -webkit-linear-gradient(to right, #0984e3, #4BCCFF);
 	background: linear-gradient(to right, #0984e3, #4BCCFF);
@@ -193,9 +169,7 @@
 
 
 
-
-.loginpage .overlay-panel {
-
+.overlay-panel {
 	position: absolute;
 	display: flex;
 	align-items: center;
@@ -209,18 +183,16 @@
 	transition: transform 0.6s ease-in-out;
 }
 
-
-.loginpage .overlay-left {
+.overlay-left {
 	transform: translateX(0);
 }
 
-.loginpage .container-login.right-panel-active .overlay-left {
+.container-login.right-panel-active .overlay-left {
 	transform: translateX(0);
-
+	
 }
 
-
-.loginpage .overlay-right {
+.overlay-right {
 	right: 0;
 	transform: translateX(0);
 }
@@ -229,12 +201,11 @@
 
 
 
-
-.loginpage .social-container {
+.social-container {
 	margin: 20px 0;
 }
 
-.loginpage .social-container a {
+.social-container a {
 	border: 1px solid #DDDDDD;
 	border-radius: 50%;
 	display: inline-flex;
@@ -246,22 +217,17 @@
 }
 
 
-.loginpage .container-login.right-panel-active .overlay-right {
-
+.container-login.right-panel-active .overlay-right {
 	transform: translateX(20%);
 
 }
 
-
-.loginpage .container-login.right-panel-active .sign-in-container {
-
+.container-login.right-panel-active .sign-in-container {
 	transform: translateX(100%);
 	background-color: black;
 }
 
-
-.loginpage .container-login.right-panel-active .sign-up-container {
-
+.container-login.right-panel-active .sign-up-container {
 	transform: translateX(100%);
 	opacity: 1;
 	z-index: 5;
@@ -270,11 +236,10 @@
 
 
 
-
-.loginpage .container-login.right-panel-active .overlay-container{
+.container-login.right-panel-active .overlay-container{
 	transform: translateX(-100%);
 }
 
-.loginpage .container-login.right-panel-active .overlay {
+.container-login.right-panel-active .overlay {
 	transform: translateX(50%);
 }

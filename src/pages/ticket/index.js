@@ -27,13 +27,16 @@ import './style.css';
 
 import tempPic from '../../components/avatar/profile.jpg';
 
+
 import MainDiv from '../mainDiv.js';
 import SubDiv from '../subDiv.js';
+
 import DetailContainer from '../newCreatePost/detailContainer.js';
 import DetailBody from '../newCreatePost/detailBody.js';
 import DetailHeader from '../newCreatePost/detailHeader.js';
 
 import {listData} from '../../components/MyTuelist/listData.js';
+
 
 import MyTueList from '../../components/MyTuelist/index.js';
 import Postlist from '../../components/SubContainer/Postlist/index.js';
@@ -102,6 +105,7 @@ const TicketDetail =(props)=> {
             <div className='description-detail-text-box'>
               {
                 ticketData.description !== '' ?
+
                 <p className='description-detail-text'>{`${ticketData.description}`}</p>
                 :
                 <p className='description-detail-text'>This tue has not description.</p>
