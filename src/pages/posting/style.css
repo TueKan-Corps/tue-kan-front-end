@@ -1,0 +1,274 @@
+.posting-sub-container .post-header {
+  width: auto;
+  !background: red;
+  border-bottom: 1px solid rgb(200, 200, 200);
+  padding: 20px 20px 20px 20px;
+}
+
+.posting-sub-container .post-header:hover {
+  cursor: pointer;
+  color: rgb(111,203,255);
+}
+
+.posting-sub-container .post-header:active {
+  color: rgb(29,151,221);
+}
+
+.posting-sub-container .post-header .header-item {
+  display: inline;
+}
+
+.posting-sub-container .post-header .header-back-icon {
+  font-size: 32px;
+  margin-right: 10px;
+}
+
+.posting-sub-container .post-header .header-text {
+  font-size: 28px;
+}
+
+.posting-sub-container .detail-body {
+  overflow: auto;
+}
+
+.posting-sub-container .detail-body .img-container {
+  !background: lightblue;
+  width: 31%;
+  margin-left: 4%;
+  padding-bottom: 3%;
+  float: left;
+}
+
+.posting-sub-container .detail-body .img-container .img-box {
+  !background: red;
+  width: 80%;
+  margin-top: 10%;
+  margin-left: 10%;
+  border-radius: 150px;
+  !overflow: auto;
+  padding: 0;
+}
+
+.posting-sub-container .detail-body .img-container .img-box .tutor-img {
+  !background: red;
+  width: 100%;
+  border-radius: 150px;
+}
+
+.posting-sub-container .detail-body .posting-description-box {
+  !background: lightgreen;
+  !height: 200px;
+  width: 42%;
+  padding-top: 3%;
+  margin-left: 3%;
+  float: left;
+}
+
+.posting-sub-container .detail-body .posting-description-box .description-box {
+  !background: red;
+  margin-bottom: 20px;
+  width: 100%;
+  float: left;
+  padding: 0;
+}
+
+.posting-sub-container .detail-body .description-box .description-img {
+  !padding-top: 5px;
+  font-size: 25px;
+  width: 15px;
+  !margin-left: 5px;
+}
+
+.posting-sub-container .detail-body .description-box .description-text {
+  font-size: 20px;
+  display: inline;
+  margin-left: 25px;
+  padding-top: 0px;
+}
+
+.posting-sub-container .detail-body .description-detail-box {
+  !background: salmon;
+  width: 92%;
+  margin-left: 4%;
+  float: left;
+}
+
+.posting-sub-container .detail-body .description-detail-box .description-detail-text-box {
+  width: 90%;
+  margin: 0 auto;
+  background: rgb(252, 252, 252);
+  border: 3px dashed rgb(164,223,156);
+  box-sizing: border-box;
+  border-radius: 15px;
+  padding: 0px 30px 0px 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  max-height: 190px;
+  overflow: auto;
+}
+
+.posting-sub-container .detail-body .description-detail-box .description-detail-text-box .description-detail-text {
+  text-align:justify;
+  text-justify:auto;
+  font-size: 16px;
+}
+
+.posting-sub-container .detail-body .posting-joined-box {
+  !background: coral;
+  margin-bottom: 20px;
+  width: 16%;
+  height: 200px;
+  float: left;
+  padding: 0;
+}
+
+.posting-sub-container .detail-body .posting-joined-box .joined-box {
+  background: rgb(252, 252, 252);
+  width: 100%;
+  height: 55px;
+  border: 4px solid rgb(180,241,171);
+  box-sizing: border-box;
+  border-radius: 25px;
+  margin-top: 15%;
+  text-align: center;
+}
+
+.posting-sub-container .detail-body .posting-joined-box .joined-box .joined-number {
+  font-size: 22px;
+  margin: 0;
+  margin-top: 8%;
+}
+
+
+.posting-sub-container .detail-body .name-list-description-box .participant-box {
+  !background: pink;
+  margin-left: 5%;
+  margin-top: 20px;
+  padding: 0px 30px 20px 30px;
+  width: 90%;
+  float: left;
+  !height: 200px;
+}
+
+.name-list-table-container {
+  max-height: 190px;
+  !background: skyblue;
+  overflow: auto;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.posting-sub-container .detail-body .redeem-description-box .redeem-box {
+  !background: pink;
+  margin-left: 5%;
+  margin-top: 20px;
+  padding: 0px 30px 20px 30px;
+  width: 92%;
+  float: left;
+  !height: 200px;
+}
+
+.posting-sub-container .detail-body .redeem-description-box .redeem-box .redeem-container {
+  overflow: auto;
+  border: 3px dashed rgb(164,223,156);
+  box-sizing: border-box;
+  border-radius: 15px;
+  background: rgb(252, 252, 252);
+  margin: 20px 10px 10px 0px;
+  padding: 20px 10px 20px 40px;
+}
+
+.posting-sub-container .detail-body .redeem-description-box .redeem-box .redeem-input {
+  margin: 5px 10px 0px 0px;
+  padding: 5px;
+  display: inline;
+  float: left;
+  border-radius: 10px;
+  border: 1px solid rgb(212,205,205);
+}
+
+.posting-sub-container .detail-body .redeem-description-box .redeem-box .redeem-input:focus {
+  outline: none;
+  box-shadow: 0px 0px 4px 2px rgb(223,219,219);
+}
+
+.posting-sub-container .detail-body .redeem-description-box .redeem-box .redeem-button-box {
+  overflow: auto;
+  float: left;
+}
+
+.posting-sub-container .detail-body .redeem-description-box .redeem-box .redeem-button {
+  background: rgb(252, 252, 252);
+  border: 2px solid skyblue;
+  box-sizing: border-box;
+  !display: inline-block;
+  float: left;
+  border-radius: 20px;
+  margin-top: 5px;
+  padding: 7px 20px 7px 20px;
+  margin: 0 5px 0 5px;
+  transition: background-color 0.2s;
+}
+
+.posting-sub-container .detail-body .redeem-description-box .redeem-box .redeem-button:hover {
+  color: rgb(46,185,255);
+  background: rgb(197,238,247);
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+.posting-sub-container .detail-body .redeem-description-box .redeem-box .redeem-button:active {
+  background: rgb(185,228,237);
+  transition: background-color 0.2s;
+}
+
+/* ::selection {
+  color: none;
+  background: none;
+} */
+
+@media screen and (max-width: 1590px) {
+  .posting-sub-container .detail-body .description-box .description-img {
+    font-size: 20px;
+    width: 10px;
+  }
+
+  .posting-sub-container .detail-body .description-box .description-text {
+    font-size: 16px;
+    margin-left: 25px;
+  }
+
+  .posting-sub-container .detail-body .description-detail-box .description-detail-text-box .description-detail-text {
+    font-size: 14px;
+  }
+
+  .posting-sub-container .detail-body .posting-joined-box .joined-box {
+    height: 40px;
+  }
+
+  .posting-sub-container .detail-body .posting-joined-box .joined-box .joined-number {
+    font-size: 14px;
+    margin-top: 8%;
+  }
+
+}
+
+@media screen and (max-width: 1280px) {
+  .posting-sub-container .detail-body .redeem-description-box .redeem-box .redeem-input {
+    width: 92%;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .posting-sub-container .detail-body .redeem-description-box .redeem-box .redeem-button-box {
+    width: 92%;
+    !background: black;
+  }
+
+  .posting-sub-container .detail-body .redeem-description-box .redeem-box .redeem-button-small-box {
+    max-width: 180px;
+    overflow: auto;
+    !background: red;
+    margin: 0 auto;
+  }
+}
