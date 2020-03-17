@@ -38,10 +38,10 @@ const Sub =(props)=> {
         <i className="header-item header-back-icon fas fa-chevron-left"></i>
         <p className='header-item header-text'><b>Back</b></p>
       </div>
-    <DetailHeader className='detail-header' background='rgb(255,216,212)'>
+      <DetailHeader className='detail-header' background='rgb(255,216,212)'>
       <p className='detail-header-text'><b>{postData.topic}</b></p>
-    </DetailHeader>
-    <DetailBody className='detail-body' background='rgb(255,238,238)'>
+      </DetailHeader>
+      <DetailBody className='detail-body' background='rgb(255,238,238)'>
       <div className='body-container'>
         <div className='img-container'>
           <div className='img-box'>
@@ -100,7 +100,7 @@ const Sub =(props)=> {
               <p className='description-detail-text'>This tue has not description.</p>
             }
             </div>
-              <button className="buy-button"  type="button" data-hover="BuyTicket Now!!" data-active="You bought tricket"><span>{`Price : ${postData.price} TC`}</span></button>
+              <button className="buy-button"  type="button" data-hover="BuyTicket Now!!" data-active="You bought tricket"><span>{`${postData.price} TC`}</span></button>
           
         </div>
 
@@ -109,8 +109,8 @@ const Sub =(props)=> {
           </div>
 
       </div>
-    </DetailBody>
-</DetailContainer>
+      </DetailBody>
+    </DetailContainer>
   );
 }
 

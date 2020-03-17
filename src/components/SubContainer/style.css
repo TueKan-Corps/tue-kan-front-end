@@ -6,6 +6,10 @@
     width: 100%;
 }
 
+.sub-container .ticket-detail{
+    height: 90vh;
+}
+
 .sub-container .post-header {
     width: auto;
     border-bottom: 1px solid rgb(200, 200, 200);
