@@ -1,0 +1,286 @@
+.profile-sub-container .post-header {
+  width: auto;
+  !background: red;
+  border-bottom: 1px solid rgb(200, 200, 200);
+  padding: 20px 20px 20px 20px;
+}
+
+.profile-sub-container .post-header:hover {
+  cursor: pointer;
+  color: rgb(111,203,255);
+}
+
+.profile-sub-container .post-header:active {
+  color: rgb(29,151,221);
+}
+
+.profile-sub-container .post-header .header-item {
+  display: inline;
+}
+
+.profile-sub-container .post-header .header-back-icon {
+  font-size: 32px;
+  margin-right: 10px;
+}
+
+.profile-sub-container .post-header .header-text {
+  font-size: 28px;
+}
+
+.profile-detail-container {
+  background: rgb(238,238,238);
+  margin-top: 25px;
+  border-radius: 25px;
+  padding-bottom: 20px;
+}
+
+.profile-detail-container .profile-detail-box {
+  !background: red;
+  width: 95%;
+  margin: 0 auto;
+  overflow: auto;
+}
+
+.profile-detail-container .profile-detail-box .img-box {
+  !background: lightgreen;
+  width: 25%;
+  border-radius: 150px;
+  padding: 0;
+  float: left;
+  margin-top: 25px;
+}
+
+.profile-detail-container .profile-detail-box .img-box .profile-img {
+  width: 100%;
+  border-radius: 150px;
+  padding: 0;
+}
+
+.profile-detail-container .profile-detail-box .profile-description {
+  !background: coral;
+  float: left;
+  width: 73%;
+  padding-left: 3%;
+  text-align:justify;
+  overflow: auto;
+}
+
+.profile-detail-container .profile-detail-box .profile-description .description-text {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.profile-detail-container .profile-detail-box .profile-description .description-des {
+  display: inline;
+}
+
+.profile-detail-container .profile-detail-box .profile-description .description-des-input {
+  overflow: auto;
+  width: 100%;
+  min-height: 150px;
+  max-height: 200px;
+  resize: none;
+  font-family: 'Quicksand', sans-serif;
+  border-radius: 10px;
+  box-sizing: border-box;
+  border: 2px dashed rgb(124,169,244);
+  padding: 10px 15px 10px 15px;
+  margin: 0;
+}
+
+.profile-detail-container .profile-detail-box .profile-description .description-des-input:focus {
+  outline: none;
+}
+
+.profile-detail-container .profile-detail-box .profile-description .edit-box {
+  background: skyblue;
+  width: 20%;
+  float: right;
+  min-width: 110px;
+  margin-top: 25px;
+  height: 40px;
+  border-radius: 25px;
+}
+
+.profile-detail-container .profile-detail-box .profile-description .edit-box:hover {
+  cursor: pointer;
+  filter: brightness(97%);
+}
+
+.profile-detail-container .profile-detail-box .profile-description .edit-box:active {
+  filter: brightness(90%);
+}
+
+.profile-detail-container .profile-detail-box .profile-description .edit-box .edit-detail {
+  float: left;
+  padding: 10px;
+  margin: 0 0 0 2px;
+  font-size: 20px;
+}
+
+.profile-detail-container .profile-detail-box .profile-description .edit-box .edit-text {
+  padding: 6px 5px 5px 0px;
+}
+
+.profile-detail-container .profile-detail-box .profile-description .description-text {
+  font-size: 18px;
+}
+
+.profile-detail-container .profile-detail-box .profile-description .description-name {
+  font-size: 26px;
+}
+
+.profile-detail-container .profile-detail-box .profile-description .des-spc-text {
+  color: rgb(34,170,255);
+}
+
+.profile-detail-container .profile-detail-box .profile-description .des-spc-text:hover {
+  cursor: pointer;
+  filter: brightness(97%);
+}
+
+.profile-detail-container .profile-detail-box .profile-description .des-spc-text:active {
+  filter: brightness(90%);
+}
+
+.profile-detail-container .profile-detail-box .contact-box {
+  !background: red;
+  float: left;
+  width: 100%;
+  overflow: auto;
+  font-size: 28px;
+  margin-top: 10px;
+  padding-top: 10px;
+}
+
+.profile-detail-container .profile-detail-box .contact-box .contact-header {
+  !background: rgb(170,170,170);
+  overflow: auto;
+  max-width: 360px;
+  margin: 0 auto;
+  padding: 10px;
+  !border-radius: 25px;
+  text-align: center;
+}
+
+
+.profile-detail-container .profile-detail-box .contact-box .contact-icon {
+  padding-right: 15px;
+  padding-left: 4px;
+}
+
+.profile-detail-container .profile-detail-box .contact-box .contact-text {
+  display: inline;
+  font-size: 24px;
+  padding-top: 10px;
+}
+
+.profile-detail-container .profile-detail-box .contact-box .contact-detail {
+  !background: lightgreen;
+  max-width: 320px;
+  padding: 10px;
+  margin: 0 auto;
+  margin-top: 5px;
+  transition: box-shadow 0.2s;
+  border-radius: 25px;
+}
+
+.profile-detail-container .profile-detail-box .contact-box .contact-detail .contact-img {
+  width: 40px;
+  height: 40px;
+  margin: 5px 10px 5px 10px;
+  border-radius: 50px;
+  transition: box-shadow 0.2s;
+  box-shadow: 5px 0px 10px rgb(198,198,198);
+}
+
+.profile-detail-container .profile-detail-box .contact-box .contact-detail .contact-img:hover {
+  transition: box-shadow 0.2s;
+  box-shadow: 0px 0px 20px rgb(33,152,201);
+}
+
+.profile-detail-container .profile-detail-box .contact-box .contact-detail .contact-img:active {
+  transition: box-shadow 0.2s;
+  box-shadow: 0px 0px 20px rgb(23,109,144);
+}
+
+.profile-detail-container .profile-detail-box .contact-box .contact-detail .contact-edit-box {
+  !background: orange;
+  width: 100%;
+  max-width: 320px;
+  height: 40px;
+  margin: 0 auto;
+}
+
+.profile-detail-container .profile-detail-box .contact-box .contact-detail .contact-edit {
+  margin: 0;
+  padding: 10px;
+}
+
+.profile-detail-container .profile-detail-box .contact-box .contact-detail .contact-name {
+  font-size: 20px;
+}
+
+.profile-detail-container .profile-detail-box .contact-box .contact-detail .contact-input {
+  float: right;
+  height: 50%;
+  margin-top: 10px;
+  margin-right: 20px;
+  max-width: 175px;
+  padding: 13px 2px 13px 10px;
+  border-radius: 10px;
+  border: 0;
+}
+
+.profile-detail-container .profile-detail-box .contact-box .contact-detail .contact-input:focus {
+  outline: none;
+}
+
+@media screen and (max-width: 1590px) {
+  .profile-detail-container .profile-detail-box .profile-description .description-name {
+    font-size: 22px;
+  }
+
+  .profile-detail-container .profile-detail-box .profile-description .description-des {
+    font-size: 18px;
+  }
+
+  .profile-detail-container .profile-detail-box .profile-description .description-input {
+    font-size: 18px;
+  }
+
+  .profile-detail-container .profile-detail-box .profile-description .edit-box {
+    min-width: 100px;
+  }
+
+  .profile-detail-container .profile-detail-box .profile-description .edit-box .edit-detail {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .profile-detail-container .profile-detail-box .profile-description .description-name {
+    font-size: 20px;
+  }
+
+  .profile-detail-container .profile-detail-box .profile-description .description-des {
+    font-size: 16px;
+  }
+
+  .profile-detail-container .profile-detail-box .profile-description .description-input {
+    font-size: 16px;
+  }
+
+  .profile-detail-container .profile-detail-box .profile-description .edit-box {
+    min-width: 90px;
+  }
+
+  .profile-detail-container .profile-detail-box .profile-description .edit-box .edit-detail {
+    font-size: 16px;
+    margin-top: 2px;
+  }
+
+  .profile-detail-container .profile-detail-box .profile-description .edit-box .edit-text {
+    margin-top: 3px;
+  }
+}
