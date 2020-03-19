@@ -8,8 +8,7 @@ import DetailContainer from '../../pages/newCreatePost/detailContainer'
 import DetailHeader from '../../pages/newCreatePost/detailHeader'
 import MainDiv from '../../pages/mainDiv'
 import SubDiv from '../../pages/mainDiv'
-
-
+// import React, { useState } from 'react'
 import { storeProduct } from '../../data'
 import { listData } from '../MyTuelist/listData.js';
 import tempPic from '../avatar/profile.jpg';
@@ -25,9 +24,13 @@ const Main =()=> {
   return (
     <>
       <Banner />
-      <Postlist postData={storeProduct} linkTo='/home' />
+      <Postlist postData={storeProduct} linkTo='/home' /> 
     </>
   );
+}
+
+const payCoin = (props) => {
+  
 }
 
 
@@ -131,6 +134,8 @@ export default function SubContainer() {
             <Route exact path={`/home/:postId`} component={Sub} />
 
           </Switch>
+          <div className="footer"></div>
         </div>
+        
     )
 }

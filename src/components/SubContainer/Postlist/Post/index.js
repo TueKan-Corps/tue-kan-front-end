@@ -26,7 +26,7 @@ export default function Post(props) {
                   <div className="topic">@Location   : {props.location}</div>
                   <div className="topic">Date        : {props.date}</div>
               </div>
-              <div className="numjoin"><p>Join {props.amount}/{props.full}</p></div>
+              <div className="numjoin" ><p>Join {props.amount}/{props.full}</p></div>
           </div>
         </Link>
     )

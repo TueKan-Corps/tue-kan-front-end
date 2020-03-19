@@ -277,7 +277,9 @@
 .description-detail-box .buy-button:hover::before{
     height: 180%;
 } */
-  
+.sub-container .footer{
+    height: 50px;
+}
 
 
   @media screen and (max-width: 1590px) {
