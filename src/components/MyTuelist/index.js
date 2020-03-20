@@ -1,13 +1,19 @@
 /*
-  add in 12-Feb-20 'Boat'
-  12:33 complete not responsive
+  .add in 12-Feb-20 'Boat'
+    - 12:33 complete not responsive
+  .edit 20-Mar-20 [Boat]
+    -- test with backend mockup.
+    -- add skeleleton loading component.
 
 */
 
 import React from 'react'
+import axios from 'axios';
 import './style.css'
 
-import {listData} from './listData.js';
+import { listData } from './listData.js';
+
+import LoadingPostList from '../../components/loadingPostList/index.js';
 
 import { Link } from "react-router-dom";
 
@@ -20,32 +26,62 @@ const CreateListItem =(props)=> {
     <Link className='mtl-item-link' to={`/ticket/${props.id}`}>
       <div className='mtl-item'>
         <span className='item-tag-color' style={{background: `${colorTag[props.tagId]}`}}> </span>
-        <p className='item-topic item-text'>{topicDisplay}</p>
-        <p className='item-date item-text'>{props.date}</p>
+        <div className='item-text-box'>
+          <p className='item-topic item-text'>{topicDisplay}</p>
+          <p className='item-date item-text'>{props.date}</p>
+        </div>
       </div>
     </Link>
   )
 }
 
-export default function MyTuelist() {
+export default class MyTuelist extends React.PureComponent {
+
+  state = {
+    loading: true,
+    ticketData: {}
+  }
+
+  componentDidMount () {
+    //const url ='https://mock-up-tuekan-backend.herokuapp.com/post/posting';
+    const url ='https://mock-up-tuekan-backend.herokuapp.com/ticket';
+    this.setState({loading: true})
+    axios.get(url)
+      .then(data => {
+        this.setState({
+          loading: false,
+          ticketData: data.data
+        })
+      })
+      .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
+    console.log('loading complete!');
+  }
+
+  /*shouldComponentUpdate (props) {
+    return props.isUpdate;
+  }*/
+
+  render () {
     return (
-        <div className ="my-tue-list-container">
-            <div className='mtl-header'>
-              <p className='header-name'><b>My tue list</b></p>
-              <Link className='show-btn' to='/ticket'>show all</Link>
-            </div>
-            <div className='mtl-body'>
-              {
-                listData.map(list => {
-                  //let {id, ...other} = list;
-                  //console.log(other);
-                  return (
-                    /* can use <CreateListItem key={list.id} {...list} /> */
-                    <CreateListItem key={list.id} {...list}  />
-                  )
-                })
-              }
-            </div>
+      <div className ="my-tue-list-container">
+        <div className='mtl-header'>
+          <p className='header-name'><b>My tue list</b></p>
+          <Link className='show-btn' to='/ticket'>show all</Link>
         </div>
+        <div className='mtl-body'>
+        {
+          this.state.loading &&
+          <LoadingPostList length={1} />
+        }
+        {
+          !this.state.loading &&
+          listData.map(list => (
+            <CreateListItem key={list.id} {...list}  />
+          ))
+        }
+        </div>
+      </div>
     )
+
+  }
 }

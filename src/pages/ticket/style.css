@@ -100,7 +100,7 @@
   border: 3px dashed rgb(255,216,212);
   box-sizing: border-box;
   border-radius: 15px;
-  padding: 0px 30px 0px 30px;
+  padding: 10px 30px 0px 30px;
   margin-top: 20px;
   margin-bottom: 20px;
 }
@@ -134,7 +134,7 @@
 .ticket-sub-container .detail-body .ticket-joined-box .joined-box .joined-number {
   font-size: 22px;
   margin: 0;
-  margin-top: 8%;
+  margin-top: 6%;
 }
 
 @media screen and (max-width: 1590px) {

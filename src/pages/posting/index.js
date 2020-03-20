@@ -213,6 +213,7 @@ class Posting extends React.Component {
 
     componentDidMount () {
       const url ='https://mock-up-tuekan-backend.herokuapp.com/post/posting';
+      //const url ='https://mock-up-tuekan-backend.herokuapp.com/post/list';
       this.setState({loading: true})
       axios.get(url)
         .then(data => {
@@ -245,7 +246,7 @@ class Posting extends React.Component {
 
             {
               this.state.loading &&
-              <LoadingPostList />
+              <LoadingPostList length={4} />
             }
             { !this.state.loading && <Route exact path={'/posting'} component={()=><PostingList postData={postingData} />} /> }
             { !this.state.loading && <Route exact path={`/posting/:postingId`} component={()=><PostingDetail postData={postingData} /> } />  }

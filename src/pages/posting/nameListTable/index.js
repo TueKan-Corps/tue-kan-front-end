@@ -2,6 +2,9 @@
   .add 15-Mar-20
   .edit 16-Mar029
     -- need to (post) to edit data in db (status of participant).
+  .edit 20-Mar-20 [Boat]
+    -- test with backend mockup.
+    -- add skeleleton loading component.
 */
 
 import React from 'react';

@@ -60,6 +60,7 @@
 }
 
 .mtl-item {
+  !background: red;
   display: block;
   width: 100%;
   !overflow: auto;
@@ -82,24 +83,34 @@
 .mtl-item .item-tag-color {
   float: left;
   display: inline;
-  background: red;
-  width: 15px;
+  !background: red;
+  width: 5%;
   height: 100%;
+}
+
+.mtl-item .item-text-box {
+  !background: red;
+  width: 95%;
+  height: 100%;
+  overflow: hidden;
+  vertical-align: middle;
 }
 
 .mtl-item .item-text {
   font-size: 16px;
   display: inline;
+  vertical-align: middle;
+  transform: translateY(50%);
 }
 
 .mtl-item .item-topic {
   float: left;
-  margin-left: 15px;
+  margin-left: 4%;
 }
 
 .mtl-item .item-date {
   float: right;
-  margin-right: 25px;
+  margin-right: 4%;
 }
 
 @media screen and (max-width: 1590px) {
@@ -110,6 +121,10 @@
 
   .my-tue-list-container .mtl-header .show-btn {
     font-size: 16px;
+  }
+
+  .mtl-item .item-text {
+    transform: translateY(0%);
   }
 
   .mtl-item .item-text {

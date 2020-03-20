@@ -11,7 +11,7 @@ import './style.css';
 
 import { profileData } from '../../components/avatar/profileData.js';
 
-import MyTueList from '../../components/MyTuelist/index.js'; 
+import MyTueList from '../../components/MyTuelist/index.js';
 
 import MainDiv from '../mainDiv.js';
 import SubDiv from '../subDiv.js';
@@ -142,7 +142,7 @@ class Profile extends React.Component {
 
       </SubDiv>
 
-      <MyTueList />
+      <MyTueList isUpdate={false} />
 
     </MainDiv>
     );

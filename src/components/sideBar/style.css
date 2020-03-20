@@ -9,6 +9,11 @@
   top: 0px;
 }
 
+.item-link:hover {
+  color: black;
+  text-decoration-line: none;
+}
+
 @media screen and (max-width: 1690px) {
   .side-bar-container {
     margin: 80px 0px 20px 60px;

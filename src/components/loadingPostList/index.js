@@ -5,8 +5,11 @@
 
 import React from 'react'
 
+import './style.css';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Spinner } from 'react-bootstrap';
+import Spinner from 'react-bootstrap/Spinner';
+//import { Spinner } from 'react-bootstrap';
 
 import { Link } from 'react-router-dom';
 
@@ -14,10 +17,12 @@ const LoadingPost =()=> {
 
   return (
     <div className="post">
-      <div className="detail">
-        <Spinner animation="border" role="status">
-          <span className="sr-only">Loading...</span>
-        </Spinner>
+      <div className="new-detail">
+        <div className='spinner-box'>
+          <Spinner animation="border" role="status" variant="primary">
+            <span className="sr-only">Loading...</span>
+          </Spinner>
+        </div>
       </div>
     </div>
   );
@@ -25,7 +30,7 @@ const LoadingPost =()=> {
 }
 
 export default function LoadingPostList(props) {
-    let forCreate = Array.from({length: 5});
+    let forCreate = Array.from({length: props.length});
     return (
       <>
       {
