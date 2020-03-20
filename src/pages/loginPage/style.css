@@ -22,7 +22,6 @@
 .loginpage {
   display: block;
   transform: translate(25%, 25%); 
-
 }
 
 .header1-login {
@@ -36,6 +35,7 @@
 .loginpage .header1-login {
 	font-weight: bold;
 	margin: 0;
+	font-size: 35px;
 }
 
 .loginpage .p-login {
@@ -104,9 +104,14 @@
 
 	background-color: #eee;
 	border: none;
-	padding: 12px 15px;
+	padding: 9px 15px;
 	margin: 8px 0;
 	width: 100%;
+	font-size: 14px;
+}
+.loginpage .check{
+	font-size: 10px;
+	text-align: right;
 }
 
 .loginpage .container-login {

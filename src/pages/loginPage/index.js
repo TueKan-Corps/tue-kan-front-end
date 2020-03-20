@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './style.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
 // import styled from 'styled-components   '
 
 
@@ -13,9 +14,125 @@ export default class Login extends Component {
     
 
     state = {
-        username: '',
-        password: ''
+        formElements: {
+            firstname: {
+                type: 'text',
+                value: '',
+                validator: {
+                    required: true,
+                    minLength: 5,
+                    maxLength:15
+                },
+                touched: false,
+                error:{status:true,message:''}
+            },
+            lastname: {
+                type: 'text',
+                value: '',
+                validator: {
+                    required: true,
+                    minLength: 5,
+                    maxLength:15
+                },
+                touched: false,
+                error:{status:true,message:''}
+            },
+            email: {
+                type: 'email',
+                value: '',
+                validator: {
+                    required: true,
+                    pattern:'email'
+                },
+                touched: false,
+                error:{status:true,message:''}
+            },
+            password: {
+                type: 'password',
+                value: '',
+                validator: {
+                    required: true,
+                    minLength: 8
+                },
+                touched: false,
+                error:{status:true,message:''}
+            }
+        },
+        formValid:false
     }
+
+    // state = {
+    //         email: '',
+    //         password:''
+    // }
+
+    onFormChange = (event) => {
+        const name = event.target.name;
+        const value = event.target.value;
+        let updatedForm = { ...this.state.formElements };
+        updatedForm[name].value = value;
+        updatedForm[name].touched = true;
+        const validatorObject = this.checkValidator(value, updatedForm[name].validator);
+        updatedForm[name].error = {
+            status: validatorObject.status,
+            message: validatorObject.message
+        }
+        let formStatus = true;
+        for (let name in updatedForm) {
+            if (updatedForm[name].validator.required === true) {
+                formStatus = !updatedForm[name].error.status && formStatus;
+            }
+        }
+        this.setState({
+            ...this.state,
+            formElements: updatedForm,
+            formValid: formStatus
+        });
+        console.log(formStatus)
+    }
+
+    checkValidator = (value, rule) => {
+        let valid = true;
+        let message = '';
+        if(value.trim().length === 0 && rule.required) {
+            valid = false;
+            message = 'จำเป็นต้องกรอก';
+
+        }
+        if(value.length < rule.minLength && valid) {
+            valid = false;
+            message = `น้อยกว่า ${rule.minLength} ตัวอักษร`;
+        }
+        if(value.length > rule.maxLength && valid) {
+            valid = false;
+            message = `มากกว่า ${rule.maxLength} ตัวอักษร`;
+        }
+        if (rule.pattern === 'email' && valid) {
+            if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) === false) {
+                valid = false;
+                message = 'กรอกอีเมลไม่ถูกต้อง';
+            }
+        }
+        return { status:!valid, message:message };
+    }
+    getInputClass = (name) => {
+        const elementErrorStatus = this.state.formElements[name].error.status;
+        return elementErrorStatus && this.state.formElements[name].touched ?
+            'input-login form-control is-invalid':
+            'input-login form-control is-valid';
+    }
+    getErrorMessage = (name) => {
+        return this.state.formElements[name].error.message;
+    }
+    onFormSubmit = (event) => {
+        event.preventDefault();
+        const formData = {};
+        for (let name in this.state.formElements) {
+            formData[name] = this.state.formElements[name].value;
+        }
+        console.log(formData);
+    }
+
 
     onInputChange = (event) => {
         this.setState({
@@ -23,6 +140,14 @@ export default class Login extends Component {
         })
         console.log(this.state);
     }
+
+    onLoginSubmit = (event) => {
+        event.preventDafault();
+        console.log(this.state);
+    }
+    
+
+
     render() {
         const signInButton = () => {
             const ele = document.querySelector('#container');
@@ -39,7 +164,7 @@ export default class Login extends Component {
             <div className="loginpage">
                 <div className="container-login" id="container">
                     <div className="form-container sign-up-container">
-                        <form className="form-login" action="#">
+                        <form className="form-login" action="#" onSubmit={this.onFormSubmit}>
                             <h1 className="header1-login">Create Account</h1>
                             <div className="social-container">
                                 <a href="#" className="social"><i class="fab fa-facebook-f"></i></a>
@@ -47,15 +172,23 @@ export default class Login extends Component {
                                 <a href="#" className="social"><i class="fab fa-linkedin-in"></i></a>
                             </div>
                             <span className="span-login">or use your email for registration</span>
-                            <input className="input-login" type="firstname" placeholder="Firstname" />
-                            <input className="input-login" type="lastname" placeholder="Lastname" />
-                            <input className="input-login" type="email" placeholder="Email" />
-                            <input className="input-login" type="password" placeholder="Password" />
-                            <button className="button-login">Sign Up</button>
+                            <input className={this.getInputClass('firstname')} type="text" placeholder="Firstname" id="firstname" name="firstname" onChange={this.onFormChange}/>
+                            <div className="check invalid-feedback">{this.getErrorMessage('firstname')}</div>
+
+                            <input className={this.getInputClass('lastname')} type="text" placeholder="Lastname" id="lastname" name="lastname" onChange={this.onFormChange}/>
+                            <div className="check invalid-feedback">{this.getErrorMessage('lastname')}</div>
+
+                            <input className={this.getInputClass('email')} type="email" placeholder="Email" id="email" name="email" onChange={this.onFormChange}/>
+                            <div className="check invalid-feedback">{this.getErrorMessage('email')}</div>
+
+                            <input className={this.getInputClass('password')} type="password" placeholder="Password" id="password" name="password" onChange={this.onFormChange}/>
+                            <div className="check invalid-feedback">{this.getErrorMessage('password')}></div>
+
+                            <button className="button-login" type = "submit" disabled={!this.state.formValid}>Sign Up</button>
                         </form>
                     </div>
                     <div className="form-container sign-in-container">
-                        <form className="form-login" action="#">
+                        <form className="form-login" action="#" onSubmit = {this.onLoginSubmit}>
                             <h1 className="header1-login">Sign in</h1>
                             <div className="social-container">
                                 <a href="#" className="social"><i class="fab fa-facebook-f"></i></a>
@@ -63,8 +196,10 @@ export default class Login extends Component {
                                 <a href="#" className="social"><i class="fab fa-linkedin-in"></i></a>
                             </div>
                             <span className="span-login">or use your account</span>
-                            <input className="input-login" type="email" placeholder="Email" id="username" name="username" onChange={this.onInputChange} />
-                            <input className="input-login" type="password" placeholder="Password" id="password" name="password" onChange={this.onInputChange} />
+                            <input className="input-login form-control is-valid" type="email" placeholder="Email" id="email" name="email" onChange={this.onInputChange} />
+                            <div className="check valid-feedback">พบชื่อผู้ใช้</div>
+                            <input className="input-login form-control is-invalid" type="password" placeholder="Password" id="password" name="password" onChange={this.onInputChange} />
+                            <div className="check invalid-feedback">รหัสผ่านสั้นเกินไป</div>
                             <a href="#" className="social">Forgot your password?</a>
                             <button className="button-login">Sign In</button>
                         </form>
