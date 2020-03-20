@@ -5,6 +5,8 @@
 
 import React from "react";
 
+//import 'bootstrap/dist/css/bootstrap.min.css';
+
 import Navbar from '../components/nav-bar/index.js';
 import SideBar from '../components/sideBar/index.js';
 

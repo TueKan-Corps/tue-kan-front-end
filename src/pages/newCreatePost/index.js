@@ -80,6 +80,11 @@ const DateBox = styled(TextBox).attrs({
 })`
 `;
 
+const NumBox = styled(TextBox).attrs({
+  type: 'number',
+})`
+`;
+
 const TextAreaBox = styled.textarea`
   height: 80px;
   width: 70%;
@@ -100,6 +105,7 @@ class NewCreatePost extends React.Component {
     date: '',
     startTime: '',
     stopTime: '',
+    max: '',
     category: '',
     type: '',
     price: '',
@@ -151,7 +157,7 @@ class NewCreatePost extends React.Component {
 
                 <FormItem className='form-item'>
                   <HeadText className='header-text'><b>Date :</b></HeadText>
-                  <DateBox className='item-input' name='date' placeholder='DD/MM/YY' align='left' onChange={this.onInputChange} short required></DateBox>
+                  <DateBox className='item-input' name='date' placeholder='DD/MM/YY' onChange={this.onInputChange} short required></DateBox>
                 </FormItem>
 
                 {/* step 1800 = add 0.5 hour */}
@@ -163,6 +169,11 @@ class NewCreatePost extends React.Component {
                 <FormItem className='form-item'>
                   <HeadText className='header-text'><b>Tue Stop :</b></HeadText>
                   <TimeBox className='item-input' name='stopTime' step='1800' min={minHr} max='20:00' align='center' onChange={this.onInputChange} required></TimeBox>
+                </FormItem>
+
+                <FormItem className='form-item'>
+                  <HeadText className='header-text'><b>Max :</b></HeadText>
+                  <NumBox className='item-input' name='max' placeholder='Max participant' min='1' onChange={this.onInputChange} required></NumBox>
                 </FormItem>
 
                 <FormItem className='form-item'>

@@ -31,6 +31,7 @@ import {myPostingData} from '../../components/MyTuelist/myPostingData.js';
 
 import MyTueList from '../../components/MyTuelist/index.js';
 import Postlist from '../../components/SubContainer/Postlist/index.js';
+import LoadingPostList from '../../components/loadingPostList/index.js';
 import NameListTable from './nameListTable/index.js';
 
 const findTicket =(length)=> {
@@ -78,8 +79,8 @@ const PostingDetail =(props)=> {
   }
 
   let { postingId } = useParams();
-  let postingData = myPostingData[postingId-1];
-  //console.log(isHaveTicket);
+  let postingData = props.postData[postingId-1];
+  console.log(props.postData[postingId-1]);
   return (
     <DetailContainer className='posting-detail'>
         <DetailHeader className='detail-header' background='rgb(180,245,188)'>
@@ -197,35 +198,36 @@ const PostingDetail =(props)=> {
   );
 }
 
-const PostingList =()=> {
+const PostingList =(props)=> {
   return (
-    <Postlist postData={myPostingData} linkTo='/posting' />
+    <Postlist postData={props.postData} linkTo='/posting' />
   );
 }
 
 class Posting extends React.Component {
 
-  state = {
-      loading: false,
+    state = {
+      loading: true,
       postingData: {}
     }
 
-    /*componentDidMount () {
-      const url ='https://mock-up-tuekan-backend.herokuapp.com/post/list';
+    componentDidMount () {
+      const url ='https://mock-up-tuekan-backend.herokuapp.com/post/posting';
       this.setState({loading: true})
       axios.get(url)
-        .then(response => response.json())
         .then(data => {
           this.setState({
             loading: false,
-            postingData: data
+            postingData: data.data
           })
         })
         .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
-    }*/
+      console.log('loading complete!');
+    }
 
   render () {
-    console.log(this.state.postingData);
+    // console.log(this.state.postingData);
+    let postingData = this.state.postingData;
     return (
       <MainDiv className='posting-main-container'>
         <SubDiv className='posting-sub-container'>
@@ -241,8 +243,12 @@ class Posting extends React.Component {
               if go to sub-cate, it link to this sub-cate with nested route.
             */}
 
-            <Route exact path={'/posting'} component={PostingList} />
-            <Route exact path={`/posting/:postingId`} component={PostingDetail} />
+            {
+              this.state.loading &&
+              <LoadingPostList />
+            }
+            { !this.state.loading && <Route exact path={'/posting'} component={()=><PostingList postData={postingData} />} /> }
+            { !this.state.loading && <Route exact path={`/posting/:postingId`} component={()=><PostingDetail postData={postingData} /> } />  }
 
           </Switch>
 
