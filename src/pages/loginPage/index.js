@@ -58,7 +58,9 @@ export default class Login extends Component {
                 error:{status:true,message:''}
             }
         },
-        formValid:false
+        formValid: false,
+        username: '',
+        passwordLogin:''
     }
 
     // state = {
@@ -196,9 +198,9 @@ export default class Login extends Component {
                                 <a href="#" className="social"><i class="fab fa-linkedin-in"></i></a>
                             </div>
                             <span className="span-login">or use your account</span>
-                            <input className="input-login form-control is-valid" type="email" placeholder="Email" id="email" name="email" onChange={this.onInputChange} />
+                            <input className="input-login form-control is-valid" type="username" placeholder="Email" id="username" name="username" onChange={this.onInputChange} />
                             <div className="check valid-feedback">พบชื่อผู้ใช้</div>
-                            <input className="input-login form-control is-invalid" type="password" placeholder="Password" id="password" name="password" onChange={this.onInputChange} />
+                            <input className="input-login form-control is-invalid" type="passwordLogin" placeholder="Password" id="passwordLogin" name="passwordLogin" onChange={this.onInputChange} />
                             <div className="check invalid-feedback">รหัสผ่านสั้นเกินไป</div>
                             <a href="#" className="social">Forgot your password?</a>
                             <button className="button-login">Sign In</button>
