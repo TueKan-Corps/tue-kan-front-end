@@ -144,7 +144,7 @@ export default class SubContainer extends React.Component {
         })
       })
       .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
-    console.log('loading complete!');
+    //console.log('loading complete!');
   }
 
   render () {

@@ -54,7 +54,7 @@ export default class MyTuelist extends React.PureComponent {
         })
       })
       .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
-    console.log('loading complete!');
+    //console.log('loading complete!');
   }
 
   /*shouldComponentUpdate (props) {

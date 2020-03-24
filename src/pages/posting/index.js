@@ -213,7 +213,7 @@ class Posting extends React.Component {
 
     componentDidMount () {
       const url ='https://mock-up-tuekan-backend.herokuapp.com/post/posting';
-      //const url ='https://mock-up-tuekan-backend.herokuapp.com/post/list';
+      //const url ='https://mock-up-tuekan-backend.herokuapp.com/profile';
       this.setState({loading: true})
       axios.get(url)
         .then(data => {
@@ -221,10 +221,12 @@ class Posting extends React.Component {
             loading: false,
             postingData: data.data
           })
+          console.log('data');
+          console.log(data);
         })
         .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
-      console.log('loading complete!');
-    }
+      //console.log('loading complete!');
+  }
 
   render () {
     // console.log(this.state.postingData);

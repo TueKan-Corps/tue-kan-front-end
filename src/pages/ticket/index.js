@@ -31,7 +31,6 @@ import './style.css';
 
 import tempPic from '../../components/avatar/profile.jpg';
 
-
 import MainDiv from '../mainDiv.js';
 import SubDiv from '../subDiv.js';
 
@@ -148,7 +147,7 @@ class Ticket extends React.Component {
         })
       })
       .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
-    console.log('loading complete!');
+    //console.log('loading complete!');
   }
 
   render () {
