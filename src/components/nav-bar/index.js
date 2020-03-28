@@ -24,7 +24,7 @@ class Navbar extends React.Component {
           </div>
         </Link>
 
-        <Link to='coinPayment'>
+        <Link to='/coinPayment'>
           <div className='coin-box'>
             <i className="coin-messege coin-logo fas fa-coins"></i>
             <p className='coin-messege coin-amount'><b>{profileData.coin}</b></p>

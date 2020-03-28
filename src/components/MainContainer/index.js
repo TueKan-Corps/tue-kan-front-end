@@ -8,7 +8,7 @@ export default function MainContainer() {
     return (
       <MainDiv>
         <SubContainer />
-        <MyTuelist isUpdate={true} />
+        <MyTuelist />
       </MainDiv>
     )
 }

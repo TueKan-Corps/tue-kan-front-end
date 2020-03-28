@@ -16,6 +16,7 @@ import Ticket from '../pages/ticket/index.js';
 import Posting from '../pages/posting/index.js';
 import Login from '../pages/loginPage/index.js';
 import Profile from '../pages/profile/index.js';
+import CoinPayment from '../pages/coinPayment/index.js';
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -29,6 +30,7 @@ export default () => {
 
         <Route path="/coinPayment">
           <SideBar />
+          <CoinPayment />
         </Route>
 
         <Route path="/profile">
