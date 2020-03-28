@@ -50,10 +50,10 @@ const TicketDetail =(props)=> {
   //console.log(ticketData);
   return (
     <DetailContainer className='ticket-detail'>
-      <DetailHeader className='detail-header' background='rgb(255,216,212)'>
+      <DetailHeader className='detail-header' background='rgb(254, 204, 199)'>
         <p className='detail-header-text'><b>{ticketData.topic}</b></p>
       </DetailHeader>
-      <DetailBody className='detail-body' background='rgb(255,238,238)'>
+      <DetailBody className='detail-body'>
         <div className='body-container'>
 
           <div className='img-container'>

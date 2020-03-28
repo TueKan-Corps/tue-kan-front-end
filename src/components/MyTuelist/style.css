@@ -1,4 +1,4 @@
-.my-tue-list-container{
+.my-tue-list-container {
   grid-area: 1/9/12/12;
   width: 90%;
   max-width: 330px;
@@ -16,7 +16,9 @@
 }
 
 .my-tue-list-container .mtl-header  {
-  background: #8edfff;
+  !background: #8edfff;
+  background: rgb(45, 45, 45);
+  color: white;
   overflow: auto;
   padding: 5px;
   box-sizing: border-box;
@@ -28,8 +30,6 @@
   /* width: 50px; */
 }
 
-
-
 .my-tue-list-container .mtl-header .header-name {
   display: inline;
   float: left;
@@ -40,19 +40,19 @@
 .my-tue-list-container .mtl-header .show-btn {
   display: inline;
   float: right;
-  margin: 10px 20px 10px 0px;
+  margin: 10px 10px 10px 0px;
   font-size: 20px;
-  color: black;
+  color: white;
   text-decoration: none;
   text-decoration-line: none;
 }
 
 .my-tue-list-container .mtl-header .show-btn:hover {
-  color: white;
+  filter: contrast(75%);
 }
 
 .my-tue-list-container .mtl-header .show-btn:active {
-  color: rgb(119,126,124);
+  filter: contrast(50%);
 }
 
 .mtl-item-link:active {

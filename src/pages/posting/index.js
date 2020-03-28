@@ -80,13 +80,15 @@ const PostingDetail =(props)=> {
 
   let { postingId } = useParams();
   let postingData = props.postData[postingId-1];
-  console.log(props.postData[postingId-1]);
+
+  //console.log(props.postData[postingId-1]);
+
   return (
     <DetailContainer className='posting-detail'>
-        <DetailHeader className='detail-header' background='rgb(180,245,188)'>
+        <DetailHeader className='detail-header' background='#4BCCFF'>
         <p className='detail-header-text'><b>{postingData.topic}</b></p>
       </DetailHeader>
-      <DetailBody className='detail-body' background='rgb(233,255,236)'>
+      <DetailBody className='detail-body'>
         <div className='body-container'>
 
           <div className='img-container'>
