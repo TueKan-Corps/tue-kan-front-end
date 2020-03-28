@@ -15,6 +15,7 @@ import {
   Route,
   useParams,
 } from "react-router-dom";
+import axios from 'axios';
 
 import './style.css';
 
@@ -204,7 +205,27 @@ const PostingList =()=> {
 
 class Posting extends React.Component {
 
+  state = {
+      loading: false,
+      postingData: {}
+    }
+
+    /*componentDidMount () {
+      const url ='https://mock-up-tuekan-backend.herokuapp.com/post/list';
+      this.setState({loading: true})
+      axios.get(url)
+        .then(response => response.json())
+        .then(data => {
+          this.setState({
+            loading: false,
+            postingData: data
+          })
+        })
+        .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
+    }*/
+
   render () {
+    console.log(this.state.postingData);
     return (
       <MainDiv className='posting-main-container'>
         <SubDiv className='posting-sub-container'>
