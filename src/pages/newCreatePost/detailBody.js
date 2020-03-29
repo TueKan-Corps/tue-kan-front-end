@@ -6,6 +6,7 @@ import styled from 'styled-components';
 
 const DetailBody = styled.div`
   background: ${props => props.background};
+  background: #f7f7f7; 
   width: 100%;
   border-top-right-radius: 25px;
   border-bottom-right-radius: 25px;

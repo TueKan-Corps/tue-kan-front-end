@@ -1,4 +1,4 @@
-.my-tue-list-container{
+.my-tue-list-container {
   grid-area: 1/9/12/12;
   width: 90%;
   max-width: 330px;
@@ -16,7 +16,9 @@
 }
 
 .my-tue-list-container .mtl-header  {
-  background: #8edfff;
+  !background: #8edfff;
+  background: rgb(45, 45, 45);
+  color: white;
   overflow: auto;
   padding: 5px;
   box-sizing: border-box;
@@ -28,8 +30,6 @@
   /* width: 50px; */
 }
 
-
-
 .my-tue-list-container .mtl-header .header-name {
   display: inline;
   float: left;
@@ -40,19 +40,19 @@
 .my-tue-list-container .mtl-header .show-btn {
   display: inline;
   float: right;
-  margin: 10px 20px 10px 0px;
+  margin: 10px 10px 10px 0px;
   font-size: 20px;
-  color: black;
+  color: white;
   text-decoration: none;
   text-decoration-line: none;
 }
 
 .my-tue-list-container .mtl-header .show-btn:hover {
-  color: white;
+  filter: contrast(75%);
 }
 
 .my-tue-list-container .mtl-header .show-btn:active {
-  color: rgb(119,126,124);
+  filter: contrast(50%);
 }
 
 .mtl-item-link:active {
@@ -60,6 +60,7 @@
 }
 
 .mtl-item {
+  !background: red;
   display: block;
   width: 100%;
   !overflow: auto;
@@ -82,24 +83,34 @@
 .mtl-item .item-tag-color {
   float: left;
   display: inline;
-  background: red;
-  width: 15px;
+  !background: red;
+  width: 5%;
   height: 100%;
+}
+
+.mtl-item .item-text-box {
+  !background: red;
+  width: 95%;
+  height: 100%;
+  overflow: hidden;
+  vertical-align: middle;
 }
 
 .mtl-item .item-text {
   font-size: 16px;
   display: inline;
+  vertical-align: middle;
+  transform: translateY(50%);
 }
 
 .mtl-item .item-topic {
   float: left;
-  margin-left: 15px;
+  margin-left: 4%;
 }
 
 .mtl-item .item-date {
   float: right;
-  margin-right: 25px;
+  margin-right: 4%;
 }
 
 @media screen and (max-width: 1590px) {
@@ -110,6 +121,10 @@
 
   .my-tue-list-container .mtl-header .show-btn {
     font-size: 16px;
+  }
+
+  .mtl-item .item-text {
+    transform: translateY(0%);
   }
 
   .mtl-item .item-text {

@@ -13,6 +13,9 @@
     -- add div in ticket using style like <newCreatePost> (use styled)
   .edit 12-Mar-20 [Boat]
     -- add ticket description (img, location, date, time, price, join)
+  .edit 20-Mar-20 [Boat]
+    -- test with backend mockup.
+    -- add skeleleton loading component.
 */
 
 import React from 'react';
@@ -22,11 +25,11 @@ import {
   Route,
   useParams,
 } from "react-router-dom";
+import axios from 'axios';
 
 import './style.css';
 
 import tempPic from '../../components/avatar/profile.jpg';
-
 
 import MainDiv from '../mainDiv.js';
 import SubDiv from '../subDiv.js';
@@ -37,20 +40,20 @@ import DetailHeader from '../newCreatePost/detailHeader.js';
 
 import {listData} from '../../components/MyTuelist/listData.js';
 
-
 import MyTueList from '../../components/MyTuelist/index.js';
 import Postlist from '../../components/SubContainer/Postlist/index.js';
+import LoadingPostList from '../../components/loadingPostList/index.js';
 
 const TicketDetail =(props)=> {
   let { ticketId } = useParams();
-  let ticketData = listData[ticketId-1];
+  let ticketData = props.ticketData[ticketId-1];
   //console.log(ticketData);
   return (
     <DetailContainer className='ticket-detail'>
-      <DetailHeader className='detail-header' background='rgb(255,216,212)'>
+      <DetailHeader className='detail-header' background='rgb(254, 204, 199)'>
         <p className='detail-header-text'><b>{ticketData.topic}</b></p>
       </DetailHeader>
-      <DetailBody className='detail-body' background='rgb(255,238,238)'>
+      <DetailBody className='detail-body'>
         <div className='body-container'>
 
           <div className='img-container'>
@@ -119,15 +122,36 @@ const TicketDetail =(props)=> {
   );
 }
 
-const TicketList =()=> {
+const TicketList =(props)=> {
   return (
-    <Postlist postData={listData} linkTo='/ticket' />
+    <Postlist postData={props.ticketData} linkTo='/ticket' />
   );
 }
 
 class Ticket extends React.Component {
 
+  state = {
+    loading: true,
+    ticketData: {}
+  }
+
+  componentDidMount () {
+    //const url ='https://mock-up-tuekan-backend.herokuapp.com/post/posting';
+    const url ='https://mock-up-tuekan-backend.herokuapp.com/ticket';
+    this.setState({loading: true})
+    axios.get(url)
+      .then(data => {
+        this.setState({
+          loading: false,
+          ticketData: data.data
+        })
+      })
+      .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
+    //console.log('loading complete!');
+  }
+
   render () {
+    let ticketData = this.state.ticketData;
     return (
       <MainDiv className='ticket-main-container'>
         <SubDiv className='ticket-sub-container'>
@@ -142,9 +166,12 @@ class Ticket extends React.Component {
               if don't go to sub-cate, it show category.
               if go to sub-cate, it link to this sub-cate with nested route.
             */}
-
-            <Route exact path={'/ticket'} component={TicketList} />
-            <Route exact path={`/ticket/:ticketId`} component={TicketDetail} />
+            {
+              this.state.loading &&
+              <LoadingPostList length={4} />
+            }
+            { !this.state.loading && <Route exact path={'/ticket'} component={()=><TicketList ticketData={ticketData} />} />}
+            { !this.state.loading && <Route exact path={`/ticket/:ticketId`} component={()=><TicketDetail ticketData={ticketData} />} />}
 
           </Switch>
 

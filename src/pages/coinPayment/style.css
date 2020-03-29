@@ -1,0 +1,157 @@
+.coin-sub-container .post-header {
+  width: auto;
+  !background: red;
+  border-bottom: 1px solid rgb(200, 200, 200);
+  padding: 20px 20px 20px 20px;
+}
+
+.coin-sub-container .post-header:hover {
+  cursor: pointer;
+  color: rgb(111,203,255);
+}
+
+.coin-sub-container .post-header:active {
+  color: rgb(29,151,221);
+}
+
+.coin-sub-container .post-header .header-item {
+  display: inline;
+}
+
+.coin-sub-container .post-header .header-back-icon {
+  font-size: 32px;
+  margin-right: 10px;
+}
+
+.coin-sub-container .post-header .header-text {
+  font-size: 28px;
+}
+
+.coin-sub-container .detail-body {
+  !background: red;
+  margin-top: 15px;
+  overflow: auto;
+}
+
+.coin-main-container.description-box {
+  !background: red;
+  margin-bottom: 20px;
+  width: 100%;
+  float: left;
+  padding: 0;
+}
+
+.coin-main-container .description-box .description-img {
+  !padding-top: 5px;
+  font-size: 25px;
+  width: 15px;
+  !margin-left: 5px;
+}
+
+.coin-main-container .description-box .description-text {
+  font-size: 20px;
+  display: inline;
+  margin-left: 25px;
+  padding-top: 0px;
+}
+
+.coin-main-container .redeem-box {
+  !background: pink;
+  margin-left: 5%;
+  margin-top: 20px;
+  padding: 0px 30px 20px 30px;
+  width: 92%;
+  float: left;
+  !height: 200px;
+}
+
+.coin-main-container .redeem-box .redeem-container {
+  overflow: auto;
+  border: 3px dashed rgb(164,223,156);
+  box-sizing: border-box;
+  border-radius: 15px;
+  background: rgb(252, 252, 252);
+  margin: 20px 10px 10px 0px;
+  padding: 20px 10px 20px 40px;
+}
+
+.coin-main-container .redeem-box .redeem-input {
+  margin: 5px 10px 0px 0px;
+  padding: 5px;
+  display: inline;
+  float: left;
+  border-radius: 10px;
+  border: 1px solid rgb(212,205,205);
+}
+
+.coin-main-container .redeem-box .redeem-input:focus {
+  outline: none;
+  box-shadow: 0px 0px 4px 2px rgb(223,219,219);
+}
+
+.coin-main-container .redeem-box .redeem-button-box {
+  overflow: auto;
+  float: left;
+}
+
+.coin-main-container .redeem-box .redeem-button {
+  background: rgb(252, 252, 252);
+  border: 2px solid skyblue;
+  box-sizing: border-box;
+  !display: inline-block;
+  float: left;
+  border-radius: 20px;
+  margin-top: 5px;
+  padding: 7px 20px 7px 20px;
+  margin: 0 5px 0 5px;
+  transition: background-color 0.2s;
+}
+
+.coin-main-container .redeem-box .redeem-button:hover {
+  color: rgb(46,185,255);
+  background: rgb(197,238,247);
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+.coin-main-container .redeem-box .redeem-button:active {
+  background: rgb(185,228,237);
+  transition: background-color 0.2s;
+}
+
+@media screen and (max-width: 1590px) {
+  .coin-sub-container .description-box .description-img {
+    font-size: 20px;
+    width: 10px;
+  }
+
+  .coin-sub-container .description-box .description-text {
+    font-size: 16px;
+    margin-left: 25px;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .coin-sub-container .redeem-box .redeem-input {
+    width: 92%;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .coin-sub-container .redeem-box .redeem-button-box {
+    width: 92%;
+    !background: black;
+  }
+
+  .coin-sub-container .redeem-box .redeem-button-small-box {
+    !max-width: 180px;
+    overflow: hidden;
+    !background: red;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .coin-sub-container .redeem-box .redeem-button {
+    width: 95%;
+  }
+}

@@ -31,6 +31,7 @@ import {myPostingData} from '../../components/MyTuelist/myPostingData.js';
 
 import MyTueList from '../../components/MyTuelist/index.js';
 import Postlist from '../../components/SubContainer/Postlist/index.js';
+import LoadingPostList from '../../components/loadingPostList/index.js';
 import NameListTable from './nameListTable/index.js';
 
 const findTicket =(length)=> {
@@ -64,6 +65,14 @@ const scrollTable =(length)=> {
   }
 }
 
+const confirmAndPost =()=> {
+  let isConfirm = window.confirm('ต้องการบันทึกข้อมูลผู้เข้าร่วมใช่หรือไม่ ?');
+  if (isConfirm) {
+    alert('บันทึกข้อมูลผู้เข้าร่วมสำเร็จ !');
+    // send post here
+  }
+}
+
 const PostingDetail =(props)=> {
   const [ticketId, setticketId] = React.useState(0);
 
@@ -73,19 +82,22 @@ const PostingDetail =(props)=> {
       scrollTable(length);
     }
     else {
+      alert('ข้อมูลไม่ถูกต้อง');
       setticketId('999999');
     }
   }
 
   let { postingId } = useParams();
-  let postingData = myPostingData[postingId-1];
-  //console.log(isHaveTicket);
+  let postingData = props.postData[postingId-1];
+
+  //console.log(props.postData[postingId-1]);
+
   return (
     <DetailContainer className='posting-detail'>
-        <DetailHeader className='detail-header' background='rgb(180,245,188)'>
+        <DetailHeader className='detail-header' background='#4BCCFF'>
         <p className='detail-header-text'><b>{postingData.topic}</b></p>
       </DetailHeader>
-      <DetailBody className='detail-body' background='rgb(233,255,236)'>
+      <DetailBody className='detail-body'>
         <div className='body-container'>
 
           <div className='img-container'>
@@ -182,7 +194,7 @@ const PostingDetail =(props)=> {
                       - have alert to confirm.
                       - *** must have to update in DB.
                     */}
-                    <p className='redeem-button redeem-ok'><b>OK</b></p>
+                    <p className='redeem-button redeem-ok' onClick={confirmAndPost}><b>OK</b></p>
                   </div>
                 </div>
 
@@ -197,35 +209,39 @@ const PostingDetail =(props)=> {
   );
 }
 
-const PostingList =()=> {
+const PostingList =(props)=> {
   return (
-    <Postlist postData={myPostingData} linkTo='/posting' />
+    <Postlist postData={props.postData} linkTo='/posting' />
   );
 }
 
 class Posting extends React.Component {
 
-  state = {
-      loading: false,
+    state = {
+      loading: true,
       postingData: {}
     }
 
-    /*componentDidMount () {
-      const url ='https://mock-up-tuekan-backend.herokuapp.com/post/list';
+    componentDidMount () {
+      const url ='https://mock-up-tuekan-backend.herokuapp.com/post/posting';
+      //const url ='https://mock-up-tuekan-backend.herokuapp.com/profile';
       this.setState({loading: true})
       axios.get(url)
-        .then(response => response.json())
         .then(data => {
           this.setState({
             loading: false,
-            postingData: data
+            postingData: data.data
           })
+          console.log('data');
+          console.log(data);
         })
         .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
-    }*/
+      //console.log('loading complete!');
+  }
 
   render () {
-    console.log(this.state.postingData);
+    // console.log(this.state.postingData);
+    let postingData = this.state.postingData;
     return (
       <MainDiv className='posting-main-container'>
         <SubDiv className='posting-sub-container'>
@@ -241,8 +257,12 @@ class Posting extends React.Component {
               if go to sub-cate, it link to this sub-cate with nested route.
             */}
 
-            <Route exact path={'/posting'} component={PostingList} />
-            <Route exact path={`/posting/:postingId`} component={PostingDetail} />
+            {
+              this.state.loading &&
+              <LoadingPostList length={4} />
+            }
+            { !this.state.loading && <Route exact path={'/posting'} component={()=><PostingList postData={postingData} />} /> }
+            { !this.state.loading && <Route exact path={`/posting/:postingId`} component={()=><PostingDetail postData={postingData} /> } />  }
 
           </Switch>
 
