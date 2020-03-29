@@ -41,8 +41,9 @@ class Profile extends React.Component {
     if (this.state.isEdit === true)
     {
       /// send POST here
+      alert('เซฟข้อมูลสำเร็จ !');
       const url ='https://mock-up-tuekan-backend.herokuapp.com/profile';
-      let newData = this.state.profileData; 
+      let newData = this.state.profileData;
     }
 
     this.setState(state => ({

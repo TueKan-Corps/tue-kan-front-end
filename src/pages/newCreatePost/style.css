@@ -45,7 +45,8 @@
   padding: 15px;
   font-family: 'Quicksand', sans-serif;
   border-radius: 30px;
-  background: rgb(146,220,247);
+  !background: rgb(146,220,247);
+  background: #69d4ff;
   border: 0;
 }
 

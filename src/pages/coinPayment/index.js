@@ -23,7 +23,7 @@ class CoinPayment extends React.Component {
             <div className='redeem-description-box'>
               <div className='description-box redeem-box'>
                 <i className="description-img fas fa-donate"></i>
-                <p className='description-text'>Redeem Ticket :</p>
+                <p className='description-text'>Redeem Tue Coin :</p>
                 <div className='description-box redeem-box'>
 
                   <div className='redeem-container'>

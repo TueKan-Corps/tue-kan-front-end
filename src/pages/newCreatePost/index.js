@@ -122,6 +122,8 @@ class NewCreatePost extends React.Component {
   onSubmit =(event)=> {
     event.preventDefault();
     console.log(this.state);
+    alert('สร้างโพสต์สำเร็จ !');
+    // send post here
   }
 
   render () {

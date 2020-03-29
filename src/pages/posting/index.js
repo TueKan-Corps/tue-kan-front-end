@@ -65,6 +65,14 @@ const scrollTable =(length)=> {
   }
 }
 
+const confirmAndPost =()=> {
+  let isConfirm = window.confirm('ต้องการบันทึกข้อมูลผู้เข้าร่วมใช่หรือไม่ ?');
+  if (isConfirm) {
+    alert('บันทึกข้อมูลผู้เข้าร่วมสำเร็จ !');
+    // send post here
+  }
+}
+
 const PostingDetail =(props)=> {
   const [ticketId, setticketId] = React.useState(0);
 
@@ -74,6 +82,7 @@ const PostingDetail =(props)=> {
       scrollTable(length);
     }
     else {
+      alert('ข้อมูลไม่ถูกต้อง');
       setticketId('999999');
     }
   }
@@ -185,7 +194,7 @@ const PostingDetail =(props)=> {
                       - have alert to confirm.
                       - *** must have to update in DB.
                     */}
-                    <p className='redeem-button redeem-ok'><b>OK</b></p>
+                    <p className='redeem-button redeem-ok' onClick={confirmAndPost}><b>OK</b></p>
                   </div>
                 </div>
 
