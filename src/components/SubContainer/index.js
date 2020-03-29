@@ -15,7 +15,6 @@ import DetailHeader from '../../pages/newCreatePost/detailHeader'
 import MainDiv from '../../pages/mainDiv'
 import SubDiv from '../../pages/mainDiv'
 import LoadingPostList from '../../components/loadingPostList/index.js';
-
 import { storeProduct } from '../../data'
 import { listData } from '../MyTuelist/listData.js';
 import tempPic from '../avatar/profile.jpg';
@@ -37,6 +36,10 @@ const Main =(props)=> {
   );
 }
 
+const payCoin = (props) => {
+  
+}
+
 
 const Sub =(props)=> {
   let { postId } = useParams();
@@ -48,10 +51,10 @@ const Sub =(props)=> {
         <i className="header-item header-back-icon fas fa-chevron-left"></i>
         <p className='header-item header-text'><b>Back</b></p>
       </div>
-    <DetailHeader className='detail-header' background='rgb(255,216,212)'>
+      <DetailHeader className='detail-header' background='rgb(255,216,212)'>
       <p className='detail-header-text'><b>{postData.topic}</b></p>
-    </DetailHeader>
-    <DetailBody className='detail-body' background='rgb(255,238,238)'>
+      </DetailHeader>
+      <DetailBody className='detail-body' background='rgb(255,238,238)'>
       <div className='body-container'>
         <div className='img-container'>
           <div className='img-box'>
@@ -110,8 +113,8 @@ const Sub =(props)=> {
               <p className='description-detail-text'>This tue has not description.</p>
             }
             </div>
-              <button className="buy-button"  type="button" data-hover="BuyTicket Now!!" data-active="You bought tricket"><span>{`Price : ${postData.price} TC`}</span></button>
-
+              <button className="buy-button"  type="button" data-hover="BuyTicket Now!!" data-active="You bought tricket"><span>{`${postData.price} TC`}</span></button>
+         
         </div>
 
           <div >
@@ -119,9 +122,8 @@ const Sub =(props)=> {
           </div>
 
       </div>
-    </DetailBody>
-</DetailContainer>
-
+      </DetailBody>
+    </DetailContainer>
   );
 }
 

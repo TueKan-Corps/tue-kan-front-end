@@ -6,6 +6,10 @@
     width: 100%;
 }
 
+.sub-container .ticket-detail{
+    height: 90vh;
+}
+
 .sub-container .post-header {
     width: auto;
     border-bottom: 1px solid rgb(200, 200, 200);
@@ -273,7 +277,9 @@
 .description-detail-box .buy-button:hover::before{
     height: 180%;
 } */
-  
+.sub-container .footer{
+    height: 50px;
+}
 
 
   @media screen and (max-width: 1590px) {

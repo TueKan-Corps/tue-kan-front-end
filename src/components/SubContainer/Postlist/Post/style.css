@@ -14,7 +14,7 @@
 } 
 
 .post{
-    height: 180px;
+    height: 20vh;
     width: 90%;
     background-color: #FBFBFB;
     text-align: left;
@@ -26,6 +26,7 @@
     margin-left: auto;
     margin-right: auto;
     overflow: auto;
+    box-shadow: 5px 5px 5px rgb(211, 211, 211);
 }
 
 .post:hover{
@@ -70,8 +71,22 @@
     height: 35px;
   }
   .topic{
-
-    margin-top: 2px;
+    margin-top: 8px;
     font-weight:bold;
     font-size: 16px;
   }
+
+.numjoin{
+  height: 22%;
+  width: 20%;
+  margin: 5px 5px 5px 0;
+  text-align: center;
+  border-radius: 15px;
+  border: 15px;
+  max-width: 90px;
+}
+
+.numjoin p{
+  margin-top: 15%;
+  margin-bottom: 10%;
+}
