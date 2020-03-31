@@ -75,6 +75,7 @@
 }
 
 .profile-detail-container .profile-detail-box .profile-description .description-des-input {
+  background: rgb(235, 235, 235);
   overflow: auto;
   width: 100%;
   min-height: 150px;
@@ -178,6 +179,7 @@
 
 .profile-detail-container .profile-detail-box .contact-box .contact-detail {
   !background: lightgreen;
+  background: rgb(235, 235, 235);
   max-width: 320px;
   padding: 10px;
   margin: 0 auto;
@@ -231,7 +233,7 @@
   max-width: 175px;
   padding: 13px 2px 13px 10px;
   border-radius: 10px;
-  border: 0;
+  border: 0; 
 }
 
 .profile-detail-container .profile-detail-box .contact-box .contact-detail .contact-input:focus {

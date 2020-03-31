@@ -19,6 +19,7 @@
 */
 
 import React from 'react';
+import { Switch, Redirect } from 'react-router-dom';
 
 import {category} from './category.js';
 
@@ -45,6 +46,7 @@ const FormItem = styled.div`
     resize: none;
     border-radius: 20px;
     border: 0;
+    background: rgb(235, 235, 235);
   }
   > .item-input:focus {
     outline: none;
@@ -107,8 +109,7 @@ class NewCreatePost extends React.Component {
     stopTime: '',
     max: '',
     category: '',
-    type: '',
-    price: '',
+    price: '0',
     description: '',
   }
 
@@ -123,7 +124,13 @@ class NewCreatePost extends React.Component {
     event.preventDefault();
     console.log(this.state);
     alert('สร้างโพสต์สำเร็จ !');
+
     // send post here
+
+    return (
+      <Redirect to='/coinPayment' /> 
+    );
+
   }
 
   render () {
@@ -131,8 +138,8 @@ class NewCreatePost extends React.Component {
     let hrStart = parseInt(startTimeArray[0]) + 1;
     let hrStop = parseInt(startTimeArray[1]);
     let minHr = hrStop > 0 ? hrStart+':'+hrStop : hrStart+':'+hrStop+0;
-    console.log(hrStart);
-    console.log(hrStart+':'+hrStop);
+    //console.log(hrStart);
+    //console.log(hrStart+':'+hrStop);
     return (
       <MainDiv className='create-post-main-container'>
         <SubDiv className='create-post-sub-container'>
@@ -186,15 +193,6 @@ class NewCreatePost extends React.Component {
                       <option key={cate.id} value={cate.value}>{cate.name}</option>
                     ))
                   }
-                  </SelectBox>
-                </FormItem>
-
-                <FormItem className='form-item'>
-                  <HeadText className='header-text'><b>Tue-type :</b></HeadText>
-                  <SelectBox className='item-input' name='type' onChange={this.onInputChange} short required>
-                    <option value=''>--Select--</option>
-                    <option value='0'>Free</option>
-                    <option value='1'>Premium</option>
                   </SelectBox>
                 </FormItem>
 
