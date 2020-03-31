@@ -114,7 +114,7 @@ class Profile extends React.Component {
     let desLen = description.length;
     let desOverLen = desLen > 250;
     let desForShow = (!isEdit && desOverLen && !isShowMore) ? `${description.substring(0, 250)}` : description;
-    let contactEditStyle = isEdit ? {maxWidth: '400px', background: ''} : {};
+    let contactEditStyle = isEdit ? {maxWidth: '450px', background: ''} : {};
 
     //console.log('this.state.profileData');
     //console.log(this.state.loading);
@@ -196,7 +196,7 @@ class Profile extends React.Component {
 
       </SubDiv>
 
-      <MyTueList isUpdate={false} />
+      <MyTueList />
 
     </MainDiv>
     );

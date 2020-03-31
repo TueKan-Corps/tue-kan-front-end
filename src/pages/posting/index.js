@@ -89,8 +89,10 @@ const PostingDetail =(props)=> {
 
   let { postingId } = useParams();
   let postingData = props.postData[postingId-1];
+  let participantData = JSON.parse(postingData.participant);
 
-  //console.log(props.postData[postingId-1]);
+  //console.log(postingData);
+  //console.log(participantData);
 
   return (
     <DetailContainer className='posting-detail'>
@@ -125,7 +127,7 @@ const PostingDetail =(props)=> {
 
             <div className='description-box time-box'>
               <i className="description-img fas fa-clock"></i>
-              <p className='description-text'>{`Time: ${postingData.startTime}  -  ${postingData.stopTime}`}</p>
+              <p className='description-text'>{`Time: ${postingData.start_time}  -  ${postingData.stop_time}`}</p>
             </div>
 
             <div className='description-box price-box'>
@@ -164,7 +166,7 @@ const PostingDetail =(props)=> {
                 {/*
                   - pass ticketId to set background color of this row.
                 */}
-                <NameListTable topic={postingData.topic} data={postingData.participant} ticketId={ticketId} />
+                <NameListTable topic={postingData.topic} data={participantData} ticketId={ticketId} />
 
               </div>
 
@@ -223,8 +225,8 @@ class Posting extends React.Component {
     }
 
     componentDidMount () {
-      const url ='https://mock-up-tuekan-backend.herokuapp.com/post/posting';
-      //const url ='https://mock-up-tuekan-backend.herokuapp.com/profile';
+      let accountId = 21;
+      const url = `https://tue-kan.herokuapp.com/post/posting/${accountId}`;
       this.setState({loading: true})
       axios.get(url)
         .then(data => {
@@ -232,15 +234,15 @@ class Posting extends React.Component {
             loading: false,
             postingData: data.data
           })
-          console.log('data');
-          console.log(data);
+          //console.log('data');
+          //console.log(data);
         })
         .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
       //console.log('loading complete!');
   }
 
   render () {
-    // console.log(this.state.postingData);
+    //console.log(this.state.postingData);
     let postingData = this.state.postingData;
     return (
       <MainDiv className='posting-main-container'>

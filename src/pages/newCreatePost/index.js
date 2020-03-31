@@ -19,6 +19,8 @@
 */
 
 import React from 'react';
+import axios from 'axios';
+import { Switch, Redirect } from 'react-router-dom';
 
 import {category} from './category.js';
 
@@ -45,6 +47,7 @@ const FormItem = styled.div`
     resize: none;
     border-radius: 20px;
     border: 0;
+    background: rgb(235, 235, 235);
   }
   > .item-input:focus {
     outline: none;
@@ -100,15 +103,15 @@ const SelectBox = styled.select
 class NewCreatePost extends React.Component {
 
   state = {
+    account_id: '',
     topic: '',
     location: '',
     date: '',
-    startTime: '',
-    stopTime: '',
+    start_time: '',
+    stop_time: '',
     max: '',
     category: '',
-    type: '',
-    price: '',
+    price: '0',
     description: '',
   }
 
@@ -117,22 +120,49 @@ class NewCreatePost extends React.Component {
       [event.target.name] : event.target.value
     })
       //console.log(this.state);
+    let name = event.target.name;
+    if(name === 'max' || name === 'category' || name === 'price') {
+      this.setState({
+        [name]: parseInt(event.target.value)
+      })
+    }
   }
 
   onSubmit =(event)=> {
-    event.preventDefault();
-    console.log(this.state);
-    alert('สร้างโพสต์สำเร็จ !');
+    //event.preventDefault();
+
     // send post here
+    let url = `https://tue-kan.herokuapp.com/post/`
+    let data = this.state;
+
+    console.log(data);
+
+    axios.post(url, data)
+      .then((res) => {
+          console.log(res.data)
+      }).catch((error) => {
+          console.log(error)
+      });
+
+    alert('สร้างโพสต์สำเร็จ !');
+
+  }
+
+  componentWillMount () {
+    let accountId = 21;
+    this.setState({
+      account_id: accountId,
+    })
   }
 
   render () {
-    let startTimeArray = this.state.startTime.split(':');
+    let startTimeArray = this.state.start_time.split(':');
     let hrStart = parseInt(startTimeArray[0]) + 1;
     let hrStop = parseInt(startTimeArray[1]);
     let minHr = hrStop > 0 ? hrStart+':'+hrStop : hrStart+':'+hrStop+0;
-    console.log(hrStart);
-    console.log(hrStart+':'+hrStop);
+
+    //console.log(hrStart);
+    //console.log(hrStart+':'+hrStop);
     return (
       <MainDiv className='create-post-main-container'>
         <SubDiv className='create-post-sub-container'>
@@ -165,12 +195,12 @@ class NewCreatePost extends React.Component {
                 {/* step 1800 = add 0.5 hour */}
                 <FormItem className='form-item'>
                   <HeadText className='header-text'><b>Tue Start :</b></HeadText>
-                  <TimeBox className='item-input' name='startTime' step='1800' min='08:00' max='20:00' align='center' onChange={this.onInputChange} required></TimeBox>
+                  <TimeBox className='item-input' name='start_time' step='1800' min='08:00' max='20:00' align='center' onChange={this.onInputChange} required></TimeBox>
                 </FormItem>
 
                 <FormItem className='form-item'>
                   <HeadText className='header-text'><b>Tue Stop :</b></HeadText>
-                  <TimeBox className='item-input' name='stopTime' step='1800' min={minHr} max='20:00' align='center' onChange={this.onInputChange} required></TimeBox>
+                  <TimeBox className='item-input' name='stop_time' step='1800' min={minHr} max='20:00' align='center' onChange={this.onInputChange} required></TimeBox>
                 </FormItem>
 
                 <FormItem className='form-item'>
@@ -186,15 +216,6 @@ class NewCreatePost extends React.Component {
                       <option key={cate.id} value={cate.value}>{cate.name}</option>
                     ))
                   }
-                  </SelectBox>
-                </FormItem>
-
-                <FormItem className='form-item'>
-                  <HeadText className='header-text'><b>Tue-type :</b></HeadText>
-                  <SelectBox className='item-input' name='type' onChange={this.onInputChange} short required>
-                    <option value=''>--Select--</option>
-                    <option value='0'>Free</option>
-                    <option value='1'>Premium</option>
                   </SelectBox>
                 </FormItem>
 

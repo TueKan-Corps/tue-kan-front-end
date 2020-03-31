@@ -37,7 +37,7 @@ const Main =(props)=> {
 }
 
 const payCoin = (props) => {
-  
+
 }
 
 
@@ -114,7 +114,7 @@ const Sub =(props)=> {
             }
             </div>
               <button className="buy-button"  type="button" data-hover="BuyTicket Now!!" data-active="You bought tricket"><span>{`${postData.price} TC`}</span></button>
-         
+
         </div>
 
           <div >
@@ -136,7 +136,7 @@ export default class SubContainer extends React.Component {
 
   componentDidMount () {
     //const url ='https://mock-up-tuekan-backend.herokuapp.com/post/posting';
-    const url ='https://mock-up-tuekan-backend.herokuapp.com/ticket';
+    const url ='https://tue-kan.herokuapp.com/post/';
     this.setState({loading: true})
     axios.get(url)
       .then(data => {
