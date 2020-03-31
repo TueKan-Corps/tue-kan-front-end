@@ -81,7 +81,7 @@ const TicketDetail =(props)=> {
 
             <div className='description-box time-box'>
               <i className="description-img fas fa-clock"></i>
-              <p className='description-text'>{`Time: ${ticketData.startTime}  -  ${ticketData.stopTime}`}</p>
+              <p className='description-text'>{`Time: ${ticketData.start_time}  -  ${ticketData.stop_time}`}</p>
             </div>
 
             <div className='description-box price-box'>
@@ -137,7 +137,8 @@ class Ticket extends React.Component {
 
   componentDidMount () {
     //const url ='https://mock-up-tuekan-backend.herokuapp.com/post/posting';
-    const url ='https://mock-up-tuekan-backend.herokuapp.com/ticket';
+    let accountId = 21;
+    const url = `https://tue-kan.herokuapp.com/ticket/${accountId}`;
     this.setState({loading: true})
     axios.get(url)
       .then(data => {

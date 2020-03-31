@@ -11,8 +11,6 @@ import React from 'react'
 import axios from 'axios';
 import './style.css'
 
-import { listData } from './listData.js';
-
 import LoadingPostList from '../../components/loadingPostList/index.js';
 
 import { Link } from "react-router-dom";
@@ -22,10 +20,11 @@ const CreateListItem =(props)=> {
   let colorTag = ['skyblue', 'rgb(255,197,130)', 'pink', 'rgb(241,184,255)', 'lightgreen'];
   let isTopicOverLen = props.topic.length > 16;
   let topicDisplay = isTopicOverLen ? props.topic.substring(0, 15) + '...' : props.topic;
+  //console.log(props.tag_id);
   return (
     <Link className='mtl-item-link' to={`/ticket/${props.id}`}>
       <div className='mtl-item'>
-        <span className='item-tag-color' style={{background: `${colorTag[props.tagId]}`}}> </span>
+        <span className='item-tag-color' style={{background: `${colorTag[props.tag_id]}`}}> </span>
         <div className='item-text-box'>
           <p className='item-topic item-text'>{topicDisplay}</p>
           <p className='item-date item-text'>{props.date}</p>
@@ -43,8 +42,8 @@ export default class MyTuelist extends React.PureComponent {
   }
 
   componentDidMount () {
-    //const url ='https://mock-up-tuekan-backend.herokuapp.com/post/posting';
-    const url ='https://mock-up-tuekan-backend.herokuapp.com/ticket';
+    let accountId = 21;
+    const url = `https://tue-kan.herokuapp.com/ticket/${accountId}`;
     this.setState({loading: true})
     axios.get(url)
       .then(data => {
@@ -62,6 +61,7 @@ export default class MyTuelist extends React.PureComponent {
   }*/
 
   render () {
+    let ticketData = this.state.ticketData;
     return (
       <div className ="my-tue-list-container">
         <div className='mtl-header'>
@@ -75,7 +75,7 @@ export default class MyTuelist extends React.PureComponent {
         }
         {
           !this.state.loading &&
-          listData.map(list => (
+          ticketData.map(list => (
             <CreateListItem key={list.id} {...list}  />
           ))
         }
