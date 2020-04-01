@@ -4,7 +4,9 @@
 
 .post-list{
     width: 100%;
+    min-height: 78vh;
 }
+
 
 .sub-container .ticket-detail{
     height: 90vh;

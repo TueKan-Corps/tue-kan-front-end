@@ -59,11 +59,6 @@ export default () => {
           <NewCreatePost />
         </Route>
 
-        <Route path="/ticket">
-          <SideBar />
-          <Ticket />
-        </Route>
-
         <Route path="/createPost">
           <SideBar />
           <NewCreatePost />

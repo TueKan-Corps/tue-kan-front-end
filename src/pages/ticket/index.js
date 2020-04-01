@@ -160,7 +160,7 @@ class Ticket extends React.Component {
             <i className="header-item header-back-icon fas fa-chevron-left"></i>
             <p className='header-item header-text'><b>Ticket Management</b></p>
           </div>
-
+          
           <Switch>
 
             {/*
