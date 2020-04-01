@@ -5,6 +5,8 @@
 .post-list{
     width: 100%;
     min-height: 78vh;
+    /* background-color: rgb(235, 235, 235); */
+    margin-top: 0px;
 }
 
 
@@ -281,6 +283,7 @@
 } */
 .sub-container .footer{
     height: 50px;
+    /* background-color: rgb(235, 235, 235); */
 }
 
 

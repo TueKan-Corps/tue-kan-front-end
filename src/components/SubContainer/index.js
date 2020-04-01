@@ -167,6 +167,7 @@ export default class SubContainer extends React.Component {
         { !this.state.loading && <Route exact path={`/home/:postId`} component={()=><Sub mainListData={mainListData} />} />}
 
         </Switch>
+        {/* แก้ให้ขอบไม่ติดเกินไป */}
         <div className='footer'></div>
         </div>
       )

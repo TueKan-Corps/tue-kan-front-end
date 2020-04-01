@@ -34,6 +34,10 @@ export default () => {
           <CoinPayment />
         </Route>
 
+        <Route path="/login">
+          <Login/>
+        </Route>
+
         <Route path="/profile">
           <SideBar />
           <Profile />
