@@ -16,6 +16,11 @@
     -- change div of postsetting to styled for reuse at ticket
   .edit 12-Mar-20
     -- add duration of tue.
+  .edit 31-Mar-20
+    -- edit to can POST to server and add new post in main list.
+    -- edit to use INT data instead String because using String type make 400 (Bad request) (some variable).
+  .edit 01-Apr-20
+    -- edit date format
 */
 
 import React from 'react';
@@ -121,15 +126,23 @@ class NewCreatePost extends React.Component {
     })
       //console.log(this.state);
     let name = event.target.name;
-    if(name === 'max' || name === 'category' || name === 'price') {
+    if (name === 'max' || name === 'category' || name === 'price') {
       this.setState({
         [name]: parseInt(event.target.value)
+      })
+    }
+    if (name === 'date') {
+      /// change format of date from YYYY-MM-DD to DD/MM/YYYY
+      let oldDate = (event.target.value).split('-');
+      let newData = oldDate[2] + '/' + oldDate[1] + '/' + oldDate[0];
+      this.setState({
+        [name]: newData
       })
     }
   }
 
   onSubmit =(event)=> {
-    //event.preventDefault();
+    event.preventDefault();
 
     // send post here
     let url = `https://tue-kan.herokuapp.com/post/`
@@ -137,14 +150,17 @@ class NewCreatePost extends React.Component {
 
     console.log(data);
 
-    axios.post(url, data)
-      .then((res) => {
-          console.log(res.data)
-      }).catch((error) => {
-          console.log(error)
-      });
+    let isConfirm = window.confirm('ต้องการสร้างโพสต์ใช่หรือไม่ ?');
+    if (isConfirm) {
+      axios.post(url, data)
+        .then((res) => {
+            console.log(res.data)
+        }).catch((error) => {
+            console.log(error)
+        });
 
-    alert('สร้างโพสต์สำเร็จ !');
+      alert('สร้างโพสต์สำเร็จ !');
+    }
 
   }
 
