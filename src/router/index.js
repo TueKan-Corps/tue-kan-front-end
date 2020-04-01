@@ -29,6 +29,10 @@ export default () => {
           <SideBar />
         </Route>
 
+        <Route path="/login">
+          <Login />
+        </Route>
+        
         <Route path="/profile">
           <SideBar />
           <Profile />

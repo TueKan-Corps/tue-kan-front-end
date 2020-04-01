@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './style.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import logo from '../../assets/icon/weblogo_white.png'
 // import styled from 'styled-components   '
 
 
@@ -59,7 +60,7 @@ export default class Login extends Component {
             }
         },
         formValid: false,
-        username: '',
+        usernameLogin: '',
         passwordLogin:''
     }
 
@@ -211,7 +212,7 @@ export default class Login extends Component {
                                 <a href="#" className="social"><i class="fab fa-linkedin-in"></i></a>
                             </div>
                             <span className="span-login">or use your account</span>
-                            <input className="input-login form-control" type="username" placeholder="Email" id="username" name="username" onChange={this.onInputChange} />
+                            <input className="input-login form-control" type="username" placeholder="Email" id="usernameLogin" name="usernameLogin" onChange={this.onInputChange} />
                             {/* <div className="check valid-feedback">พบชื่อผู้ใช้</div> */}
                             <input className="input-login form-control" type="passwordLogin" placeholder="Password" id="passwordLogin" name="passwordLogin" onChange={this.onInputChange} />
                             {/* <div className="check invalid-feedback">รหัสผ่านสั้นเกินไป</div> */}
@@ -227,8 +228,9 @@ export default class Login extends Component {
                                 <button className="button-login ghost" id="signIn" onClick={signInButton}>Sign In</button>
                             </div>
                             <div id="signUpContainer " className="overlay-panel overlay-right">
-                                <h1 className="header1-login">Hello, Friend!</h1>
-                                <p className="p-login">Enter your personal details and start journey with us</p>
+                                <div className='logobox'><img className='logo'src={logo}></img></div>
+                                {/* <h1 className="header1-login">Tueกัน</h1> */}
+                                {/* <p className="p-login">Enter your personal details and start journey with us</p> */}
                                 <button className="button-login ghost signUp" id="signUp" onClick={signUpButton}>Sign Up</button>
                             </div>
                         </div>
