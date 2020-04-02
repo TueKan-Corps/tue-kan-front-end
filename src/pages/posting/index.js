@@ -14,6 +14,8 @@
     -- edit to can redeem ticket and [POST] data to backend.
     -- **3 remaining find re-render method to update redeem status.
     -- **3 [clear] remaining find re-render method to update redeem status.
+  .edit 02-Apr-20
+    -- edit to use centralized account_id.
 */
 
 import React from 'react';
@@ -36,6 +38,7 @@ import DetailBody from '../newCreatePost/detailBody.js';
 import DetailHeader from '../newCreatePost/detailHeader.js';
 
 import {myPostingData} from '../../components/MyTuelist/myPostingData.js';
+import {accountData} from '../../components/avatar/accountData.js';
 
 import MyTueList from '../../components/MyTuelist/index.js';
 import Postlist from '../../components/SubContainer/Postlist/index.js';
@@ -133,7 +136,7 @@ const PostingDetail =(props)=> {
   }
 
   let participantLen = participantData.length;
-  
+
   //console.log(postingData);
   //console.log(participantData);
 
@@ -271,7 +274,7 @@ class Posting extends React.Component {
   }
 
   componentDidMount () {
-    let accountId = 21;
+    let accountId = accountData.account_id;
     const url = `https://tue-kan.herokuapp.com/post/posting/${accountId}`;
     this.setState({loading: true})
     axios.get(url)

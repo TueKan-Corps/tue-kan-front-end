@@ -20,7 +20,9 @@
     -- edit to can POST to server and add new post in main list.
     -- edit to use INT data instead String because using String type make 400 (Bad request) (some variable).
   .edit 01-Apr-20
-    -- edit date format
+    -- edit date format to DD/MM/YYYY
+  .edit 02-Apr-20
+    -- edit date format to MM-DD-YYYY because another format can't sort in database.
 */
 
 import React from 'react';
@@ -28,6 +30,7 @@ import axios from 'axios';
 import { Switch, Redirect } from 'react-router-dom';
 
 import {category} from './category.js';
+import {accountData} from '../../components/avatar/accountData.js';
 
 import './style.css';
 
@@ -134,7 +137,8 @@ class NewCreatePost extends React.Component {
     if (name === 'date') {
       /// change format of date from YYYY-MM-DD to DD/MM/YYYY
       let oldDate = (event.target.value).split('-');
-      let newData = oldDate[2] + '/' + oldDate[1] + '/' + oldDate[0];
+      //let newData = oldDate[2] + '/' + oldDate[1] + '/' + oldDate[0];
+      let newData = oldDate[1] + '-' + oldDate[2] + '-' + oldDate[0];
       this.setState({
         [name]: newData
       })
@@ -165,7 +169,7 @@ class NewCreatePost extends React.Component {
   }
 
   componentWillMount () {
-    let accountId = 21;
+    let accountId = accountData.account_id;
     this.setState({
       account_id: accountId,
     })
