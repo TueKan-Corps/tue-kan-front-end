@@ -15,8 +15,13 @@ import DetailHeader from '../../pages/newCreatePost/detailHeader'
 import MainDiv from '../../pages/mainDiv'
 import SubDiv from '../../pages/mainDiv'
 import LoadingPostList from '../../components/loadingPostList/index.js';
+
+
 import { storeProduct } from '../../data'
 import { listData } from '../MyTuelist/listData.js';
+import {accountData} from '../../components/avatar/accountData.js';
+
+
 import tempPic from '../avatar/profile.jpg';
 import './style.css'
 
@@ -36,14 +41,26 @@ const Main =(props)=> {
   );
 }
 
-const payCoin = (props) => {
-
-}
-
-
 const Sub =(props)=> {
   let { postId } = useParams();
-  let postData = props.mainListData[postId-1];
+  let postData = props.mainListData[postId - 1];
+  let accountId = accountData.account_id;
+  let data = {
+    account_id : accountId,
+    post_id : parseInt(postData.id)
+  }
+  const buyTicket = () => {
+    let url = `https://tue-kan.herokuapp.com/ticket/`;
+      axios.post(url, data)
+        .then((res) => {
+            console.log(res.data)
+      }).catch((error) => {
+            console.log(error)
+        });
+    console.log(data)
+    alert('ซื้อสำเร็จ')
+  }
+
   return (
 
     <DetailContainer className='ticket-detail'>
@@ -113,7 +130,7 @@ const Sub =(props)=> {
               <p className='description-detail-text'>This tue has not description.</p>
             }
             </div>
-              <button className="buy-button"  type="button" data-hover="BuyTicket Now!!" data-active="You bought tricket"><span>{`${postData.price} TC`}</span></button>
+              <button className="buy-button"  type="button" data-hover="BuyTicket Now!!" data-active="You bought tricket" onClick={buyTicket}><span>{`${postData.price} TC`}</span></button>
 
         </div>
 
