@@ -1,3 +1,9 @@
+/*
+  .edit 20-Mar-20 [Boat]
+    -- test with backend mockup.
+    -- add skeleleton loading component.
+*/
+
 import React from 'react'
 import Banner from './Banner/index'
 
@@ -8,7 +14,7 @@ import DetailContainer from '../../pages/newCreatePost/detailContainer'
 import DetailHeader from '../../pages/newCreatePost/detailHeader'
 import MainDiv from '../../pages/mainDiv'
 import SubDiv from '../../pages/mainDiv'
-// import React, { useState } from 'react'
+import LoadingPostList from '../../components/loadingPostList/index.js';
 import { storeProduct } from '../../data'
 import { listData } from '../MyTuelist/listData.js';
 import tempPic from '../avatar/profile.jpg';
@@ -19,26 +25,27 @@ import {
   Route,
   useParams,
 } from "react-router-dom";
+import axios from 'axios';
 
-const Main =()=> {
+const Main =(props)=> {
   return (
     <>
       <Banner />
-      <Postlist postData={storeProduct} linkTo='/home' /> 
+      <Postlist postData={props.mainListData} linkTo='/home' />
     </>
   );
 }
 
 const payCoin = (props) => {
-  
+
 }
 
 
 const Sub =(props)=> {
   let { postId } = useParams();
-  let postData = storeProduct[postId-1];
+  let postData = props.mainListData[postId-1];
   return (
-    
+
     <DetailContainer className='ticket-detail'>
       <div className='post-header ticket-detail-header' onClick={()=>window.history.back()}>
         <i className="header-item header-back-icon fas fa-chevron-left"></i>
@@ -107,7 +114,7 @@ const Sub =(props)=> {
             }
             </div>
               <button className="buy-button"  type="button" data-hover="BuyTicket Now!!" data-active="You bought tricket"><span>{`${postData.price} TC`}</span></button>
-          
+
         </div>
 
           <div >
@@ -120,22 +127,47 @@ const Sub =(props)=> {
   );
 }
 
-export default function SubContainer() {
+export default class SubContainer extends React.Component {
+
+  state = {
+    loading: true,
+    mainListData: {}
+  }
+
+  componentDidMount () {
+    //const url ='https://mock-up-tuekan-backend.herokuapp.com/post/posting';
+    const url ='https://tue-kan.herokuapp.com/post/';
+    this.setState({loading: true})
+    axios.get(url)
+      .then(data => {
+        this.setState({
+          loading: false,
+          mainListData: data.data
+        })
+      })
+      .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
+    //console.log('loading complete!');
+  }
+
+  render () {
+    let mainListData = this.state.mainListData;
     return (
-        <div className="sub-container">
-          <Switch>
+      <div className="sub-container">
+      <Switch>
 
-            {/*
-              if don't go to sub-cate, it show category.
-              if go to sub-cate, it link to this sub-cate with nested route.
-            */}
+        {/*
+          if don't go to sub-cate, it show category.
+          if go to sub-cate, it link to this sub-cate with nested route.
+        */}
+        {
+          this.state.loading &&
+          <LoadingPostList length={4} />
+        }
+        { !this.state.loading && <Route exact path={'/'} component={()=><Main mainListData={mainListData} />} />}
+        { !this.state.loading && <Route exact path={`/home/:postId`} component={()=><Sub mainListData={mainListData} />} />}
 
-            <Route exact path={'/'} component={Main} />
-            <Route exact path={`/home/:postId`} component={Sub} />
-
-          </Switch>
-          <div className="footer"></div>
+        </Switch>
         </div>
-        
-    )
+      )
+  }
 }

@@ -75,6 +75,7 @@
 }
 
 .profile-detail-container .profile-detail-box .profile-description .description-des-input {
+  background: rgb(235, 235, 235);
   overflow: auto;
   width: 100%;
   min-height: 150px;
@@ -83,7 +84,7 @@
   font-family: 'Quicksand', sans-serif;
   border-radius: 10px;
   box-sizing: border-box;
-  border: 2px dashed rgb(124,169,244);
+  border: 2px dashed #69d4ff;
   padding: 10px 15px 10px 15px;
   margin: 0;
 }
@@ -93,7 +94,8 @@
 }
 
 .profile-detail-container .profile-detail-box .profile-description .edit-box {
-  background: skyblue;
+  !background: skyblue;
+  background: #69d4ff;
   width: 20%;
   float: right;
   min-width: 110px;
@@ -177,6 +179,7 @@
 
 .profile-detail-container .profile-detail-box .contact-box .contact-detail {
   !background: lightgreen;
+  background: rgb(235, 235, 235);
   max-width: 320px;
   padding: 10px;
   margin: 0 auto;
@@ -210,6 +213,7 @@
   max-width: 320px;
   height: 40px;
   margin: 0 auto;
+  font-size: 16px;
 }
 
 .profile-detail-container .profile-detail-box .contact-box .contact-detail .contact-edit {
@@ -229,7 +233,7 @@
   max-width: 175px;
   padding: 13px 2px 13px 10px;
   border-radius: 10px;
-  border: 0;
+  border: 0; 
 }
 
 .profile-detail-container .profile-detail-box .contact-box .contact-detail .contact-input:focus {

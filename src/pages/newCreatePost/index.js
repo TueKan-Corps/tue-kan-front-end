@@ -16,11 +16,21 @@
     -- change div of postsetting to styled for reuse at ticket
   .edit 12-Mar-20
     -- add duration of tue.
+  .edit 31-Mar-20
+    -- edit to can POST to server and add new post in main list.
+    -- edit to use INT data instead String because using String type make 400 (Bad request) (some variable).
+  .edit 01-Apr-20
+    -- edit date format to DD/MM/YYYY
+  .edit 02-Apr-20
+    -- edit date format to MM-DD-YYYY because another format can't sort in database.
 */
 
 import React from 'react';
+import axios from 'axios';
+import { Switch, Redirect } from 'react-router-dom';
 
 import {category} from './category.js';
+import {accountData} from '../../components/avatar/accountData.js';
 
 import './style.css';
 
@@ -45,6 +55,7 @@ const FormItem = styled.div`
     resize: none;
     border-radius: 20px;
     border: 0;
+    background: rgb(235, 235, 235);
   }
   > .item-input:focus {
     outline: none;
@@ -80,6 +91,11 @@ const DateBox = styled(TextBox).attrs({
 })`
 `;
 
+const NumBox = styled(TextBox).attrs({
+  type: 'number',
+})`
+`;
+
 const TextAreaBox = styled.textarea`
   height: 80px;
   width: 70%;
@@ -95,14 +111,15 @@ const SelectBox = styled.select
 class NewCreatePost extends React.Component {
 
   state = {
+    account_id: '',
     topic: '',
     location: '',
     date: '',
-    startTime: '',
-    stopTime: '',
+    start_time: '',
+    stop_time: '',
+    max: '',
     category: '',
-    type: '',
-    price: '',
+    price: '0',
     description: '',
   }
 
@@ -111,20 +128,61 @@ class NewCreatePost extends React.Component {
       [event.target.name] : event.target.value
     })
       //console.log(this.state);
+    let name = event.target.name;
+    if (name === 'max' || name === 'category' || name === 'price') {
+      this.setState({
+        [name]: parseInt(event.target.value)
+      })
+    }
+    if (name === 'date') {
+      /// change format of date from YYYY-MM-DD to DD/MM/YYYY
+      let oldDate = (event.target.value).split('-');
+      //let newData = oldDate[2] + '/' + oldDate[1] + '/' + oldDate[0];
+      let newData = oldDate[1] + '-' + oldDate[2] + '-' + oldDate[0];
+      this.setState({
+        [name]: newData
+      })
+    }
   }
 
   onSubmit =(event)=> {
     event.preventDefault();
-    console.log(this.state);
+
+    // send post here
+    let url = `https://tue-kan.herokuapp.com/post/`
+    let data = this.state;
+
+    console.log(data);
+
+    let isConfirm = window.confirm('ต้องการสร้างโพสต์ใช่หรือไม่ ?');
+    if (isConfirm) {
+      axios.post(url, data)
+        .then((res) => {
+            console.log(res.data)
+        }).catch((error) => {
+            console.log(error)
+        });
+
+      alert('สร้างโพสต์สำเร็จ !');
+    }
+
+  }
+
+  componentWillMount () {
+    let accountId = accountData.account_id;
+    this.setState({
+      account_id: accountId,
+    })
   }
 
   render () {
-    let startTimeArray = this.state.startTime.split(':');
+    let startTimeArray = this.state.start_time.split(':');
     let hrStart = parseInt(startTimeArray[0]) + 1;
     let hrStop = parseInt(startTimeArray[1]);
     let minHr = hrStop > 0 ? hrStart+':'+hrStop : hrStart+':'+hrStop+0;
-    console.log(hrStart);
-    console.log(hrStart+':'+hrStop);
+
+    //console.log(hrStart);
+    //console.log(hrStart+':'+hrStop);
     return (
       <MainDiv className='create-post-main-container'>
         <SubDiv className='create-post-sub-container'>
@@ -151,18 +209,23 @@ class NewCreatePost extends React.Component {
 
                 <FormItem className='form-item'>
                   <HeadText className='header-text'><b>Date :</b></HeadText>
-                  <DateBox className='item-input' name='date' placeholder='DD/MM/YY' align='left' onChange={this.onInputChange} short required></DateBox>
+                  <DateBox className='item-input' name='date' placeholder='DD/MM/YY' onChange={this.onInputChange} short required></DateBox>
                 </FormItem>
 
                 {/* step 1800 = add 0.5 hour */}
                 <FormItem className='form-item'>
                   <HeadText className='header-text'><b>Tue Start :</b></HeadText>
-                  <TimeBox className='item-input' name='startTime' step='1800' min='08:00' max='20:00' align='center' onChange={this.onInputChange} required></TimeBox>
+                  <TimeBox className='item-input' name='start_time' step='1800' min='08:00' max='20:00' align='center' onChange={this.onInputChange} required></TimeBox>
                 </FormItem>
 
                 <FormItem className='form-item'>
                   <HeadText className='header-text'><b>Tue Stop :</b></HeadText>
-                  <TimeBox className='item-input' name='stopTime' step='1800' min={minHr} max='20:00' align='center' onChange={this.onInputChange} required></TimeBox>
+                  <TimeBox className='item-input' name='stop_time' step='1800' min={minHr} max='20:00' align='center' onChange={this.onInputChange} required></TimeBox>
+                </FormItem>
+
+                <FormItem className='form-item'>
+                  <HeadText className='header-text'><b>Max :</b></HeadText>
+                  <NumBox className='item-input' name='max' placeholder='Max participant' min='1' onChange={this.onInputChange} required></NumBox>
                 </FormItem>
 
                 <FormItem className='form-item'>
@@ -173,15 +236,6 @@ class NewCreatePost extends React.Component {
                       <option key={cate.id} value={cate.value}>{cate.name}</option>
                     ))
                   }
-                  </SelectBox>
-                </FormItem>
-
-                <FormItem className='form-item'>
-                  <HeadText className='header-text'><b>Tue-type :</b></HeadText>
-                  <SelectBox className='item-input' name='type' onChange={this.onInputChange} short required>
-                    <option value=''>--Select--</option>
-                    <option value='0'>Free</option>
-                    <option value='1'>Premium</option>
                   </SelectBox>
                 </FormItem>
 

@@ -8,6 +8,11 @@
   text-decoration-line: none;
 }
 
+.post-list-link:hover {
+  color: black;
+  text-decoration-line: none;
+} 
+
 .post{
     height: 20vh;
     width: 90%;

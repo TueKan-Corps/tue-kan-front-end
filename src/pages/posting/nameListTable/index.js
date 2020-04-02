@@ -2,6 +2,9 @@
   .add 15-Mar-20
   .edit 16-Mar029
     -- need to (post) to edit data in db (status of participant).
+  .edit 20-Mar-20 [Boat]
+    -- test with backend mockup.
+    -- add skeleleton loading component.
 */
 
 import React from 'react';
@@ -16,8 +19,8 @@ const CreateList =(props)=> {
     <tr className='table-body table-row' id={`name-list-row-${props.counter}`} style={{background: bgColor}}>
       <td className='table-detail'>{props.counter}</td>
       <td className='table-detail'>{props.id}</td>
-      <td className='table-detail left'>{props.firstName}</td>
-      <td className='table-detail left'>{props.lastName}</td>
+      <td className='table-detail left'>{props.first_name}</td>
+      <td className='table-detail left'>{props.last_name}</td>
       <td className='table-detail ticket-for-redeem' >{props.ticket}</td>
     </tr>
   );
@@ -42,6 +45,7 @@ class NameListTable extends React.Component {
 
         <tbody className='posting-name-list-body'>
         {
+          data !== null &&
           data.map((data, iteration) => (
             <CreateList key={iteration} counter={iteration + 1} {...data} ticketId={this.props.ticketId} />
           ))
