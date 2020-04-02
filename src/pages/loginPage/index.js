@@ -119,9 +119,19 @@ export default class Login extends Component {
     }
     getInputClass = (name) => {
         const elementErrorStatus = this.state.formElements[name].error.status;
-        return elementErrorStatus && this.state.formElements[name].touched ?
-            'input-login form-control is-invalid':
-            'input-login form-control is-valid';
+        let result = '';
+        if (this.state.formElements[name].touched) {
+            if (elementErrorStatus) {
+                result = 'input-login form-control is-invalid';
+            }
+            else {
+                result = 'input-login form-control is-valid';
+            }
+        }
+        else {
+            result = 'input-login form-control';
+        }
+        return result;
     }
     getErrorMessage = (name) => {
         return this.state.formElements[name].error.message;
@@ -197,10 +207,8 @@ export default class Login extends Component {
                                 <a href="#" className="social"><i class="fab fa-linkedin-in"></i></a>
                             </div>
                             <span className="span-login">or use your account</span>
-                            <input className="input-login form-control is-valid" type="username" placeholder="Email" id="username" name="username" onChange={this.onInputChange} />
-                            <div className="check valid-feedback">พบชื่อผู้ใช้</div>
-                            <input className="input-login form-control is-invalid" type="passwordLogin" placeholder="Password" id="passwordLogin" name="passwordLogin" onChange={this.onInputChange} />
-                            <div className="check invalid-feedback">รหัสผ่านสั้นเกินไป</div>
+                            <input className="input-login form-control" type="username" placeholder="Email" id="username" name="username" onChange={this.onInputChange} />
+                            <input className="input-login form-control" type="passwordLogin" placeholder="Password" id="passwordLogin" name="passwordLogin" onChange={this.onInputChange} />
                             <a href="#" className="social">Forgot your password?</a>
                             <button className="button-login">Sign In</button>
                         </form>
