@@ -32,6 +32,7 @@
 .post:hover{
   opacity: 1;
   transition: 0.3s;
+  font-weight: normal;
 }
 
 .img-post{
