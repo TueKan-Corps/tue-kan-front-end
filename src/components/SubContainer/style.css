@@ -251,7 +251,7 @@
     transition-delay: .4s;
 }
 
-.description-detail-box .buy-button:active:before {
+/* .description-detail-box .buy-button:active:before {
     -webkit-transform: translate(-150%,0);
     -moz-transform: translate(-150%,0);
     -ms-transform: translate(-150%,0);
@@ -261,7 +261,7 @@
     -moz-transition-delay: 0s;
     -o-transition-delay: 0s;
     transition-delay: 0s;
-}
+} */
 
 /* .description-detail-box .buy-button::before{
     content: "";

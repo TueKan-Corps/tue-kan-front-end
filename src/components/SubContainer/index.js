@@ -49,6 +49,22 @@ const Sub =(props)=> {
     account_id : accountId,
     post_id : parseInt(postData.id)
   }
+  let buttonState = {
+    joinState: true,
+    statusText: '',
+    colorButton : ''
+  }
+  if (postData.amount >= postData.full) {
+    buttonState.joinState = false
+    buttonState.statusText = 'Soldout'
+    buttonState.colorButton = 'rgb(255,216,212)'
+  }
+  else {
+    buttonState.joinState = true
+    buttonState.statusText = 'Buy Ticket'
+    buttonState.colorButton = '#ffeb99'
+  }
+
   const buyTicket = () => {
     let url = `https://tue-kan.herokuapp.com/ticket/`;
       axios.post(url, data)
@@ -60,7 +76,6 @@ const Sub =(props)=> {
     console.log(data)
     alert('ซื้อสำเร็จ')
   }
-
   return (
 
     <DetailContainer className='ticket-detail'>
@@ -130,7 +145,7 @@ const Sub =(props)=> {
               <p className='description-detail-text'>This tue has not description.</p>
             }
             </div>
-              <button className="buy-button"  type="button" data-hover="BuyTicket Now!!" data-active="You bought tricket" onClick={buyTicket}><span>{`${postData.price} TC`}</span></button>
+            <button className="buy-button" type="button" data-hover={buttonState.statusText} onClick={buyTicket} disabled={!buttonState.joinState} style={{backgroundColor : `${buttonState.colorButton}`}} ><span>{`${postData.price} TC`}</span></button>
 
         </div>
 

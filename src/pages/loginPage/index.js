@@ -208,9 +208,7 @@ export default class Login extends Component {
                             </div>
                             <span className="span-login">or use your account</span>
                             <input className="input-login form-control" type="username" placeholder="Email" id="usernameLogin" name="usernameLogin" onChange={this.onInputChange} />
-                            {/* <div className="check valid-feedback">พบชื่อผู้ใช้</div> */}
                             <input className="input-login form-control" type="passwordLogin" placeholder="Password" id="passwordLogin" name="passwordLogin" onChange={this.onInputChange} />
-                            {/* <div className="check invalid-feedback">รหัสผ่านสั้นเกินไป</div> */}
                             <a href="#" className="social">Forgot your password?</a>
                             <button className="button-login">Sign In</button>
                         </form>
