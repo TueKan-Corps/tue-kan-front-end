@@ -4,7 +4,10 @@
     -- add edit button, make can edit description (don't edit in backend yet).
     -- edit edit button, make can edit contact (don't edit in backend yet). 22:50
   .edit in 24-Mar-20
-    -- edit to using data from backend instead of data from local.
+    -- edit to using data from backend (mockup) instead of data from local.
+  .edit 02-Apr-20
+    -- edit to use real data from real database server.
+    -- edit to use centralized account_id.
 */
 
 import React from 'react';
@@ -12,7 +15,9 @@ import axios from 'axios';
 
 import './style.css';
 
-//import { profileData } from '../../components/avatar/profileData.js';
+import {accountData} from '../../components/avatar/accountData.js';
+
+import { profileData as tempProfile } from '../../components/avatar/profileData.js';
 
 import MyTueList from '../../components/MyTuelist/index.js';
 import LoadingPostList from '../../components/loadingPostList/index.js';
@@ -25,10 +30,10 @@ class Profile extends React.Component {
   state = {
     loading: true,
     isShowMore: false,
-    isEdit: false,
+    isEdit: true,
     profileData: {},
     description: {},
-    contact: {},
+    contact: {}, 
   }
 
   setShowMore =(isSet)=> {
@@ -40,11 +45,30 @@ class Profile extends React.Component {
   setEdit =()=> {
     if (this.state.isEdit === true)
     {
-      /// send POST here
-      alert('เซฟข้อมูลสำเร็จ !');
-      const url ='https://mock-up-tuekan-backend.herokuapp.com/profile';
-      let newData = this.state.profileData;
-    }
+      /// send POST here 
+      /*let data = this.state.profileData;
+      let accountId = accountData.account_id;
+      delete data["username"];
+      delete data["password"];
+      delete data["coin_amount"];
+      data["account_id"] = accountId;
+      data["description"] = this.state.description;
+      data["contact"] = this.state.contact;
+
+      let url = `https://tue-kan.herokuapp.com/account/update`;
+  
+      axios.post(url, data)
+        .then((res) => {
+          console.log(res.data)
+        }).catch((error) => {
+          console.log(error)
+        });
+
+      alert('เซฟข้อมูลสำเร็จ !'); */
+
+      //console.log("POST");
+      //console.log(data);
+    }  
 
     this.setState(state => ({
       isEdit: !state.isEdit,
@@ -52,9 +76,21 @@ class Profile extends React.Component {
   }
 
   onInputChange =(event)=> {
-    this.setState({
-      [event.target.name]: event.target.value
-    })
+    let eventName = event.target.name;
+    //console.log(eventName);
+    if (eventName !== 'first_name' && eventName !== 'last_name') {
+      this.setState({
+        [event.target.name]: event.target.value
+      })
+    }
+    else {
+      let newData = this.state.profileData;
+      newData[eventName] = event.target.value;
+      //console.log(newData);
+      this.setState({
+        profileData: newData
+      })
+    }
       //console.log(event);
   }
 
@@ -64,29 +100,38 @@ class Profile extends React.Component {
     /// 2. Make a shallow copy of the item you want to mutate
     let item = items[index];
     /// 3. Replace the property you're intested in
-    item.link = event.target.value;
+    item.Link = event.target.value;
     /// 4. Put it back into our array. N.B. we *are* mutating the array here, but that's why we made a copy first
     items[index] = item;
     /// 5. Set the state to our new copy
     this.setState({
       contact: items,
     });
+
+    //console.log("this.state.contact");
+    //console.log(this.state.contact);
+  }
+
+  imgSelected =(event)=> {
+    let imgData = event.target.files[0];
+    /// upload picture here
+    console.log(imgData);
   }
 
   componentDidMount () {
-    const url ='https://mock-up-tuekan-backend.herokuapp.com/profile';
-    //const url ='https://mock-up-tuekan-backend.herokuapp.com/profile';
+    let accountId = accountData.account_id;
+    const url = `https://tue-kan.herokuapp.com/account/${accountId}`;
     this.setState({loading: true})
     axios.get(url)
       .then(data => {
         this.setState({
           loading: false,
-          profileData: data.data,
+          profileData: data.data[0],
           description: data.data[0].description,
           contact: data.data[0].contact,
         })
-        console.log('data');
-        console.log(data);
+        //console.log('data');
+        //console.log(data);
       })
       .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
     //console.log('loading complete!');
@@ -95,9 +140,9 @@ class Profile extends React.Component {
   render () {
     let isShowMore = this.state.isShowMore;
     let isEdit = this.state.isEdit;
-    let profileData = this.state.profileData[0];
-    let description = String(this.state.description);
-    let contact = this.state.contact;
+    let tempImg = tempProfile.img;
+    let profileData = this.state.profileData; 
+    let description = String(this.state.description); 
     let contactImg = [
       require('../../assets/icon/facebook.png'),
       require('../../assets/icon/ig.png'),
@@ -117,7 +162,7 @@ class Profile extends React.Component {
     let contactEditStyle = isEdit ? {maxWidth: '450px', background: ''} : {};
 
     //console.log('this.state.profileData');
-    //console.log(this.state.loading);
+    //console.log(this.state.contact);
 
     return (
       <MainDiv className='profile-main-container'>
@@ -137,7 +182,15 @@ class Profile extends React.Component {
               <div className='profile-detail-box'>
 
                 <div className='img-box'>
-                  <img className='profile-img' src={profileData.img} alt='profile-img' />
+                  {/*<img className='profile-img' src={profileData.img} alt='profile-img' />*/}
+                  <img className='profile-img' src={tempImg} alt='profile-img' />
+                  { 
+                    isEdit &&
+                    <label for='upload-img'>
+                      <i className="fas fa-upload upload-img-img"></i>
+                      <input type='file' id='upload-img' onChange={this.imgSelected} accept='image/*' style={{display: 'none'}}></input>
+                    </label>
+                  }
                 </div>
 
                 <div className='profile-description' >
@@ -149,11 +202,19 @@ class Profile extends React.Component {
                     { isEdit && <p className='edit-detail edit-text'>Save</p>}
                   </div>
 
-                  <p className='description-text description-name'>{`${profileData.firstName} ${profileData.lastName}`}</p>
+                  { 
+                    isEdit && 
+                    <>
+                      <input className='description-text description-name-input' name='first_name' value={profileData.first_name} onChange={this.onInputChange} spellCheck={false}></input>
+                      <input className='description-text description-name-input' name='last_name' value={profileData.last_name} onChange={this.onInputChange} spellCheck={false}></input>
+                    </>
+                  }
+                  { !isEdit && <p className='description-text description-name'>{`${profileData.first_name} ${profileData.last_name}`}</p>}
+
                   {/* don't using edit mode, it show normal description. */}
                   {/* using edit mode, it show textarea to edit description. */}
                   { !isEdit && <p className='description-text description-des'>{desForShow}</p>}
-                  { isEdit && <textarea className='description-text description-des-input' name='description' value={this.state.description} maxLength='400' spellCheck='false' onChange={this.onInputChange}></textarea>}
+                  { isEdit && <textarea className='description-text description-des-input' name='description' value={description} maxLength='400' spellCheck='false' onChange={this.onInputChange}></textarea>}
 
                   {/* if string is overlen, must be substring and add show more button. */}
                   { (!isEdit && desOverLen && !isShowMore) && <span className='des-spc-text' onClick={()=>this.setShowMore(true)}> ... MORE</span> }
@@ -173,16 +234,16 @@ class Profile extends React.Component {
                     /* don't using edit mode, it show normal contact. */
                     !isEdit ?
                     this.state.contact.map((contact, index) => (
-                      <a key={contact.id} href={contact.link}>
+                      <a key={contact.ID} href={`https://${contact.Link}`}>
                         <img className='contact-img' src={contactImg[index]} alt={contact.name} />
                       </a>
                     ))
                     :
                     /* using edit mode, it show input to edit link. */
                     this.state.contact.map((contact, index) => (
-                      <div className='contact-edit-box' key={contact.id}>
-                        <label className='contact-edit contact-name'>{contact.name}</label>
-                        <input className='contact-edit contact-input' type='text' name={contact.name} value={this.state.contact[index].link} spellCheck='false' onChange={(event)=>this.onInputLinkChange(event, index)}></input>
+                      <div className='contact-edit-box' key={contact.ID}>
+                        <label className='contact-edit contact-name'>{contact.Name}</label>
+                        <input className='contact-edit contact-input' type='text' name={contact.Name} value={contact.Link} spellCheck='false' onChange={(event)=>this.onInputLinkChange(event, index)}></input>
                       </div>
                     ))
                   }

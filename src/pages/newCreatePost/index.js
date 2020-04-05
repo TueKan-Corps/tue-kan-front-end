@@ -127,7 +127,7 @@ class NewCreatePost extends React.Component {
     this.setState({
       [event.target.name] : event.target.value
     })
-      //console.log(this.state);
+      console.log(this.state);
     let name = event.target.name;
     if (name === 'max' || name === 'category' || name === 'price') {
       this.setState({
