@@ -46,7 +46,7 @@ class Profile extends React.Component {
     if (this.state.isEdit === true)
     {
       /// send POST here 
-      /*let data = this.state.profileData;
+      let data = this.state.profileData;
       let accountId = accountData.account_id;
       delete data["username"];
       delete data["password"];
@@ -64,7 +64,7 @@ class Profile extends React.Component {
           console.log(error)
         });
 
-      alert('เซฟข้อมูลสำเร็จ !'); */
+      alert('เซฟข้อมูลสำเร็จ !'); 
 
       //console.log("POST");
       //console.log(data);
