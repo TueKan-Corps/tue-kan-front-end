@@ -30,7 +30,7 @@ class Profile extends React.Component {
   state = {
     loading: true,
     isShowMore: false,
-    isEdit: true,
+    isEdit: false,
     profileData: {},
     description: {},
     contact: {}, 
