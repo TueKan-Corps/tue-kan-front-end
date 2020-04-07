@@ -27,7 +27,7 @@
 
 import React from 'react';
 import axios from 'axios';
-import { Switch, Redirect } from 'react-router-dom';
+//import { Switch, Redirect } from 'react-router-dom';
 
 import {category} from './category.js';
 import {accountData} from '../../components/avatar/accountData.js';
