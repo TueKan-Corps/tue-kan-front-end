@@ -2,6 +2,8 @@
   .edit 20-Mar-20 [Boat]
     -- test with backend mockup.
     -- add skeleleton loading component.
+  .edit 07-Apr-20 [Boat]
+    -- edit to use same component with ticket, posting.
 */
 
 import React from 'react'

@@ -1,6 +1,8 @@
 /*
   .edit 15-Mar-20
     -- edit coin data to use data from <profileData.js> in <avatar> folder.
+  .edit 07-Apr-20
+    -- edit to use real data from real database.
 */
 
 import React from 'react';
