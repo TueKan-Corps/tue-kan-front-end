@@ -7,16 +7,14 @@
 import React from 'react'
 import Banner from './Banner/index'
 
-import Postlist from './Postlist/index'
-import TicketDetail from '../../'
+import Postlist from './Postlist/index' 
 import DetailBody from '../../pages/newCreatePost/detailBody'
 import DetailContainer from '../../pages/newCreatePost/detailContainer'
 import DetailHeader from '../../pages/newCreatePost/detailHeader'
 import MainDiv from '../../pages/mainDiv'
-import SubDiv from '../../pages/mainDiv'
-import LoadingPostList from '../../components/loadingPostList/index.js';
-import { storeProduct } from '../../data'
-import { listData } from '../MyTuelist/listData.js';
+import SubDiv from '../../pages/subDiv'
+import LoadingPostList from '../../components/loadingPostList/index.js'; 
+import MyTueList from '../../components/MyTuelist/index.js';
 import tempPic from '../avatar/profile.jpg';
 import './style.css'
 
@@ -43,16 +41,12 @@ const payCoin = (props) => {
 
 const Sub =(props)=> {
   let { postId } = useParams();
-  let postData = props.mainListData[postId-1];
+  let mainData = props.mainListData[postId-1];
   return (
 
-    <DetailContainer className='ticket-detail'>
-      <div className='post-header ticket-detail-header' onClick={()=>window.history.back()}>
-        <i className="header-item header-back-icon fas fa-chevron-left"></i>
-        <p className='header-item header-text'><b>Back</b></p>
-      </div>
+    <DetailContainer className='postlist-detail'> 
       <DetailHeader className='detail-header' background='rgb(255,216,212)'>
-      <p className='detail-header-text'><b>{postData.topic}</b></p>
+      <p className='detail-header-text'><b>{mainData.topic}</b></p>
       </DetailHeader>
       <DetailBody className='detail-body' background='rgb(255,238,238)'>
       <div className='body-container'>
@@ -63,7 +57,7 @@ const Sub =(props)=> {
           </div>
         </div>
 
-        <div className='ticket-description-box'>
+          <div className='postlist-description-box'>
 
           {/*
             don't use array.map() because too complex.
@@ -71,49 +65,49 @@ const Sub =(props)=> {
 
           <div className='description-box location-box'>
             <i className="description-img fas fa-map-marker-alt"></i>
-            <p className='description-text'>{`Location: ${postData.location}`}</p>
+            <p className='description-text'>{`Location: ${mainData.location}`}</p>
           </div>
 
           <div className='description-box date-box'>
             <i className="description-img fas fa-calendar-alt"></i>
-            <p className='description-text'>{`Date: ${postData.date}`}</p>
+            <p className='description-text'>{`Date: ${mainData.date}`}</p>
           </div>
 
           <div className='description-box time-box'>
             <i className="description-img fas fa-clock"></i>
-            <p className='description-text'>{`Time: ${postData.startTime}  -  ${postData.stopTime}`}</p>
+            <p className='description-text'>{`Time: ${mainData.start_time}  -  ${mainData.stop_time}`}</p>
           </div>
 
           <div className='description-box price-box'>
             <i className="description-img fas fa-coins"></i>
-            <p className='description-text'>{`Price: ${postData.price} TC`}</p>
+            <p className='description-text'>{`Price: ${mainData.price} TC`}</p>
           </div>
 
-          {/* <div className='description-box ticket-box'>
+            {/* <div className='description-box postlist-box'>
             <i className="description-img fas fa-ticket-alt"></i>
-            <p className='description-text'>{`Your Code: ${postData.ticket}`}</p>
+            <p className='description-text'>{`Your Code: ${mainData.ticket}`}</p>
           </div> */}
 
         </div>
 
-        <div className='ticket-joined-box'>
+          <div className='postlist-joined-box'>
           <div className='joined-box'>
-            <p className='joined-number'><b>{`${postData.amount} / ${postData.full}`}</b></p>
+            <p className='joined-number'><b>{`${mainData.amount} / ${mainData.full}`}</b></p>
           </div>
         </div>
 
-        <div className='description-box ticket-box description-detail-box'>
+          <div className='description-box postlist-box description-detail-box'>
           <i className="description-img fas fa-book" style={{margin: '5px 0 0 35px'}}></i>
           <p className='description-text'>Description</p>
           <div className='description-detail-text-box'>
             {
-              postData.description != '' ?
-              <p className='description-detail-text'>{`${postData.description}`}</p>
+              mainData.description !== '' ?
+              <p className='description-detail-text'>{`${mainData.description}`}</p>
               :
               <p className='description-detail-text'>This tue has not description.</p>
             }
             </div>
-              <button className="buy-button"  type="button" data-hover="BuyTicket Now!!" data-active="You bought tricket"><span>{`${postData.price} TC`}</span></button>
+              <button className="buy-button"  type="button" data-hover="BuyTicket Now!!" data-active="You bought tricket"><span>{`${mainData.price} TC`}</span></button>
 
         </div>
 
@@ -152,22 +146,30 @@ export default class SubContainer extends React.Component {
   render () {
     let mainListData = this.state.mainListData;
     return (
-      <div className="sub-container">
-      <Switch>
+      <MainDiv className='postlist-main-container'>
+        <SubDiv className='postlist-sub-container'>
 
-        {/*
-          if don't go to sub-cate, it show category.
-          if go to sub-cate, it link to this sub-cate with nested route.
-        */}
-        {
-          this.state.loading &&
-          <LoadingPostList length={4} />
-        }
-        { !this.state.loading && <Route exact path={'/'} component={()=><Main mainListData={mainListData} />} />}
-        { !this.state.loading && <Route exact path={`/home/:postId`} component={()=><Sub mainListData={mainListData} />} />}
+          <Switch>
 
-        </Switch>
-        </div>
-      )
+            {/*
+              if don't go to sub-cate, it show category.
+              if go to sub-cate, it link to this sub-cate with nested route.
+            */}
+
+            {
+              this.state.loading &&
+              <LoadingPostList length={4} />
+            }
+            {!this.state.loading && <Route exact path={'/'} component={() => <Main mainListData={mainListData} />} />}
+            {!this.state.loading && <Route exact path={`/home/:postId`} component={() => <Sub mainListData={mainListData} />} />}
+
+          </Switch>
+
+        </SubDiv>
+
+        <MyTueList />
+
+      </MainDiv>
+    );
   }
 }
