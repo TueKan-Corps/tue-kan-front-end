@@ -139,6 +139,7 @@
   margin-top: 6%;
 }
 
+
 @media screen and (max-width: 1590px) {
   .ticket-sub-container .detail-body .description-box .description-img {
     font-size: 20px;
@@ -163,6 +164,7 @@
     margin-top: 8%;
   }
 }
+
 
 /*@media screen and (max-width: 1280px) {
   .detail-body .form-item .header-text {

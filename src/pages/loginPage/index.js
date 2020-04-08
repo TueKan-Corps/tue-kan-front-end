@@ -190,7 +190,6 @@ export default class Login extends Component {
             // alert('signup')
         }
         return (
-            <div className="loginpage">
                 <div className="container-login" id="container">
                     <div className="form-container sign-up-container">
                         <form className="form-login" action="#" onSubmit={this.onFormSubmit}>
@@ -247,7 +246,6 @@ export default class Login extends Component {
                         </div>
                     </div>
                 </div>
-            </div>
         )
     }
 }

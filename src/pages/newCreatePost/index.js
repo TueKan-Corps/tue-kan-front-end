@@ -127,7 +127,7 @@ class NewCreatePost extends React.Component {
     this.setState({
       [event.target.name] : event.target.value
     })
-      console.log(this.state);
+      //console.log(this.state);
     let name = event.target.name;
     if (name === 'max' || name === 'category' || name === 'price') {
       this.setState({
@@ -152,7 +152,7 @@ class NewCreatePost extends React.Component {
     let url = `https://tue-kan.herokuapp.com/post/`
     let data = this.state;
 
-    console.log(data);
+    //console.log(data);
 
     let isConfirm = window.confirm('ต้องการสร้างโพสต์ใช่หรือไม่ ?');
     if (isConfirm) {
@@ -199,7 +199,8 @@ class NewCreatePost extends React.Component {
               <form onSubmit={this.onSubmit}>
                 <FormItem className='form-item'>
                   <HeadText className='header-text'><b>Topic :</b></HeadText>
-                  <TextBox className='item-input' name='topic' placeholder='Datacomm, Movement, Number Theory' align='left' onChange={this.onInputChange} long required></TextBox>
+                  <TextBox className='item-input' name='topic' placeholder='Datacomm, Movement, Number Theory' align='left' 
+                  onChange={this.onInputChange} maxLength='20' long required></TextBox>
                 </FormItem>
 
                 <FormItem className='form-item'>
