@@ -37,7 +37,7 @@ import DetailContainer from '../newCreatePost/detailContainer.js';
 import DetailBody from '../newCreatePost/detailBody.js';
 import DetailHeader from '../newCreatePost/detailHeader.js';
 
-import {myPostingData} from '../../components/MyTuelist/myPostingData.js';
+//import {myPostingData} from '../../components/MyTuelist/myPostingData.js';
 import {accountData} from '../../components/avatar/accountData.js';
 
 import MyTueList from '../../components/MyTuelist/index.js';
@@ -80,7 +80,7 @@ const PostingDetail =(props)=> {
   let { postingId } = useParams();
   const [ticketId, setticketId] = React.useState(0);
   const [isHaveTicket, setIsHaveTicket] = React.useState(false);
-  const [postingData, setPostingData] = React.useState(props.postData[postingId-1]);
+  const [postingData, ] = React.useState(props.postData[postingId-1]);
   const [participantData, setParticipantData] = React.useState(JSON.parse(postingData.participant));
 
   const checkAndHighLight =(length)=> {

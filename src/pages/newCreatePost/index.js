@@ -27,7 +27,7 @@
 
 import React from 'react';
 import axios from 'axios';
-import { Switch, Redirect } from 'react-router-dom';
+//import { Switch, Redirect } from 'react-router-dom';
 
 import {category} from './category.js';
 import {accountData} from '../../components/avatar/accountData.js';
@@ -127,7 +127,7 @@ class NewCreatePost extends React.Component {
     this.setState({
       [event.target.name] : event.target.value
     })
-      //console.log(this.state);
+      console.log(this.state);
     let name = event.target.name;
     if (name === 'max' || name === 'category' || name === 'price') {
       this.setState({

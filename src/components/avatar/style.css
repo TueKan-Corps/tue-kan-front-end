@@ -37,11 +37,17 @@
 }
 
 .text-box {
+  !background-color: red;;
   color: black;
   margin-top: 3px;
   font-size: 20px;
   width: 50px;
   float: left;
+}
+
+.name-loading {
+  margin-left: 50%;
+  margin-top: 25%;
 }
 
 .avatar-text {

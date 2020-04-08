@@ -56,6 +56,26 @@
   padding: 0;
 }
 
+.profile-detail-container .profile-detail-box .img-box .upload-img-img {
+  color: wheat;
+  font-size: 36px;
+  position: absolute;
+  margin-left: -6.5%;
+  margin-top: -1%;
+  transition: color 0.3s;
+}
+
+.profile-detail-container .profile-detail-box .img-box .upload-img-img:hover {
+  cursor: pointer;
+  color: whitesmoke;
+  transition: color 0.3s;
+}
+
+.profile-detail-container .profile-detail-box .img-box .upload-img-img:active {
+  color: gainsboro;
+  transition: color 0.3s;
+}
+
 .profile-detail-container .profile-detail-box .profile-description {
   !background: coral;
   float: left;
@@ -72,6 +92,7 @@
 
 .profile-detail-container .profile-detail-box .profile-description .description-des {
   display: inline;
+  word-wrap: break-word;
 }
 
 .profile-detail-container .profile-detail-box .profile-description .description-des-input {
@@ -130,6 +151,20 @@
 
 .profile-detail-container .profile-detail-box .profile-description .description-name {
   font-size: 26px;
+}
+
+.profile-detail-container .profile-detail-box .profile-description .description-name-input {
+  width: 30%;   
+  margin-right: 10px;
+  background: rgb(235, 235, 235);
+  padding: 5px 5px 5px 10px;
+  border-radius: 15px;
+  box-sizing: border-box;
+  border: 2px solid dimgrey; 
+}
+
+.profile-detail-container .profile-detail-box .profile-description .description-name-input:focus {
+  outline: none; 
 }
 
 .profile-detail-container .profile-detail-box .profile-description .des-spc-text {
@@ -199,12 +234,12 @@
 
 .profile-detail-container .profile-detail-box .contact-box .contact-detail .contact-img:hover {
   transition: box-shadow 0.2s;
-  box-shadow: 0px 0px 20px rgb(33,152,201);
+  box-shadow: 0px 0px 20px #21bdff;
 }
 
 .profile-detail-container .profile-detail-box .contact-box .contact-detail .contact-img:active {
   transition: box-shadow 0.2s;
-  box-shadow: 0px 0px 20px rgb(23,109,144);
+  box-shadow: 0px 0px 20px rgb(50, 166, 212);
 }
 
 .profile-detail-container .profile-detail-box .contact-box .contact-detail .contact-edit-box {
@@ -233,7 +268,7 @@
   max-width: 175px;
   padding: 13px 2px 13px 10px;
   border-radius: 10px;
-  border: 0; 
+  border: 0;
 }
 
 .profile-detail-container .profile-detail-box .contact-box .contact-detail .contact-input:focus {
@@ -259,7 +294,7 @@
 
   .profile-detail-container .profile-detail-box .profile-description .edit-box .edit-detail {
     font-size: 18px;
-  }
+  } 
 }
 
 @media screen and (max-width: 1280px) {
@@ -269,6 +304,11 @@
 
   .profile-detail-container .profile-detail-box .profile-description .description-des {
     font-size: 16px;
+  }
+
+  .profile-detail-container .profile-detail-box .profile-description .description-des-input {  
+    min-height: 120px; 
+    max-height: 120px; 
   }
 
   .profile-detail-container .profile-detail-box .profile-description .description-input {
@@ -286,5 +326,12 @@
 
   .profile-detail-container .profile-detail-box .profile-description .edit-box .edit-text {
     margin-top: 3px;
+  }
+
+  .profile-detail-container .profile-detail-box .img-box .upload-img-img { 
+    font-size: 28px;
+    position: absolute;
+    margin-left: -6.5%;
+    margin-top: -1%;
   }
 }
