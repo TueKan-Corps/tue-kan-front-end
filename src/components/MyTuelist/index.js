@@ -28,7 +28,7 @@ const CreateListItem =(props)=> {
   let topicDisplay = isTopicOverLen ? props.topic.substring(0, 15) + '...' : props.topic;
   //console.log(props.tag_id);
   return (
-    <Link className='mtl-item-link' to={`/ticket/${props.id}`}>
+    <Link className='mtl-item-link' to={`/ticket/${props.index}`}>
       <div className='mtl-item'>
         <span className='item-tag-color' style={{background: `${colorTag[props.tag_id]}`}}> </span>
         <div className='item-text-box'>
@@ -81,8 +81,8 @@ export default class MyTuelist extends React.PureComponent {
         }
         {
           !this.state.loading &&
-          ticketData.map(list => (
-            <CreateListItem key={list.id} {...list}  />
+          ticketData.map((list, index) => (
+            <CreateListItem key={list.ticket} {...list} index={index+1}  />
           ))
         }
         </div>

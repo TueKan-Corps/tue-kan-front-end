@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 const DetailHeader = styled.div`
   background: #69d4ff;
-  background: ${props => props.background};
+  !background: ${props => props.background};
   width: 50%;
   height: 50px;
   border-top-left-radius: 25px;
