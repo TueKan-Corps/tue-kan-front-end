@@ -91,3 +91,8 @@
   margin-top: 15%;
   margin-bottom: 10%;
 }
+
+.post-list-link img{
+  width: 130px;
+  height: 130px;
+}
