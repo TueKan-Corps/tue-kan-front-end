@@ -22,10 +22,10 @@ export default function Post(props) {
           <div className="post">
               <img src={props.img} className="img-post" alt='post-list-tutor-img'/>
               <div className="detail">
-                  <div className="tag-subject"><span className="dot" style={{ background : `${colorTag[props.tag_id]}` }}/><h2 className="subject">{subject[props.tag_id]}</h2></div>
-                  <div className="topic">#Topic       : {props.topic}</div>
-                  <div className="topic">@Location   : {props.location}</div>
-                  <div className="topic">Date        : {props.date}</div>
+                  <h2 className="topic">{props.topic}</h2>
+                  <div className="tag-subject"><span className="dot" style={{ background: `${colorTag[props.tag_id]}`}} /><div className="topic desciption">{subject[props.tag_id]}</div></div>
+                  <div className="topic desciption">@Location   : {props.location}</div>
+                  <div className="topic desciption">Date        : {props.date}</div>
               </div>
               <div className="numjoin" ><p>Join {props.amount}/{props.full}</p></div>
           </div>

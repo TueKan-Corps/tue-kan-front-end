@@ -26,9 +26,11 @@
 	margin-top: 25vh;
 	margin-left: 50vh;
 
-	width: 768px;
-	max-width: 100%;
-	min-height: 480px;
+.loginpage {
+  display: block;
+  transform: translate(25%, 25%); 
+  margin-left: 10vh;
+  margin-top: 10vh;
 }
 
 .header1-login {
