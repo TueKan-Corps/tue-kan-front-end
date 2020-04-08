@@ -49,6 +49,17 @@ const Sub =(props)=> {
     account_id : accountId,
     post_id : parseInt(postData.id)
   }
+
+  var today = new Date();
+  var dayNowDate = String(today.getDate()).padStart(2, '0');
+  var mountNowDate = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  var yearNowDate = today.getFullYear();
+  var expDate = postData.date.split('-');
+  var expDay = parseInt(expDate[1]);
+  var expMount = parseInt(expDate[0]);
+  var expYear = parseInt(expDate[2]);
+
+
   let buttonState = {
     joinState: true,
     statusText: '',
@@ -65,17 +76,61 @@ const Sub =(props)=> {
     buttonState.colorButton = '#ffeb99'
   }
 
+  if (yearNowDate <= expYear) {
+    if (mountNowDate < expMount) {
+      buttonState.joinState = true
+    }
+    else if (mountNowDate == expMount) {
+      if (dayNowDate < expDay) {
+        buttonState.joinState = true
+      }
+      else {
+        buttonState.joinState = false
+        buttonState.colorButton = 'rgb(255,216,212)'
+        buttonState.statusText = 'Out of date'
+      }
+    }
+    else {
+      buttonState.joinState = false
+      buttonState.colorButton = 'rgb(255,216,212)'
+      buttonState.statusText = 'Out of date'
+    }
+  }
+  else if (yearNowDate < expYear) {
+    buttonState.joinState = true
+  }
+  else {
+    buttonState.joinState = false
+    buttonState.colorButton = 'rgb(255,216,212)'
+    buttonState.statusText = 'Out of date'
+  }
+
   const buyTicket = () => {
-    let url = `https://tue-kan.herokuapp.com/ticket/`;
+    let url = `https://tue-kan.herokuapp.com/ticket/`;  
       axios.post(url, data)
         .then((res) => {
             console.log(res.data)
       }).catch((error) => {
             console.log(error)
-        });
-    console.log(data)
+      });
+    payCoin();
     alert('ซื้อสำเร็จ')
   }
+  const payCoin = () => {
+    console.log(props.profileData);
+    let newData = props.profileData;
+    newData['coin_amount'] = newData.coin_amount - parseInt(postData.price);
+
+    let url = 'https://mock-up-tuekan-backend.herokuapp.com/profile';  
+      axios.post(url, newData)
+        .then((res) => {
+            console.log(res)
+      }).catch((error) => {
+            console.log(error)
+      });
+    alert('pay coin');
+  }
+
   return (
 
     <DetailContainer className='ticket-detail'>
@@ -163,12 +218,13 @@ export default class SubContainer extends React.Component {
 
   state = {
     loading: true,
-    mainListData: {}
+    mainListData: {},
+    profileData: {},
   }
 
   componentDidMount () {
     //const url ='https://mock-up-tuekan-backend.herokuapp.com/post/posting';
-    const url ='https://tue-kan.herokuapp.com/post/';
+    let url ='https://tue-kan.herokuapp.com/post/';
     this.setState({loading: true})
     axios.get(url)
       .then(data => {
@@ -178,11 +234,21 @@ export default class SubContainer extends React.Component {
         })
       })
       .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
+    url ='https://mock-up-tuekan-backend.herokuapp.com/profile';
+    axios.get(url)
+      .then(data => {
+        this.setState({
+          profileData : data.data
+        })
+      })
+      .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
+      console.log('print something');
     //console.log('loading complete!');
   }
 
   render () {
     let mainListData = this.state.mainListData;
+    let profileData = this.state.profileData;
     return (
       <div className="sub-container">
       <Switch>
@@ -196,7 +262,7 @@ export default class SubContainer extends React.Component {
           <LoadingPostList length={4} />
         }
         { !this.state.loading && <Route exact path={'/'} component={()=><Main mainListData={mainListData} />} />}
-        { !this.state.loading && <Route exact path={`/home/:postId`} component={()=><Sub mainListData={mainListData} />} />}
+          {!this.state.loading && <Route exact path={`/home/:postId`} component={() => <Sub mainListData={mainListData} profileData={profileData}/>} />}
 
         </Switch>
         </div>

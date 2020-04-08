@@ -22,6 +22,8 @@
 .loginpage {
   display: block;
   transform: translate(25%, 25%); 
+  margin-left: 10vh;
+  margin-top: 10vh;
 }
 
 .header1-login {
