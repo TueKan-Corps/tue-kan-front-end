@@ -92,6 +92,10 @@
 .container-login .ghost {
 	background-color: transparent;
 	border-color: #FFFFFF;
+
+}
+.loginpage .ghost.signUp{
+	border: none;
 }
 
 
@@ -119,6 +123,8 @@
 .container-login .check{
 	font-size: 10px;
 	text-align: right;
+	margin-top: 0px;
+	margin-bottom: 0px;
 }
 
 
@@ -279,4 +285,12 @@
 
 .container-login.right-panel-active .overlay {
 	transform: translateX(50%);
+}
+
+.loginpage .overlay-panel.overlay-right .header1-login{
+	font-size: 40px;
+}
+.loginpage .overlay-panel.overlay-right .logobox .logo{
+	width: 3 00px;
+	height: 300px;
 }

@@ -35,9 +35,9 @@ export default () => {
         </Route>
 
         <Route path="/login">
-          <Login/>
+          <Login />
         </Route>
-
+        
         <Route path="/profile">
           <SideBar />
           <Profile />

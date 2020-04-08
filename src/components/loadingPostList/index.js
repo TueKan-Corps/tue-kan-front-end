@@ -11,7 +11,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Spinner from 'react-bootstrap/Spinner';
 //import { Spinner } from 'react-bootstrap';
 
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 
 const LoadingPost =()=> {
 

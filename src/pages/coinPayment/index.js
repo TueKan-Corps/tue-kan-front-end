@@ -3,7 +3,7 @@ import React from 'react';
 import './style.css';
 
 import MyTueList from '../../components/MyTuelist/index.js';
-import LoadingPostList from '../../components/loadingPostList/index.js';
+//import LoadingPostList from '../../components/loadingPostList/index.js';
 
 import MainDiv from '../mainDiv.js';
 import SubDiv from '../subDiv.js';

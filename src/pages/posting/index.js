@@ -5,7 +5,17 @@
   .edit 16-Mar-20
     -- add participant table.
     -- add redeem ticket, can verify id by ticketCode.
-    -- ** remaining [POST] to DB.
+    -- **1 remaining [POST] to DB.
+  .edit 31-Mar-20
+    -- edit to use data from real server.
+    -- **1 [clear] remaining [POST] to DB.
+    -- **2 remaining fake account_id.
+  .edit 01-Apr-20
+    -- edit to can redeem ticket and [POST] data to backend.
+    -- **3 remaining find re-render method to update redeem status.
+    -- **3 [clear] remaining find re-render method to update redeem status.
+  .edit 02-Apr-20
+    -- edit to use centralized account_id.
 */
 
 import React from 'react';
@@ -27,7 +37,8 @@ import DetailContainer from '../newCreatePost/detailContainer.js';
 import DetailBody from '../newCreatePost/detailBody.js';
 import DetailHeader from '../newCreatePost/detailHeader.js';
 
-import {myPostingData} from '../../components/MyTuelist/myPostingData.js';
+//import {myPostingData} from '../../components/MyTuelist/myPostingData.js';
+import {accountData} from '../../components/avatar/accountData.js';
 
 import MyTueList from '../../components/MyTuelist/index.js';
 import Postlist from '../../components/SubContainer/Postlist/index.js';
@@ -41,22 +52,22 @@ const findTicket =(length)=> {
   let item = document.getElementsByClassName('ticket-for-redeem');
 
   /// if ticket is not empty, it can continue.
-  let i = ticket !== '' ? 0 : length;
+  let index = ticket !== '' ? 0 : length;
   let canFind = false;
-  for (i ; i < length; i++) {
+  for (index ; index < length ; index++) {
     /// check value of ticket from input and ticket of tue list data.
-    canFind = item[i].innerText === ticket ? true : false;
+    canFind = item[index].innerText === ticket ? true : false;
     if (canFind)
       break;
   }
-  /// return canFind(boolean), i(id of row in table).
-  return {canFind, i};
+  /// return ticket value, canFind(boolean), i(id of row in table).
+  return {ticket, canFind, index};
 }
 
 const scrollTable =(length)=> {
   if(findTicket(length).canFind) {
     /// get highlight row.
-    let name = 'name-list-row-' + (findTicket(length).i + 1);
+    let name = 'name-list-row-' + (findTicket(length).index + 1);
     let myElement = document.getElementById(name);
     /// get current topPos.
     let topPos = myElement.offsetTop;
@@ -65,31 +76,66 @@ const scrollTable =(length)=> {
   }
 }
 
-const confirmAndPost =()=> {
-  let isConfirm = window.confirm('ต้องการบันทึกข้อมูลผู้เข้าร่วมใช่หรือไม่ ?');
-  if (isConfirm) {
-    alert('บันทึกข้อมูลผู้เข้าร่วมสำเร็จ !');
-    // send post here
-  }
-}
-
 const PostingDetail =(props)=> {
+  let { postingId } = useParams();
   const [ticketId, setticketId] = React.useState(0);
+  const [isHaveTicket, setIsHaveTicket] = React.useState(false);
+  const [postingData, ] = React.useState(props.postData[postingId-1]);
+  const [participantData, setParticipantData] = React.useState(JSON.parse(postingData.participant));
 
   const checkAndHighLight =(length)=> {
     if(findTicket(length).canFind) {
       setticketId(document.getElementById('redeem-box').value);
       scrollTable(length);
+      setIsHaveTicket(true);
     }
     else {
       alert('ข้อมูลไม่ถูกต้อง');
       setticketId('999999');
+      setIsHaveTicket(false);
     }
   }
 
-  let { postingId } = useParams();
-  let postingData = props.postData[postingId-1];
-  let participantData = JSON.parse(postingData.participant);
+  const confirmAndPost =(id, ticket, length)=> {
+    let isConfirm = window.confirm('ต้องการบันทึกข้อมูลผู้เข้าร่วมใช่หรือไม่ ?');
+    let setTo = true;
+    /// prepare JSON to POST.
+    if (isConfirm) {
+      let data = {
+        post_id: parseInt(id),
+        access_code: parseInt(ticket),
+        is_redeem: setTo
+      }
+      //console.log(data);
+
+      /// send post here
+      let url = `https://tue-kan.herokuapp.com/ticket/redeem`;
+      axios.post(url, data)
+        .then((res) => {
+            console.log(res.data)
+        }).catch((error) => {
+            console.log(error)
+        });
+
+      alert('บันทึกข้อมูลผู้เข้าร่วมสำเร็จ !');
+
+      /// must update fake data because if not, table row haven't change color because don't GET request again.
+      /// (table row color must real update when GET request to server.)
+      /// make temp of participant data.
+      let editParticipantData = participantData;
+      /// edit isRedeem of redeemed id.
+      editParticipantData[findTicket(length).index]['isRedeem'] = setTo;
+      setParticipantData(editParticipantData);
+
+      /// clear ticket data in input.
+      document.getElementById('redeem-box').value = '';
+      /// clear highlight.
+      setticketId('999999');
+      setIsHaveTicket(false);
+    }
+  }
+
+  let participantLen = participantData.length;
 
   //console.log(postingData);
   //console.log(participantData);
@@ -162,12 +208,10 @@ const PostingDetail =(props)=> {
               <p className='description-text'>Participant List :</p>
 
               <div className='name-list-table-container' id='name-list-table-id'>
-
                 {/*
                   - pass ticketId to set background color of this row.
                 */}
                 <NameListTable topic={postingData.topic} data={participantData} ticketId={ticketId} />
-
               </div>
 
             </div>
@@ -189,14 +233,19 @@ const PostingDetail =(props)=> {
                       - setIsHaveTicket with returned value.
                       - highlight row.
                     */}
-                    <p className='redeem-button redeem-check' onClick={()=>checkAndHighLight(postingData.participant.length)}><b>Check</b></p>
+                    <p className='redeem-button redeem-check' onClick={()=>checkAndHighLight(participantLen)}><b>Check</b></p>
 
                     {/*
                       - if isHaveTicket, setticketId by input <input id='redeem-box'>
                       - have alert to confirm.
                       - *** must have to update in DB.
                     */}
-                    <p className='redeem-button redeem-ok' onClick={confirmAndPost}><b>OK</b></p>
+                    {
+                      isHaveTicket ?
+                      <p className='redeem-button redeem-ok' onClick={()=>confirmAndPost(postingData.id, findTicket(participantLen).ticket, participantLen)}><b>OK</b></p>
+                      :
+                      <p className='redeem-button redeem-ok' onClick={()=>window.alert('ข้อมูลไม่ถูกต้อง !')}><b>OK</b></p>
+                    }
                   </div>
                 </div>
 
@@ -219,26 +268,26 @@ const PostingList =(props)=> {
 
 class Posting extends React.Component {
 
-    state = {
-      loading: true,
-      postingData: {}
-    }
+  state = {
+    loading: true,
+    postingData: {}
+  }
 
-    componentDidMount () {
-      let accountId = 21;
-      const url = `https://tue-kan.herokuapp.com/post/posting/${accountId}`;
-      this.setState({loading: true})
-      axios.get(url)
-        .then(data => {
-          this.setState({
-            loading: false,
-            postingData: data.data
-          })
-          //console.log('data');
-          //console.log(data);
+  componentDidMount () {
+    let accountId = accountData.account_id;
+    const url = `https://tue-kan.herokuapp.com/post/posting/${accountId}`;
+    this.setState({loading: true})
+    axios.get(url)
+      .then(data => {
+        this.setState({
+          loading: false,
+          postingData: data.data
         })
-        .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
-      //console.log('loading complete!');
+        //console.log('data');
+        //console.log(data);
+      })
+      .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
+    //console.log('loading complete!');
   }
 
   render () {

@@ -16,13 +16,21 @@
     -- change div of postsetting to styled for reuse at ticket
   .edit 12-Mar-20
     -- add duration of tue.
+  .edit 31-Mar-20
+    -- edit to can POST to server and add new post in main list.
+    -- edit to use INT data instead String because using String type make 400 (Bad request) (some variable).
+  .edit 01-Apr-20
+    -- edit date format to DD/MM/YYYY
+  .edit 02-Apr-20
+    -- edit date format to MM-DD-YYYY because another format can't sort in database.
 */
 
 import React from 'react';
 import axios from 'axios';
-import { Switch, Redirect } from 'react-router-dom';
+//import { Switch, Redirect } from 'react-router-dom';
 
 import {category} from './category.js';
+import {accountData} from '../../components/avatar/accountData.js';
 
 import './style.css';
 
@@ -121,35 +129,47 @@ class NewCreatePost extends React.Component {
     })
       //console.log(this.state);
     let name = event.target.name;
-    if(name === 'max' || name === 'category' || name === 'price') {
+    if (name === 'max' || name === 'category' || name === 'price') {
       this.setState({
         [name]: parseInt(event.target.value)
+      })
+    }
+    if (name === 'date') {
+      /// change format of date from YYYY-MM-DD to DD/MM/YYYY
+      let oldDate = (event.target.value).split('-');
+      //let newData = oldDate[2] + '/' + oldDate[1] + '/' + oldDate[0];
+      let newData = oldDate[1] + '-' + oldDate[2] + '-' + oldDate[0];
+      this.setState({
+        [name]: newData
       })
     }
   }
 
   onSubmit =(event)=> {
-    //event.preventDefault();
+    event.preventDefault();
 
     // send post here
     let url = `https://tue-kan.herokuapp.com/post/`
     let data = this.state;
 
-    console.log(data);
+    //console.log(data);
 
-    axios.post(url, data)
-      .then((res) => {
-          console.log(res.data)
-      }).catch((error) => {
-          console.log(error)
-      });
+    let isConfirm = window.confirm('ต้องการสร้างโพสต์ใช่หรือไม่ ?');
+    if (isConfirm) {
+      axios.post(url, data)
+        .then((res) => {
+            console.log(res.data)
+        }).catch((error) => {
+            console.log(error)
+        });
 
-    alert('สร้างโพสต์สำเร็จ !');
+      alert('สร้างโพสต์สำเร็จ !');
+    }
 
   }
 
   componentWillMount () {
-    let accountId = 21;
+    let accountId = accountData.account_id;
     this.setState({
       account_id: accountId,
     })
@@ -179,7 +199,8 @@ class NewCreatePost extends React.Component {
               <form onSubmit={this.onSubmit}>
                 <FormItem className='form-item'>
                   <HeadText className='header-text'><b>Topic :</b></HeadText>
-                  <TextBox className='item-input' name='topic' placeholder='Datacomm, Movement, Number Theory' align='left' onChange={this.onInputChange} long required></TextBox>
+                  <TextBox className='item-input' name='topic' placeholder='Datacomm, Movement, Number Theory' align='left' 
+                  onChange={this.onInputChange} maxLength='20' long required></TextBox>
                 </FormItem>
 
                 <FormItem className='form-item'>

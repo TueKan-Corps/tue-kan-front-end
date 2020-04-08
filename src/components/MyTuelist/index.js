@@ -4,12 +4,18 @@
   .edit 20-Mar-20 [Boat]
     -- test with backend mockup.
     -- add skeleleton loading component.
+  .edit 01-Apr-20
+    -- edit to use real data from real database server.
+  .edit 02-Apr-20
+    -- edit to use centralized account_id.
 
 */
 
 import React from 'react'
 import axios from 'axios';
 import './style.css'
+
+import {accountData} from '../../components/avatar/accountData.js';
 
 import LoadingPostList from '../../components/loadingPostList/index.js';
 
@@ -22,7 +28,7 @@ const CreateListItem =(props)=> {
   let topicDisplay = isTopicOverLen ? props.topic.substring(0, 15) + '...' : props.topic;
   //console.log(props.tag_id);
   return (
-    <Link className='mtl-item-link' to={`/ticket/${props.id}`}>
+    <Link className='mtl-item-link' to={`/ticket/${props.index}`}>
       <div className='mtl-item'>
         <span className='item-tag-color' style={{background: `${colorTag[props.tag_id]}`}}> </span>
         <div className='item-text-box'>
@@ -42,7 +48,7 @@ export default class MyTuelist extends React.PureComponent {
   }
 
   componentDidMount () {
-    let accountId = 21;
+    let accountId = accountData.account_id;
     const url = `https://tue-kan.herokuapp.com/ticket/${accountId}`;
     this.setState({loading: true})
     axios.get(url)
@@ -75,8 +81,8 @@ export default class MyTuelist extends React.PureComponent {
         }
         {
           !this.state.loading &&
-          ticketData.map(list => (
-            <CreateListItem key={list.id} {...list}  />
+          ticketData.map((list, index) => (
+            <CreateListItem key={list.ticket} {...list} index={index+1}  />
           ))
         }
         </div>
