@@ -67,6 +67,13 @@ const Sub = (props) => {
     statusText: '',
     colorButton: ''
   }
+  if (accountData.account_id === postData.account_id) {
+    buttonState.joinState = false
+    buttonState.statusText = 'This is your post'
+    buttonState.colorButton = 'rgb(235, 235, 235)'
+    
+  }
+
   if (postData.amount >= postData.full) {
     buttonState.joinState = false
     buttonState.statusText = 'Soldout'
