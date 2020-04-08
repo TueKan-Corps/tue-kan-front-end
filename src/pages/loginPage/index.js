@@ -65,6 +65,22 @@ export default class Login extends Component {
         },
         formValid: false
     }
+    signUpDataToBack = {
+        username : this.signUpData.formElements.email.value,
+        password : this.signUpData.formElements.password.value,
+        coin_amount : 0,
+        first_name : this.signUpData.formElements.firstname.value,
+        last_name : this.signUpData.formElements.lastname.value,
+        facebook : '#',
+        instagram : '#',
+        youtube : '#',
+        email : this.signUpData.formElements.email.value,
+        website : '#'
+    }
+    signInDataToBack = {
+        username : this.state.usernameLogin,
+        password : this.state.passwordLogin
+    }
     
 
     onFormChange = (event) => {
