@@ -13,8 +13,12 @@ import logo from '../../assets/icon/weblogo_white.png'
 
 export default class Login extends Component {
     
-
     state = {
+        usernameLogin: '',
+        passwordLogin:''
+    }
+
+    signUpData = {
         formElements: {
             firstname: {
                 type: 'text',
@@ -59,20 +63,13 @@ export default class Login extends Component {
                 error:{status:true,message:''}
             }
         },
-        formValid: false,
-        usernameLogin: '',
-        passwordLogin:''
+        formValid: false
     }
-
-    // state = {
-    //         email: '',
-    //         password:''
-    // }
 
     onFormChange = (event) => {
         const name = event.target.name;
         const value = event.target.value;
-        let updatedForm = { ...this.state.formElements };
+        let updatedForm = { ...this.signUpData.formElements };
         updatedForm[name].value = value;
         updatedForm[name].touched = true;
         const validatorObject = this.checkValidator(value, updatedForm[name].validator);
@@ -87,11 +84,11 @@ export default class Login extends Component {
             }
         }
         this.setState({
-            ...this.state,
+            ...this.signUpData,
             formElements: updatedForm,
             formValid: formStatus
         });
-        console.log(formStatus)
+        console.log(this.signUpData)
     }
 
     checkValidator = (value, rule) => {
@@ -119,9 +116,9 @@ export default class Login extends Component {
         return { status:!valid, message:message };
     }
     getInputClass = (name) => {
-        const elementErrorStatus = this.state.formElements[name].error.status;
+        const elementErrorStatus = this.signUpData.formElements[name].error.status;
         let result='';
-        if (this.state.formElements[name].touched) {
+        if (this.signUpData.formElements[name].touched) {
             if (elementErrorStatus) {
                 result = 'input-login form-control is-invalid';
             }
@@ -133,18 +130,16 @@ export default class Login extends Component {
             result ='input-login form-control';
         }
         return result;
-        // return elementErrorStatus && this.state.formElements[name].touched ?
-        //     'input-login form-control is-invalid':
-        //     'input-login form-control is-valid';
     }
     getErrorMessage = (name) => {
-        return this.state.formElements[name].error.message;
+        return this.signUpData.formElements[name].error.message;
     }
+
     onFormSubmit = (event) => {
         event.preventDefault();
         const formData = {};
-        for (let name in this.state.formElements) {
-            formData[name] = this.state.formElements[name].value;
+        for (let name in this.signUpData.formElements) {
+            formData[name] = this.signInData.formElements[name].value;
         }
         console.log(formData);
     }
@@ -152,7 +147,7 @@ export default class Login extends Component {
 
     onInputChange = (event) => {
         this.setState({
-            [event.target.name]: event.target.value
+            [event.target.name]:event.target.value
         })
         console.log(this.state);
     }
@@ -200,7 +195,7 @@ export default class Login extends Component {
                             <input className={this.getInputClass('password')} type="password" placeholder="Password" id="password" name="password" onChange={this.onFormChange}/>
                             <div className="check invalid-feedback">{this.getErrorMessage('password')}></div>
 
-                            <button className="button-login" type = "submit" disabled={!this.state.formValid}>Sign Up</button>
+                            <button className="button-login" type = "submit" disabled={!this.signUpData.formValid}>Sign Up</button>
                         </form>
                     </div>
                     <div className="form-container sign-in-container">
@@ -213,9 +208,7 @@ export default class Login extends Component {
                             </div>
                             <span className="span-login">or use your account</span>
                             <input className="input-login form-control" type="username" placeholder="Email" id="usernameLogin" name="usernameLogin" onChange={this.onInputChange} />
-                            {/* <div className="check valid-feedback">พบชื่อผู้ใช้</div> */}
                             <input className="input-login form-control" type="passwordLogin" placeholder="Password" id="passwordLogin" name="passwordLogin" onChange={this.onInputChange} />
-                            {/* <div className="check invalid-feedback">รหัสผ่านสั้นเกินไป</div> */}
                             <a href="#" className="social">Forgot your password?</a>
                             <button className="button-login">Sign In</button>
                         </form>
