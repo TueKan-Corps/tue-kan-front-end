@@ -199,7 +199,8 @@ class NewCreatePost extends React.Component {
               <form onSubmit={this.onSubmit}>
                 <FormItem className='form-item'>
                   <HeadText className='header-text'><b>Topic :</b></HeadText>
-                  <TextBox className='item-input' name='topic' placeholder='Datacomm, Movement, Number Theory' align='left' onChange={this.onInputChange} long required></TextBox>
+                  <TextBox className='item-input' name='topic' placeholder='Datacomm, Movement, Number Theory' align='left' 
+                  onChange={this.onInputChange} maxLength='20' long required></TextBox>
                 </FormItem>
 
                 <FormItem className='form-item'>
