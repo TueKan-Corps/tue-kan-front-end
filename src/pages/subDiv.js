@@ -11,6 +11,7 @@ const SubDiv = styled.div`
   //background-color: white;
   width: 45vw;
   padding-bottom: 50px;
+  min-height: 93.5vh;
 `;
 
 export default SubDiv;
