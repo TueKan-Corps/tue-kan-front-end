@@ -32,6 +32,7 @@
 
 .avatar-img {
   width: 100%;
+  min-height: 60px;
   box-sizing: border-box;
   border-radius: 100px;
 }

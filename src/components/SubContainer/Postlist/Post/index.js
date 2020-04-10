@@ -17,10 +17,11 @@ export default function Post(props) {
     let linkTo = props.linkTo;
     linkTo = `${linkTo}/${props.postId + 1}`;
     //console.log(props.tag_id);
+    let imgSrc = `https://tue-kan.herokuapp.com/account/${props.account_id}/img`;
     return (
         <Link className='post-list-link' to={linkTo}>
           <div className="post">
-              <img src={props.img} className="img-post" alt='post-list-tutor-img'/>
+              <img src={imgSrc} className="img-post" alt='post-list-tutor-img'/>
               <div className="detail">
                   <div className="tag-subject"><span className="dot" style={{ background : `${colorTag[props.tag_id]}` }}/><h2 className="subject">{subject[props.tag_id]}</h2></div>
                   <div className="topic">#Topic       : {props.topic}</div>
