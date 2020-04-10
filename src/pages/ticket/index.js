@@ -18,6 +18,9 @@
     -- add skeleleton loading component.
   .edit 02-Apr-20
     -- edit to use centralized account_id.
+    -- [**1] fake account_id.
+  .edit 10-Apr-20
+    -- [**1] use real account_id.
 */
 
 import React from 'react';
@@ -40,11 +43,10 @@ import DetailContainer from '../newCreatePost/detailContainer.js';
 import DetailBody from '../newCreatePost/detailBody.js';
 import DetailHeader from '../newCreatePost/detailHeader.js';
 
-import {accountData} from '../../components/avatar/accountData.js';
-
 import MyTueList from '../../components/MyTuelist/index.js';
 import Postlist from '../../components/SubContainer/Postlist/index.js';
 import LoadingPostList from '../../components/loadingPostList/index.js';
+import accountAccess from '../../components/avatar/accountAccess.js';
 
 const TicketDetail =(props)=> {
   let { ticketId } = useParams();
@@ -139,7 +141,7 @@ class Ticket extends React.Component {
 
   componentDidMount () {
     //const url ='https://mock-up-tuekan-backend.herokuapp.com/post/posting';
-    let accountId = accountData.account_id;
+    let accountId = accountAccess().getAccountId(); 
     const url = `https://tue-kan.herokuapp.com/ticket/${accountId}`;
     this.setState({loading: true})
     axios.get(url)

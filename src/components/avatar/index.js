@@ -10,14 +10,11 @@ import axios from 'axios';
 
 import { Link } from "react-router-dom";
 import Spinner from 'react-bootstrap/Spinner';
-
-import { accountData } from '../../components/avatar/accountData.js';
+ 
+import accountAccess from './accountAccess.js';
 
 import './style.css';
-
-//import {profileData} from './profileData.js';
-//import {profileData} from './newProfileData.js';
- 
+  
 class Avatar extends React.Component {
 
   state = {
@@ -26,8 +23,8 @@ class Avatar extends React.Component {
     img: {}
   }
 
-  componentDidMount() {
-    let accountId = accountData.account_id;
+  componentDidMount() {  
+    let accountId = accountAccess().getAccountId(); 
     const url = `https://tue-kan.herokuapp.com/account/${accountId}`;
     
     /// get account data

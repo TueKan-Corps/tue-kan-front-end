@@ -8,14 +8,17 @@
     -- edit to use real data from real database server.
   .edit 02-Apr-20
     -- edit to use centralized account_id.
+    -- [**1] fake account_id.
+  .edit 10-Apr-20
+    -- [**1] use real account_id.
 
 */
 
 import React from 'react'
 import axios from 'axios';
 import './style.css'
-
-import {accountData} from '../../components/avatar/accountData.js';
+ 
+import accountAccess from '../avatar/accountAccess.js';
 
 import LoadingPostList from '../../components/loadingPostList/index.js';
 
@@ -48,7 +51,7 @@ export default class MyTuelist extends React.PureComponent {
   }
 
   componentDidMount () {
-    let accountId = accountData.account_id;
+    let accountId = accountAccess().getAccountId();
     const url = `https://tue-kan.herokuapp.com/ticket/${accountId}`;
     this.setState({loading: true})
     axios.get(url)

@@ -12,6 +12,8 @@
   .edit 09-Apr-20
     -- edit to use real profile img from real server.
     -- edit to can upload new profile img to server.
+  .edit 10-Apr-20
+    -- [**1] use real account_id.
 */
 
 import React from 'react';
@@ -19,13 +21,12 @@ import axios from 'axios';
 
 import './style.css';
 
-import {accountData} from '../../components/avatar/accountData.js';
- 
 import MyTueList from '../../components/MyTuelist/index.js';
 import LoadingPostList from '../../components/loadingPostList/index.js';
 
 import MainDiv from '../mainDiv.js';
 import SubDiv from '../subDiv.js';
+import accountAccess from '../../components/avatar/accountAccess.js';
 
 class Profile extends React.Component {
 
@@ -51,7 +52,7 @@ class Profile extends React.Component {
     {
       /// send POST here 
       let data = this.state.profileData;
-      let accountId = accountData.account_id;
+      let accountId = accountAccess().getAccountId(); 
       delete data["username"];
       delete data["password"];
       delete data["coin_amount"];
@@ -121,7 +122,7 @@ class Profile extends React.Component {
     let imgData = event.target.files[0];
 
     /// upload picture here 
-    let accountId = accountData.account_id;
+    let accountId = accountAccess().getAccountId(); 
     let url = `https://tue-kan.herokuapp.com/account/${accountId}/img`;  
     let formdata = new FormData();
     formdata.append("profile_img", imgData, imgData.name);
@@ -140,7 +141,7 @@ class Profile extends React.Component {
   }
    
   componentDidMount () {
-    let accountId = accountData.account_id;
+    let accountId = accountAccess().getAccountId(); 
     let url = `https://tue-kan.herokuapp.com/account/${accountId}`;
     /// get account data
     axios.get(url)
