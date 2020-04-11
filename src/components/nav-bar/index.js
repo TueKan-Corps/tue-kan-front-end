@@ -1,8 +1,12 @@
 /*
   .edit 15-Mar-20
     -- edit coin data to use data from <profileData.js> in <avatar> folder.
+  .edit 02-Apr-20 
+    -- [**1] fake account_id.
   .edit 07-Apr-20
     -- edit to use real data from real database.
+  .edit 10-Apr-20
+    -- [**1] use real account_id.
 */
 
 import React from 'react';
@@ -12,8 +16,7 @@ import './style.css';
 
 import logo from '../../assets/icon/weblogo_white.png';
 
-import { accountData } from '../../components/avatar/accountData.js';
-//import  { profileData } from '../avatar/profileData.js';
+import accountAccess from '../avatar/accountAccess.js'; 
 
 import { Link } from "react-router-dom";
 
@@ -25,7 +28,8 @@ class Navbar extends React.Component {
   }
 
   componentDidMount() {
-    let accountId = accountData.account_id;
+    accountAccess().clearAccountId();    
+    let accountId = accountAccess().getAccountId();
     const url = `https://tue-kan.herokuapp.com/account/${accountId}`;
     this.setState({ loading: true })
     axios.get(url)

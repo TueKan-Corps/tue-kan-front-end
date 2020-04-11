@@ -16,6 +16,9 @@
     -- **3 [clear] remaining find re-render method to update redeem status.
   .edit 02-Apr-20
     -- edit to use centralized account_id.
+    -- [**1] fake account_id.
+  .edit 10-Apr-20
+    -- [**1] use real account_id.
 */
 
 import React from 'react';
@@ -37,13 +40,11 @@ import DetailContainer from '../newCreatePost/detailContainer.js';
 import DetailBody from '../newCreatePost/detailBody.js';
 import DetailHeader from '../newCreatePost/detailHeader.js';
 
-//import {myPostingData} from '../../components/MyTuelist/myPostingData.js';
-import {accountData} from '../../components/avatar/accountData.js';
-
 import MyTueList from '../../components/MyTuelist/index.js';
 import Postlist from '../../components/SubContainer/Postlist/index.js';
 import LoadingPostList from '../../components/loadingPostList/index.js';
 import NameListTable from './nameListTable/index.js';
+import accountAccess from '../../components/avatar/accountAccess.js';
 
 const findTicket =(length)=> {
   /// get ticket code from redeem box.
@@ -274,7 +275,7 @@ class Posting extends React.Component {
   }
 
   componentDidMount () {
-    let accountId = accountData.account_id;
+    let accountId = accountAccess().getAccountId(); 
     const url = `https://tue-kan.herokuapp.com/post/posting/${accountId}`;
     this.setState({loading: true})
     axios.get(url)
