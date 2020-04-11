@@ -65,6 +65,7 @@ export default class Login extends Component {
         },
         formValid: false
     }
+    
 
     onFormChange = (event) => {
         const name = event.target.name;
@@ -89,6 +90,7 @@ export default class Login extends Component {
             formValid: formStatus
         });
         console.log(this.signUpData)
+        console.log(this.signUpDataToBack)
     }
 
     checkValidator = (value, rule) => {
@@ -172,7 +174,6 @@ export default class Login extends Component {
             // alert('signup')
         }
         return (
-            <div className="loginpage">
                 <div className="container-login" id="container">
                     <div className="form-container sign-up-container">
                         <form className="form-login" action="#" onSubmit={this.onFormSubmit}>
@@ -229,7 +230,6 @@ export default class Login extends Component {
                         </div>
                     </div>
                 </div>
-            </div>
         )
     }
 }
