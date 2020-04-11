@@ -25,6 +25,7 @@
 }
 
 .coin-box {
+  !background-color: red;
   margin-right: 18%;
   width: 50px;
   height: 100%;
@@ -67,4 +68,25 @@
   display: table-cell;
   vertical-align: middle;
   color: white;
+}
+
+.login-box { 
+  display: inline;
+  font-family: 'Quicksand', sans-serif;
+  float: right;
+  margin-right: -12%;
+  height: 100%;
+  display: table;
+  transition: font-size 0.3s;
+}
+
+.login-box:hover {  
+  font-size: 18px;
+  transition: font-size 0.3s;
+}
+
+.login-box .login-text {
+  color: white;
+  display: table-cell;
+  vertical-align: middle;
 }

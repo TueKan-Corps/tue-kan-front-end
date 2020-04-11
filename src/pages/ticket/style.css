@@ -1,8 +1,9 @@
 .ticket-sub-container .post-header {
   width: auto;
-  !background: red;
+  /* background: red; */
   border-bottom: 1px solid rgb(200, 200, 200);
   padding: 20px 20px 20px 20px;
+
 }
 
 .ticket-sub-container .post-header:hover {

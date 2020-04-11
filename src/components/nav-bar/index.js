@@ -1,8 +1,12 @@
 /*
   .edit 15-Mar-20
     -- edit coin data to use data from <profileData.js> in <avatar> folder.
+  .edit 02-Apr-20 
+    -- [**1] fake account_id.
   .edit 07-Apr-20
     -- edit to use real data from real database.
+  .edit 10-Apr-20
+    -- [**1] use real account_id.
 */
 
 import React from 'react';
@@ -12,8 +16,7 @@ import './style.css';
 
 import logo from '../../assets/icon/weblogo_white.png';
 
-import { accountData } from '../../components/avatar/accountData.js';
-//import  { profileData } from '../avatar/profileData.js';
+import accountAccess from '../avatar/accountAccess.js'; 
 
 import { Link } from "react-router-dom";
 
@@ -22,10 +25,25 @@ class Navbar extends React.Component {
   state = {
     loading: true,
     profileData: { first_name: 'firstName', last_name: 'lastName' },
+    status: 'guest'
+  }
+
+  logout() {
+    accountAccess().clearAccountId();
+    window.location.reload();
   }
 
   componentDidMount() {
-    let accountId = accountData.account_id;
+    //accountAccess().clearAccountId();    
+    //accountAccess().setAccountId(29);
+    let accountId = accountAccess().getAccountId();
+
+    console.log(accountId);
+
+    if (accountId !== 36) {
+      this.setState({ status: 'user' })
+    }
+
     const url = `https://tue-kan.herokuapp.com/account/${accountId}`;
     this.setState({ loading: true })
     axios.get(url)
@@ -44,6 +62,7 @@ class Navbar extends React.Component {
   render () {
     let loading = this.state.loading;
     let profileData = this.state.profileData;
+    let status = this.state.status;
     return (
       <nav className='navbar-container'>
         <Link to='/'>
@@ -58,8 +77,19 @@ class Navbar extends React.Component {
             { !loading && <p className='coin-messege coin-amount'><b>{profileData.coin_amount}</b></p>}
             { loading && <p className='coin-messege coin-amount'><b>xxxx</b></p>}
             <p className='coin-messege coin-ex'><b>TC</b></p>
-          </div>
+          </div> 
         </Link>
+ 
+        <div className='login-box'>
+        {
+          status === 'guest' ?
+          <Link to='/login'>
+            <p className='login-text'><b>LOGIN</b></p>
+          </Link>
+          :
+          <p className='login-text' onClick={this.logout}><b>LOGOUT</b></p>
+        }
+        </div> 
       </nav>
     );
   }

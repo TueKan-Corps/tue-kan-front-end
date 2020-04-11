@@ -1,6 +1,8 @@
 /*
   .edit 07-Apr-20
     -- edit to use real data from real database.
+  .edit 09-Apr-20
+    -- edit to use real profile img from real server. 
 */
 
 import React from 'react';
@@ -8,25 +10,24 @@ import axios from 'axios';
 
 import { Link } from "react-router-dom";
 import Spinner from 'react-bootstrap/Spinner';
-
-import { accountData } from '../../components/avatar/accountData.js';
+ 
+import accountAccess from './accountAccess.js';
 
 import './style.css';
-
-//import {profileData} from './profileData.js';
-//import {profileData} from './newProfileData.js';
- 
+  
 class Avatar extends React.Component {
 
   state = {
     loading: true, 
     profileData: { first_name: 'firstName', last_name: 'lastName' }, 
+    img: {}
   }
 
-  componentDidMount() {
-    let accountId = accountData.account_id;
+  componentDidMount() {  
+    let accountId = accountAccess().getAccountId(); 
     const url = `https://tue-kan.herokuapp.com/account/${accountId}`;
-    this.setState({ loading: true })
+    
+    /// get account data
     axios.get(url)
       .then(data => {
         this.setState({
@@ -38,6 +39,12 @@ class Avatar extends React.Component {
       })
       .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
     //console.log('loading complete!');
+
+    /// get account img
+    let imgSrc = `https://tue-kan.herokuapp.com/account/${accountId}/img`;
+    this.setState({
+      img: imgSrc
+    })
   }
 
   render () {
@@ -66,7 +73,7 @@ class Avatar extends React.Component {
         {/* hover background of avatar is relate with length of firstname or lastname */}
         <div className='avatar-box' style={{width: `${max * (40 - (max+(max/1.5)))}px`}}>
             <div className='img-box'>
-              <img className='avatar-img' src={profileData.img} alt='avatar-img' />
+              <img className='avatar-img' src={this.state.img} alt='avatar-img' />
             </div>
             <div className='text-box'>
             {

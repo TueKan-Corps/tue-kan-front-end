@@ -19,7 +19,7 @@ import LoadingPostList from '../../components/loadingPostList/index.js';
 
 import { storeProduct } from '../../data'
 import { listData } from '../MyTuelist/listData.js';
-import {accountData} from '../../components/avatar/accountData.js';
+import accountAccess from '../avatar/accountAccess.js';
 
 import MyTueList from '../../components/MyTuelist/index.js';
 
@@ -47,7 +47,10 @@ const Sub = (props) => {
   let { postId } = useParams();
   let mainData = props.mainListData[postId - 1];
   let postData = props.mainListData[postId - 1];
-  let accountId = accountData.account_id;
+
+  // accountAccess().clearAccountId();
+  let accountId = accountAccess().getAccountId()
+
   let data = {
     account_id: accountId,
     post_id: parseInt(postData.id)
@@ -67,7 +70,7 @@ const Sub = (props) => {
     statusText: '',
     colorButton: ''
   }
-  if (accountData.account_id === postData.account_id) {
+  if (accountId === postData.account_id) {
     buttonState.joinState = false
     buttonState.statusText = 'This is your post'
     buttonState.colorButton = 'rgb(235, 235, 235)'
