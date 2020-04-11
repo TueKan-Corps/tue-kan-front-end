@@ -74,7 +74,7 @@
   display: inline;
   font-family: 'Quicksand', sans-serif;
   float: right;
-  margin-right: -12%;
+  margin-right: -18%;
   height: 100%;
   display: table;
   transition: font-size 0.3s;
@@ -82,11 +82,14 @@
 
 .login-box:hover {  
   font-size: 18px;
-  transition: font-size 0.3s;
+  transition: font-size 0.3s; 
+  cursor: pointer;
 }
 
 .login-box .login-text {
   color: white;
   display: table-cell;
   vertical-align: middle;
+  text-decoration-line: none;
+  text-decoration: none;  
 }

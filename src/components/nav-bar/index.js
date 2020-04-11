@@ -7,6 +7,8 @@
     -- edit to use real data from real database.
   .edit 10-Apr-20
     -- [**1] use real account_id.
+  .edit 11-Apr-20
+    -- add login, logout button in <Navbar>.
 */
 
 import React from 'react';
@@ -30,7 +32,7 @@ class Navbar extends React.Component {
 
   logout() {
     accountAccess().clearAccountId();
-    window.location.reload();
+    window.location = '/';
   }
 
   componentDidMount() {
@@ -83,8 +85,8 @@ class Navbar extends React.Component {
         <div className='login-box'>
         {
           status === 'guest' ?
-          <Link to='/login'>
-            <p className='login-text'><b>LOGIN</b></p>
+          <Link to='/login'className='login-text'>
+            <b>LOGIN</b>
           </Link>
           :
           <p className='login-text' onClick={this.logout}><b>LOGOUT</b></p>

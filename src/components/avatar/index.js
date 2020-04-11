@@ -3,6 +3,8 @@
     -- edit to use real data from real database.
   .edit 09-Apr-20
     -- edit to use real profile img from real server. 
+  .edit 11-Apr-20
+    -- add random number of guest.
 */
 
 import React from 'react';
@@ -20,11 +22,13 @@ class Avatar extends React.Component {
   state = {
     loading: true, 
     profileData: { first_name: 'firstName', last_name: 'lastName' }, 
-    img: {}
+    img: {},
+    accountId: {}
   }
 
   componentDidMount() {  
     let accountId = accountAccess().getAccountId(); 
+    this.setState({ accountId: accountId })
     const url = `https://tue-kan.herokuapp.com/account/${accountId}`;
     
     /// get account data
@@ -46,7 +50,7 @@ class Avatar extends React.Component {
       img: imgSrc
     })
   }
-
+ 
   render () {
 
     /*
@@ -65,9 +69,9 @@ class Avatar extends React.Component {
     let lastNameDisplay = lastNameOverLen ? `${(profileData.last_name).substring(0, dotLen)}...` : profileData.last_name;
     let max = (profileData.first_name).length > (profileData.last_name).length ? (profileData.first_name).length : (profileData.last_name).length
     max = max <= maxLength ? max : maxLength;
-    //console.log(firstNameOverLen);
-    //console.log(lastNameOverLen);
-    //console.log(profileData.firstName);
+    let accountId = this.state.accountId;
+    lastNameDisplay = accountId !== 36 ? lastNameDisplay : `#${Math.floor(Math.random() * 10000) + 1000}${Math.floor(Math.random() * 10000) + 1000}`;
+  
     return (
       <Link className='avatar-link' to='/profile'>
         {/* hover background of avatar is relate with length of firstname or lastname */}
