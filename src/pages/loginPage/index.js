@@ -317,7 +317,7 @@ export default class Login extends Component {
                             </div>
                             <span className="span-login">or use your account</span>
                             <input className="input-login form-control" type="username" placeholder="Email" id="usernameLogin" name="usernameLogin" onChange={this.onInputChange} />
-                            <input className="input-login form-control" type="passwordLogin" placeholder="Password" id="passwordLogin" name="passwordLogin" onChange={this.onInputChange} />
+                            <input className="input-login form-control" type="password" placeholder="Password" id="passwordLogin" name="passwordLogin" onChange={this.onInputChange} />
                             <a href="#" className="social">Forgot your password?</a>
                             <button className="button-login">Sign In</button>
                         </form>
