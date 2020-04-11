@@ -59,23 +59,29 @@
 
 
 .dot {
-    height: 25px;
-    width: 25px;
+    height: 15px;
+    width: 15px;
     background: red;
     border-radius: 50%;
     display: inline-block;
     margin-right: 5px;
-  }
-  .tag-subject{
-    display: flex;
-    align-items: center;
-    height: 35px;
-  }
-  .topic{
     margin-top: 8px;
-    font-weight:bold;
-    font-size: 16px;
-  }
+}
+.tag-subject{
+  display: flex;
+  align-items: center;
+  height: 35px;
+  justify-items: center;
+}
+.topic{
+  font-size: 25px;
+  font-weight:bold;
+}
+.topic.desciption{
+  margin-top: 8px;
+  font-size: 16px;
+  font-weight:bold;
+}
 
 .numjoin{
   height: 22%;

@@ -13,8 +13,14 @@ import logo from '../../assets/icon/weblogo_white.png'
 
 export default class Login extends Component {
     
-
     state = {
+        usernameLogin: '',
+        passwordLogin: '',
+        formValid: false,
+        responseData: ''
+    }
+
+    signUpData = {
         formElements: {
             firstname: {
                 type: 'text',
@@ -59,20 +65,32 @@ export default class Login extends Component {
                 error:{status:true,message:''}
             }
         },
-        formValid: false,
-        usernameLogin: '',
-        passwordLogin:''
+        formValid: false
     }
 
-    // state = {
-    //         email: '',
-    //         password:''
-    // }
+    signUpDataToBack = {
+        username : this.signUpData.formElements.email.value,
+        password : this.signUpData.formElements.password.value,
+        coin_amount : 0,
+        first_name : this.signUpData.formElements.firstname.value,
+        last_name : this.signUpData.formElements.lastname.value,
+        facebook : '#',
+        instagram : '#',
+        youtube : '#',
+        email : this.signUpData.formElements.email.value,
+        website : '#'
+    }
+
+    signInDataToBack = {
+        username : this.state.usernameLogin,
+        password : this.state.passwordLogin
+    }
+    
 
     onFormChange = (event) => {
         const name = event.target.name;
         const value = event.target.value;
-        let updatedForm = { ...this.state.formElements };
+        let updatedForm = { ...this.signUpData.formElements };
         updatedForm[name].value = value;
         updatedForm[name].touched = true;
         const validatorObject = this.checkValidator(value, updatedForm[name].validator);
@@ -84,14 +102,17 @@ export default class Login extends Component {
         for (let name in updatedForm) {
             if (updatedForm[name].validator.required === true) {
                 formStatus = !updatedForm[name].error.status && formStatus;
+                console.log(formStatus)
             }
         }
-        this.setState({
-            ...this.state,
+        this.signUpData = {
             formElements: updatedForm,
+            formValid : formStatus
+        }
+        this.setState({
             formValid: formStatus
-        });
-        console.log(formStatus)
+        })
+        console.log(this.signUpData)
     }
 
     checkValidator = (value, rule) => {
@@ -118,10 +139,11 @@ export default class Login extends Component {
         }
         return { status:!valid, message:message };
     }
+    
     getInputClass = (name) => {
-        const elementErrorStatus = this.state.formElements[name].error.status;
-        let result = '';
-        if (this.state.formElements[name].touched) {
+        const elementErrorStatus = this.signUpData.formElements[name].error.status;
+        let result='';
+        if (this.signUpData.formElements[name].touched) {
             if (elementErrorStatus) {
                 result = 'input-login form-control is-invalid';
             }
@@ -133,37 +155,92 @@ export default class Login extends Component {
             result ='input-login form-control';
         }
         return result;
-        // return elementErrorStatus && this.state.formElements[name].touched ?
-        //     'input-login form-control is-invalid':
-        //     'input-login form-control is-valid';
     }
     getErrorMessage = (name) => {
-        return this.state.formElements[name].error.message;
+        return this.signUpData.formElements[name].error.message;
     }
+
     onFormSubmit = (event) => {
-        event.preventDefault();
-        const formData = {};
-        for (let name in this.state.formElements) {
-            formData[name] = this.state.formElements[name].value;
+        // const formData = {};
+        // for (let name in this.signUpData.formElements) {
+        //     formData[name] = this.signUpData.formElements[name].value;
+        // }
+        this.signUpDataToBack = {
+            username : this.signUpData.formElements.email.value,
+            password : this.signUpData.formElements.password.value,
+            coin_amount : 100,
+            first_name : this.signUpData.formElements.firstname.value,
+            last_name : this.signUpData.formElements.lastname.value,
+            facebook : '#',
+            instagram : '#',
+            youtube : '#',
+            email : this.signUpData.formElements.email.value,
+            website : '#'
         }
-        console.log(formData);
+        console.log(this.signUpDataToBack)
+        var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+            var urlencoded = new URLSearchParams();
+            urlencoded.append("username", this.signUpDataToBack.username);
+            urlencoded.append("password", this.signUpDataToBack.password);
+            urlencoded.append("coin_amount", "100");
+            urlencoded.append("first_name", this.signUpDataToBack.first_name);
+            urlencoded.append("last_name", this.signUpDataToBack.last_name);
+            urlencoded.append("facebook", "#");
+            urlencoded.append("instagram", "#");
+            urlencoded.append("youtube", "#");
+            urlencoded.append("email", this.signUpDataToBack.email);
+            urlencoded.append("website", "#");
+
+            var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: urlencoded,
+            redirect: 'follow'
+            };
+
+            fetch("https://tue-kan.herokuapp.com/account/", requestOptions)
+            .then(response => response.text())
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+        console.log('Register Complete')
     }
-
-
     onInputChange = (event) => {
         this.setState({
-            [event.target.name]: event.target.value
+            [event.target.name]:event.target.value
         })
         console.log(this.state);
     }
-
     onLoginSubmit = (event) => {
-        event.preventDafault();
+        let dataResonse = {};
+        console.log('ก่อนส่ง');
         console.log(this.state);
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+        var urlencoded = new URLSearchParams();
+        urlencoded.append("username", this.state.usernameLogin);
+        urlencoded.append("password", this.state.passwordLogin);
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: urlencoded,
+            redirect: 'follow'
+        };
+
+        fetch("https://tue-kan.herokuapp.com/auth/login", requestOptions)
+            .then(response => response.json())
+            // .then(result => { dataResonse = result })
+            .then(result => this.setState({
+                responseData : result
+            }))
+            .catch(error => console.log('error', error));
+        alert('login');
+        console.log(this.state.responseData);
+
     }
-    
-
-
     render() {
         const signInButton = () => {
             const ele = document.querySelector('#container');
@@ -177,6 +254,7 @@ export default class Login extends Component {
             // alert('signup')
         }
         return (
+            <div className ="loginpage">
                 <div className="container-login" id="container">
                     <div className="form-container sign-up-container">
                         <form className="form-login" action="#" onSubmit={this.onFormSubmit}>
@@ -198,9 +276,9 @@ export default class Login extends Component {
 
                             <input className={this.getInputClass('password')} type="password" placeholder="Password" id="password" name="password" onChange={this.onFormChange}/>
                             <div className="check invalid-feedback">{this.getErrorMessage('password')}></div>
-
-                            <button className="button-login" type = "submit" disabled={!this.state.formValid}>Sign Up</button>
+                        <   button className="button-login" type="submit" disabled={!this.state.formValid}>Sign Up</button>
                         </form>
+
                     </div>
                     <div className="form-container sign-in-container">
                         <form className="form-login" action="#" onSubmit = {this.onLoginSubmit}>
@@ -212,9 +290,7 @@ export default class Login extends Component {
                             </div>
                             <span className="span-login">or use your account</span>
                             <input className="input-login form-control" type="username" placeholder="Email" id="usernameLogin" name="usernameLogin" onChange={this.onInputChange} />
-                            {/* <div className="check valid-feedback">พบชื่อผู้ใช้</div> */}
                             <input className="input-login form-control" type="passwordLogin" placeholder="Password" id="passwordLogin" name="passwordLogin" onChange={this.onInputChange} />
-                            {/* <div className="check invalid-feedback">รหัสผ่านสั้นเกินไป</div> */}
                             <a href="#" className="social">Forgot your password?</a>
                             <button className="button-login">Sign In</button>
                         </form>
@@ -235,6 +311,7 @@ export default class Login extends Component {
                         </div>
                     </div>
                 </div>
+            </div>
         )
     }
 }

@@ -1,12 +1,15 @@
 .postlist-sub-container {
   text-align: left;
+  min-height: 93.5vh;
 }
+
 
 .postlist-sub-container .post-header {
   width: auto;
   !background: red;
   border-bottom: 1px solid rgb(200, 200, 200);
   padding: 20px 20px 20px 20px;
+  min-height: 80vh;
 }
 
 .postlist-sub-container .post-header:hover {
@@ -267,7 +270,7 @@
     transition-delay: .4s;
 }
 
-.description-detail-box .buy-button:active:before {
+/* .description-detail-box .buy-button:active:before {
     -webkit-transform: translate(-150%,0);
     -moz-transform: translate(-150%,0);
     -ms-transform: translate(-150%,0);
@@ -277,7 +280,7 @@
     -moz-transition-delay: 0s;
     -o-transition-delay: 0s;
     transition-delay: 0s;
-}
+} */
 
 /* .description-detail-box .buy-button::before{
     content: "";
