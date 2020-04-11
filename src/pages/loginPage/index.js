@@ -237,7 +237,6 @@ export default class Login extends Component {
             body: urlencoded,
             redirect: 'follow'
         };
-
         fetch("https://tue-kan.herokuapp.com/auth/login", requestOptions)
             .then(response => response.json())
             // .then(result => { dataResonse = result })
@@ -246,21 +245,28 @@ export default class Login extends Component {
             }))
             .catch(error => console.log('error', error));
         alert('login');
-        console.log(this.state.responseData);
-        console.log(checkId);
-        if (checkId === this.state.responseData.account_id) {
-            
-        }
-        else {
-            window.location = "/";
-        }
-
+        console.log(this.state.responseData.account_id);
+        console.log(`checkId :${checkId}`);
     }
     componentDidUpdate() {
         accountAccess().clearAccountId();
+        let checkId = accountAccess().getAccountId();
         console.log(this.state.responseData.account_id);
         accountAccess().setAccountId(this.state.responseData.account_id);
-        let accountId = accountAccess().getAccountId()
+        if (checkId == this.state.responseData.account_id) {
+            
+        }
+        else if (this.state.responseData.account_id == undefined) {
+            window.location = "/login";
+            alert("รหัสผ่านผิดพลาด");
+        }
+        else {
+            // console.log(`responseData.account_id : ${this.state.responseData.account_id}`);
+            // console.log(`checkId : ${checkId}`);
+            // console.log(`accountIdNow : ${accountAccess().getAccountId()}`);
+            // alert('');
+            window.location = "/";
+        }
     }
 
     render() {
@@ -312,7 +318,7 @@ export default class Login extends Component {
                             </div>
                             <span className="span-login">or use your account</span>
                             <input className="input-login form-control" type="username" placeholder="Email" id="usernameLogin" name="usernameLogin" onChange={this.onInputChange} />
-                            <input className="input-login form-control" type="passwordLogin" placeholder="Password" id="passwordLogin" name="passwordLogin" onChange={this.onInputChange} />
+                            <input className="input-login form-control" type="password" placeholder="Password" id="passwordLogin" name="passwordLogin" onChange={this.onInputChange} />
                             <a href="#" className="social">Forgot your password?</a>
                             <button className="button-login">Sign In</button>
                         </form>
