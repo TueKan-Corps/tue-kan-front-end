@@ -1,6 +1,8 @@
 /*
   .edit
     -- edit <SideBar> into Route because loginpage don't have <Sidebar>
+  .edit 11-Apr-20
+    -- edit guest flow control, redirect to /login.
 */
 
 import React from "react";
@@ -19,61 +21,84 @@ import Login from '../pages/loginPage/index.js';
 import Profile from '../pages/profile/index.js';
 import CoinPayment from '../pages/coinPayment/index.js';
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import accountAccess from '../components/avatar/accountAccess.js';
+ 
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 
 export default () => {
+
+  let isGuest = accountAccess().getAccountId() === 36;
+
   return (
     <Router>
-
+ 
       <Navbar />
 
-      <Switch>
+      {
+        !isGuest ?
+        /// Switch for users.
+        <Switch> 
 
-        <Route path="/coinPayment">
-          <SideBar />
-          <CoinPayment />
-        </Route>
+          <Route path="/coinPayment">
+            <SideBar />
+            <CoinPayment />
+          </Route>
 
-        <Route path="/login">
-          <Login />
-        </Route>
-        
-        <Route path="/profile">
-          <SideBar />
-          <Profile />
-        </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          
+          <Route path="/profile">
+            <SideBar />
+            <Profile />
+          </Route>
 
-        <Route path="/home">
-          <SideBar />
-          <Home></Home>
-        </Route>
+          <Route path="/home">
+            <SideBar />
+            <Home></Home>
+          </Route>
 
-        <Route path="/posting">
-          <SideBar />
-          <Posting />
-        </Route>
+          <Route path="/posting">
+            <SideBar />
+            <Posting />
+          </Route>
 
-        <Route path="/ticket">
-          <SideBar />
-          <Ticket />
-        </Route>
+          <Route path="/ticket">
+            <SideBar />
+            <Ticket />
+          </Route>
 
-        <Route path="/createPost">
-          <SideBar />
-          <NewCreatePost />
-        </Route>
+          <Route path="/createPost">
+            <SideBar />
+            <NewCreatePost />
+          </Route>
 
-        <Route path="/createPost">
-          <SideBar />
-          <NewCreatePost />
-        </Route>
+          <Route path="/createPost">
+            <SideBar />
+            <NewCreatePost />
+          </Route>
 
-        <Route exact path="/">
-          <SideBar />
-          <Home></Home>
-        </Route>
+          <Route exact path="/">
+            <SideBar />
+            <Home></Home>
+          </Route>
 
-      </Switch>
+        </Switch> 
+        :
+        /// Switch for guests.
+        <Switch>
+          <Route exact path='/login'>
+            <Login></Login>
+          </Route>
+
+          <Route exact path="/">
+            <SideBar />
+            <Home></Home>
+          </Route>
+
+          <Redirect to='/login' />
+        </Switch>
+      }
     </Router>
   );
 };

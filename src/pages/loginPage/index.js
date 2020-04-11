@@ -298,9 +298,9 @@ export default class Login extends Component {
                         <form className="form-login" action="#" onSubmit={this.onFormSubmit}>
                             <h1 className="header1-login">Create Account</h1>
                             <div className="social-container">
-                                <a href="#" className="social"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#" className="social"><i class="fab fa-google-plus-g"></i></a>
-                                <a href="#" className="social"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" className="social"><i className="fab fa-facebook-f"></i></a>
+                                <a href="#" className="social"><i className="fab fa-google-plus-g"></i></a>
+                                <a href="#" className="social"><i className="fab fa-linkedin-in"></i></a>
                             </div>
                             <span className="span-login">or use your email for registration</span>
                             <input className={this.getInputClass('firstname')} type="text" placeholder="Firstname" id="firstname" name="firstname" onChange={this.onFormChange}/>
@@ -322,9 +322,9 @@ export default class Login extends Component {
                         <form className="form-login" action="#" onSubmit = {this.onLoginSubmit}>
                             <h1 className="header1-login">Sign in</h1>
                             <div className="social-container">
-                                <a href="#" className="social"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#" className="social"><i class="fab fa-google-plus-g"></i></a>
-                                <a href="#" className="social"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" className="social"><i className="fab fa-facebook-f"></i></a>
+                                <a href="#" className="social"><i className="fab fa-google-plus-g"></i></a>
+                                <a href="#" className="social"><i className="fab fa-linkedin-in"></i></a>
                             </div>
                             <span className="span-login">or use your account</span>
                             <input className="input-login form-control" type="username" placeholder="Email" id="usernameLogin" name="usernameLogin" onChange={this.onInputChange} />

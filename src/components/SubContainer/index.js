@@ -16,9 +16,7 @@ import DetailHeader from '../../pages/newCreatePost/detailHeader'
 import MainDiv from '../../pages/mainDiv'
 import SubDiv from '../../pages/subDiv'
 import LoadingPostList from '../../components/loadingPostList/index.js';
-
-import { storeProduct } from '../../data'
-import { listData } from '../MyTuelist/listData.js';
+ 
 import accountAccess from '../avatar/accountAccess.js';
 
 import MyTueList from '../../components/MyTuelist/index.js';
@@ -247,13 +245,14 @@ const Sub = (props) => {
           })
         })
         .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
-      console.log('print something');
+      //console.log('print something');
       //console.log('loading complete!');
     }
 
     render() {
       let mainListData = this.state.mainListData;
-      let profileData = this.state.profileData;
+      let profileData = this.state.profileData; 
+ 
       return (
         <MainDiv className='postlist-main-container'>
           <SubDiv className='postlist-sub-container'>

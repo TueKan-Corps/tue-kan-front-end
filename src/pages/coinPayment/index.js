@@ -1,9 +1,13 @@
+/*
+  .edit 11-Apr-20 
+    -- wait to POST.
+*/
+
 import React from 'react';
 
 import './style.css';
 
-import MyTueList from '../../components/MyTuelist/index.js';
-//import LoadingPostList from '../../components/loadingPostList/index.js';
+import MyTueList from '../../components/MyTuelist/index.js'; 
 
 import MainDiv from '../mainDiv.js';
 import SubDiv from '../subDiv.js';
