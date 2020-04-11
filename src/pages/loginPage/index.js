@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
+import {Redirect} from 'react-router-dom'
 import './style.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import logo from '../../assets/icon/weblogo_white.png'
+import accountAccess from '../../components/avatar/accountAccess.js'
+
 // import styled from 'styled-components   '
 
 
@@ -17,7 +20,9 @@ export default class Login extends Component {
         usernameLogin: '',
         passwordLogin: '',
         formValid: false,
-        responseData: ''
+        responseData: {
+            account_id : 36
+        }
     }
 
     signUpData = {
@@ -39,7 +44,7 @@ export default class Login extends Component {
                 validator: {
                     required: true,
                     minLength: 5,
-                    maxLength:15
+                    maxLength:20
                 },
                 touched: false,
                 error:{status:true,message:''}
@@ -212,8 +217,11 @@ export default class Login extends Component {
         })
         console.log(this.state);
     }
+ 
     onLoginSubmit = (event) => {
-        let dataResonse = {};
+        event.preventDefault();
+        accountAccess().clearAccountId();
+        let checkId = accountAccess().getAccountId();
         console.log('ก่อนส่ง');
         console.log(this.state);
         var myHeaders = new Headers();
@@ -239,8 +247,22 @@ export default class Login extends Component {
             .catch(error => console.log('error', error));
         alert('login');
         console.log(this.state.responseData);
+        console.log(checkId);
+        if (checkId === this.state.responseData.account_id) {
+            
+        }
+        else {
+            window.location = "/";
+        }
 
     }
+    componentDidUpdate() {
+        accountAccess().clearAccountId();
+        console.log(this.state.responseData.account_id);
+        accountAccess().setAccountId(this.state.responseData.account_id);
+        let accountId = accountAccess().getAccountId()
+    }
+
     render() {
         const signInButton = () => {
             const ele = document.querySelector('#container');
