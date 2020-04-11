@@ -25,11 +25,25 @@ class Navbar extends React.Component {
   state = {
     loading: true,
     profileData: { first_name: 'firstName', last_name: 'lastName' },
+    status: 'guest'
+  }
+
+  logout() {
+    accountAccess().clearAccountId();
+    window.location.reload();
   }
 
   componentDidMount() {
-    accountAccess().clearAccountId();    
+    //accountAccess().clearAccountId();    
+    //accountAccess().setAccountId(29);
     let accountId = accountAccess().getAccountId();
+
+    console.log(accountId);
+
+    if (accountId !== 36) {
+      this.setState({ status: 'user' })
+    }
+
     const url = `https://tue-kan.herokuapp.com/account/${accountId}`;
     this.setState({ loading: true })
     axios.get(url)
@@ -48,6 +62,7 @@ class Navbar extends React.Component {
   render () {
     let loading = this.state.loading;
     let profileData = this.state.profileData;
+    let status = this.state.status;
     return (
       <nav className='navbar-container'>
         <Link to='/'>
@@ -62,8 +77,19 @@ class Navbar extends React.Component {
             { !loading && <p className='coin-messege coin-amount'><b>{profileData.coin_amount}</b></p>}
             { loading && <p className='coin-messege coin-amount'><b>xxxx</b></p>}
             <p className='coin-messege coin-ex'><b>TC</b></p>
-          </div>
+          </div> 
         </Link>
+ 
+        <div className='login-box'>
+        {
+          status === 'guest' ?
+          <Link to='/login'>
+            <p className='login-text'><b>LOGIN</b></p>
+          </Link>
+          :
+          <p className='login-text' onClick={this.logout}><b>LOGOUT</b></p>
+        }
+        </div> 
       </nav>
     );
   }

@@ -3,24 +3,40 @@
         -- add accountAccess to getAccountId, setAccountId and clearAccountId.
 */
 
+import Cookies from 'universal-cookie';
+  
+const cookies = new Cookies();
+
 const accountAccess =()=> {    
     
     /// create static variable name 'accountId'.
-    /// 36 is temp guest account id.
-    let isFirstTime = accountAccess.accountId === 36;  
+    /// 36 is temp guest account id. 
+
+    if (typeof(cookies.get('account_id')) === 'undefined') {
+        accountAccess.accountId = 36;
+    } 
 
     const setAccountId =(id)=> {
-        if (isFirstTime === true) 
-            accountAccess.accountId = id; 
+        accountAccess.accountId = id;  
+        cookies.set('account_id', id, { path: '/' }); 
+        console.log('set cookies here');
+        console.log(cookies.get('account_id'));
     }
 
-    const getAccountId =()=> { 
+    const getAccountId =()=> {   
+        if (typeof (cookies.get('account_id')) !== 'undefined')
+            accountAccess.accountId = cookies.get('account_id');
+
         return accountAccess.accountId;
     }
 
     /// cleatAccountId => set accountId to 36 (guest account id).
-    const clearAccountId =()=> {
-        accountAccess.accountId = 36;
+    const clearAccountId =()=> { 
+        cookies.remove('account_id', { path: '/' });
+    }
+
+    const clearCookie =()=> {
+        
     }
 
     return {
