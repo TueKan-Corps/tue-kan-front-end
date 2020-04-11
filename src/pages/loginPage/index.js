@@ -220,8 +220,7 @@ export default class Login extends Component {
  
     onLoginSubmit = (event) => {
         event.preventDefault();
-        accountAccess().clearAccountId();
-        let checkId = accountAccess().getAccountId();
+
         console.log('ก่อนส่ง');
         console.log(this.state);
         var myHeaders = new Headers();
@@ -247,37 +246,29 @@ export default class Login extends Component {
             .catch(error => console.log('error', error));
         alert('login');
         console.log(this.state.responseData.account_id);
-        console.log(`checkId :${checkId}`);
     }
 
     checkData (result) {
         console.log('result here');
         console.log(this.state.responseData.account_id);
-        accountAccess().setAccountId(this.state.responseData.account_id);
-        window.location = '/';
-        //accountAccess().setAccountId(this.state.responseData.account_id)
-    }
-    /*componentDidUpdate() {
         accountAccess().clearAccountId();
-        let checkId = accountAccess().getAccountId();
-        console.log(this.state.responseData.account_id);
-        accountAccess().setAccountId(this.state.responseData.account_id);
-        if (checkId == this.state.responseData.account_id) {
+        let checkId = 36;
+        if (this.state.responseData.account_id == undefined) {
             
         }
-        else if (this.state.responseData.account_id == undefined) {
-            window.location = "/login";
-            alert("รหัสผ่านผิดพลาด");
+        else {
+            accountAccess().setAccountId(this.state.responseData.account_id);
+        }
+        if (checkId == accountAccess().getAccountId()) {
+            alert('รหัสผ่านไม่ถูกต้อง');
+            window.location= "/login";
         }
         else {
-            // console.log(`responseData.account_id : ${this.state.responseData.account_id}`);
-            // console.log(`checkId : ${checkId}`);
-            // console.log(`accountIdNow : ${accountAccess().getAccountId()}`);
-            // alert('');
+            alert('ล็อคอินสำเร็จ');
             window.location = "/";
         }
-    }*/
 
+    }
 
     render() {
         const signInButton = () => {
