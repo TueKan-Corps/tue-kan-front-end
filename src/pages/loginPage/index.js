@@ -240,15 +240,24 @@ export default class Login extends Component {
         fetch("https://tue-kan.herokuapp.com/auth/login", requestOptions)
             .then(response => response.json())
             // .then(result => { dataResonse = result })
-            .then(result => this.setState({
-                responseData : result
-            }))
+            .then(result => 
+                this.setState({
+                    responseData : result
+                }, () => this.checkData(result)))
             .catch(error => console.log('error', error));
         alert('login');
         console.log(this.state.responseData.account_id);
         console.log(`checkId :${checkId}`);
     }
-    componentDidUpdate() {
+
+    checkData (result) {
+        console.log('result here');
+        console.log(this.state.responseData.account_id);
+        accountAccess().setAccountId(this.state.responseData.account_id);
+        window.location = '/';
+        //accountAccess().setAccountId(this.state.responseData.account_id)
+    }
+    /*componentDidUpdate() {
         accountAccess().clearAccountId();
         let checkId = accountAccess().getAccountId();
         console.log(this.state.responseData.account_id);
@@ -267,7 +276,7 @@ export default class Login extends Component {
             // alert('');
             window.location = "/";
         }
-    }
+    }*/
 
     render() {
         const signInButton = () => {

@@ -18,9 +18,7 @@ const accountAccess =()=> {
 
     const setAccountId =(id)=> {
         accountAccess.accountId = id;  
-        cookies.set('account_id', id, { path: '/' }); 
-        console.log('set cookies here');
-        console.log(cookies.get('account_id'));
+        cookies.set('account_id', id, { path: '/' });  
     }
 
     const getAccountId =()=> {   
@@ -33,11 +31,7 @@ const accountAccess =()=> {
     /// cleatAccountId => set accountId to 36 (guest account id).
     const clearAccountId =()=> { 
         cookies.remove('account_id', { path: '/' });
-    }
-
-    const clearCookie =()=> {
-        
-    }
+    } 
 
     return {
         setAccountId: setAccountId,
