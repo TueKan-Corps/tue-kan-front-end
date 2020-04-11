@@ -72,12 +72,7 @@ export default () => {
             <SideBar />
             <NewCreatePost />
           </Route>
-
-          <Route path="/createPost">
-            <SideBar />
-            <NewCreatePost />
-          </Route>
-
+  
           <Route exact path="/">
             <SideBar />
             <Home></Home>

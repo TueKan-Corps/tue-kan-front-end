@@ -96,6 +96,7 @@ const DateBox = styled(TextBox).attrs({
 
 const NumBox = styled(TextBox).attrs({
   type: 'number',
+  step: '1',
 })`
 `;
 
@@ -155,7 +156,7 @@ class NewCreatePost extends React.Component {
     let url = `https://tue-kan.herokuapp.com/post/`
     let data = this.state;
 
-    //console.log(data);
+    console.log(data);
 
     let isConfirm = window.confirm('ต้องการสร้างโพสต์ใช่หรือไม่ ?');
     if (isConfirm) {
@@ -172,7 +173,7 @@ class NewCreatePost extends React.Component {
   }
 
   componentWillMount () {
-    let accountId = accountAccess().getAccountId(); 
+    let accountId = parseInt(accountAccess().getAccountId()); 
     this.setState({
       account_id: accountId,
     })
@@ -245,7 +246,7 @@ class NewCreatePost extends React.Component {
 
                 <FormItem className='form-item'>
                   <HeadText className='header-text'><b>Price :</b></HeadText>
-                  <TextBox className='item-input' name='price' placeholder='99999' onChange={this.onInputChange} short required></TextBox>
+                  <NumBox className='item-input' name='price' placeholder='99999' min='0' onChange={this.onInputChange} short required></NumBox>
                 </FormItem>
 
                 <FormItem className='form-item'>
