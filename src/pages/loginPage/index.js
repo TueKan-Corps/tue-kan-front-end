@@ -261,10 +261,10 @@ export default class Login extends Component {
             alert("รหัสผ่านผิดพลาด");
         }
         else {
-            // console.log(`responseData.account_id : ${this.state.responseData.account_id}`);
+            console.log(`responseData.account_id : ${this.state.responseData.account_id}`);
             // console.log(`checkId : ${checkId}`);
             // console.log(`accountIdNow : ${accountAccess().getAccountId()}`);
-            // alert('');
+            alert('');
             window.location = "/";
         }
     }
