@@ -70,51 +70,57 @@ const Sub = (props) => {
     statusText: '',
     colorButton: ''
   }
-  if (accountId === postData.account_id) {
+  if (accountId == postData.account_id) {
     buttonState.joinState = false
     buttonState.statusText = 'This is your post'
     buttonState.colorButton = 'rgb(235, 235, 235)'
     
   }
 
-  if (postData.amount >= postData.full) {
+  else if (postData.amount >= postData.full && buttonState.joinState) {
     buttonState.joinState = false
     buttonState.statusText = 'Soldout'
     buttonState.colorButton = 'rgb(255,216,212)'
   }
-  else {
-    buttonState.joinState = true
-    buttonState.statusText = 'Buy Ticket'
-    buttonState.colorButton = '#ffeb99'
-  }
+  // else {
+  //   buttonState.joinState = true
+  //   buttonState.statusText = 'Buy Ticket'
+  //   buttonState.colorButton = '#ffeb99'
+  // }
 
-  if (yearNowDate <= expYear) {
-    if (mountNowDate < expMount) {
+  else if (yearNowDate == expYear && buttonState.joinState) {
+    if (mountNowDate < expMount && buttonState.joinState) {
       buttonState.joinState = true
+      buttonState.statusText = 'Buy Ticket'
+      buttonState.colorButton = '#ffeb99'
     }
-    else if (mountNowDate == expMount) {
+    else if (mountNowDate == expMount && buttonState.joinState) {
       if (dayNowDate < expDay) {
         buttonState.joinState = true
+        buttonState.statusText = 'Buy Ticket'
+        buttonState.colorButton = '#ffeb99'
       }
-      else {
+      else if(dayNowDate >= expDay && buttonState.joinState){
         buttonState.joinState = false
         buttonState.colorButton = 'rgb(255,216,212)'
         buttonState.statusText = 'Out of date'
       }
     }
-    else {
+    else if(mountNowDate > expMount && buttonState.joinState){
       buttonState.joinState = false
       buttonState.colorButton = 'rgb(255,216,212)'
       buttonState.statusText = 'Out of date'
     }
   }
-  else if (yearNowDate < expYear) {
+  else if (yearNowDate < expYear && buttonState.joinState) {
     buttonState.joinState = true
+    buttonState.statusText = 'Buy Ticket'
+    buttonState.colorButton = '#ffeb99'
   }
-  else {
-    buttonState.joinState = false
-    buttonState.colorButton = 'rgb(255,216,212)'
-    buttonState.statusText = 'Out of date'
+  else if (yearNowDate > expYear && buttonState.joinState){
+    buttonState.joinState = true
+    buttonState.statusText = 'Buy Ticket'
+    buttonState.colorButton = '#ffeb99'
   }
 
   const buyTicket = () => {
@@ -140,6 +146,7 @@ const Sub = (props) => {
       }).catch((error) => {
         console.log(error)
       });
+    console.log(`${buttonState.joinState}`)
     alert('pay coin');
   }
     return (
