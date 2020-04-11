@@ -237,7 +237,6 @@ export default class Login extends Component {
             body: urlencoded,
             redirect: 'follow'
         };
-
         fetch("https://tue-kan.herokuapp.com/auth/login", requestOptions)
             .then(response => response.json())
             // .then(result => { dataResonse = result })
@@ -246,21 +245,27 @@ export default class Login extends Component {
             }))
             .catch(error => console.log('error', error));
         alert('login');
-        console.log(this.state.responseData);
-        console.log(checkId);
-        if (checkId === this.state.responseData.account_id) {
-            
-        }
-        else {
-            window.location = "/";
-        }
-
+        console.log(this.state.responseData.account_id);
+        console.log(`checkId :${checkId}`);
     }
     componentDidUpdate() {
         accountAccess().clearAccountId();
+        let checkId = accountAccess().getAccountId();
         console.log(this.state.responseData.account_id);
         accountAccess().setAccountId(this.state.responseData.account_id);
-        let accountId = accountAccess().getAccountId()
+        if (checkId == this.state.responseData.account_id) {
+            
+        }
+        else if (this.state.responseData.account_id == undefined) {
+            window.location = "/login";
+            alert("รหัสผ่านผิดพลาด");
+        }
+        else {
+            // console.log(`responseData.account_id : ${this.state.responseData.account_id}`);
+            // console.log(`checkId : ${checkId}`);
+            // alert('');
+            window.location = "/";
+        }
     }
 
     render() {
