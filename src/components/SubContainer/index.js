@@ -16,9 +16,7 @@ import DetailHeader from '../../pages/newCreatePost/detailHeader'
 import MainDiv from '../../pages/mainDiv'
 import SubDiv from '../../pages/subDiv'
 import LoadingPostList from '../../components/loadingPostList/index.js';
-
-import { storeProduct } from '../../data'
-import { listData } from '../MyTuelist/listData.js';
+ 
 import accountAccess from '../avatar/accountAccess.js';
 
 import MyTueList from '../../components/MyTuelist/index.js';
@@ -52,7 +50,7 @@ const Sub = (props) => {
   let accountId = accountAccess().getAccountId()
 
   let data = {
-    account_id: accountId,
+    account_id: parseInt(accountId),
     post_id: parseInt(postData.id)
   }
   var today = new Date();
@@ -124,7 +122,7 @@ const Sub = (props) => {
   }
 
   const buyTicket = () => {
-    let url = `https://tue-kan.herokuapp.com/ticket/`;
+    let url = `https://tue-kan.herokuapp.com/ticket/`; 
     axios.post(url, data)
       .then((res) => {
         console.log(res.data)
@@ -135,11 +133,11 @@ const Sub = (props) => {
     alert('ซื้อสำเร็จ')
   }
   const payCoin = () => {
-    console.log(props.profileData);
-    let newData = props.profileData;
-    newData['coin_amount'] = newData.coin_amount - parseInt(postData.price);
+    let newData = {'id': parseInt(accountId), 'coin': parseInt(props.profileData.coin_amount) - parseInt(mainData.price)}
+    console.log('props.profileData');
+    console.log(newData);
 
-    let url = 'https://mock-up-tuekan-backend.herokuapp.com/profile';
+    let url = 'https://tue-kan.herokuapp.com/account/coin';
     axios.post(url, newData)
       .then((res) => {
         console.log(res)
@@ -246,21 +244,23 @@ const Sub = (props) => {
           })
         })
         .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
-      url = 'https://mock-up-tuekan-backend.herokuapp.com/profile';
+      let accountId = accountAccess().getAccountId();
+      url = `https://tue-kan.herokuapp.com/account/${accountId}`;
       axios.get(url)
         .then(data => {
           this.setState({
-            profileData: data.data
+            profileData: data.data[0]
           })
         })
         .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
-      console.log('print something');
+      //console.log('print something');
       //console.log('loading complete!');
     }
 
     render() {
       let mainListData = this.state.mainListData;
-      let profileData = this.state.profileData;
+      let profileData = this.state.profileData; 
+ 
       return (
         <MainDiv className='postlist-main-container'>
           <SubDiv className='postlist-sub-container'>
