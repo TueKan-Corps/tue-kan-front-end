@@ -240,34 +240,44 @@ export default class Login extends Component {
         fetch("https://tue-kan.herokuapp.com/auth/login", requestOptions)
             .then(response => response.json())
             // .then(result => { dataResonse = result })
-            .then(result => this.setState({
-                responseData : result
-            }))
+            .then(result => 
+                this.setState({
+                    responseData : result
+                }, () => this.checkData(result)))
             .catch(error => console.log('error', error));
         alert('login');
         console.log(this.state.responseData.account_id);
         console.log(`checkId :${checkId}`);
     }
-    // componentDidUpdate() {
-    //     accountAccess().clearAccountId();
-    //     let checkId = accountAccess().getAccountId();
-    //     console.log(this.state.responseData.account_id);
-    //     accountAccess().setAccountId(this.state.responseData.account_id);
-    //     if (checkId == this.state.responseData.account_id) {
+
+    checkData (result) {
+        console.log('result here');
+        console.log(this.state.responseData.account_id);
+        accountAccess().setAccountId(this.state.responseData.account_id);
+        window.location = '/';
+        //accountAccess().setAccountId(this.state.responseData.account_id)
+    }
+    /*componentDidUpdate() {
+        accountAccess().clearAccountId();
+        let checkId = accountAccess().getAccountId();
+        console.log(this.state.responseData.account_id);
+        accountAccess().setAccountId(this.state.responseData.account_id);
+        if (checkId == this.state.responseData.account_id) {
             
-    //     }
-    //     else if (this.state.responseData.account_id == undefined) {
-    //         window.location = "/login";
-    //         alert("รหัสผ่านผิดพลาด");
-    //     }
-    //     else {
-    //         console.log(`responseData.account_id : ${this.state.responseData.account_id}`);
-    //         // console.log(`checkId : ${checkId}`);
-    //         // console.log(`accountIdNow : ${accountAccess().getAccountId()}`);
-    //         alert('');
-    //         window.location = "/";
-    //     }
-    // }
+        }
+        else if (this.state.responseData.account_id == undefined) {
+            window.location = "/login";
+            alert("รหัสผ่านผิดพลาด");
+        }
+        else {
+            // console.log(`responseData.account_id : ${this.state.responseData.account_id}`);
+            // console.log(`checkId : ${checkId}`);
+            // console.log(`accountIdNow : ${accountAccess().getAccountId()}`);
+            // alert('');
+            window.location = "/";
+        }
+    }*/
+
 
     render() {
         const signInButton = () => {
