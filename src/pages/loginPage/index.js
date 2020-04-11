@@ -263,6 +263,7 @@ export default class Login extends Component {
         else {
             // console.log(`responseData.account_id : ${this.state.responseData.account_id}`);
             // console.log(`checkId : ${checkId}`);
+            // console.log(`accountIdNow : ${accountAccess().getAccountId()}`);
             // alert('');
             window.location = "/";
         }
