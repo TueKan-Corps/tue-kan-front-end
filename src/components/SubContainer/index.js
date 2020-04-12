@@ -114,7 +114,7 @@ const Sub = (props) => {
   else {
     buttonState.joinState = false
     buttonState.colorButton = 'rgb(255,216,212)'
-    buttonState.statusText = 'Out of date'
+    buttonState.statusText = 'Out of date123456'
   }
 
   const buyTicket = () => {
