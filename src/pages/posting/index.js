@@ -19,6 +19,8 @@
     -- [**1] fake account_id.
   .edit 10-Apr-20
     -- [**1] use real account_id.
+  .edit 12-Apr-20
+    -- edit to change post img to real img from backend.
 */
 
 import React from 'react';
@@ -31,9 +33,7 @@ import {
 import axios from 'axios';
 
 import './style.css';
-
-import tempPic from '../../components/avatar/profile.jpg';
-
+ 
 import MainDiv from '../mainDiv.js';
 import SubDiv from '../subDiv.js';
 import DetailContainer from '../newCreatePost/detailContainer.js';
@@ -83,6 +83,8 @@ const PostingDetail =(props)=> {
   const [isHaveTicket, setIsHaveTicket] = React.useState(false);
   const [postingData, ] = React.useState(props.postData[postingId-1]);
   const [participantData, setParticipantData] = React.useState(JSON.parse(postingData.participant));
+
+  let imgSrc = `https://tue-kan.herokuapp.com/account/${postingData.account_id}/img`;
 
   const checkAndHighLight =(length)=> {
     if(findTicket(length).canFind) {
@@ -151,8 +153,7 @@ const PostingDetail =(props)=> {
 
           <div className='img-container'>
             <div className='img-box'>
-              {/*<img className='tutor-img' src={ticketData.img} alt='tutor-img' />*/}
-              {<img className='tutor-img' src={tempPic} alt='tutor-img' />}
+              <img className='tutor-img' src={imgSrc} alt='tutor-img' />
             </div>
           </div>
 
