@@ -261,7 +261,10 @@ export default class Login extends Component {
         }
         if (checkId == accountAccess().getAccountId()) {
             alert('รหัสผ่านไม่ถูกต้อง');
-            window.location= "/login";
+            this.setState({
+                ...this.state,
+                passwordLogin : ''
+            })
         }
         else {
             alert('ล็อคอินสำเร็จ');
@@ -289,9 +292,9 @@ export default class Login extends Component {
                         <form className="form-login" action="#" onSubmit={this.onFormSubmit}>
                             <h1 className="header1-login">Create Account</h1>
                             <div className="social-container">
-                                <a href="#" className="social"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#" className="social"><i class="fab fa-google-plus-g"></i></a>
-                                <a href="#" className="social"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" className="social"><i className="fab fa-facebook-f"></i></a>
+                                <a href="#" className="social"><i className="fab fa-google-plus-g"></i></a>
+                                <a href="#" className="social"><i className="fab fa-linkedin-in"></i></a>
                             </div>
                             <span className="span-login">or use your email for registration</span>
                             <input className={this.getInputClass('firstname')} type="text" placeholder="Firstname" id="firstname" name="firstname" onChange={this.onFormChange}/>
@@ -313,13 +316,13 @@ export default class Login extends Component {
                         <form className="form-login" action="#" onSubmit = {this.onLoginSubmit}>
                             <h1 className="header1-login">Sign in</h1>
                             <div className="social-container">
-                                <a href="#" className="social"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#" className="social"><i class="fab fa-google-plus-g"></i></a>
-                                <a href="#" className="social"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" className="social"><i className="fab fa-facebook-f"></i></a>
+                                <a href="#" className="social"><i className="fab fa-google-plus-g"></i></a>
+                                <a href="#" className="social"><i className="fab fa-linkedin-in"></i></a>
                             </div>
                             <span className="span-login">or use your account</span>
                             <input className="input-login form-control" type="username" placeholder="Email" id="usernameLogin" name="usernameLogin" onChange={this.onInputChange} />
-                            <input className="input-login form-control" type="password" placeholder="Password" id="passwordLogin" name="passwordLogin" onChange={this.onInputChange} />
+                            <input className="input-login form-control" type="password" placeholder="Password" id="passwordLogin" name="passwordLogin" value={this.state.passwordLogin} onChange={this.onInputChange} />
                             <a href="#" className="social">Forgot your password?</a>
                             <button className="button-login">Sign In</button>
                         </form>
