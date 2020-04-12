@@ -115,10 +115,11 @@ const Sub = (props) => {
     buttonState.statusText = 'Buy Ticket'
     buttonState.colorButton = '#ffeb99'
   }
-  else if (yearNowDate > expYear && buttonState.joinState){
-    buttonState.joinState = true
-    buttonState.statusText = 'Buy Ticket'
-    buttonState.colorButton = '#ffeb99'
+
+  else {
+    buttonState.joinState = false
+    buttonState.colorButton = 'rgb(255,216,212)'
+    buttonState.statusText = 'Out of date123456'
   }
 
   const buyTicket = () => {
