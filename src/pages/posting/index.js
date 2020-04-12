@@ -16,6 +16,11 @@
     -- **3 [clear] remaining find re-render method to update redeem status.
   .edit 02-Apr-20
     -- edit to use centralized account_id.
+    -- [**1] fake account_id.
+  .edit 10-Apr-20
+    -- [**1] use real account_id.
+  .edit 12-Apr-20
+    -- edit to change post img to real img from backend.
 */
 
 import React from 'react';
@@ -28,22 +33,18 @@ import {
 import axios from 'axios';
 
 import './style.css';
-
-import tempPic from '../../components/avatar/profile.jpg';
-
+ 
 import MainDiv from '../mainDiv.js';
 import SubDiv from '../subDiv.js';
 import DetailContainer from '../newCreatePost/detailContainer.js';
 import DetailBody from '../newCreatePost/detailBody.js';
 import DetailHeader from '../newCreatePost/detailHeader.js';
 
-//import {myPostingData} from '../../components/MyTuelist/myPostingData.js';
-import {accountData} from '../../components/avatar/accountData.js';
-
 import MyTueList from '../../components/MyTuelist/index.js';
 import Postlist from '../../components/SubContainer/Postlist/index.js';
 import LoadingPostList from '../../components/loadingPostList/index.js';
 import NameListTable from './nameListTable/index.js';
+import accountAccess from '../../components/avatar/accountAccess.js';
 
 const findTicket =(length)=> {
   /// get ticket code from redeem box.
@@ -82,6 +83,8 @@ const PostingDetail =(props)=> {
   const [isHaveTicket, setIsHaveTicket] = React.useState(false);
   const [postingData, ] = React.useState(props.postData[postingId-1]);
   const [participantData, setParticipantData] = React.useState(JSON.parse(postingData.participant));
+
+  let imgSrc = `https://tue-kan.herokuapp.com/account/${postingData.account_id}/img`;
 
   const checkAndHighLight =(length)=> {
     if(findTicket(length).canFind) {
@@ -150,8 +153,7 @@ const PostingDetail =(props)=> {
 
           <div className='img-container'>
             <div className='img-box'>
-              {/*<img className='tutor-img' src={ticketData.img} alt='tutor-img' />*/}
-              {<img className='tutor-img' src={tempPic} alt='tutor-img' />}
+              <img className='tutor-img' src={imgSrc} alt='tutor-img' />
             </div>
           </div>
 
@@ -274,7 +276,7 @@ class Posting extends React.Component {
   }
 
   componentDidMount () {
-    let accountId = accountData.account_id;
+    let accountId = accountAccess().getAccountId(); 
     const url = `https://tue-kan.herokuapp.com/post/posting/${accountId}`;
     this.setState({loading: true})
     axios.get(url)

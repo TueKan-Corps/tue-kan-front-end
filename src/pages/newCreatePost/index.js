@@ -23,6 +23,9 @@
     -- edit date format to DD/MM/YYYY
   .edit 02-Apr-20
     -- edit date format to MM-DD-YYYY because another format can't sort in database.
+    -- [**1] fake account_id.
+  .edit 10-Apr-20
+    -- [**1] use real account_id.
 */
 
 import React from 'react';
@@ -30,7 +33,6 @@ import axios from 'axios';
 //import { Switch, Redirect } from 'react-router-dom';
 
 import {category} from './category.js';
-import {accountData} from '../../components/avatar/accountData.js';
 
 import './style.css';
 
@@ -42,6 +44,7 @@ import DetailHeader from './detailHeader.js';
 import MainDiv from '../mainDiv.js';
 import SubDiv from '../subDiv.js';
 import MyTueList from '../../components/MyTuelist/index.js';
+import accountAccess from '../../components/avatar/accountAccess.js';
 
 const FormItem = styled.div`
   padding: 10px 10px 10px 10px;
@@ -93,6 +96,7 @@ const DateBox = styled(TextBox).attrs({
 
 const NumBox = styled(TextBox).attrs({
   type: 'number',
+  step: '1',
 })`
 `;
 
@@ -169,7 +173,7 @@ class NewCreatePost extends React.Component {
   }
 
   componentWillMount () {
-    let accountId = accountData.account_id;
+    let accountId = parseInt(accountAccess().getAccountId()); 
     this.setState({
       account_id: accountId,
     })
@@ -242,7 +246,7 @@ class NewCreatePost extends React.Component {
 
                 <FormItem className='form-item'>
                   <HeadText className='header-text'><b>Price :</b></HeadText>
-                  <TextBox className='item-input' name='price' placeholder='99999' onChange={this.onInputChange} short required></TextBox>
+                  <NumBox className='item-input' name='price' placeholder='99999' min='0' onChange={this.onInputChange} short required></NumBox>
                 </FormItem>
 
                 <FormItem className='form-item'>

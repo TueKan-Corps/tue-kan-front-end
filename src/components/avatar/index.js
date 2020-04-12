@@ -1,6 +1,10 @@
 /*
   .edit 07-Apr-20
     -- edit to use real data from real database.
+  .edit 09-Apr-20
+    -- edit to use real profile img from real server. 
+  .edit 11-Apr-20
+    -- add random number of guest.
 */
 
 import React from 'react';
@@ -8,25 +12,26 @@ import axios from 'axios';
 
 import { Link } from "react-router-dom";
 import Spinner from 'react-bootstrap/Spinner';
-
-import { accountData } from '../../components/avatar/accountData.js';
+ 
+import accountAccess from './accountAccess.js';
 
 import './style.css';
-
-//import {profileData} from './profileData.js';
-//import {profileData} from './newProfileData.js';
- 
+  
 class Avatar extends React.Component {
 
   state = {
     loading: true, 
     profileData: { first_name: 'firstName', last_name: 'lastName' }, 
+    img: {},
+    accountId: {}
   }
 
-  componentDidMount() {
-    let accountId = accountData.account_id;
+  componentDidMount() {  
+    let accountId = accountAccess().getAccountId(); 
+    this.setState({ accountId: accountId })
     const url = `https://tue-kan.herokuapp.com/account/${accountId}`;
-    this.setState({ loading: true })
+    
+    /// get account data
     axios.get(url)
       .then(data => {
         this.setState({
@@ -38,8 +43,14 @@ class Avatar extends React.Component {
       })
       .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
     //console.log('loading complete!');
-  }
 
+    /// get account img
+    let imgSrc = `https://tue-kan.herokuapp.com/account/${accountId}/img`;
+    this.setState({
+      img: imgSrc
+    })
+  }
+ 
   render () {
 
     /*
@@ -58,15 +69,15 @@ class Avatar extends React.Component {
     let lastNameDisplay = lastNameOverLen ? `${(profileData.last_name).substring(0, dotLen)}...` : profileData.last_name;
     let max = (profileData.first_name).length > (profileData.last_name).length ? (profileData.first_name).length : (profileData.last_name).length
     max = max <= maxLength ? max : maxLength;
-    //console.log(firstNameOverLen);
-    //console.log(lastNameOverLen);
-    //console.log(profileData.firstName);
+    let accountId = this.state.accountId;
+    lastNameDisplay = accountId !== 36 ? lastNameDisplay : `#${Math.floor(Math.random() * 10000) + 1000}${Math.floor(Math.random() * 10000) + 1000}`;
+  
     return (
       <Link className='avatar-link' to='/profile'>
         {/* hover background of avatar is relate with length of firstname or lastname */}
         <div className='avatar-box' style={{width: `${max * (40 - (max+(max/1.5)))}px`}}>
             <div className='img-box'>
-              <img className='avatar-img' src={profileData.img} alt='avatar-img' />
+              <img className='avatar-img' src={this.state.img} alt='avatar-img' />
             </div>
             <div className='text-box'>
             {

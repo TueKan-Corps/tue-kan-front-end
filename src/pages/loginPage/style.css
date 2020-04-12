@@ -5,49 +5,46 @@
 }
 
 
-/* .loginpage body {
-
-	background: #f6f5f7;
+.loginpage {
+	display: block;
+	/* transform: translate(25%, 25%);  */
+	/* margin-left: 10vh;
+	margin-top: 10vh; */
+	min-width: 100vw;
+	min-height: 100vh;
+	position: relative;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	flex-direction: column;
-	font-family: 'Montserrat', sans-serif;
-	height: 100vh;
-	width: 100wh;
-	margin: -20px 0 50px;
-} */
-.container-login {
+  }
+
+.loginpage .container-login {
+
 	background-color: #fff;
 	border-radius: 10px;
-  	box-shadow: 0 14px 28px rgba(0,0,0,0.25),0 10px 10px rgba(0,0,0,0.22);
-	position: absolute;
+	  box-shadow: 0 14px 28px rgba(0,0,0,0.25),0 10px 10px rgba(0,0,0,0.22);
+	position: relative;
 	overflow: hidden;
-	margin-top: 25vh;
-	margin-left: 50vh;
+	width: 768px;
+	max-width: 100%;
+	min-height: 480px;
+   }
 
-.loginpage {
-  display: block;
-  transform: translate(25%, 25%); 
-  margin-left: 10vh;
-  margin-top: 10vh;
-}
-
-.header1-login {
+.loginpage .header1-login {
   /* width: 100vw;
   height: 100vh; */
-  /* justify-items: center;
-  align-items: center; */
+  justify-items: center;
+  align-items: center;
   right:  0; 
 }
 
-.container-login .header1-login {
+.loginpage .container-login .header1-login {
 	font-weight: bold;
 	margin: 0;
 	font-size: 35px;
 }
 
-.container-login .p-login {
+.loginpage .container-login .p-login {
 	font-size: 14px;
 	font-weight: 100;
 	line-height: 20px;
@@ -56,19 +53,20 @@
 }
 
 
-.container-login .span {
+.loginpage .container-login .span {
 	font-size: 12px;
 }
 
-.container-login .social {
+.loginpage .container-login .social {
 	color: #333;
 	font-size: 14px;
 	text-decoration: none;
-	margin: 15px 0;
+	/* margin: 15px 0; */
+	margin-left: 8px;
 }
 
 
-.container-login .button-login{
+.loginpage .container-login .button-login{
 
 	border-radius: 20px;
 	border: 1px solid #4BCCFF;
@@ -83,15 +81,15 @@
 }
 
 
-.container-login .button-login:active {
+.loginpage .container-login .button-login:active {
 	transform: scale(0.95);
 }
 
-.container-login .button-login:focus {
+.loginpage .container-login .button-login:focus {
 	outline: none;
 }
 
-.container-login .ghost {
+.loginpage .container-login .ghost {
 	background-color: transparent;
 	border-color: #FFFFFF;
 
@@ -101,7 +99,7 @@
 }
 
 
-.container-login .form-login {
+.loginpage .container-login .form-login {
 	background-color: #FFFFFF;
 	display: flex;
 	align-items: center;
@@ -113,7 +111,7 @@
 }
 
 
-.container-login .input-login {
+.loginpage .container-login .input-login {
 
 	background-color: #eee;
 	border: none;
@@ -122,7 +120,7 @@
 	width: 100%;
 	font-size: 14px;
 }
-.container-login .check{
+.loginpage .container-login .check{
 	font-size: 10px;
 	text-align: right;
 	margin-top: 0px;
@@ -132,7 +130,7 @@
 
 
 
-.container-login .form-container {
+.loginpage .container-login .form-container {
 	position: absolute;
 	top: 0;
 	height: 100%;
@@ -140,7 +138,7 @@
 }
 
 
-.container-login .sign-in-container {
+.loginpage .container-login .sign-in-container {
 	left: 0;
 	width: 50%;
 	z-index: 2;
@@ -150,7 +148,7 @@
 
 
 
-.container-login .sign-up-container {
+.loginpage .container-login .sign-up-container {
 
 	left: 0;
 	width: 50%;

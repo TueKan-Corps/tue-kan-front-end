@@ -18,6 +18,11 @@
     -- add skeleleton loading component.
   .edit 02-Apr-20
     -- edit to use centralized account_id.
+    -- [**1] fake account_id.
+  .edit 10-Apr-20
+    -- [**1] use real account_id.
+  .edit 12-Apr-20
+    -- edit to change post img to real img from backend.
 */
 
 import React from 'react';
@@ -30,9 +35,7 @@ import {
 import axios from 'axios';
 
 import './style.css';
-
-import tempPic from '../../components/avatar/profile.jpg';
-
+ 
 import MainDiv from '../mainDiv.js';
 import SubDiv from '../subDiv.js';
 
@@ -40,15 +43,15 @@ import DetailContainer from '../newCreatePost/detailContainer.js';
 import DetailBody from '../newCreatePost/detailBody.js';
 import DetailHeader from '../newCreatePost/detailHeader.js';
 
-import {accountData} from '../../components/avatar/accountData.js';
-
 import MyTueList from '../../components/MyTuelist/index.js';
 import Postlist from '../../components/SubContainer/Postlist/index.js';
 import LoadingPostList from '../../components/loadingPostList/index.js';
+import accountAccess from '../../components/avatar/accountAccess.js';
 
 const TicketDetail =(props)=> {
   let { ticketId } = useParams();
   let ticketData = props.ticketData[ticketId-1];
+  let imgSrc = `https://tue-kan.herokuapp.com/account/${ticketData.account_id}/img`;
   //console.log(ticketData);
   return (
     <DetailContainer className='ticket-detail'>
@@ -60,8 +63,7 @@ const TicketDetail =(props)=> {
 
           <div className='img-container'>
             <div className='img-box'>
-              {/*<img className='tutor-img' src={ticketData.img} alt='tutor-img' />*/}
-              {<img className='tutor-img' src={tempPic} alt='tutor-img' />}
+              <img className='tutor-img' src={imgSrc} alt='tutor-img' />
             </div>
           </div>
 
@@ -139,7 +141,7 @@ class Ticket extends React.Component {
 
   componentDidMount () {
     //const url ='https://mock-up-tuekan-backend.herokuapp.com/post/posting';
-    let accountId = accountData.account_id;
+    let accountId = accountAccess().getAccountId(); 
     const url = `https://tue-kan.herokuapp.com/ticket/${accountId}`;
     this.setState({loading: true})
     axios.get(url)

@@ -6,7 +6,7 @@
     -- edit to use same component with ticket, posting.
 */
 
-import React from 'react'
+import React,{useEffect,useState} from 'react'
 import Banner from './Banner/index'
 
 import Postlist from './Postlist/index' 
@@ -16,10 +16,8 @@ import DetailHeader from '../../pages/newCreatePost/detailHeader'
 import MainDiv from '../../pages/mainDiv'
 import SubDiv from '../../pages/subDiv'
 import LoadingPostList from '../../components/loadingPostList/index.js';
-
-import { storeProduct } from '../../data'
-import { listData } from '../MyTuelist/listData.js';
-import {accountData} from '../../components/avatar/accountData.js';
+import {checkButtonStatus} from '../../helpers'
+import accountAccess from '../avatar/accountAccess.js';
 
 import MyTueList from '../../components/MyTuelist/index.js';
 
@@ -47,75 +45,32 @@ const Sub = (props) => {
   let { postId } = useParams();
   let mainData = props.mainListData[postId - 1];
   let postData = props.mainListData[postId - 1];
-  let accountId = accountData.account_id;
-  let data = {
-    account_id: accountId,
-    post_id: parseInt(postData.id)
-  }
-  var today = new Date();
-  var dayNowDate = String(today.getDate()).padStart(2, '0');
-  var mountNowDate = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-  var yearNowDate = today.getFullYear();
-  var expDate = postData.date.split('-');
-  var expDay = parseInt(expDate[1]);
-  var expMount = parseInt(expDate[0]);
-  var expYear = parseInt(expDate[2]);
-
-
-  let buttonState = {
+  let myTicketData = props.myTicketData;
+  let profileData = props.profileData;
+  const [buttonState,setbuttonState] = useState({
     joinState: true,
     statusText: '',
     colorButton: ''
+  })
+  let accountId = accountAccess().getAccountId()
+  let data = {
+    account_id: parseInt(accountId),
+    post_id: parseInt(postData.id)
   }
-  if (accountData.account_id === postData.account_id) {
-    buttonState.joinState = false
-    buttonState.statusText = 'This is your post'
-    buttonState.colorButton = 'rgb(235, 235, 235)'
-    
-  }
+  var today = new Date();
+  var expDate = postData.date.split('-');
+  useEffect(() => {
+    let haveTicket = myTicketData?.find(ticket => ticket.id === postData.id);
+    setbuttonState(checkButtonStatus(expDate, today, postData, accountId, haveTicket, profileData));
+    console.log(checkButtonStatus(expDate, today, postData, accountId, haveTicket, profileData));
+  }, [myTicketData])
+  // accountAccess().clearAccountId();
 
-  if (postData.amount >= postData.full) {
-    buttonState.joinState = false
-    buttonState.statusText = 'Soldout'
-    buttonState.colorButton = 'rgb(255,216,212)'
-  }
-  else {
-    buttonState.joinState = true
-    buttonState.statusText = 'Buy Ticket'
-    buttonState.colorButton = '#ffeb99'
-  }
 
-  if (yearNowDate <= expYear) {
-    if (mountNowDate < expMount) {
-      buttonState.joinState = true
-    }
-    else if (mountNowDate == expMount) {
-      if (dayNowDate < expDay) {
-        buttonState.joinState = true
-      }
-      else {
-        buttonState.joinState = false
-        buttonState.colorButton = 'rgb(255,216,212)'
-        buttonState.statusText = 'Out of date'
-      }
-    }
-    else {
-      buttonState.joinState = false
-      buttonState.colorButton = 'rgb(255,216,212)'
-      buttonState.statusText = 'Out of date'
-    }
-  }
-  else if (yearNowDate < expYear) {
-    buttonState.joinState = true
-  }
-  else {
-    buttonState.joinState = false
-    buttonState.colorButton = 'rgb(255,216,212)'
-    buttonState.statusText = 'Out of date'
-  }
+  
 
   const buyTicket = () => {
-    let url = `https://tue-kan.herokuapp.com/ticket/`;
+    let url = `https://tue-kan.herokuapp.com/ticket/`; 
     axios.post(url, data)
       .then((res) => {
         console.log(res.data)
@@ -126,17 +81,18 @@ const Sub = (props) => {
     alert('ซื้อสำเร็จ')
   }
   const payCoin = () => {
-    console.log(props.profileData);
-    let newData = props.profileData;
-    newData['coin_amount'] = newData.coin_amount - parseInt(postData.price);
+    let newData = {'id': parseInt(accountId), 'coin': parseInt(props.profileData.coin_amount) - parseInt(mainData.price)}
+    console.log('props.profileData');
+    console.log(newData);
 
-    let url = 'https://mock-up-tuekan-backend.herokuapp.com/profile';
+    let url = 'https://tue-kan.herokuapp.com/account/coin';
     axios.post(url, newData)
       .then((res) => {
         console.log(res)
       }).catch((error) => {
         console.log(error)
       });
+    console.log(`${buttonState.joinState}`)
     alert('pay coin');
   }
     return (
@@ -236,21 +192,33 @@ const Sub = (props) => {
           })
         })
         .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
-      url = 'https://mock-up-tuekan-backend.herokuapp.com/profile';
+      let accountId = accountAccess().getAccountId();
+      url = `https://tue-kan.herokuapp.com/account/${accountId}`;
       axios.get(url)
         .then(data => {
           this.setState({
-            profileData: data.data
+            profileData: data.data[0]
           })
         })
         .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
-      console.log('print something');
+      url = `https://tue-kan.herokuapp.com/ticket/${accountId}`;
+        this.setState({loading: true})
+        axios.get(url)
+          .then(data => {
+            this.setState({
+              myTicketData : data.data
+            })
+          })
+          .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
+      //console.log('print something');
       //console.log('loading complete!');
     }
 
     render() {
       let mainListData = this.state.mainListData;
-      let profileData = this.state.profileData;
+      let profileData = this.state.profileData; 
+      let myTicketData = this.state.myTicketData
+ 
       return (
         <MainDiv className='postlist-main-container'>
           <SubDiv className='postlist-sub-container'>
@@ -267,7 +235,7 @@ const Sub = (props) => {
                 <LoadingPostList length={4} />
               }
               {!this.state.loading && <Route exact path={'/'} component={() => <Main mainListData={mainListData} />} />}
-              {!this.state.loading && <Route exact path={`/home/:postId`} component={() => <Sub mainListData={mainListData} profileData={profileData} />} />}
+              {!this.state.loading && <Route exact path={`/home/:postId`} component={() => <Sub mainListData={mainListData} profileData={profileData} myTicketData={myTicketData}/>} />}
 
             </Switch>
 
