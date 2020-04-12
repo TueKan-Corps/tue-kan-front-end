@@ -1,4 +1,4 @@
-export function checkButtonStatus(expDate, today, postData, accountId, haveTicket) {
+export function checkButtonStatus(expDate, today, postData, accountId, haveTicket, profileData) {
     var dayNowDate = String(today.getDate()).padStart(2, '0');
     var mountNowDate = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yearNowDate = today.getFullYear();
@@ -60,6 +60,11 @@ export function checkButtonStatus(expDate, today, postData, accountId, haveTicke
         buttonState.joinState = false
         buttonState.colorButton = 'rgb(255,216,212)'
         buttonState.statusText = 'Out of date'
+    }
+    if (profileData.coin_amount < postData.price){
+        buttonState.joinState = false
+        buttonState.statusText = 'Not enough money'
+        buttonState.colorButton = 'rgb(255,216,212)'
     }
     return buttonState
 }

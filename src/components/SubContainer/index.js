@@ -46,6 +46,7 @@ const Sub = (props) => {
   let mainData = props.mainListData[postId - 1];
   let postData = props.mainListData[postId - 1];
   let myTicketData = props.myTicketData;
+  let profileData = props.profileData;
   const [buttonState,setbuttonState] = useState({
     joinState: true,
     statusText: '',
@@ -60,8 +61,8 @@ const Sub = (props) => {
   var expDate = postData.date.split('-');
   useEffect(() => {
     let haveTicket = myTicketData?.find(ticket => ticket.id === postData.id);
-    setbuttonState(checkButtonStatus(expDate, today, postData, accountId, haveTicket));
-    console.log(checkButtonStatus(expDate, today, postData, accountId, haveTicket));
+    setbuttonState(checkButtonStatus(expDate, today, postData, accountId, haveTicket, profileData));
+    console.log(checkButtonStatus(expDate, today, postData, accountId, haveTicket, profileData));
   }, [myTicketData])
   // accountAccess().clearAccountId();
 
