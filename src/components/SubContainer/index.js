@@ -51,6 +51,7 @@ const Sub = (props) => {
     joinState: true,
     statusText: '',
     colorButton: '' 
+  });
     
   let imgSrc = `https://tue-kan.herokuapp.com/account/${mainData.account_id}/img`; 
 
