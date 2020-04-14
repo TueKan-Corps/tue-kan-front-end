@@ -156,7 +156,7 @@ class NewCreatePost extends React.Component {
     let url = `https://tue-kan.herokuapp.com/post/`
     let data = this.state;
 
-    console.log(data);
+    //console.log(data);
 
     let isConfirm = window.confirm('ต้องการสร้างโพสต์ใช่หรือไม่ ?');
     if (isConfirm) {
