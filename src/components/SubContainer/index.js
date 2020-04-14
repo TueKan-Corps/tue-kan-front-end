@@ -4,8 +4,6 @@
     -- add skeleleton loading component.
   .edit 07-Apr-20 [Boat]
     -- edit to use same component with ticket, posting.
-  .edit 12-Apr-20
-    -- edit to change post img to real img from backend.
 */
 
 import React,{useEffect,useState} from 'react'
@@ -22,7 +20,9 @@ import {checkButtonStatus} from '../../helpers'
 import accountAccess from '../avatar/accountAccess.js';
 
 import MyTueList from '../../components/MyTuelist/index.js';
- 
+
+
+import tempPic from '../avatar/profile.jpg';
 import './style.css'
 
 import {
@@ -45,8 +45,8 @@ const Sub = (props) => {
   let { postId } = useParams();
   let mainData = props.mainListData[postId - 1];
   let postData = props.mainListData[postId - 1];
-  
   let myTicketData = props.myTicketData;
+  let profileData = props.profileData;
   const [buttonState,setbuttonState] = useState({
     joinState: true,
     statusText: '',
@@ -54,7 +54,6 @@ const Sub = (props) => {
   });
     
   let imgSrc = `https://tue-kan.herokuapp.com/account/${mainData.account_id}/img`; 
-
   let accountId = accountAccess().getAccountId()
   let data = {
     account_id: parseInt(accountId),
@@ -64,8 +63,8 @@ const Sub = (props) => {
   var expDate = postData.date.split('-');
   useEffect(() => {
     let haveTicket = myTicketData?.find(ticket => ticket.id === postData.id);
-    setbuttonState(checkButtonStatus(expDate, today, postData, accountId, haveTicket));
-    console.log(checkButtonStatus(expDate, today, postData, accountId, haveTicket));
+    setbuttonState(checkButtonStatus(expDate, today, postData, accountId, haveTicket, profileData));
+    console.log(checkButtonStatus(expDate, today, postData, accountId, haveTicket, profileData));
   }, [myTicketData])
   // accountAccess().clearAccountId();
 
@@ -108,7 +107,8 @@ const Sub = (props) => {
           <div className='body-container'>
             <div className='img-container'>
               <div className='img-box'>
-                <img className='tutor-img' src={imgSrc} alt='tutor-img' />
+                {/*<img className='tutor-img' src={ticketData.img} alt='tutor-img' />*/}
+                {<img className='tutor-img' src={tempPic} alt='tutor-img' />}
               </div>
             </div>
 
