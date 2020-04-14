@@ -3,6 +3,8 @@
     -- edit <SideBar> into Route because loginpage don't have <Sidebar>
   .edit 11-Apr-20
     -- edit guest flow control, redirect to /login.
+  .edit 14-Apr-20
+    -- add NotFound page.
 */
 
 import React from "react";
@@ -20,6 +22,7 @@ import Posting from '../pages/posting/index.js';
 import Login from '../pages/loginPage/index.js';
 import Profile from '../pages/profile/index.js';
 import CoinPayment from '../pages/coinPayment/index.js';
+import NotFound from '../pages/notFound/index.js';
 
 import accountAccess from '../components/avatar/accountAccess.js';
  
@@ -76,6 +79,10 @@ export default () => {
           <Route exact path="/">
             <SideBar />
             <Home></Home>
+          </Route>
+
+          <Route>
+            <NotFound />
           </Route>
 
         </Switch> 
