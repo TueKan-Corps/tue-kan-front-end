@@ -50,8 +50,10 @@ const Sub = (props) => {
   const [buttonState,setbuttonState] = useState({
     joinState: true,
     statusText: '',
-    colorButton: ''
-  })
+    colorButton: '' 
+  });
+    
+  let imgSrc = `https://tue-kan.herokuapp.com/account/${mainData.account_id}/img`; 
   let accountId = accountAccess().getAccountId()
   let data = {
     account_id: parseInt(accountId),

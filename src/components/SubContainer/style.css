@@ -302,6 +302,9 @@
     /* background-color: rgb(235, 235, 235); */
 }
 
+.posting-empty-alert {
+  margin-top: 25px;
+}
 
   @media screen and (max-width: 1590px) {
     .sub-container  .detail-body .description-box .description-img {

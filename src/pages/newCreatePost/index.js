@@ -1,19 +1,19 @@
 /*
   .add in 13-Feb-20
   .edit 14-Feb-20
-    -- make tag select, radio-button, submit complete
-    -- not complete form
-    -- not responsive
+    -- make tag select, radio-button, submit complete.
+    -- not complete form.
+    -- not responsive.
   .edit 20-Feb-20
-    -- change to use styled-components instead css
+    -- change to use styled-components instead css.
   .edit 21-Feb-20
-    -- date with input type date (not validate)
-    -- time with input type time
-    -- make style of main, sub container to MainDiv, SubDiv
-    -- some responsive
-    -- make submit with state
+    -- date with input type date (not validate).
+    -- time with input type time.
+    -- make style of main, sub container to MainDiv, SubDiv.
+    -- some responsive.
+    -- make submit with state.
   .edit 11-Mar-20
-    -- change div of postsetting to styled for reuse at ticket
+    -- change div of postsetting to styled for reuse at ticket.
   .edit 12-Mar-20
     -- add duration of tue.
   .edit 31-Mar-20
@@ -25,7 +25,14 @@
     -- edit date format to MM-DD-YYYY because another format can't sort in database.
     -- [**1] fake account_id.
   .edit 10-Apr-20
+    -- validate topic input maxLenth to 20.
     -- [**1] use real account_id.
+  .edit 11-Apr-20
+    -- validate price input to only integer.
+  .edit 12-Apr-20
+    -- validate location input maxLenth to 15.
+    -- validate Date input to avaiable since today to today + 3 month.
+    -- add choice to go to posting when create new post complete.
 */
 
 import React from 'react';
@@ -112,6 +119,14 @@ const SelectBox = styled.select
   margin-right: 50%;
 `;
 
+let d = new Date();
+let date = d.getDate() < 10 ? '0' + d.getDate() : d.getDate();
+let month = (d.getMonth() + 1) < 10 ? '0' + (d.getMonth() + 1) : d.getMonth();
+let maxMonth = (d.getMonth() + 1) < 10 ? '0' + (d.getMonth() + 4) : d.getMonth();
+let year = d.getFullYear();
+let today = year + '-' + month + '-' + date;
+let maxDate = year + '-' + maxMonth + '-' + date;
+
 class NewCreatePost extends React.Component {
 
   state = {
@@ -167,7 +182,10 @@ class NewCreatePost extends React.Component {
             console.log(error)
         });
 
-      alert('สร้างโพสต์สำเร็จ !');
+      //alert('สร้างโพสต์สำเร็จ !');
+      let isGoToPosting = window.confirm('สร้างโพสต์สำเร็จ ต้องการไปหน้าโพสต์ของคุณหรือไม่ ?');
+      if (isGoToPosting) 
+        window.location = '/posting' 
     }
 
   }
@@ -185,8 +203,10 @@ class NewCreatePost extends React.Component {
     let hrStop = parseInt(startTimeArray[1]);
     let minHr = hrStop > 0 ? hrStart+':'+hrStop : hrStart+':'+hrStop+0;
 
-    //console.log(hrStart);
+    //console.log(today);
+    //console.log(maxDate);
     //console.log(hrStart+':'+hrStop);
+
     return (
       <MainDiv className='create-post-main-container'>
         <SubDiv className='create-post-sub-container'>
@@ -209,12 +229,12 @@ class NewCreatePost extends React.Component {
 
                 <FormItem className='form-item'>
                   <HeadText className='header-text'><b>Location :</b></HeadText>
-                  <TextBox className='item-input' name='location' placeholder='ECC 801, E12 502 ...' onChange={this.onInputChange} long required></TextBox>
+                  <TextBox className='item-input' name='location' maxLength='15' placeholder='ECC 801, E12 502 ...' onChange={this.onInputChange} long required></TextBox>
                 </FormItem>
 
                 <FormItem className='form-item'>
                   <HeadText className='header-text'><b>Date :</b></HeadText>
-                  <DateBox className='item-input' name='date' placeholder='DD/MM/YY' onChange={this.onInputChange} short required></DateBox>
+                  <DateBox className='item-input' name='date' placeholder='MM-DD-YY' min={today} max={maxDate} onChange={this.onInputChange} short required></DateBox>
                 </FormItem>
 
                 {/* step 1800 = add 0.5 hour */}
