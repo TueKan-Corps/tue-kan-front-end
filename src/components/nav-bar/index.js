@@ -13,6 +13,8 @@
 
 import React from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { Link } from "react-router-dom";
 
 import './style.css';
 
@@ -20,82 +22,74 @@ import logo from '../../assets/icon/weblogo_white.png';
 
 import accountAccess from '../avatar/accountAccess.js'; 
 
-import { Link } from "react-router-dom";
-
-class Navbar extends React.Component {
-
-  state = {
-    loading: true,
-    profileData: { first_name: 'firstName', last_name: 'lastName' },
-    status: 'guest'
-  }
-
-  logout() {
+import { setProfile, setLoading, setStatus } from '../../redux/actions/navBarAction.js';
+ 
+const Navbar =(props)=> {
+  
+  const logout =()=> {
     accountAccess().clearAccountId();
     window.location = '/';
   }
 
-  componentDidMount() {
-    //accountAccess().clearAccountId();    
-    //accountAccess().setAccountId(29);
+  React.useEffect (() =>{  
+
     let accountId = accountAccess().getAccountId();
 
-    console.log(accountId);
-
-    if (accountId !== 36) {
-      this.setState({ status: 'user' })
-    }
-
-    const url = `https://tue-kan.herokuapp.com/account/${accountId}`;
-    this.setState({ loading: true })
+    const url = `https://tue-kan.herokuapp.com/account/${accountId}`; 
     axios.get(url)
       .then(data => {
-        this.setState({
-          loading: false,
-          profileData: data.data[0]
-        })
-        //console.log('data');
-        //console.log(data);
+        props.dispatch(setProfile(data.data[0]));
+        props.dispatch(setLoading(false));  
       })
       .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
     //console.log('loading complete!');
-  }
-
-  render () {
-    let loading = this.state.loading;
-    let profileData = this.state.profileData;
-    let status = this.state.status;
-    return (
-      <nav className='navbar-container'>
-        <Link to='/'>
-          <div className='logo-box'>
-            <img className='logo' src={logo} alt='web-logo' />
-          </div>
-        </Link>
-
-        <Link to='/coinPayment'>
-          <div className='coin-box'>
-            <i className="coin-messege coin-logo fas fa-coins"></i>
-            { !loading && <p className='coin-messege coin-amount'><b>{profileData.coin_amount}</b></p>}
-            { loading && <p className='coin-messege coin-amount'><b>xxxx</b></p>}
-            <p className='coin-messege coin-ex'><b>TC</b></p>
-          </div> 
-        </Link>
+  
+    if (accountId !== 36) {
+      props.dispatch(setStatus('user'));
+    } 
+  }, []);
  
-        <div className='login-box'>
-        {
-          status === 'guest' ?
-          <Link to='/login'className='login-text'>
-            <b>LOGIN</b>
-          </Link>
-          :
-          <p className='login-text' onClick={this.logout}><b>LOGOUT</b></p>
-        }
+  let loading = props.state.loading;
+  let profileData = props.state.profileData;
+  let status = props.state.status;
+  
+  return (
+    <nav className='navbar-container'>
+      <Link to='/'>
+        <div className='logo-box'>
+          <img className='logo' src={logo} alt='web-logo' />
+        </div>
+      </Link>
+
+      <Link to='/coinPayment'>
+        <div className='coin-box'>
+          <i className="coin-messege coin-logo fas fa-coins"></i>
+          { !loading && <p className='coin-messege coin-amount'><b>{profileData.coin_amount}</b></p>}
+          { loading && <p className='coin-messege coin-amount'><b>xxxx</b></p>}
+          <p className='coin-messege coin-ex'><b>TC</b></p>
         </div> 
-      </nav>
-    );
-  }
+      </Link>
+
+      <div className='login-box'>
+      {
+        status === 'guest' ?
+        <Link to='/login'className='login-text'>
+          <b>LOGIN</b>
+        </Link>
+        :
+        <p className='login-text' onClick={logout}><b>LOGOUT</b></p> 
+      }
+      </div> 
+    </nav>
+  ); 
 
 }
 
-export default Navbar;
+const mapStateToProps = function (state) {
+  return { 
+    state: state.navBar
+  }
+}
+
+const AppWithConnect = connect(mapStateToProps)(Navbar)
+export default AppWithConnect
