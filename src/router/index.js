@@ -31,7 +31,7 @@ import accountAccess from '../components/avatar/accountAccess.js';
 
 import rootReducer from '../redux/reducers/index.js';
 
-const store = createStore(rootReducer);
+export const store = createStore(rootReducer);
 
 export default () => {
 

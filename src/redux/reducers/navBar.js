@@ -1,15 +1,12 @@
+
 const initState = {
     loading: true,
-    profileData: { first_name: 'firstName', last_name: 'lastName' },
+    profileData: { first_name: 'firstName', last_name: 'lastName', coin_amount: 0 },
     status: 'guest'
 };
 
 export default (state = initState, action) => {
-    switch (action.type) {
-        case 'SET_STATE':
-            return {
-                state: action.data
-            }
+    switch (action.type) { 
         case 'SET_PROFILE':
             return {
                 ...state,

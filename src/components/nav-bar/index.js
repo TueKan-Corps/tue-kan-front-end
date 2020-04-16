@@ -9,6 +9,8 @@
     -- [**1] use real account_id.
   .edit 11-Apr-20
     -- add login, logout button in <Navbar>.
+  .edit 16-Apr-20
+    -- edit to use redux.
 */
 
 import React from 'react';
@@ -24,34 +26,36 @@ import accountAccess from '../avatar/accountAccess.js';
 
 import { setProfile, setLoading, setStatus } from '../../redux/actions/navBarAction.js';
  
-const Navbar =(props)=> {
+const Navbar = ({ navState, dispatch})=> {
   
   const logout =()=> {
     accountAccess().clearAccountId();
     window.location = '/';
   }
 
-  React.useEffect (() =>{  
+  React.useEffect (() => {  
 
     let accountId = accountAccess().getAccountId();
 
     const url = `https://tue-kan.herokuapp.com/account/${accountId}`; 
     axios.get(url)
       .then(data => {
-        props.dispatch(setProfile(data.data[0]));
-        props.dispatch(setLoading(false));  
+        dispatch(setProfile(data.data[0]));
+        dispatch(setLoading(false));  
       })
       .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
     //console.log('loading complete!');
   
     if (accountId !== 36) {
-      props.dispatch(setStatus('user'));
+      dispatch(setStatus('user'));
     } 
   }, []);
  
-  let loading = props.state.loading;
-  let profileData = props.state.profileData;
-  let status = props.state.status;
+  let loading = navState.loading;
+  let profileData = navState.profileData;
+  let status = navState.status;
+
+  //console.log(profileData);
   
   return (
     <nav className='navbar-container'>
@@ -85,11 +89,9 @@ const Navbar =(props)=> {
 
 }
 
-const mapStateToProps = function (state) {
-  return { 
-    state: state.navBar
-  }
-}
+const mapStateToProps =(state)=> ({
+    navState: state.navBar
+})
 
 const AppWithConnect = connect(mapStateToProps)(Navbar)
 export default AppWithConnect
