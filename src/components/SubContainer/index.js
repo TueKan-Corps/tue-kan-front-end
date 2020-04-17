@@ -4,25 +4,30 @@
     -- add skeleleton loading component.
   .edit 07-Apr-20 [Boat]
     -- edit to use same component with ticket, posting.
+  .edit 16-Apr-20 [Boat]
+    -- edit to use redux.
 */
 
 import React,{useEffect,useState} from 'react'
+import { useDispatch, connect } from 'react-redux'; 
+
 import Banner from './Banner/index'
 
-import Postlist from './Postlist/index' 
 import DetailBody from '../../pages/newCreatePost/detailBody'
 import DetailContainer from '../../pages/newCreatePost/detailContainer'
 import DetailHeader from '../../pages/newCreatePost/detailHeader'
 import MainDiv from '../../pages/mainDiv'
 import SubDiv from '../../pages/subDiv'
+
 import LoadingPostList from '../../components/loadingPostList/index.js';
 import {checkButtonStatus} from '../../helpers'
 import accountAccess from '../avatar/accountAccess.js';
 import { AlertConfirm } from '../../helpers/AlertConfirm';
+
 import MyTueList from '../../components/MyTuelist/index.js';
 
-
-import tempPic from '../avatar/profile.jpg';
+import { coinOps } from '../../redux/actions/navBarAction.js'; 
+  
 import './style.css'
 
 import {
@@ -43,31 +48,39 @@ const Main =(props)=> {
 
 const Sub = (props) => {
   let { postId } = useParams();
+  let dispatch = useDispatch();
   let mainData = props.mainListData[postId - 1];
   let postData = props.mainListData[postId - 1];
   let myTicketData = props.myTicketData;
-  let profileData = props.profileData;
+  let profileData = props.profileData; 
+
+  //console.log('profileData');
+  //console.log(profileData);
+
   const [buttonState,setbuttonState] = useState({
     joinState: true,
     statusText: '',
     colorButton: '' 
   });
-    
-  let imgSrc = `https://tue-kan.herokuapp.com/account/${mainData.account_id}/img`; 
+     
   let accountId = accountAccess().getAccountId()
+  let imgSrc = `https://tue-kan.herokuapp.com/account/${mainData.account_id}/img`; 
   let data = {
     account_id: parseInt(accountId),
     post_id: parseInt(postData.id)
   }
+  
   var today = new Date();
   var expDate = postData.date.split('-');
+
   useEffect(() => {
-    let haveTicket = myTicketData?.find(ticket => ticket.id === postData.id);
+    let haveTicket = myTicketData?.find(ticket => ticket.id === postData.id); 
+    //console.log('store.getState().navBar.profileData');
+    //console.log(store.getState().navBar.profileData);
     setbuttonState(checkButtonStatus(expDate, today, postData, accountId, haveTicket, profileData));
     console.log(checkButtonStatus(expDate, today, postData, accountId, haveTicket, profileData));
   }, [myTicketData])
   // accountAccess().clearAccountId();
-
 
   const buyTicket = () => {
     let url = `https://tue-kan.herokuapp.com/ticket/`; 
@@ -77,13 +90,14 @@ const Sub = (props) => {
       }).catch((error) => {
         console.log(error)
       });
-    payCoin();
+    PayCoin();
+    alert('ซื้อสำเร็จ')
   }
-
-  const payCoin = () => {
-    let newData = {'id': parseInt(accountId), 'coin': parseInt(props.profileData.coin_amount) - parseInt(mainData.price)}
-    console.log('props.profileData');
-    console.log(newData);
+    
+  const PayCoin = () => {
+    let newData = {'id': parseInt(accountId), 'coin': parseInt(profileData.coin_amount) - parseInt(mainData.price)}
+    //console.log('props.profileData');
+    //console.log(newData);
 
     let url = 'https://tue-kan.herokuapp.com/account/coin';
     axios.post(url, newData)
@@ -93,8 +107,10 @@ const Sub = (props) => {
         console.log(error)
       });
     console.log(`${buttonState.joinState}`)
-
-  }
+    alert('จ่ายเงิน');
+    dispatch(coinOps(parseInt(mainData.price), false));
+    
+  } 
     return (
 
       <DetailContainer className='postlist-detail'>
@@ -105,16 +121,15 @@ const Sub = (props) => {
           <div className='body-container'>
             <div className='img-container'>
               <div className='img-box'>
-                {/*<img className='tutor-img' src={ticketData.img} alt='tutor-img' />*/}
-                {<img className='tutor-img' src={tempPic} alt='tutor-img' />}
+                <img className='tutor-img' src={imgSrc} alt='tutor-img' />
               </div>
             </div>
 
             <div className='postlist-description-box'>
 
               {/*
-            don't use array.map() because too complex.
-          */}
+                don't use array.map() because too complex.
+              */}
 
               <div className='description-box location-box'>
                 <i className="description-img fas fa-map-marker-alt"></i>
@@ -173,17 +188,15 @@ const Sub = (props) => {
       </DetailContainer>
     );
 }
-  export default class SubContainer extends React.Component {
+class SubContainer extends React.Component {
+
     state = {
       loading: true,
-      mainListData: {},
-      profileData: {},
+      mainListData: {}, 
     }
 
-    componentDidMount() {
-      //const url ='https://mock-up-tuekan-backend.herokuapp.com/post/posting';
-      let url = 'https://tue-kan.herokuapp.com/post/';
-      this.setState({ loading: true })
+    componentDidMount() { 
+      let url = 'https://tue-kan.herokuapp.com/post/'; 
       axios.get(url)
         .then(data => {
           this.setState({
@@ -192,32 +205,24 @@ const Sub = (props) => {
           })
         })
         .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
+
       let accountId = accountAccess().getAccountId();
-      url = `https://tue-kan.herokuapp.com/account/${accountId}`;
+      
+      url = `https://tue-kan.herokuapp.com/ticket/${accountId}`; 
       axios.get(url)
         .then(data => {
           this.setState({
-            profileData: data.data[0]
+            myTicketData : data.data
           })
         })
-        .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
-      url = `https://tue-kan.herokuapp.com/ticket/${accountId}`;
-        this.setState({loading: true})
-        axios.get(url)
-          .then(data => {
-            this.setState({
-              myTicketData : data.data
-            })
-          })
-          .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
-      //console.log('print something');
-      //console.log('loading complete!');
+        .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?")) 
     }
 
     render() {
       let mainListData = this.state.mainListData;
-      let profileData = this.state.profileData; 
-      let myTicketData = this.state.myTicketData
+      //let profileData = this.state.profileData; 
+      let profileData = this.props.navState.profileData; 
+      let myTicketData = this.state.myTicketData 
  
       return (
         <MainDiv className='postlist-main-container'>
@@ -247,3 +252,6 @@ const Sub = (props) => {
       );
     }
   }
+  
+const AppWithConnect = connect((state) => ({ navState: state.navBar }))(SubContainer)
+export default AppWithConnect

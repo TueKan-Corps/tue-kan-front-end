@@ -8,6 +8,9 @@
 */
 
 import React from "react";
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 
 import './style.css';
 //import 'bootstrap/dist/css/bootstrap.min.css';
@@ -25,82 +28,86 @@ import CoinPayment from '../pages/coinPayment/index.js';
 import NotFound from '../pages/notFound/index.js';
 
 import accountAccess from '../components/avatar/accountAccess.js';
- 
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+
+import rootReducer from '../redux/reducers/index.js';
+
+export const store = createStore(rootReducer);
 
 export default () => {
 
   let isGuest = accountAccess().getAccountId() === 36;
 
   return (
-    <Router>
- 
-      <Navbar />
+    <Provider store={store}>
+      <Router>
 
-      {
-        !isGuest ?
-        /// Switch for users.
-        <Switch> 
+        <Navbar />
 
-          <Route path="/coinPayment">
-            <SideBar />
-            <CoinPayment />
-          </Route>
+        {
+          !isGuest ?
+            /// Switch for users.
+            <Switch>
 
-          <Route path="/login">
-            <Login />
-          </Route>
-          
-          <Route path="/profile">
-            <SideBar />
-            <Profile />
-          </Route>
+              <Route path="/coinPayment">
+                <SideBar />
+                <CoinPayment />
+              </Route>
 
-          <Route path="/home">
-            <SideBar />
-            <Home></Home>
-          </Route>
+              <Route path="/login">
+                <Login />
+              </Route>
 
-          <Route path="/posting">
-            <SideBar />
-            <Posting />
-          </Route>
+              <Route path="/profile">
+                <SideBar />
+                <Profile />
+              </Route>
 
-          <Route path="/ticket">
-            <SideBar />
-            <Ticket />
-          </Route>
+              <Route path="/home">
+                <SideBar />
+                <Home></Home>
+              </Route>
 
-          <Route path="/createPost">
-            <SideBar />
-            <NewCreatePost />
-          </Route>
-  
-          <Route exact path="/">
-            <SideBar />
-            <Home></Home>
-          </Route>
+              <Route path="/posting">
+                <SideBar />
+                <Posting />
+              </Route>
 
-          <Route>
-            <NotFound />
-          </Route>
+              <Route path="/ticket">
+                <SideBar />
+                <Ticket />
+              </Route>
 
-        </Switch> 
-        :
-        /// Switch for guests.
-        <Switch>
-          <Route exact path='/login'>
-            <Login></Login>
-          </Route>
+              <Route path="/createPost">
+                <SideBar />
+                <NewCreatePost />
+              </Route>
 
-          <Route exact path="/">
-            <SideBar />
-            <Home></Home>
-          </Route>
+              <Route exact path="/">
+                <SideBar />
+                <Home></Home>
+              </Route>
 
-          <Redirect to='/login' />
-        </Switch>
-      }
-    </Router>
+              <Route>
+                <NotFound />
+              </Route>
+
+            </Switch>
+            :
+            /// Switch for guests.
+            <Switch>
+              <Route exact path='/login'>
+                <Login></Login>
+              </Route>
+
+              <Route exact path="/">
+                <SideBar />
+                <Home></Home>
+              </Route>
+
+              <Redirect to='/login' />
+            </Switch>
+        }
+      </Router>
+    </Provider>
   );
 };
