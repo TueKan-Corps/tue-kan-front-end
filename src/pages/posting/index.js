@@ -84,7 +84,7 @@ const PostingDetail =(props)=> {
   const [postingData, ] = React.useState(props.postData[postingId-1]);
   const [participantData, setParticipantData] = React.useState(JSON.parse(postingData.participant));
 
-  let imgSrc = `https://tue-kan.herokuapp.com/account/${postingData.account_id}/img`;
+  let imgSrc = `https://tue-kan.herokuapp.com/account/img/${postingData.account_id}`;
 
   const checkAndHighLight =(length)=> {
     if(findTicket(length).canFind) {

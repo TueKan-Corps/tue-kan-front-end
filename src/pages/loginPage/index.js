@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
-import {Redirect} from 'react-router-dom'
+
 import './style.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import logo from '../../assets/icon/weblogo_white.png'
+
 import accountAccess from '../../components/avatar/accountAccess.js'
+
+import logo from '../../assets/icon/weblogo_white.png'
+import guestImg from '../../assets/icon/guest.png';
 
 // import styled from 'styled-components   '
 
@@ -161,8 +164,31 @@ export default class Login extends Component {
         }
         return result;
     }
+
     getErrorMessage = (name) => {
         return this.signUpData.formElements[name].error.message;
+    }
+    
+    uploadDefaultImg = () => {
+        /// upload picture here 
+        let accountId = accountAccess().getAccountId();
+        let url = `https://tue-kan.herokuapp.com/account/img/${accountId}`;
+        let formdata = new FormData();
+        formdata.append("profile_img", guestImg, guestImg.name);
+
+        let requestOptions = {
+            method: 'POST',
+            body: formdata,
+            redirect: 'follow'
+        };
+
+        fetch(url, requestOptions)
+            .then(response => response.text())
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+
+        //console.log(accountId);
+        alert('upload default img complete!');
     }
 
     onFormSubmit = (event) => {
@@ -210,7 +236,9 @@ export default class Login extends Component {
             .then(result => console.log(result))
             .catch(error => console.log('error', error));
         console.log('Register Complete')
+        this.uploadDefaultImg();
     }
+
     onInputChange = (event) => {
         this.setState({
             [event.target.name]:event.target.value

@@ -63,7 +63,7 @@ const Sub = (props) => {
   });
      
   let accountId = accountAccess().getAccountId()
-  let imgSrc = `https://tue-kan.herokuapp.com/account/${mainData.account_id}/img`; 
+  let imgSrc = `https://tue-kan.herokuapp.com/account/img/${mainData.account_id}`; 
   let data = {
     account_id: parseInt(accountId),
     post_id: parseInt(postData.id)

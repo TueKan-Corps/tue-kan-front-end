@@ -45,7 +45,7 @@ class Avatar extends React.Component {
     //console.log('loading complete!');
 
     /// get account img
-    let imgSrc = `https://tue-kan.herokuapp.com/account/${accountId}/img`;
+    let imgSrc = `https://tue-kan.herokuapp.com/account/img/${accountId}`;
     this.setState({
       img: imgSrc
     })

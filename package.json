@@ -20,8 +20,10 @@
     "react-slick": "^0.25.2",
     "reactn": "^2.2.5",
     "redux": "^4.0.5",
+    "redux-logger": "^3.0.6",
     "slick-carousel": "^1.8.1",
-    "styled-components": "^5.0.1"
+    "styled-components": "^5.0.1",
+    "sweetalert2": "^9.10.12"
   },
   "scripts": {
     "start": "react-scripts start",
