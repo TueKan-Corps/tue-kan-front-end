@@ -19,10 +19,11 @@ import DetailHeader from '../../pages/newCreatePost/detailHeader'
 import MainDiv from '../../pages/mainDiv'
 import SubDiv from '../../pages/subDiv'
 
-import Postlist from './Postlist/index' 
-import { checkButtonStatus } from '../../helpers'
-import accountAccess from '../avatar/accountAccess.js';
 import LoadingPostList from '../../components/loadingPostList/index.js';
+import {checkButtonStatus} from '../../helpers'
+import accountAccess from '../avatar/accountAccess.js';
+import { AlertConfirm } from '../../helpers/AlertConfirm';
+
 import MyTueList from '../../components/MyTuelist/index.js';
 
 import { coinOps } from '../../redux/actions/navBarAction.js'; 
@@ -77,9 +78,10 @@ const Sub = (props) => {
     //console.log('store.getState().navBar.profileData');
     //console.log(store.getState().navBar.profileData);
     setbuttonState(checkButtonStatus(expDate, today, postData, accountId, haveTicket, profileData));
-    //console.log(checkButtonStatus(expDate, today, postData, accountId, haveTicket, reduxProfileData));
-  }, [myTicketData]) 
- 
+    console.log(checkButtonStatus(expDate, today, postData, accountId, haveTicket, profileData));
+  }, [myTicketData])
+  // accountAccess().clearAccountId();
+
   const buyTicket = () => {
     let url = `https://tue-kan.herokuapp.com/ticket/`; 
     axios.post(url, data)
@@ -91,6 +93,7 @@ const Sub = (props) => {
     PayCoin();
     alert('ซื้อสำเร็จ')
   }
+    
   const PayCoin = () => {
     let newData = {'id': parseInt(accountId), 'coin': parseInt(profileData.coin_amount) - parseInt(mainData.price)}
     //console.log('props.profileData');
@@ -172,7 +175,7 @@ const Sub = (props) => {
                     <p className='description-detail-text'>This tue has not description.</p>
                 }
               </div>
-              <button className="buy-button" type="button" data-hover={buttonState.statusText} onClick={buyTicket} disabled={!buttonState.joinState} style={{ backgroundColor: `${buttonState.colorButton}` }} ><span>{`${postData.price} TC`}</span></button>
+              <button className="buy-button" type="button" data-hover={buttonState.statusText} onClick={() => AlertConfirm(buyTicket) } disabled={!buttonState.joinState} style={{ backgroundColor: `${buttonState.colorButton}` }} ><span>{`${postData.price} TC`}</span></button>
 
             </div>
 
