@@ -14,6 +14,7 @@ import { connect } from 'react-redux';
 import './style.css';
 
 import MyTueList from '../../components/MyTuelist/index.js'; 
+import { notifyAlert } from '../../components/confirmAlert.js';
 
 import MainDiv from '../mainDiv.js';
 import SubDiv from '../subDiv.js';
@@ -54,19 +55,19 @@ const CoinPayment = ({ navState, dispatch })=> {
             console.log(error)
           });
 
-        alert('เติมเงินสำเร็จ !'); 
+        notifyAlert(() => { }, 'สำเร็จ!', 'ท่านได้เติมเงินเข้าสู่ระบบแล้ว', 'success'); 
 
         /// edit coin_amount in profileData on navState.
         dispatch(coinOps(coinCode[code], true));
       }
 
       else {
-        alert('โค้ดไม่ถูกต้อง !');
+        notifyAlert(() => { }, 'ล้มเหลว!', 'ข้อมูลโค้ดไม่ถูกต้อง', 'error');
       }
 
     } 
     else {
-      alert('โค้ดไม่ถูกต้อง !');
+      notifyAlert(() => { }, 'ล้มเหลว!', 'ข้อมูลโค้ดไม่ถูกต้อง', 'error');
     } 
   }
     

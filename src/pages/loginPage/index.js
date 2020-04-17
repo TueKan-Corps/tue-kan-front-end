@@ -7,15 +7,8 @@ import accountAccess from '../../components/avatar/accountAccess.js'
 
 import logo from '../../assets/icon/weblogo_white.png'
 import guestImg from '../../assets/icon/guest.png';
-
-// import styled from 'styled-components   '
-
-
-// const signInContainer = styled.div`
-// font-size: 1.5em;
-// text-align: center;
-// color: palevioletred;
-// `;
+ 
+import { notifyAlert } from '../../components/confirmAlert.js';
 
 export default class Login extends Component {
     
@@ -25,7 +18,8 @@ export default class Login extends Component {
         formValid: false,
         responseData: {
             account_id : 36
-        }
+        },
+        signUpResAccountId: 36
     }
 
     signUpData = {
@@ -110,7 +104,7 @@ export default class Login extends Component {
         for (let name in updatedForm) {
             if (updatedForm[name].validator.required === true) {
                 formStatus = !updatedForm[name].error.status && formStatus;
-                console.log(formStatus)
+                //console.log(formStatus)
             }
         }
         this.signUpData = {
@@ -120,7 +114,7 @@ export default class Login extends Component {
         this.setState({
             formValid: formStatus
         })
-        console.log(this.signUpData)
+        //console.log(this.signUpData)
     }
 
     checkValidator = (value, rule) => {
@@ -168,34 +162,13 @@ export default class Login extends Component {
     getErrorMessage = (name) => {
         return this.signUpData.formElements[name].error.message;
     }
-    
-    uploadDefaultImg = () => {
-        /// upload picture here 
-        let accountId = accountAccess().getAccountId();
-        let url = `https://tue-kan.herokuapp.com/account/img/${accountId}`;
-        let formdata = new FormData();
-        formdata.append("profile_img", guestImg, guestImg.name);
-
-        let requestOptions = {
-            method: 'POST',
-            body: formdata,
-            redirect: 'follow'
-        };
-
-        fetch(url, requestOptions)
-            .then(response => response.text())
-            .then(result => console.log(result))
-            .catch(error => console.log('error', error));
-
-        //console.log(accountId);
-        alert('upload default img complete!');
-    }
 
     onFormSubmit = (event) => {
         // const formData = {};
         // for (let name in this.signUpData.formElements) {
         //     formData[name] = this.signUpData.formElements[name].value;
         // }
+        event.preventDefault();
         this.signUpDataToBack = {
             username : this.signUpData.formElements.email.value,
             password : this.signUpData.formElements.password.value,
@@ -208,7 +181,7 @@ export default class Login extends Component {
             email : this.signUpData.formElements.email.value,
             website : '#'
         }
-        console.log(this.signUpDataToBack)
+        //console.log(this.signUpDataToBack)
         var myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
@@ -230,27 +203,27 @@ export default class Login extends Component {
             body: urlencoded,
             redirect: 'follow'
             };
-
+ 
             fetch("https://tue-kan.herokuapp.com/account/", requestOptions)
-            .then(response => response.text())
-            .then(result => console.log(result))
+            .then(response => response.int())
+            .then(result => this.setState({ signUpResAccountId: result }))
             .catch(error => console.log('error', error));
-        console.log('Register Complete')
-        this.uploadDefaultImg();
+ 
+        notifyAlert(() => { }, 'สำเร็จ!', 'ท่านได้ทำการสมัครสมาชิกแล้ว', 'success');
     }
 
     onInputChange = (event) => {
         this.setState({
             [event.target.name]:event.target.value
         })
-        console.log(this.state);
+        //console.log(this.state);
     }
  
     onLoginSubmit = (event) => {
         event.preventDefault();
 
-        console.log('ก่อนส่ง');
-        console.log(this.state);
+        //console.log('ก่อนส่ง');
+        //console.log(this.state);
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
@@ -272,13 +245,13 @@ export default class Login extends Component {
                     responseData : result
                 }, () => this.checkData(result)))
             .catch(error => console.log('error', error));
-        alert('login');
-        console.log(this.state.responseData.account_id);
+        //alert('login');
+        //console.log(this.state.responseData.account_id);
     }
 
     checkData (result) {
-        console.log('result here');
-        console.log(this.state.responseData.account_id);
+        //console.log('result here');
+        //console.log(this.state.responseData.account_id);
         accountAccess().clearAccountId();
         let checkId = 36;
         if (this.state.responseData.account_id == undefined) {
@@ -287,16 +260,15 @@ export default class Login extends Component {
         else {
             accountAccess().setAccountId(this.state.responseData.account_id);
         }
-        if (checkId == accountAccess().getAccountId()) {
-            alert('รหัสผ่านไม่ถูกต้อง');
+        if (checkId == accountAccess().getAccountId()) { 
+            notifyAlert(()=> {}, 'ผิดผลาด!', 'รหัสผ่านไม่ถูกต้อง!', 'error');
             this.setState({
                 ...this.state,
                 passwordLogin : ''
             })
         }
         else {
-            alert('ล็อคอินสำเร็จ');
-            window.location = "/";
+            notifyAlert(() => window.location = '/', 'สำเร็จ!', 'ท่านได้เข้าสู่ระบบแล้ว', 'success');  
         }
 
     }

@@ -19,6 +19,7 @@ import DetailHeader from '../../pages/newCreatePost/detailHeader'
 import MainDiv from '../../pages/mainDiv'
 import SubDiv from '../../pages/subDiv'
 
+import Postlist from './Postlist/index.js';
 import LoadingPostList from '../../components/loadingPostList/index.js';
 import {checkButtonStatus} from '../../helpers'
 import accountAccess from '../avatar/accountAccess.js';
@@ -78,7 +79,7 @@ const Sub = (props) => {
     //console.log('store.getState().navBar.profileData');
     //console.log(store.getState().navBar.profileData);
     setbuttonState(checkButtonStatus(expDate, today, postData, accountId, haveTicket, profileData));
-    console.log(checkButtonStatus(expDate, today, postData, accountId, haveTicket, profileData));
+    //console.log(checkButtonStatus(expDate, today, postData, accountId, haveTicket, profileData));
   }, [myTicketData])
   // accountAccess().clearAccountId();
 
@@ -91,7 +92,7 @@ const Sub = (props) => {
         console.log(error)
       });
     PayCoin();
-    alert('ซื้อสำเร็จ')
+    //alert('ซื้อสำเร็จ')
   }
     
   const PayCoin = () => {
@@ -106,8 +107,8 @@ const Sub = (props) => {
       }).catch((error) => {
         console.log(error)
       });
-    console.log(`${buttonState.joinState}`)
-    alert('จ่ายเงิน');
+    //console.log(`${buttonState.joinState}`)
+    //alert('จ่ายเงิน');
     dispatch(coinOps(parseInt(mainData.price), false));
     
   } 
