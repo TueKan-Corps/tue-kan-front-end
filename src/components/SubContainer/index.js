@@ -18,7 +18,7 @@ import SubDiv from '../../pages/subDiv'
 import LoadingPostList from '../../components/loadingPostList/index.js';
 import {checkButtonStatus} from '../../helpers'
 import accountAccess from '../avatar/accountAccess.js';
-
+import { AlertConfirm } from '../../helpers/AlertConfirm';
 import MyTueList from '../../components/MyTuelist/index.js';
 
 
@@ -69,8 +69,6 @@ const Sub = (props) => {
   // accountAccess().clearAccountId();
 
 
-  
-
   const buyTicket = () => {
     let url = `https://tue-kan.herokuapp.com/ticket/`; 
     axios.post(url, data)
@@ -80,8 +78,8 @@ const Sub = (props) => {
         console.log(error)
       });
     payCoin();
-    alert('ซื้อสำเร็จ')
   }
+
   const payCoin = () => {
     let newData = {'id': parseInt(accountId), 'coin': parseInt(props.profileData.coin_amount) - parseInt(mainData.price)}
     console.log('props.profileData');
@@ -95,7 +93,7 @@ const Sub = (props) => {
         console.log(error)
       });
     console.log(`${buttonState.joinState}`)
-    alert('pay coin');
+
   }
     return (
 
@@ -162,7 +160,7 @@ const Sub = (props) => {
                     <p className='description-detail-text'>This tue has not description.</p>
                 }
               </div>
-              <button className="buy-button" type="button" data-hover={buttonState.statusText} onClick={buyTicket} disabled={!buttonState.joinState} style={{ backgroundColor: `${buttonState.colorButton}` }} ><span>{`${postData.price} TC`}</span></button>
+              <button className="buy-button" type="button" data-hover={buttonState.statusText} onClick={() => AlertConfirm(buyTicket) } disabled={!buttonState.joinState} style={{ backgroundColor: `${buttonState.colorButton}` }} ><span>{`${postData.price} TC`}</span></button>
 
             </div>
 

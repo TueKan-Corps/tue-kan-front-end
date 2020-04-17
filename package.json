@@ -19,7 +19,8 @@
     "react-slick": "^0.25.2",
     "reactn": "^2.2.5",
     "slick-carousel": "^1.8.1",
-    "styled-components": "^5.0.1"
+    "styled-components": "^5.0.1",
+    "sweetalert2": "^9.10.12"
   },
   "scripts": {
     "start": "react-scripts start",
