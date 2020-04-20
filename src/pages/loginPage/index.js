@@ -10,11 +10,6 @@ import { AlertInCorrect } from '../../helpers/AlertInCorrect'
 
 
 // import styled from 'styled-components   '
-
-
-import accountAccess from '../../components/avatar/accountAccess.js'
-
-import logo from '../../assets/icon/weblogo_white.png'
 import guestImg from '../../assets/icon/guest.png';
  
 import { notifyAlert } from '../../components/confirmAlert.js';
