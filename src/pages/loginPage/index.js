@@ -3,6 +3,15 @@ import React, { Component } from 'react'
 import './style.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
+import logo from '../../assets/icon/weblogo_white.png'
+import accountAccess from '../../components/avatar/accountAccess.js'
+import { AlertCorrect } from '../../helpers/AlertCorrect'
+import { AlertInCorrect } from '../../helpers/AlertInCorrect'
+
+
+// import styled from 'styled-components   '
+
+
 import accountAccess from '../../components/avatar/accountAccess.js'
 
 import logo from '../../assets/icon/weblogo_white.png'
@@ -278,7 +287,6 @@ export default class Login extends Component {
         };
         fetch("https://tue-kan.herokuapp.com/auth/login", requestOptions)
             .then(response => response.json())
-            // .then(result => { dataResonse = result })
             .then(result => 
                 this.setState({
                     responseData : result
@@ -294,23 +302,19 @@ export default class Login extends Component {
         //console.log(this.state.responseData.account_id);
         accountAccess().clearAccountId();
         let checkId = 36;
-        if (this.state.responseData.account_id == undefined) {
-            
-        }
-        else {
-            accountAccess().setAccountId(this.state.responseData.account_id);
-        }
-        if (checkId == accountAccess().getAccountId()) { 
-            notifyAlert(()=> {}, 'ผิดผลาด!', 'รหัสผ่านไม่ถูกต้อง!', 'error');
+        if (this.state.responseData.account_id === undefined) {
             this.setState({
                 ...this.state,
                 passwordLogin : ''
             })
+            AlertInCorrect();
         }
         else {
-            notifyAlert(() => window.location = '/', 'สำเร็จ!', 'ท่านได้เข้าสู่ระบบแล้ว', 'success');  
+            accountAccess().setAccountId(this.state.responseData.account_id);
+                console.log(checkId);
+                console.log(accountAccess().getAccountId())
+                AlertCorrect();
         }
-
     }
 
     render() {
