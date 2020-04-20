@@ -125,7 +125,8 @@ class Profile extends React.Component {
     let accountId = accountAccess().getAccountId(); 
     let url = `https://tue-kan.herokuapp.com/account/img/${accountId}`;  
     let formdata = new FormData();
-    console.log(imgData);
+    //console.log('imgData');
+    //console.log(imgData);
     formdata.append("profile_img", imgData, imgData.name);
 
     let requestOptions = {
@@ -139,6 +140,13 @@ class Profile extends React.Component {
       .then(result => console.log(result))
       .catch(error => console.log('error', error));
  
+  }
+
+  checkImg(accountId) {
+    let img = document.getElementById(`profile-img-${accountId}`); 
+    if (img === null) {
+      this.setState({ img: 'https://tue-kan.herokuapp.com/account/img/36' })
+    }
   }
    
   componentDidMount () {
@@ -167,6 +175,7 @@ class Profile extends React.Component {
   }
 
   render () {
+    let accountId = accountAccess().getAccountId(); 
     let isShowMore = this.state.isShowMore;
     let isEdit = this.state.isEdit;
     let profileData = this.state.profileData; 
@@ -211,7 +220,7 @@ class Profile extends React.Component {
 
                 <div className='img-box'>
                   {/*<img className='profile-img' src={profileData.img} alt='profile-img' />*/}
-                  <img className='profile-img' src={this.state.img} alt='profile-img' />
+                  <img className='profile-img' id={`profile-img-${accountId}`} src={this.state.img} alt='profile-img' ready={this.checkImg(accountId)} />
                   { 
                     isEdit &&
                     <label htmlFor='upload-img'>

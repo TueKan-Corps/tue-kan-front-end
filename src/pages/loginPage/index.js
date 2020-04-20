@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import accountAccess from '../../components/avatar/accountAccess.js'
 
 import logo from '../../assets/icon/weblogo_white.png'
-import guestImg from '../../assets/icon/guest.png';
+import guestImg from '../../assets/icon/guest.png'; 
  
 import { notifyAlert } from '../../components/confirmAlert.js';
 
@@ -19,7 +19,8 @@ export default class Login extends Component {
         responseData: {
             account_id : 36
         },
-        signUpResAccountId: 36
+        signUpResAccountId: 36,
+        img: null
     }
 
     signUpData = {
@@ -183,33 +184,71 @@ export default class Login extends Component {
         }
         //console.log(this.signUpDataToBack)
         var myHeaders = new Headers();
-            myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
-            var urlencoded = new URLSearchParams();
-            urlencoded.append("username", this.signUpDataToBack.username);
-            urlencoded.append("password", this.signUpDataToBack.password);
-            urlencoded.append("coin_amount", "100");
-            urlencoded.append("first_name", this.signUpDataToBack.first_name);
-            urlencoded.append("last_name", this.signUpDataToBack.last_name);
-            urlencoded.append("facebook", "#");
-            urlencoded.append("instagram", "#");
-            urlencoded.append("youtube", "#");
-            urlencoded.append("email", this.signUpDataToBack.email);
-            urlencoded.append("website", "#");
+        var urlencoded = new URLSearchParams();
+        urlencoded.append("username", this.signUpDataToBack.username);
+        urlencoded.append("password", this.signUpDataToBack.password);
+        urlencoded.append("coin_amount", "100");
+        urlencoded.append("first_name", this.signUpDataToBack.first_name);
+        urlencoded.append("last_name", this.signUpDataToBack.last_name);
+        urlencoded.append("facebook", "#");
+        urlencoded.append("instagram", "#");
+        urlencoded.append("youtube", "#");
+        urlencoded.append("email", this.signUpDataToBack.email);
+        urlencoded.append("website", "#");
 
-            var requestOptions = {
+        var requestOptions = {
             method: 'POST',
             headers: myHeaders,
             body: urlencoded,
             redirect: 'follow'
-            };
- 
-            fetch("https://tue-kan.herokuapp.com/account/", requestOptions)
-            .then(response => response.int())
-            .then(result => this.setState({ signUpResAccountId: result }))
-            .catch(error => console.log('error', error));
- 
-        notifyAlert(() => { }, 'สำเร็จ!', 'ท่านได้ทำการสมัครสมาชิกแล้ว', 'success');
+        };
+
+        fetch("https://tue-kan.herokuapp.com/account/", requestOptions)
+        .then(response => response.text())
+        .then(result => { 
+            this.uploadDefaultImg(parseInt(result))
+        })
+        .catch(error => console.log('error', error)); 
+    }
+
+    uploadDefaultImg = (accountId) => {  
+        /// upload picture here 
+        const myRequest = new Request(guestImg, {
+            method: 'GET',
+        });
+
+        let url = `https://tue-kan.herokuapp.com/account/img/${accountId}`;
+        let formdata = new FormData();
+        let requestOptions = {
+            method: 'POST',
+            body: formdata,
+            redirect: 'follow'
+        };
+
+        fetch(myRequest)
+            .then((response) => response.blob())
+            .then((myBlob) => {
+                formdata.append("profile_img", myBlob, 'test');
+                //console.log('myBlob');
+                //console.log(myBlob);
+            });
+
+        setTimeout(()=> {
+            //console.log('start');
+            fetch(url, requestOptions)
+            .then(response => response.text())
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error)); 
+        }, 2000);
+
+        notifyAlert(() => { }, 'โปรดรอสักครู่', 'กำลังทำการสมัครสมาชิก', 'info');
+            
+        setTimeout(() => {
+            notifyAlert(() => { }, 'สำเร็จ!', 'ท่านได้ทำการสมัครสมาชิกแล้ว', 'success');
+        }, 8000);
+        //console.log('stop');
     }
 
     onInputChange = (event) => {
@@ -247,6 +286,7 @@ export default class Login extends Component {
             .catch(error => console.log('error', error));
         //alert('login');
         //console.log(this.state.responseData.account_id);
+        
     }
 
     checkData (result) {
