@@ -17,7 +17,7 @@ export default function Post(props) {
     let linkTo = props.linkTo;
     linkTo = `${linkTo}/${props.postId + 1}`;
     //console.log(props.tag_id);
-    let imgSrc = `https://tue-kan.herokuapp.com/account/${props.account_id}/img`;
+    let imgSrc = `https://tue-kan.herokuapp.com/account/img/${props.account_id}`;
     return (
         <Link className='post-list-link' to={linkTo}>
           <div className="post">
