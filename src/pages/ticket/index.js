@@ -51,7 +51,7 @@ import accountAccess from '../../components/avatar/accountAccess.js';
 const TicketDetail =(props)=> {
   let { ticketId } = useParams();
   let ticketData = props.ticketData[ticketId-1];
-  let imgSrc = `https://tue-kan.herokuapp.com/account/${ticketData.account_id}/img`;
+  let imgSrc = `https://tue-kan.herokuapp.com/account/img/${ticketData.account_id}`;
   //console.log(ticketData);
   return (
     <DetailContainer className='ticket-detail'>

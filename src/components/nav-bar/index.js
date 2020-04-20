@@ -11,6 +11,8 @@
     -- add login, logout button in <Navbar>.
   .edit 16-Apr-20
     -- edit to use redux.
+  .edit 17-Apr-20
+    -- add sweetalert2.
 */
 
 import React from 'react';
@@ -22,6 +24,8 @@ import './style.css';
 
 import logo from '../../assets/icon/weblogo_white.png';
 
+import { notifyAlert } from '../confirmAlert.js';
+
 import accountAccess from '../avatar/accountAccess.js'; 
 
 import { setProfile, setLoading, setStatus } from '../../redux/actions/navBarAction.js';
@@ -30,7 +34,7 @@ const Navbar = ({ navState, dispatch})=> {
   
   const logout =()=> {
     accountAccess().clearAccountId();
-    window.location = '/';
+    notifyAlert(() => window.location = '/', 'สำเร็จ!', 'ท่านได้ออกจากระบบแล้ว', 'success'); 
   }
 
   React.useEffect (() => {  

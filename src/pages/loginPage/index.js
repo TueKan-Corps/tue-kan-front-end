@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import {Redirect} from 'react-router-dom'
+
 import './style.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
+
 import logo from '../../assets/icon/weblogo_white.png'
 import accountAccess from '../../components/avatar/accountAccess.js'
 import { AlertCorrect } from '../../helpers/AlertCorrect'
@@ -11,11 +12,12 @@ import { AlertInCorrect } from '../../helpers/AlertInCorrect'
 // import styled from 'styled-components   '
 
 
-// const signInContainer = styled.div`
-// font-size: 1.5em;
-// text-align: center;
-// color: palevioletred;
-// `;
+import accountAccess from '../../components/avatar/accountAccess.js'
+
+import logo from '../../assets/icon/weblogo_white.png'
+import guestImg from '../../assets/icon/guest.png';
+ 
+import { notifyAlert } from '../../components/confirmAlert.js';
 
 export default class Login extends Component {
     
@@ -25,7 +27,8 @@ export default class Login extends Component {
         formValid: false,
         responseData: {
             account_id : 36
-        }
+        },
+        signUpResAccountId: 36
     }
 
     signUpData = {
@@ -110,7 +113,7 @@ export default class Login extends Component {
         for (let name in updatedForm) {
             if (updatedForm[name].validator.required === true) {
                 formStatus = !updatedForm[name].error.status && formStatus;
-                console.log(formStatus)
+                //console.log(formStatus)
             }
         }
         this.signUpData = {
@@ -120,7 +123,7 @@ export default class Login extends Component {
         this.setState({
             formValid: formStatus
         })
-        console.log(this.signUpData)
+        //console.log(this.signUpData)
     }
 
     checkValidator = (value, rule) => {
@@ -164,6 +167,7 @@ export default class Login extends Component {
         }
         return result;
     }
+
     getErrorMessage = (name) => {
         return this.signUpData.formElements[name].error.message;
     }
@@ -173,6 +177,7 @@ export default class Login extends Component {
         // for (let name in this.signUpData.formElements) {
         //     formData[name] = this.signUpData.formElements[name].value;
         // }
+        event.preventDefault();
         this.signUpDataToBack = {
             username : this.signUpData.formElements.email.value,
             password : this.signUpData.formElements.password.value,
@@ -185,7 +190,7 @@ export default class Login extends Component {
             email : this.signUpData.formElements.email.value,
             website : '#'
         }
-        console.log(this.signUpDataToBack)
+        //console.log(this.signUpDataToBack)
         var myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
@@ -207,25 +212,27 @@ export default class Login extends Component {
             body: urlencoded,
             redirect: 'follow'
             };
-
+ 
             fetch("https://tue-kan.herokuapp.com/account/", requestOptions)
-            .then(response => response.text())
-            .then(result => console.log(result))
+            .then(response => response.int())
+            .then(result => this.setState({ signUpResAccountId: result }))
             .catch(error => console.log('error', error));
-        console.log('Register Complete')
+ 
+        notifyAlert(() => { }, 'สำเร็จ!', 'ท่านได้ทำการสมัครสมาชิกแล้ว', 'success');
     }
+
     onInputChange = (event) => {
         this.setState({
             [event.target.name]:event.target.value
         })
-        console.log(this.state);
+        //console.log(this.state);
     }
  
     onLoginSubmit = (event) => {
         event.preventDefault();
 
-        console.log('ก่อนส่ง');
-        console.log(this.state);
+        //console.log('ก่อนส่ง');
+        //console.log(this.state);
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
@@ -250,8 +257,8 @@ export default class Login extends Component {
     }
 
     checkData (result) {
-        console.log('result here');
-        console.log(this.state.responseData.account_id);
+        //console.log('result here');
+        //console.log(this.state.responseData.account_id);
         accountAccess().clearAccountId();
         let checkId = 36;
         if (this.state.responseData.account_id === undefined) {

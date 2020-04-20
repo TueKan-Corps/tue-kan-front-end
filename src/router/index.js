@@ -9,7 +9,8 @@
 
 import React from "react";
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux'
+import logger from 'redux-logger'
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 
 import './style.css';
@@ -31,7 +32,7 @@ import accountAccess from '../components/avatar/accountAccess.js';
 
 import rootReducer from '../redux/reducers/index.js';
 
-export const store = createStore(rootReducer);
+export const store = createStore(rootReducer, applyMiddleware(logger))
 
 export default () => {
 

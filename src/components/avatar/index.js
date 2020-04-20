@@ -22,8 +22,15 @@ class Avatar extends React.Component {
   state = {
     loading: true, 
     profileData: { first_name: 'firstName', last_name: 'lastName' }, 
-    img: {},
+    img: 'https://tue-kan.herokuapp.com/account/img/36',
     accountId: {}
+  }
+
+  checkImg (accountId) {
+    let img = document.getElementById(`avatar-img-${accountId}`);
+    if (img === null) { 
+      this.setState({ img: 'https://tue-kan.herokuapp.com/account/img/36' })
+    }
   }
 
   componentDidMount() {  
@@ -45,7 +52,7 @@ class Avatar extends React.Component {
     //console.log('loading complete!');
 
     /// get account img
-    let imgSrc = `https://tue-kan.herokuapp.com/account/${accountId}/img`;
+    let imgSrc = `https://tue-kan.herokuapp.com/account/img/${accountId}`;
     this.setState({
       img: imgSrc
     })
@@ -77,7 +84,7 @@ class Avatar extends React.Component {
         {/* hover background of avatar is relate with length of firstname or lastname */}
         <div className='avatar-box' style={{width: `${max * (40 - (max+(max/1.5)))}px`}}>
             <div className='img-box'>
-              <img className='avatar-img' src={this.state.img} alt='avatar-img' />
+            <img className='avatar-img' id={`avatar-img-${accountId}`} src={this.state.img} alt='avatar-img' onLoad={this.checkImg(accountId)} />
             </div>
             <div className='text-box'>
             {
