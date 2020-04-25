@@ -16,7 +16,7 @@ export const AlertConfirm = (func) => {
             'Your imaginary file has been deleted.',
             'success'
             )
-            func()
+          func()
         // For more information about handling dismissals please visit
         // https://sweetalert2.github.io/#handling-dismissals
         } else if (result.dismiss === Swal.DismissReason.cancel) {

@@ -8,9 +8,7 @@ import accountAccess from '../../components/avatar/accountAccess.js'
 import { AlertCorrect } from '../../helpers/AlertCorrect'
 import { AlertInCorrect } from '../../helpers/AlertInCorrect'
 
-
 // import styled from 'styled-components   '
-
 
 import accountAccess from '../../components/avatar/accountAccess.js'
 
