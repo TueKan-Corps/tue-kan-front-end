@@ -3,14 +3,9 @@ import React, { Component } from 'react'
 import './style.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-import logo from '../../assets/icon/weblogo_white.png'
 import accountAccess from '../../components/avatar/accountAccess.js'
 import { AlertCorrect } from '../../helpers/AlertCorrect'
 import { AlertInCorrect } from '../../helpers/AlertInCorrect'
-
-// import styled from 'styled-components   '
-
-import accountAccess from '../../components/avatar/accountAccess.js'
 
 import logo from '../../assets/icon/weblogo_white.png'
 import guestImg from '../../assets/icon/guest.png'; 
