@@ -33,11 +33,12 @@
     -- validate location input maxLenth to 15.
     -- validate Date input to avaiable since today to today + 3 month.
     -- add choice to go to posting when create new post complete.
+  .edit 17-Apr-20
+    -- edit alert box to use sweetalert2-react.
 */
 
 import React from 'react';
-import axios from 'axios';
-//import { Switch, Redirect } from 'react-router-dom';
+import axios from 'axios'; 
 
 import {category} from './category.js';
 
@@ -52,6 +53,7 @@ import MainDiv from '../mainDiv.js';
 import SubDiv from '../subDiv.js';
 import MyTueList from '../../components/MyTuelist/index.js';
 import accountAccess from '../../components/avatar/accountAccess.js';
+import { confirmAlert } from '../../components/confirmAlert.js';
 
 const FormItem = styled.div`
   padding: 10px 10px 10px 10px;
@@ -171,23 +173,15 @@ class NewCreatePost extends React.Component {
     let url = `https://tue-kan.herokuapp.com/post/`
     let data = this.state;
 
-    //console.log(data);
-
-    let isConfirm = window.confirm('ต้องการสร้างโพสต์ใช่หรือไม่ ?');
-    if (isConfirm) {
+    confirmAlert(()=> 
       axios.post(url, data)
         .then((res) => {
-            console.log(res.data)
+          console.log(res.data)
         }).catch((error) => {
-            console.log(error)
-        });
-
-      //alert('สร้างโพสต์สำเร็จ !');
-      let isGoToPosting = window.confirm('สร้างโพสต์สำเร็จ ต้องการไปหน้าโพสต์ของคุณหรือไม่ ?');
-      if (isGoToPosting) 
-        window.location = '/posting' 
-    }
-
+          console.log(error)
+        })
+      , 'ท่านต้องการสร้างโพสต์ใช่หรือไม่ ?', true, 'สร้างโพสต์สำเร็จ!', 'ท่านได้เลิกการสร้างโพสต์!');
+  
   }
 
   componentWillMount () {

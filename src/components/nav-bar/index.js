@@ -9,93 +9,93 @@
     -- [**1] use real account_id.
   .edit 11-Apr-20
     -- add login, logout button in <Navbar>.
+  .edit 16-Apr-20
+    -- edit to use redux.
+  .edit 17-Apr-20
+    -- add sweetalert2.
 */
 
 import React from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { Link } from "react-router-dom";
 
 import './style.css';
 
 import logo from '../../assets/icon/weblogo_white.png';
 
+import { notifyAlert } from '../confirmAlert.js';
+
 import accountAccess from '../avatar/accountAccess.js'; 
 
-import { Link } from "react-router-dom";
-
-class Navbar extends React.Component {
-
-  state = {
-    loading: true,
-    profileData: { first_name: 'firstName', last_name: 'lastName' },
-    status: 'guest'
-  }
-
-  logout() {
+import { setProfile, setLoading, setStatus } from '../../redux/actions/navBarAction.js';
+ 
+const Navbar = ({ navState, dispatch})=> {
+  
+  const logout =()=> {
     accountAccess().clearAccountId();
-    window.location = '/';
+    notifyAlert(() => window.location = '/', 'สำเร็จ!', 'ท่านได้ออกจากระบบแล้ว', 'success'); 
   }
 
-  componentDidMount() {
-    //accountAccess().clearAccountId();    
-    //accountAccess().setAccountId(29);
+  React.useEffect (() => {  
+
     let accountId = accountAccess().getAccountId();
 
-    console.log(accountId);
-
-    if (accountId !== 36) {
-      this.setState({ status: 'user' })
-    }
-
-    const url = `https://tue-kan.herokuapp.com/account/${accountId}`;
-    this.setState({ loading: true })
+    const url = `https://tue-kan.herokuapp.com/account/${accountId}`; 
     axios.get(url)
       .then(data => {
-        this.setState({
-          loading: false,
-          profileData: data.data[0]
-        })
-        //console.log('data');
-        //console.log(data);
+        dispatch(setProfile(data.data[0]));
+        dispatch(setLoading(false));  
       })
       .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
     //console.log('loading complete!');
-  }
-
-  render () {
-    let loading = this.state.loading;
-    let profileData = this.state.profileData;
-    let status = this.state.status;
-    return (
-      <nav className='navbar-container'>
-        <Link to='/'>
-          <div className='logo-box'>
-            <img className='logo' src={logo} alt='web-logo' />
-          </div>
-        </Link>
-
-        <Link to='/coinPayment'>
-          <div className='coin-box'>
-            <i className="coin-messege coin-logo fas fa-coins"></i>
-            { !loading && <p className='coin-messege coin-amount'><b>{profileData.coin_amount}</b></p>}
-            { loading && <p className='coin-messege coin-amount'><b>xxxx</b></p>}
-            <p className='coin-messege coin-ex'><b>TC</b></p>
-          </div> 
-        </Link>
+  
+    if (accountId !== 36) {
+      dispatch(setStatus('user'));
+    } 
+  }, []);
  
-        <div className='login-box'>
-        {
-          status === 'guest' ?
-          <Link to='/login'className='login-text'>
-            <b>LOGIN</b>
-          </Link>
-          :
-          <p className='login-text' onClick={this.logout}><b>LOGOUT</b></p>
-        }
+  let loading = navState.loading;
+  let profileData = navState.profileData;
+  let status = navState.status;
+
+  //console.log(profileData);
+  
+  return (
+    <nav className='navbar-container'>
+      <Link to='/'>
+        <div className='logo-box'>
+          <img className='logo' src={logo} alt='web-logo' />
+        </div>
+      </Link>
+
+      <Link to='/coinPayment'>
+        <div className='coin-box'>
+          <i className="coin-messege coin-logo fas fa-coins"></i>
+          { !loading && <p className='coin-messege coin-amount'><b>{profileData.coin_amount}</b></p>}
+          { loading && <p className='coin-messege coin-amount'><b>xxxx</b></p>}
+          <p className='coin-messege coin-ex'><b>TC</b></p>
         </div> 
-      </nav>
-    );
-  }
+      </Link>
+
+      <div className='login-box'>
+      {
+        status === 'guest' ?
+        <Link to='/login'className='login-text'>
+          <b>LOGIN</b>
+        </Link>
+        :
+        <p className='login-text' onClick={logout}><b>LOGOUT</b></p> 
+      }
+      </div> 
+    </nav>
+  ); 
 
 }
 
-export default Navbar;
+const mapStateToProps =(state)=> ({
+    navState: state.navBar
+})
+
+const AppWithConnect = connect(mapStateToProps)(Navbar)
+export default AppWithConnect

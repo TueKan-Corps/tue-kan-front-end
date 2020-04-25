@@ -3,19 +3,25 @@
     -- wait to POST.
   .edit 12-Apr-20
     -- edit to can POST to update coin.
+  .edit 16-Apr-20
+    -- edit to use redux.
 */
 
 import React from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
 
 import './style.css';
 
 import MyTueList from '../../components/MyTuelist/index.js'; 
+import { notifyAlert } from '../../components/confirmAlert.js';
 
 import MainDiv from '../mainDiv.js';
 import SubDiv from '../subDiv.js';
 
 import accountAccess from '../../components/avatar/accountAccess.js'; 
+ 
+import { coinOps } from '../../redux/actions/navBarAction.js';
 
 let coinCode = {
   'SDHK': 50, 
@@ -25,25 +31,22 @@ let coinCode = {
   'SDSOHKSU': 5000
 };
 
-class CoinPayment extends React.Component { 
+const CoinPayment = ({ navState, dispatch })=> { 
 
-  state = {
-    profileData: {},
-  }
+  const profileData = navState.profileData
 
-  redeemCoinHandler =()=> {
+  const redeemCoinHandler =()=> {
     /// get value in input.
     let code = document.getElementById('coin-redeem-input').value;
     let accountId = accountAccess().getAccountId(); 
-    let remainingCoin = parseInt(this.state.profileData.coin_amount);
+    let remainingCoin = parseInt(profileData.coin_amount); 
 
     if (code !== '') {
 
       if (typeof(coinCode[code]) !== 'undefined') {
 
         let url = `https://tue-kan.herokuapp.com/account/coin`;
-        let data = { 'id': parseInt(accountId), 'coin': coinCode[code] + remainingCoin };
-        //console.log(data);
+        let data = { 'id': parseInt(accountId), 'coin': coinCode[code] + remainingCoin }; 
 
         axios.post(url, data)
           .then((res) => {
@@ -52,38 +55,22 @@ class CoinPayment extends React.Component {
             console.log(error)
           });
 
-        alert('เติมเงินสำเร็จ !'); 
+        notifyAlert(() => { }, 'สำเร็จ!', 'ท่านได้เติมเงินเข้าสู่ระบบแล้ว', 'success'); 
+
+        /// edit coin_amount in profileData on navState.
+        dispatch(coinOps(coinCode[code], true));
       }
 
       else {
-        alert('โค้ดไม่ถูกต้อง !');
+        notifyAlert(() => { }, 'ล้มเหลว!', 'ข้อมูลโค้ดไม่ถูกต้อง', 'error');
       }
 
     } 
     else {
-      alert('โค้ดไม่ถูกต้อง !');
-    }
-  
-    //window.location.reload();
-
+      notifyAlert(() => { }, 'ล้มเหลว!', 'ข้อมูลโค้ดไม่ถูกต้อง', 'error');
+    } 
   }
-
-  componentDidMount() {
-    let accountId = accountAccess().getAccountId();
-    let url = `https://tue-kan.herokuapp.com/account/${accountId}`;
-    /// get account data
-    axios.get(url)
-      .then(data => {
-        this.setState({ 
-          profileData: data.data[0]
-        }) 
-      })
-      .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
-  }
-
-  render () {
-    //console.log('coinCode');
-    //console.log(coinCode['SDHK']);
+    
     return (
       <MainDiv className='coin-main-container'>
         <SubDiv className='coin-sub-container'>
@@ -107,7 +94,7 @@ class CoinPayment extends React.Component {
                         {/*
                           - redeem code.
                         */}
-                        <p className='redeem-button redeem-ok' onClick={this.redeemCoinHandler}><b>OK</b></p>
+                        <p className='redeem-button redeem-ok' onClick={redeemCoinHandler}><b>OK</b></p>
                       </div>
                     </div>
 
@@ -122,9 +109,14 @@ class CoinPayment extends React.Component {
       <MyTueList />
 
     </MainDiv>
-    );
-  }
+  );
+} 
 
+const mapStateToProps = function (state) {
+  return {
+    navState: state.navBar
+  }
 }
 
-export default CoinPayment;
+const AppWithConnect = connect(mapStateToProps)(CoinPayment)
+export default AppWithConnect

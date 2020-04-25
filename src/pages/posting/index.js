@@ -21,6 +21,8 @@
     -- [**1] use real account_id.
   .edit 12-Apr-20
     -- edit to change post img to real img from backend.
+  .edit 17-Apr-20
+    -- edit alert box to use sweetalert2-react.
 */
 
 import React from 'react';
@@ -45,6 +47,7 @@ import Postlist from '../../components/SubContainer/Postlist/index.js';
 import LoadingPostList from '../../components/loadingPostList/index.js';
 import NameListTable from './nameListTable/index.js';
 import accountAccess from '../../components/avatar/accountAccess.js';
+import { confirmAlert } from '../../components/confirmAlert.js';
 
 const findTicket =(length)=> {
   /// get ticket code from redeem box.
@@ -84,7 +87,7 @@ const PostingDetail =(props)=> {
   const [postingData, ] = React.useState(props.postData[postingId-1]);
   const [participantData, setParticipantData] = React.useState(JSON.parse(postingData.participant));
 
-  let imgSrc = `https://tue-kan.herokuapp.com/account/${postingData.account_id}/img`;
+  let imgSrc = `https://tue-kan.herokuapp.com/account/img/${postingData.account_id}`;
 
   const checkAndHighLight =(length)=> {
     if(findTicket(length).canFind) {
@@ -99,28 +102,25 @@ const PostingDetail =(props)=> {
     }
   }
 
-  const confirmAndPost =(id, ticket, length)=> {
-    let isConfirm = window.confirm('ต้องการบันทึกข้อมูลผู้เข้าร่วมใช่หรือไม่ ?');
+  const redeemConfirmAndPOST =(id, ticket, length)=> {
+    //let isConfirm = window.confirm('ต้องการบันทึกข้อมูลผู้เข้าร่วมใช่หรือไม่ ?');
     let setTo = true;
-    /// prepare JSON to POST.
-    if (isConfirm) {
+     
+    confirmAlert(() => {
+      /// prepare JSON to POST.
       let data = {
         post_id: parseInt(id),
         access_code: parseInt(ticket),
         is_redeem: setTo
       }
-      //console.log(data);
-
-      /// send post here
       let url = `https://tue-kan.herokuapp.com/ticket/redeem`;
+      /// send post here 
       axios.post(url, data)
         .then((res) => {
-            console.log(res.data)
+          console.log(res.data)
         }).catch((error) => {
-            console.log(error)
-        });
-
-      alert('บันทึกข้อมูลผู้เข้าร่วมสำเร็จ !');
+          console.log(error)
+        })
 
       /// must update fake data because if not, table row haven't change color because don't GET request again.
       /// (table row color must real update when GET request to server.)
@@ -134,15 +134,14 @@ const PostingDetail =(props)=> {
       document.getElementById('redeem-box').value = '';
       /// clear highlight.
       setticketId('999999');
-      setIsHaveTicket(false);
-    }
+      setIsHaveTicket(false); 
+
+    }, 'ท่านต้องการบันทึกข้อมูลผู้เข้าร่วมใช่หรือไม่ ?', true, 'บันทึกสำเร็จ!', 'ท่านได้ยกเลิกการบันทึก!');
+     
   }
 
   let participantLen = participantData.length;
-
-  //console.log(postingData);
-  //console.log(participantData);
-
+ 
   return (
     <DetailContainer className='posting-detail'>
         <DetailHeader className='detail-header' background='#4BCCFF'>
@@ -244,7 +243,7 @@ const PostingDetail =(props)=> {
                     */}
                     {
                       isHaveTicket ?
-                      <p className='redeem-button redeem-ok' onClick={()=>confirmAndPost(postingData.id, findTicket(participantLen).ticket, participantLen)}><b>OK</b></p>
+                      <p className='redeem-button redeem-ok' onClick={()=>redeemConfirmAndPOST(postingData.id, findTicket(participantLen).ticket, participantLen)}><b>OK</b></p>
                       :
                       <p className='redeem-button redeem-ok' onClick={()=>window.alert('ข้อมูลไม่ถูกต้อง !')}><b>OK</b></p>
                     }

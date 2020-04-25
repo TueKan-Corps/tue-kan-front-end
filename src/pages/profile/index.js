@@ -123,8 +123,9 @@ class Profile extends React.Component {
 
     /// upload picture here 
     let accountId = accountAccess().getAccountId(); 
-    let url = `https://tue-kan.herokuapp.com/account/${accountId}/img`;  
+    let url = `https://tue-kan.herokuapp.com/account/img/${accountId}`;  
     let formdata = new FormData();
+    console.log(imgData);
     formdata.append("profile_img", imgData, imgData.name);
 
     let requestOptions = {
@@ -159,7 +160,7 @@ class Profile extends React.Component {
     //console.log('loading complete!');
     
     /// get account img
-    let imgSrc = `https://tue-kan.herokuapp.com/account/${accountId}/img`;  
+    let imgSrc = `https://tue-kan.herokuapp.com/account/img/${accountId}`;  
     this.setState({
       img: imgSrc
     })
