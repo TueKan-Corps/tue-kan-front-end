@@ -140,14 +140,7 @@ class Profile extends React.Component {
       .then(result => console.log(result))
       .catch(error => console.log('error', error));
  
-  }
-
-  checkImg(accountId) {
-    let img = document.getElementById(`profile-img-${accountId}`); 
-    if (img === null) {
-      this.setState({ img: 'https://tue-kan.herokuapp.com/account/img/36' })
-    }
-  }
+  } 
    
   componentDidMount () {
     let accountId = accountAccess().getAccountId(); 
@@ -220,7 +213,7 @@ class Profile extends React.Component {
 
                 <div className='img-box'>
                   {/*<img className='profile-img' src={profileData.img} alt='profile-img' />*/}
-                  <img className='profile-img' id={`profile-img-${accountId}`} src={this.state.img} alt='profile-img' ready={this.checkImg(accountId)} />
+                  <img className='profile-img' id={`profile-img-${accountId}`} src={this.state.img} alt='profile-img' />
                   { 
                     isEdit &&
                     <label htmlFor='upload-img'>
