@@ -126,8 +126,8 @@ let date = d.getDate() < 10 ? '0' + d.getDate() : d.getDate();
 let month = (d.getMonth() + 1) < 10 ? '0' + (d.getMonth() + 1) : d.getMonth();
 let maxMonth = (d.getMonth() + 1) < 10 ? '0' + (d.getMonth() + 4) : d.getMonth();
 let year = d.getFullYear();
-let today = year + '-' + month + '-' + date;
-let maxDate = year + '-' + maxMonth + '-' + date;
+let today = year + '-' + month + '-' + (date + 1);
+let maxDate = year + '-' + maxMonth + '-' + (date + 1);
 
 class NewCreatePost extends React.Component {
 
@@ -195,7 +195,7 @@ class NewCreatePost extends React.Component {
     let startTimeArray = this.state.start_time.split(':');
     let hrStart = parseInt(startTimeArray[0]) + 1;
     let hrStop = parseInt(startTimeArray[1]);
-    let minHr = hrStop > 0 ? hrStart+':'+hrStop : hrStart+':'+hrStop+0;
+    let minHr = hrStop > 0 ? hrStart + ':' + hrStop : hrStart + ':' + hrStop + 0;
 
     //console.log(today);
     //console.log(maxDate);
@@ -234,7 +234,7 @@ class NewCreatePost extends React.Component {
                 {/* step 1800 = add 0.5 hour */}
                 <FormItem className='form-item'>
                   <HeadText className='header-text'><b>Tue Start :</b></HeadText>
-                  <TimeBox className='item-input' name='start_time' step='1800' min='08:00' max='20:00' align='center' onChange={this.onInputChange} required></TimeBox>
+                  <TimeBox className='item-input' name='start_time' step='1800' min='08:00' max='19:00' align='center' onChange={this.onInputChange} required></TimeBox>
                 </FormItem>
 
                 <FormItem className='form-item'>
