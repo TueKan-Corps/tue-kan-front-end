@@ -82,12 +82,14 @@ const scrollTable =(length)=> {
 
 const PostingDetail =(props)=> {
   let { postingId } = useParams();
+
   const [ticketId, setticketId] = React.useState(0);
   const [isHaveTicket, setIsHaveTicket] = React.useState(false);
   const [postingData, ] = React.useState(props.postData[postingId-1]);
   const [participantData, setParticipantData] = React.useState(JSON.parse(postingData.participant));
-
-  let imgSrc = `https://tue-kan.herokuapp.com/account/img/${postingData.account_id}`;
+  const [imgSrc, setImgSrc] = React.useState(`https://tue-kan.herokuapp.com/account/img/${postingData.account_id}`);
+ 
+  let accountId = accountAccess().getAccountId();
 
   const checkAndHighLight =(length)=> {
     if(findTicket(length).canFind) {
@@ -142,6 +144,16 @@ const PostingDetail =(props)=> {
 
   let participantLen = participantData.length;
  
+  const checkImg = (accountId) => {
+    let img = document.getElementById(`img-post-${accountId}`);
+    /// delay for setState.
+    setTimeout(function () {
+      if (img === null) {
+        setImgSrc('https://tue-kan.herokuapp.com/account/img/36');
+      }
+    }, 2000)
+  } 
+
   return (
     <DetailContainer className='posting-detail'>
         <DetailHeader className='detail-header' background='#4BCCFF'>
@@ -152,7 +164,7 @@ const PostingDetail =(props)=> {
 
           <div className='img-container'>
             <div className='img-box'>
-              <img className='tutor-img' src={imgSrc} alt='tutor-img' />
+              <img className='tutor-post-img' id={`tutor-post-img-${accountId}`} src={imgSrc} alt='tutor-img' onLoad={checkImg(accountId)} />
             </div>
           </div>
 
