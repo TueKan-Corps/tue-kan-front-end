@@ -265,7 +265,7 @@ class NewCreatePost extends React.Component {
 
                 <FormItem className='form-item'>
                   <HeadText className='header-text'><b>Description :</b></HeadText>
-                  <TextAreaBox className='item-input' name='description' placeholder='tue detail ...' onChange={this.onInputChange} ></TextAreaBox>
+                  <TextAreaBox className='item-input' name='description' placeholder='tue detail ...' onChange={this.onInputChange} spellCheck={false}></TextAreaBox>
                 </FormItem>
 
                 <button className='submit-btn' type='submit'><b>Create</b></button>
