@@ -60,7 +60,7 @@ const CoinPayment = ({ navState, dispatch })=> {
             console.log(error)
           });
 
-        notifyAlert(() => { }, 'สำเร็จ!', 'ท่านได้เติมเงินเข้าสู่ระบบแล้ว', 'success'); 
+        notifyAlert(() => { }, 'สำเร็จ!', `ท่านได้เติมเงิน ${coinCode[code]} coin เข้าสู่ระบบแล้ว`, 'success'); 
 
         /// edit coin_amount in profileData on navState.
         dispatch(coinOps(coinCode[code], true));
