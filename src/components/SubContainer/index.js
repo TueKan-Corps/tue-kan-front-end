@@ -23,7 +23,8 @@ import Postlist from './Postlist/index.js';
 import LoadingPostList from '../../components/loadingPostList/index.js';
 import {checkButtonStatus} from '../../helpers'
 import accountAccess from '../avatar/accountAccess.js';
-import { AlertConfirm } from '../../helpers/AlertConfirm';
+//import { AlertConfirm } from '../../helpers/AlertConfirm';
+import { confirmAlert } from '../confirmAlert.js';
 
 import MyTueList from '../../components/MyTuelist/index.js';
 
@@ -98,6 +99,10 @@ const Sub = (props) => {
         console.log(error)
       }); 
     dispatch(coinOps(parseInt(mainData.price), false));
+
+    setTimeout(()=> {
+      window.location.reload();
+    }, 3000)
     
   } 
     return (
@@ -164,7 +169,7 @@ const Sub = (props) => {
                     <p className='description-detail-text'>This tue has not description.</p>
                 }
               </div>
-              <button className="buy-button" type="button" data-hover={buttonState.statusText} onClick={() => AlertConfirm(buyTicket) } disabled={!buttonState.joinState} style={{ backgroundColor: `${buttonState.colorButton}` }} ><span>{`${postData.price} TC`}</span></button>
+              <button className="buy-button" type="button" data-hover={buttonState.statusText} onClick={() => confirmAlert(buyTicket, 'ท่านต้องการซื้อตั๋วใช่หรือไม่ ?', true, 'ท่านได้ซื้อตั๋วแล้ว', 'ยกเลิกการซื้อตั๋วแล้ว') } disabled={!buttonState.joinState} style={{ backgroundColor: `${buttonState.colorButton}` }} ><span>{`${postData.price} TC`}</span></button>
 
             </div>
 
