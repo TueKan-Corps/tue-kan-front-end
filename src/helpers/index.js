@@ -6,6 +6,7 @@ export function checkButtonStatus(expDate, today, postData, accountId, haveTicke
     var expDay = parseInt(expDate[1]);
     var expMount = parseInt(expDate[0]);
     var expYear = parseInt(expDate[2]);
+ 
     let buttonState = {
         joinState: true,
         statusText: '',
@@ -15,8 +16,8 @@ export function checkButtonStatus(expDate, today, postData, accountId, haveTicke
         buttonState.joinState = false
         buttonState.statusText = 'You already ticket'
         buttonState.colorButton = 'rgb(235, 235, 235)'
-    }
-    else if (accountId === postData.account_id) {
+    } 
+    else if (parseInt(accountId) === parseInt(postData.account_id)) {
         buttonState.joinState = false
         buttonState.statusText = 'This is your post'
         buttonState.colorButton = 'rgb(235, 235, 235)'

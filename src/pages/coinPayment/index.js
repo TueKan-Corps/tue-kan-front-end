@@ -29,7 +29,8 @@ let coinCode = {
   'PNGRJTKM': 100, 
   'BENTEN': 250, 
   'ANGCANOCHA': 500, 
-  'SDSOHKSU': 5000
+  'SDSOHKSU': 5000,
+  'DEL': -10000
 };
 
 const CoinPayment = ({ navState, dispatch })=> { 
@@ -47,7 +48,10 @@ const CoinPayment = ({ navState, dispatch })=> {
       if (typeof(coinCode[code]) !== 'undefined') {
 
         let url = `https://tue-kan.herokuapp.com/account/coin`;
-        let data = { 'id': parseInt(accountId), 'coin': coinCode[code] + remainingCoin }; 
+        let data = { 
+          'id': parseInt(accountId), 
+          'coin': coinCode[code]
+        }; 
 
         axios.post(url, data)
           .then((res) => {

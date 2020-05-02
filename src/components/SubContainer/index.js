@@ -87,25 +87,42 @@ const Sub = (props) => {
         console.log(error)
       });
     PayCoin(); 
+    AddOwnerCoin();
   }
     
   const PayCoin = () => {
-    let newData = {'id': parseInt(accountId), 'coin': parseInt(profileData.coin_amount) - parseInt(mainData.price)}
+    /// Decrementing coin of ticket buyer.
+    let updateBuyer = {
+      'id': parseInt(accountId), 
+      'coin': parseInt(mainData.price) * -1
+    };
 
     let url = 'https://tue-kan.herokuapp.com/account/coin';
-    axios.post(url, newData)
+    axios.post(url, updateBuyer)
       .then((res) => {
         console.log(res)
       }).catch((error) => {
         console.log(error)
       }); 
-    dispatch(coinOps(parseInt(mainData.price), false));
-
-    setTimeout(()=> {
-      window.location.reload();
-    }, 3000)
-    
+    dispatch(coinOps(parseInt(mainData.price), false)); 
   } 
+
+  const AddOwnerCoin =()=> {
+    /// Incrementing coin of ticket owner.
+    let updateOwner = {
+      'id': parseInt(mainData.account_id),
+      'coin': parseInt(mainData.price)
+    };
+
+    let url = 'https://tue-kan.herokuapp.com/account/coin';
+    axios.post(url, updateOwner)
+      .then((res) => {
+        console.log(res)
+      }).catch((error) => {
+        console.log(error)
+      }); 
+  }
+
     return (
 
       <DetailContainer className='postlist-detail'>
