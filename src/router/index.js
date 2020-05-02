@@ -55,7 +55,7 @@ export default () => {
               </Route>
 
               <Route path="/login">
-                <Login />
+                <Redirect to='/' />
               </Route>
 
               <Route path="/profile">

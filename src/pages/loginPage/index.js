@@ -4,8 +4,8 @@ import './style.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 import accountAccess from '../../components/avatar/accountAccess.js'
-import { AlertCorrect } from '../../helpers/AlertCorrect'
-import { AlertInCorrect } from '../../helpers/AlertInCorrect'
+//import { AlertCorrect } from '../../helpers/AlertCorrect'
+//import { AlertInCorrect } from '../../helpers/AlertInCorrect'
 
 import logo from '../../assets/icon/weblogo_white.png'
 import guestImg from '../../assets/icon/guest.png'; 
@@ -166,11 +166,7 @@ export default class Login extends Component {
         return this.signUpData.formElements[name].error.message;
     }
 
-    onFormSubmit = (event) => {
-        // const formData = {};
-        // for (let name in this.signUpData.formElements) {
-        //     formData[name] = this.signUpData.formElements[name].value;
-        // }
+    onFormSubmit = (event) => { 
         event.preventDefault();
         this.signUpDataToBack = {
             username : this.signUpData.formElements.email.value,
@@ -232,9 +228,7 @@ export default class Login extends Component {
         fetch(myRequest)
             .then((response) => response.blob())
             .then((myBlob) => {
-                formdata.append("profile_img", myBlob, 'test');
-                //console.log('myBlob');
-                //console.log(myBlob);
+                formdata.append("profile_img", myBlob, 'test'); 
             });
 
         setTimeout(()=> {
@@ -290,23 +284,18 @@ export default class Login extends Component {
         
     }
 
-    checkData (result) {
-        console.log('result here');
-        console.log(this.state.responseData.account_id);
+    checkData () { 
         accountAccess().clearAccountId();
-        let checkId = 36;
         if (this.state.responseData.account_id === undefined) {
             this.setState({
                 ...this.state,
                 passwordLogin : ''
             })
-            AlertInCorrect();
+            notifyAlert(() => { }, 'ล้มเหลว!', 'ข้อมูลไม่ถูกต้อง', 'error');
         }
         else {
             accountAccess().setAccountId(this.state.responseData.account_id);
-                console.log(checkId);
-                console.log(accountAccess().getAccountId())
-                AlertCorrect();
+            notifyAlert(() => { window.location = '/' }, 'สำเร็จ!', 'ท่านได้เข้าสู่ระบบแล้ว', 'success');
         }
     }
 
