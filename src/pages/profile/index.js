@@ -14,6 +14,8 @@
     -- edit to can upload new profile img to server.
   .edit 10-Apr-20
     -- [**1] use real account_id.
+  .edit 30-Apr-20
+    -- validate editing profile description.
 */
 
 import React from 'react';
@@ -27,6 +29,7 @@ import LoadingPostList from '../../components/loadingPostList/index.js';
 import MainDiv from '../mainDiv.js';
 import SubDiv from '../subDiv.js';
 import accountAccess from '../../components/avatar/accountAccess.js';
+import { notifyAlert } from '../../components/confirmAlert.js';
 
 class Profile extends React.Component {
 
@@ -48,11 +51,20 @@ class Profile extends React.Component {
   }
 
   setEdit =()=> {
-    if (this.state.isEdit === true)
-    {
+    /// toggle state read->edit, edit->read
+    this.setState(state => ({
+      isEdit: !state.isEdit,
+    }))
+
+    let firstNameIsTrue = this.state.profileData.first_name.length >= 5 && this.state.profileData.first_name.length <= 20;
+    let lastNameIsTrue = this.state.profileData.last_name.length >= 5 && this.state.profileData.last_name.length <= 20;
+    let canSave = firstNameIsTrue && lastNameIsTrue;
+    
+    if (this.state.isEdit === true) {
+      if (canSave) {
       /// send POST here 
       let data = this.state.profileData;
-      let accountId = accountAccess().getAccountId(); 
+      let accountId = accountAccess().getAccountId();
       delete data["username"];
       delete data["password"];
       delete data["coin_amount"];
@@ -61,24 +73,31 @@ class Profile extends React.Component {
       data["contact"] = this.state.contact;
 
       let url = `https://tue-kan.herokuapp.com/account/update`;
-  
+
       axios.post(url, data)
         .then((res) => {
           console.log(res.data)
         }).catch((error) => {
           console.log(error)
         });
+ 
+      notifyAlert(() => { }, 'สำเร็จ!', 'บันทึกข้อมูลใหม่สำเร็จแล้ว', 'success');
+ 
+      }
 
-      alert('เซฟข้อมูลสำเร็จ !'); 
+      else {
+        let errorText = firstNameIsTrue === false ? '\n*ชื่อ' : ''; 
+        errorText = lastNameIsTrue === false ? `${errorText} *นามสกุล` : errorText;
+        notifyAlert(() => { }, 'ล้มเหลว!', `ไม่สามารถบันทึกข้อมูลได้${errorText}`, 'error');
 
-      //console.log("POST");
-      //console.log(data);
-    }  
+        this.setState({
+          isEdit: true
+        })
 
-    this.setState(state => ({
-      isEdit: !state.isEdit,
-    }))
-  }
+      }
+
+    }
+  } 
 
   onInputChange =(event)=> {
     let eventName = event.target.name;
@@ -235,8 +254,23 @@ class Profile extends React.Component {
                   { 
                     isEdit && 
                     <>
-                      <input className='description-text description-name-input' name='first_name' value={profileData.first_name} onChange={this.onInputChange} spellCheck={false}></input>
-                      <input className='description-text description-name-input' name='last_name' value={profileData.last_name} onChange={this.onInputChange} spellCheck={false}></input>
+                      <input 
+                        className='description-text description-name-input' 
+                        name='first_name' value={profileData.first_name} 
+                        onChange={this.onInputChange} 
+                        spellCheck={false}
+                        minLength='5'
+                        maxLength='20' 
+                      />
+                      <input 
+                        className='description-text description-name-input' 
+                        name='last_name' 
+                        value={profileData.last_name} 
+                        onChange={this.onInputChange} 
+                        spellCheck={false}
+                        minLength='5'
+                        maxLength='20' 
+                      />
                     </>
                   }
                   { !isEdit && <p className='description-text description-name'>{`${profileData.first_name} ${profileData.last_name}`}</p>}
@@ -273,7 +307,14 @@ class Profile extends React.Component {
                     this.state.contact.map((contact, index) => (
                       <div className='contact-edit-box' key={contact.ID}>
                         <label className='contact-edit contact-name'>{contact.Name}</label>
-                        <input className='contact-edit contact-input' type='text' name={contact.Name} value={contact.Link} spellCheck='false' onChange={(event)=>this.onInputLinkChange(event, index)}></input>
+                        <input 
+                          className='contact-edit contact-input' 
+                          type='text' name={contact.Name} 
+                          value={contact.Link} 
+                          spellCheck='false' 
+                          onChange={(event)=>this.onInputLinkChange(event, index)} 
+                          maxLength='50'
+                        />
                       </div>
                     ))
                   }

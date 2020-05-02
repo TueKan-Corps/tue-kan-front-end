@@ -19,7 +19,6 @@
   }
 
 .loginpage .container-login {
-
 	background-color: #fff;
 	border-radius: 10px;
 	box-shadow: 0 14px 28px rgba(0,0,0,0.25),0 10px 10px rgba(0,0,0,0.22);
@@ -141,15 +140,13 @@
 .loginpage .container-login .sign-in-container {
 	left: 0;
 	width: 50%;
-	z-index: 2;
+	/* z-index: 2; */
+	opacity: 1;
+	pointer-events: all;
+	transition: 0.6s ease-out;
 }
 
-
-
-
-
 .loginpage .container-login .sign-up-container {
-
 	left: 0;
 	width: 50%;
 	opacity: 0;
@@ -157,7 +154,8 @@
 	animation: show 0.6s;
 }
 
-
+}
+/* 
 @keyframes show {
 	0%, 49.99% {
 		opacity: 0;
@@ -168,7 +166,7 @@
 		opacity: 1;
 		z-index: 5;
 	}
-}
+} */
 
 
 .container-login .overlay-container {
@@ -265,6 +263,8 @@
 
 	transform: translateX(100%);
 	background-color: black;
+	opacity: 0;
+	pointer-events: none;
 }
 
 
@@ -272,8 +272,8 @@
 
 	transform: translateX(100%);
 	opacity: 1;
-	z-index: 5;
-	animation: show 0.6s;
+	/* z-index: 5; */
+	pointer-events: all;
 }
 
 

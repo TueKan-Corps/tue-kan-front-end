@@ -363,9 +363,24 @@ export default class Login extends Component {
                             <div className="check invalid-feedback">{this.getErrorMessage('password')}></div>
                         <   button className="button-login" type="submit" disabled={!this.state.formValid}>Sign Up</button>
                         </form>
-
                     </div>
-                    
+
+                    <div className="form-container sign-in-container">
+                        <form className="form-login" action="#" onSubmit = {this.onLoginSubmit}>
+                            <h1 className="header1-login">Sign in</h1>
+                            <div className="social-container">
+                                <a href="#" className="social"><i className="fab fa-facebook-f"></i></a>
+                                <a href="#" className="social"><i className="fab fa-google-plus-g"></i></a>
+                                <a href="#" className="social"><i className="fab fa-linkedin-in"></i></a>
+                            </div>
+                            <span className="span-login">or use your account</span>
+                            <input className="input-login form-control" type="username" placeholder="Email" id="usernameLogin" name="usernameLogin" onChange={this.onInputChange} required/>
+                            <input className="input-login form-control" type="password" placeholder="Password" id="passwordLogin" name="passwordLogin" value={this.state.passwordLogin} onChange={this.onInputChange} required/>
+                            <a href="#" className="social">Forgot your password?</a>
+                            <button className="button-login">Sign In</button>
+                        </form>
+                    </div>
+                            
                     <div className="overlay-container">
                         <div className="overlay">
                             <div id="signInContainer" className="overlay-panel overlay-left">
