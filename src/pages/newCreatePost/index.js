@@ -65,7 +65,7 @@ const FormItem = styled.div`
     float: right;
     padding: 7px 0 7px 10px;
     resize: none;
-    border-radius: 20px;
+    border-radius: 5px;
     border: 0;
     background: rgb(235, 235, 235);
   }
@@ -94,19 +94,19 @@ const TimeBox = styled(TextBox).attrs({
   type: 'time',
   //value: '08:00',
 })`
-  width: 15%;
-  margin-right: 60%;
+  width: 30%;
+  margin-right: 45%;
 `;
 
-const DateBox = styled(TextBox).attrs({
+const DateBox = styled(TimeBox).attrs({
   type: 'date',
-})`
+})` 
 `;
 
-const NumBox = styled(TextBox).attrs({
+const NumBox = styled(TimeBox).attrs({
   type: 'number',
   step: '1',
-})`
+})` 
 `;
 
 const TextAreaBox = styled.textarea`
@@ -117,8 +117,8 @@ const TextAreaBox = styled.textarea`
 
 const SelectBox = styled.select
 `
-  width: 25%;
-  margin-right: 50%;
+  width: 30%;
+  margin-right: 45%;
 `;
 
 let d = new Date();

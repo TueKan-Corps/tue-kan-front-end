@@ -54,10 +54,7 @@ const Sub = (props) => {
   let postData = props.mainListData[postId - 1];
   let myTicketData = props.myTicketData;
   let profileData = props.profileData; 
-
-  //console.log('profileData');
-  //console.log(profileData);
-
+ 
   const [buttonState,setbuttonState] = useState({
     joinState: true,
     statusText: '',
@@ -75,13 +72,9 @@ const Sub = (props) => {
   var expDate = postData.date.split('-');
 
   useEffect(() => {
-    let haveTicket = myTicketData?.find(ticket => ticket.id === postData.id); 
-    //console.log('store.getState().navBar.profileData');
-    //console.log(store.getState().navBar.profileData);
-    setbuttonState(checkButtonStatus(expDate, today, postData, accountId, haveTicket, profileData));
-    //console.log(checkButtonStatus(expDate, today, postData, accountId, haveTicket, profileData));
-  }, [myTicketData])
-  // accountAccess().clearAccountId();
+    let haveTicket = myTicketData?.find(ticket => ticket.id === postData.id);  
+    setbuttonState(checkButtonStatus(expDate, today, postData, accountId, haveTicket, profileData)); 
+  }, [myTicketData]) 
 
   const buyTicket = () => {
     let url = `https://tue-kan.herokuapp.com/ticket/`; 
@@ -91,14 +84,11 @@ const Sub = (props) => {
       }).catch((error) => {
         console.log(error)
       });
-    PayCoin();
-    //alert('ซื้อสำเร็จ')
+    PayCoin(); 
   }
     
   const PayCoin = () => {
     let newData = {'id': parseInt(accountId), 'coin': parseInt(profileData.coin_amount) - parseInt(mainData.price)}
-    //console.log('props.profileData');
-    //console.log(newData);
 
     let url = 'https://tue-kan.herokuapp.com/account/coin';
     axios.post(url, newData)
@@ -106,9 +96,7 @@ const Sub = (props) => {
         console.log(res)
       }).catch((error) => {
         console.log(error)
-      });
-    //console.log(`${buttonState.joinState}`)
-    //alert('จ่ายเงิน');
+      }); 
     dispatch(coinOps(parseInt(mainData.price), false));
     
   } 

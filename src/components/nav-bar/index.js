@@ -22,7 +22,7 @@ import { Link } from "react-router-dom";
 
 import './style.css';
 
-import logo from '../../assets/icon/weblogo_white.png';
+import logo from '../../assets/icon/weblogo_blue.png';
 
 import { notifyAlert } from '../confirmAlert.js';
 

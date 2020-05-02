@@ -9,8 +9,8 @@ const DetailHeader = styled.div`
   !background: ${props => props.background};
   width: 50%;
   height: 50px;
-  border-top-left-radius: 25px;
-  border-top-right-radius: 25px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 `;
 
 export default DetailHeader;

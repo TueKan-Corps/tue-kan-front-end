@@ -21,7 +21,7 @@ const CreateItem =(props)=> {
   let isHome = props.path === '/';
   return (
       <div className={`${props.name}-box side-menu-item`}> 
-        <NavLink exact={isHome} className='item-link' to={props.path} activeStyle={{color: '#4BCCFF'}}>
+        <NavLink exact={isHome} className='item-link' to={props.path} activeStyle={{ color: '#4BCCFF'}}>
           <i className={`${props.icon} item-icon`}></i>
           <p className='item-name'><b>{props.name}</b></p>
         </NavLink> 

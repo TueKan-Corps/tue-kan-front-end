@@ -1,6 +1,5 @@
 .profile-sub-container .post-header {
-  width: auto;
-  !background: red;
+  width: auto; 
   border-bottom: 1px solid rgb(200, 200, 200);
   padding: 20px 20px 20px 20px;
 }
@@ -30,19 +29,17 @@
 .profile-detail-container {
   background: rgb(238,238,238);
   margin-top: 25px;
-  border-radius: 25px;
+  border-radius: 5px;
   padding-bottom: 20px;
 }
 
-.profile-detail-container .profile-detail-box {
-  !background: red;
+.profile-detail-container .profile-detail-box { 
   width: 95%;
   margin: 0 auto;
   overflow: auto;
 }
 
-.profile-detail-container .profile-detail-box .img-box {
-  !background: lightgreen;
+.profile-detail-container .profile-detail-box .img-box { 
   width: 25%;
   min-height: 60px; 
   padding: 0;
@@ -103,7 +100,7 @@
   max-height: 200px;
   resize: none;
   font-family: 'Quicksand', sans-serif;
-  border-radius: 10px;
+  border-radius: 5px;
   box-sizing: border-box;
   border: 2px dashed #69d4ff;
   padding: 10px 15px 10px 15px;
@@ -114,15 +111,14 @@
   outline: none;
 }
 
-.profile-detail-container .profile-detail-box .profile-description .edit-box {
-  !background: skyblue;
+.profile-detail-container .profile-detail-box .profile-description .edit-box { 
   background: #69d4ff;
   width: 20%;
   float: right;
   min-width: 110px;
   margin-top: 25px;
   height: 40px;
-  border-radius: 25px;
+  border-radius: 5px;
 }
 
 .profile-detail-container .profile-detail-box .profile-description .edit-box:hover {
@@ -158,7 +154,7 @@
   margin-right: 10px;
   background: rgb(235, 235, 235);
   padding: 5px 5px 5px 10px;
-  border-radius: 15px;
+  border-radius: 5px;
   box-sizing: border-box;
   border: 2px solid dimgrey; 
 }
@@ -180,8 +176,7 @@
   filter: brightness(90%);
 }
 
-.profile-detail-container .profile-detail-box .contact-box {
-  !background: red;
+.profile-detail-container .profile-detail-box .contact-box { 
   float: left;
   width: 100%;
   overflow: auto;
@@ -191,12 +186,10 @@
 }
 
 .profile-detail-container .profile-detail-box .contact-box .contact-header {
-  !background: rgb(170,170,170);
   overflow: auto;
   max-width: 360px;
   margin: 0 auto;
   padding: 10px;
-  !border-radius: 25px;
   text-align: center;
 }
 
@@ -220,14 +213,14 @@
   margin: 0 auto;
   margin-top: 5px;
   transition: box-shadow 0.2s;
-  border-radius: 25px;
+  border-radius: 5px;
 }
 
 .profile-detail-container .profile-detail-box .contact-box .contact-detail .contact-img {
   width: 40px;
   height: 40px;
   margin: 5px 10px 5px 10px;
-  border-radius: 50px;
+  border-radius: 5px;
   transition: box-shadow 0.2s;
   box-shadow: 5px 0px 10px rgb(198,198,198);
 }
@@ -267,7 +260,7 @@
   margin-right: 20px;
   max-width: 175px;
   padding: 13px 2px 13px 10px;
-  border-radius: 10px;
+  border-radius: 5px;
   border: 0;
 }
 

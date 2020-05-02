@@ -8,9 +8,9 @@ const DetailBody = styled.div`
   background: ${props => props.background};
   background: #f7f7f7; 
   width: 100%;
-  border-top-right-radius: 25px;
-  border-bottom-right-radius: 25px;
-  border-bottom-left-radius: 25px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
   padding-top: 20px;
   padding-bottom: 20px;
 `;

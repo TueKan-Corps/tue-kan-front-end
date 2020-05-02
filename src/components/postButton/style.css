@@ -7,8 +7,7 @@
 }
 
 .post-button-box:hover .post-messege {
-  transition: filter 0.2s;
-  !background: rgb(38,199,231);
+  transition: filter 0.2s; 
   text-decoration: none;
   color: white;
   filter: contrast(75%);
@@ -22,11 +21,10 @@
 .post-messege {
   transition: background-color 0.2s;
   color: white;
-  text-decoration: none;
-  !background: #4BCCFF;
-  background: #FB6D4C;
+  text-decoration: none; 
+  background: #4BCCFF;
   font-size: 20px;
   box-sizing: border-box;
-  border-radius: 20px;
+  border-radius: 5px;
   padding: 10px 60px 10px 60px;
 }

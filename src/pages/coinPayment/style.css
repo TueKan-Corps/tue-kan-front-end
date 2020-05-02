@@ -69,7 +69,7 @@
   overflow: auto;
   border: 3px dashed #88ddff;
   box-sizing: border-box;
-  border-radius: 15px;
+  border-radius: 5px;
   background: rgb(252, 252, 252);
   margin: 20px 10px 10px 0px;
   padding: 20px 10px 20px 40px;
@@ -80,7 +80,7 @@
   padding: 5px;
   display: inline;
   float: left;
-  border-radius: 10px;
+  border-radius: 5px;
   border: 1px solid rgb(212,205,205);
 }
 
@@ -100,7 +100,7 @@
   box-sizing: border-box;
   !display: inline-block;
   float: left;
-  border-radius: 20px;
+  border-radius: 5px;
   margin-top: 5px;
   padding: 7px 20px 7px 20px;
   margin: 0 5px 0 5px;

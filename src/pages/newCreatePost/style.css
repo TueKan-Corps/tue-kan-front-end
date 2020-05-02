@@ -44,8 +44,7 @@
   font-size: 18px;
   padding: 15px;
   font-family: 'Quicksand', sans-serif;
-  border-radius: 30px;
-  !background: rgb(146,220,247);
+  border-radius: 5px; 
   background: #69d4ff;
   border: 0;
 }

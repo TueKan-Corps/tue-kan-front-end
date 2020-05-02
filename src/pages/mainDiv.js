@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const MainDiv = styled.div`
-  background: rgb(230, 230, 230);
+  background: rgb(233, 233, 233);
   margin-top: 60px;
   overflow: auto;
   font-family: 'Quicksand', sans-serif;
