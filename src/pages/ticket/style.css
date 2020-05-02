@@ -87,8 +87,7 @@
 }
 
 .ticket-sub-container .detail-body .description-detail-box {
-  margin-left: 0;
-  !background: salmon;
+  margin-left: 0; 
   width: 92%;
   margin-left: 4%;
   float: left;
@@ -97,9 +96,8 @@
 .ticket-sub-container .detail-body .description-detail-box .description-detail-text-box {
   width: 90%;
   margin: 0 auto;
-  background: rgb(235, 235, 235);
-  !border: 3px dashed rgb(255,216,212);
-  border: 3px dashed #69d4ff;
+  background: rgb(235, 235, 235); 
+  border: 2px dashed #69d4ff;
   box-sizing: border-box;
   border-radius: 5px;
   padding: 10px 30px 0px 30px;
@@ -113,8 +111,7 @@
   font-size: 16px;
 }
 
-.ticket-sub-container .detail-body .ticket-joined-box {
-  !background: coral;
+.ticket-sub-container .detail-body .ticket-joined-box { 
   margin-bottom: 20px;
   width: 16%;
   height: 200px;
@@ -125,9 +122,8 @@
 .ticket-sub-container .detail-body .ticket-joined-box .joined-box {
   background: rgb(235, 235, 235);
   width: 100%;
-  height: 55px;
-  !border: 4px solid rgb(255,216,212);
-  border: 4px solid #69d4ff;
+  height: 55px; 
+  border: 2px solid #69d4ff;
   box-sizing: border-box;
   border-radius: 5px;
   margin-top: 15%;

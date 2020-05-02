@@ -18,6 +18,7 @@ import { notifyAlert } from '../../components/confirmAlert.js';
 
 import MainDiv from '../mainDiv.js';
 import SubDiv from '../subDiv.js';
+import DetailBody from '../newCreatePost/detailBody.js';
 
 import accountAccess from '../../components/avatar/accountAccess.js'; 
  
@@ -79,7 +80,7 @@ const CoinPayment = ({ navState, dispatch })=> {
             <p className='header-item header-text'><b>Coin Payment</b></p>
           </div>
 
-          <div className='detail-body'>
+          <DetailBody className='detail-body'>
             <div className='redeem-description-box'>
               <div className='description-box redeem-box'>
                 <i className="description-img fas fa-donate"></i>
@@ -102,7 +103,7 @@ const CoinPayment = ({ navState, dispatch })=> {
                 </div>
               </div>
             </div>
-          </div>
+          </DetailBody>
 
       </SubDiv>
 

@@ -27,9 +27,8 @@
   font-size: 28px;
 }
 
-.coin-sub-container .detail-body {
-  !background: red;
-  margin-top: 15px;
+.coin-sub-container .detail-body { 
+  margin-top: 25px;
   overflow: auto;
 }
 
@@ -55,22 +54,20 @@
   padding-top: 0px;
 }
 
-.coin-main-container .redeem-box {
-  !background: pink;
+.coin-main-container .redeem-box { 
   margin-left: 5%;
   margin-top: 20px;
   padding: 0px 30px 20px 30px;
   width: 92%;
-  float: left;
-  !height: 200px;
+  float: left; 
 }
 
 .coin-main-container .redeem-box .redeem-container {
   overflow: auto;
-  border: 3px dashed #88ddff;
+  border: 2px dashed #88ddff;
   box-sizing: border-box;
   border-radius: 5px;
-  background: rgb(252, 252, 252);
+  background: rgb(233, 233, 233);
   margin: 20px 10px 10px 0px;
   padding: 20px 10px 20px 40px;
 }
@@ -81,7 +78,7 @@
   display: inline;
   float: left;
   border-radius: 5px;
-  border: 1px solid rgb(212,205,205);
+  border: 1.5px solid rgb(212,205,205);
 }
 
 .coin-main-container .redeem-box .redeem-input:focus {
@@ -96,9 +93,8 @@
 
 .coin-main-container .redeem-box .redeem-button {
   background: rgb(252, 252, 252);
-  border: 2px solid skyblue;
-  box-sizing: border-box;
-  !display: inline-block;
+  border: 1.5px solid skyblue;
+  box-sizing: border-box; 
   float: left;
   border-radius: 5px;
   margin-top: 5px;

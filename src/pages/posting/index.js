@@ -143,17 +143,7 @@ const PostingDetail =(props)=> {
   }
 
   let participantLen = participantData.length;
- 
-  const checkImg = (accountId) => {
-    let img = document.getElementById(`img-post-${accountId}`);
-    /// delay for setState.
-    setTimeout(function () {
-      if (img === null) {
-        setImgSrc('https://tue-kan.herokuapp.com/account/img/36');
-      }
-    }, 2000)
-  } 
-
+   
   return (
     <DetailContainer className='posting-detail'>
         <DetailHeader className='detail-header' background='#4BCCFF'>
@@ -164,7 +154,7 @@ const PostingDetail =(props)=> {
 
           <div className='img-container'>
             <div className='img-box'>
-              <img className='tutor-post-img' id={`tutor-post-img-${accountId}`} src={imgSrc} alt='tutor-img' onLoad={checkImg(accountId)} />
+              <img className='tutor-post-img' id={`tutor-post-img-${accountId}`} src={imgSrc} alt='tutor-img' />
             </div>
           </div>
 
