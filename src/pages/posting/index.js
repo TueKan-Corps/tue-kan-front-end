@@ -87,7 +87,7 @@ const PostingDetail =(props)=> {
   const [isHaveTicket, setIsHaveTicket] = React.useState(false);
   const [postingData, ] = React.useState(props.postData[postingId-1]);
   const [participantData, setParticipantData] = React.useState(JSON.parse(postingData.participant));
-  const [imgSrc, setImgSrc] = React.useState(`https://tue-kan.herokuapp.com/account/img/${postingData.account_id}`);
+  const [imgSrc, ] = React.useState(`https://tue-kan.herokuapp.com/account/img/${postingData.account_id}`);
  
   let accountId = accountAccess().getAccountId();
 

@@ -16,7 +16,7 @@ export function checkButtonStatus(expDate, today, postData, accountId, haveTicke
         buttonState.statusText = 'You already ticket'
         buttonState.colorButton = 'rgb(235, 235, 235)'
     }
-    else if (accountId == postData.account_id) {
+    else if (accountId === postData.account_id) {
         buttonState.joinState = false
         buttonState.statusText = 'This is your post'
         buttonState.colorButton = 'rgb(235, 235, 235)'
@@ -26,13 +26,13 @@ export function checkButtonStatus(expDate, today, postData, accountId, haveTicke
         buttonState.statusText = 'Soldout'
         buttonState.colorButton = 'rgb(255,216,212)'
     }
-    else if (yearNowDate == expYear && buttonState.joinState) {
+    else if (yearNowDate === expYear && buttonState.joinState) {
         if (mountNowDate < expMount && buttonState.joinState) {
             buttonState.joinState = true
             buttonState.statusText = 'Buy Ticket'
             buttonState.colorButton = '#ffeb99'
         }
-        else if (mountNowDate == expMount && buttonState.joinState) {
+        else if (mountNowDate === expMount && buttonState.joinState) {
             if (dayNowDate < expDay) {
                 buttonState.joinState = true
                 buttonState.statusText = 'Buy Ticket'

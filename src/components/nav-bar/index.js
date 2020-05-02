@@ -53,6 +53,7 @@ const Navbar = ({ navState, dispatch})=> {
     if (accountId !== 36) {
       dispatch(setStatus('user'));
     } 
+    // eslint-disable-next-line
   }, []);
  
   let loading = navState.loading;

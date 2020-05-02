@@ -71,10 +71,11 @@ const Sub = (props) => {
   
   var today = new Date();
   var expDate = postData.date.split('-');
-
+ 
   useEffect(() => {
     let haveTicket = myTicketData?.find(ticket => ticket.id === postData.id);  
     setbuttonState(checkButtonStatus(expDate, today, postData, accountId, haveTicket, profileData)); 
+    // eslint-disable-next-line
   }, [myTicketData]) 
 
   const buyTicket = () => {

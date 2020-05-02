@@ -318,14 +318,14 @@ export default class Login extends Component {
                         <form className="form-login" action="#" onSubmit = {this.onLoginSubmit}>
                             <h1 className="header1-login">Sign in</h1>
                             <div className="social-container">
-                                <a href="#" className="social"><i className="fab fa-facebook-f"></i></a>
-                                <a href="#" className="social"><i className="fab fa-google-plus-g"></i></a>
-                                <a href="#" className="social"><i className="fab fa-linkedin-in"></i></a>
+                                <a href="facebook.com" className="social"><i className="fab fa-facebook-f"></i></a>
+                                <a href="google.co.th" className="social"><i className="fab fa-google-plus-g"></i></a>
+                                <a href="th.linkedin.com" className="social"><i className="fab fa-linkedin-in"></i></a>
                             </div>
                             <span className="span-login">or use your account</span>
                             <input className="input-login form-control" type="username" placeholder="Email" id="usernameLogin" name="usernameLogin" onChange={this.onInputChange} />
                             <input className="input-login form-control" type="password" placeholder="Password" id="passwordLogin" name="passwordLogin" value={this.state.passwordLogin} onChange={this.onInputChange} />
-                            <a href="#" className="social">Forgot your password?</a>
+                            <a href="apple.com/th/" className="social">Forgot your password?</a>
                             <button className="button-login">Sign In</button>
                         </form>
                     </div>
@@ -334,9 +334,9 @@ export default class Login extends Component {
                         <form className="form-login" action="#" onSubmit={this.onFormSubmit}>
                             <h1 className="header1-login">Create Account</h1>
                             <div className="social-container">
-                                <a href="#" className="social"><i className="fab fa-facebook-f"></i></a>
-                                <a href="#" className="social"><i className="fab fa-google-plus-g"></i></a>
-                                <a href="#" className="social"><i className="fab fa-linkedin-in"></i></a>
+                                <a href="facebook.com" className="social"><i className="fab fa-facebook-f"></i></a>
+                                <a href="google.co.th" className="social"><i className="fab fa-google-plus-g"></i></a>
+                                <a href="th.linkedin.com" className="social"><i className="fab fa-linkedin-in"></i></a>
                             </div>
                             <span className="span-login">or use your email for registration</span>
                             <input className={this.getInputClass('firstname')} type="text" placeholder="Firstname" id="firstname" name="firstname" onChange={this.onFormChange}/>
@@ -358,14 +358,14 @@ export default class Login extends Component {
                         <form className="form-login" action="#" onSubmit = {this.onLoginSubmit}>
                             <h1 className="header1-login">Sign in</h1>
                             <div className="social-container">
-                                <a href="#" className="social"><i className="fab fa-facebook-f"></i></a>
-                                <a href="#" className="social"><i className="fab fa-google-plus-g"></i></a>
-                                <a href="#" className="social"><i className="fab fa-linkedin-in"></i></a>
+                                <a href="facebook.com" className="social"><i className="fab fa-facebook-f"></i></a>
+                                <a href="google.co.th" className="social"><i className="fab fa-google-plus-g"></i></a>
+                                <a href="th.linkedin.com" className="social"><i className="fab fa-linkedin-in"></i></a>
                             </div>
                             <span className="span-login">or use your account</span>
                             <input className="input-login form-control" type="username" placeholder="Email" id="usernameLogin" name="usernameLogin" onChange={this.onInputChange} required/>
                             <input className="input-login form-control" type="password" placeholder="Password" id="passwordLogin" name="passwordLogin" value={this.state.passwordLogin} onChange={this.onInputChange} required/>
-                            <a href="#" className="social">Forgot your password?</a>
+                            <a href="apple.com/th/" className="social">Forgot your password?</a>
                             <button className="button-login">Sign In</button>
                         </form>
                     </div>
@@ -378,7 +378,7 @@ export default class Login extends Component {
                                 <button className="button-login ghost" id="signIn" onClick={signInButton}>Sign In</button>
                             </div>
                             <div id="signUpContainer " className="overlay-panel overlay-right">
-                                <div className='logobox'><img className='logo'src={logo}></img></div>
+                                <div className='logobox'><img className='logo' src={logo} alt='logo' ></img></div>
                                 {/* <h1 className="header1-login">Tueกัน</h1> */}
                                 {/* <p className="p-login">Enter your personal details and start journey with us</p> */}
                                 <button className="button-login ghost signUp" id="signUp" onClick={signUpButton}>Sign Up</button>
