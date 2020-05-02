@@ -34,14 +34,11 @@ let coinCode = {
 };
 
 const CoinPayment = ({ navState, dispatch })=> { 
-
-  const profileData = navState.profileData
-
+ 
   const redeemCoinHandler =()=> {
     /// get value in input.
     let code = document.getElementById('coin-redeem-input').value;
-    let accountId = accountAccess().getAccountId(); 
-    let remainingCoin = parseInt(profileData.coin_amount); 
+    let accountId = accountAccess().getAccountId();  
 
     if (code !== '') {
 
