@@ -21,7 +21,7 @@
 .loginpage .container-login {
 	background-color: #fff;
 	border-radius: 10px;
-	  box-shadow: 0 14px 28px rgba(0,0,0,0.25),0 10px 10px rgba(0,0,0,0.22);
+	box-shadow: 0 14px 28px rgba(0,0,0,0.25),0 10px 10px rgba(0,0,0,0.22);
 	position: relative;
 	overflow: hidden;
 	width: 768px;
@@ -149,10 +149,10 @@
 .loginpage .container-login .sign-up-container {
 	left: 0;
 	width: 50%;
-	opacity: 0; 
-	pointer-events: none;
-	/* z-index: 1; */
-	transition: 0.6s ease-out;
+	opacity: 0;
+	z-index: 0;
+	animation: show 0.6s;
+}
 
 }
 /* 
