@@ -24,7 +24,9 @@
 }
 
 .img-box {
-  width: 70px;
+  width: 50%;
+  max-width: 6vw;
+  max-height: 6vw;
   float: left;
   display: inline;
   padding-right: 10px;
@@ -32,7 +34,8 @@
 
 .avatar-img {
   width: 100%;
-  min-height: 60px;
+  max-width: 5vw;
+  max-height: 5vw;
   box-sizing: border-box;
   border-radius: 100px;
 }

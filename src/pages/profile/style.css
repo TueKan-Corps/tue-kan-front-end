@@ -40,17 +40,22 @@
 }
 
 .profile-detail-container .profile-detail-box .img-box { 
-  width: 25%;
-  min-height: 60px; 
-  padding: 0;
+  width: 25%; 
+  max-width: 10vw;
+  max-height: 10vw;
+  padding: 0; 
   float: left;
-  margin-top: 25px;
+  margin-top: 25px; 
+  margin-left: 2%; 
+  overflow: hidden;
+  border-radius: 150px; 
 }
 
-.profile-detail-container .profile-detail-box .img-box .profile-img {
+.profile-detail-container .profile-detail-box .img-box .profile-img { 
+  display: block;
   width: 100%;
-  border-radius: 150px;
-  padding: 0; 
+  max-width: 10vw;
+  max-height: 10vw;
 }
 
 .profile-detail-container .profile-detail-box .img-box .upload-img-img {
@@ -205,22 +210,21 @@
   padding-top: 10px;
 }
 
-.profile-detail-container .profile-detail-box .contact-box .contact-detail {
-  !background: lightgreen;
+.profile-detail-container .profile-detail-box .contact-box .contact-detail { 
   background: rgb(235, 235, 235);
   max-width: 320px;
   padding: 10px;
   margin: 0 auto;
   margin-top: 5px;
   transition: box-shadow 0.2s;
-  border-radius: 5px;
+  border-radius: 25px;
 }
 
 .profile-detail-container .profile-detail-box .contact-box .contact-detail .contact-img {
   width: 40px;
   height: 40px;
   margin: 5px 10px 5px 10px;
-  border-radius: 5px;
+  border-radius: 25px;
   transition: box-shadow 0.2s;
   box-shadow: 5px 0px 10px rgb(198,198,198);
 }
