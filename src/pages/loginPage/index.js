@@ -206,7 +206,12 @@ export default class Login extends Component {
         fetch("https://tue-kan.herokuapp.com/account/", requestOptions)
         .then(response => response.text())
         .then(result => { 
-            this.uploadDefaultImg(parseInt(result))
+            if (parseInt(result) > 0) {
+                this.uploadDefaultImg(parseInt(result))
+            }
+            else {
+                notifyAlert(() => { }, 'ล้มเหลว!', 'สมัครสมาชิกไม่สำเร็จ มีการใช้อีเมลนี้ไปแล้ว', 'error');
+            }
         })
         .catch(error => console.log('error', error)); 
     }
@@ -225,6 +230,7 @@ export default class Login extends Component {
             redirect: 'follow'
         };
 
+        /// change img to blob.
         fetch(myRequest)
             .then((response) => response.blob())
             .then((myBlob) => {
@@ -239,11 +245,11 @@ export default class Login extends Component {
             .catch(error => console.log('error', error)); 
         }, 2000);
 
-        notifyAlert(() => { }, 'โปรดรอสักครู่', 'กำลังทำการสมัครสมาชิก', 'info');
+        notifyAlert(() => { }, 'โปรดรอสักครู่', 'กำลังทำการสมัครสมาชิก', 'info', false);
             
         setTimeout(() => {
             notifyAlert(() => { }, 'สำเร็จ!', 'ท่านได้ทำการสมัครสมาชิกแล้ว', 'success');
-        }, 8000);
+        }, 5000);
         //console.log('stop');
     }
 

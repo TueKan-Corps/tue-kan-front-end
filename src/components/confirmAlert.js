@@ -26,12 +26,13 @@ export const confirmAlert = (func, text, isShowCancel, successText, failText) =>
     })
 }
 
-export const notifyAlert = (func, title, text, icon) => {
+export const notifyAlert = (func, title, text, icon, showConfirm = true) => {
     Swal.fire({
         title: `${title}`,
         text: `${text}`,
         icon: `${icon}`,
         showCancelButton: false,
+        showConfirmButton: showConfirm,
         confirmButtonText: 'ยืนยัน'
     }).then(()=> 
         setTimeout(function () {
