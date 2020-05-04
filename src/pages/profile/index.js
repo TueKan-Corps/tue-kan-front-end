@@ -51,7 +51,7 @@ class Profile extends React.Component {
   }
 
   setEdit =()=> {
-    /// toggle state read->edit, edit->read
+    /// toggle state read -> edit, edit -> read
     this.setState(state => ({
       isEdit: !state.isEdit,
     }))
@@ -154,8 +154,19 @@ class Profile extends React.Component {
       redirect: 'follow'
     };
 
+    notifyAlert(() => { }, 'กำลังดำเนินการ', 'กำลังอัพเดตรูปโปรไฟล์ กรุณารอสักครู่', 'info', false);
+
     fetch(url, requestOptions)
-      .then(response => response.text())
+      .then(response => {
+        response.text();
+
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+
+        notifyAlert(() => { }, 'สำเร็จ!', 'รูปโปรไฟล์ได้รับการอัพเดตแล้ว กรุณารีเฟรชหน้าเว็บของท่าน', 'success');
+
+      })
       .then(result => console.log(result))
       .catch(error => console.log('error', error));
  

@@ -248,9 +248,8 @@ export default class Login extends Component {
         notifyAlert(() => { }, 'โปรดรอสักครู่', 'กำลังทำการสมัครสมาชิก', 'info', false);
             
         setTimeout(() => {
-            notifyAlert(() => { }, 'สำเร็จ!', 'ท่านได้ทำการสมัครสมาชิกแล้ว', 'success');
-        }, 5000);
-        //console.log('stop');
+            notifyAlert(() => { window.location.reload() }, 'สำเร็จ!', 'ท่านได้ทำการสมัครสมาชิกแล้ว', 'success');
+        }, 8000); 
     }
 
     onInputChange = (event) => {
