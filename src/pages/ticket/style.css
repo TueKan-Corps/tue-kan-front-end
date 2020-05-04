@@ -41,18 +41,20 @@
 }
 
 .ticket-sub-container .detail-body .img-container .img-box {
-  !background: red;
   width: 80%;
-  margin-top: 10%;
-  margin-left: 10%;
-  border-radius: 150px;
-  !overflow: auto;
+  margin: 0 auto; 
+  margin-top: 12.5%;
+  margin-left: 12.5%; 
+  overflow: hidden;
   padding: 0;
+  max-width: 20vh;
+  max-height: 20vh; 
 }
 
 .ticket-sub-container .detail-body .img-container .img-box .tutor-img {
-  !background: red;
   width: 100%;
+  max-width: 20vh;
+  max-height: 20vh;
   border-radius: 150px;
 }
 

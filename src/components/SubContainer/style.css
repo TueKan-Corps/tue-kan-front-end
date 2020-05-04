@@ -38,28 +38,29 @@
   overflow: auto;
 }
 
-.postlist-sub-container .detail-body .img-container {
-  !background: lightblue;
+.postlist-sub-container .detail-body .img-container { 
   width: 31%;
   margin-left: 4%;
   padding-bottom: 3%;
-  float: left;
+  float: left; 
 }
 
-.postlist-sub-container .detail-body .img-container .img-box {
-  !background: red;
+.postlist-sub-container .detail-body .img-container .img-box { 
   width: 80%;
-  margin-top: 10%;
-  margin-left: 10%;
-  border-radius: 150px;
-  !overflow: auto;
+  margin: 0 auto; 
+  margin-top: 12.5%;
+  margin-left: 12.5%; 
+  overflow: hidden;
   padding: 0;
+  max-width: 20vh;
+  max-height: 20vh; 
 }
 
-.postlist-sub-container .detail-body .img-container .img-box .tutor-img {
-  !background: red;
+.postlist-sub-container .detail-body .img-container .img-box .tutor-img { 
   width: 100%;
-  border-radius: 150px;
+  max-width: 20vh;
+  max-height: 20vh;
+  border-radius: 150px; 
 }
 
 .postlist-sub-container .detail-body .postlist-description-box { 
