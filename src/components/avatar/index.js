@@ -61,7 +61,7 @@ class Avatar extends React.Component {
 
     let loading = this.state.loading;
     let profileData = this.state.profileData;
-    let maxLength = 13;
+    let maxLength = 11;
     let dotLen = maxLength - 2;
     let firstNameOverLen = (profileData.first_name).length > maxLength;
     let lastNameOverLen = (profileData.last_name).length > maxLength;

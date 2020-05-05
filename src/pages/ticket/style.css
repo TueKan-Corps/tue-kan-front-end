@@ -97,7 +97,10 @@
 
 .ticket-sub-container .detail-body .description-detail-box .description-detail-text-box {
   width: 90%;
+  min-height: 120px;
+  !max-height: 200px;
   margin: 0 auto;
+  margin-left: 5%;
   background: rgb(235, 235, 235); 
   border: 2px dashed #69d4ff;
   box-sizing: border-box;
@@ -105,14 +108,15 @@
   padding: 10px 30px 0px 30px;
   margin-top: 20px;
   margin-bottom: 20px;
-}
-
-.ticket-sub-container .detail-body .description-detail-box .description-detail-text-box .description-detail-text {
-  text-align:justify;
-  text-justify:auto;
+  overflow: auto;
+  resize: none;
   font-size: 16px;
 }
-
+ 
+.ticket-sub-container .detail-body .description-detail-box .description-detail-text-box:focus {
+  outline: none;
+}
+  
 .ticket-sub-container .detail-body .ticket-joined-box { 
   margin-bottom: 20px;
   width: 16%;

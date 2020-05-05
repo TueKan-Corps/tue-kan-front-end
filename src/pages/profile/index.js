@@ -81,7 +81,7 @@ class Profile extends React.Component {
           console.log(error)
         });
  
-      notifyAlert(() => { }, 'สำเร็จ!', 'บันทึกข้อมูลใหม่สำเร็จแล้ว', 'success');
+      notifyAlert(() => { window.location.reload() }, 'สำเร็จ!', 'บันทึกข้อมูลใหม่สำเร็จแล้ว', 'success');
  
       }
 

@@ -195,14 +195,12 @@ const PostingDetail =(props)=> {
           <div className='description-box posting-box description-detail-box'>
             <i className="description-img fas fa-book" style={{margin: '5px 0 0 40px'}}></i>
             <p className='description-text'>Description</p>
-            <div className='description-detail-text-box'>
-              {
-                postingData.description !== '' ?
-                <p className='description-detail-text'>{`${postingData.description}`}</p>
-                :
-                <p className='description-detail-text'>This tue has not description.</p>
-              }
-            </div>
+            {
+              postingData.description === '' ?
+              <textarea className='description-detail-text-box' value='This tue has not any descriptons.' style={{ minHeight: '80px' }} readOnly spellCheck={false} />
+              :
+              <textarea className='description-detail-text-box' value={`${postingData.description}`} readOnly spellCheck={false} />
+            } 
           </div>
 
           <div className='name-list-description-box'>

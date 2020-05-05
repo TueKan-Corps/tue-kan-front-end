@@ -24,9 +24,10 @@
 }
 
 .img-box {
+  !background-color: green;
   width: 50%;
-  max-width: 6vw;
-  max-height: 6vw;
+  max-width: 5vw;
+  max-height: 5vw;
   float: left;
   display: inline;
   padding-right: 10px;
@@ -41,11 +42,11 @@
 }
 
 .text-box {
-  !background-color: red;;
+  !background-color: blue;
   color: black;
   margin-top: 3px;
   font-size: 20px;
-  width: 50px;
+  width: 50%;
   float: left;
 }
 

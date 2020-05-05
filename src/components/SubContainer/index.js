@@ -162,12 +162,7 @@ const Sub = (props) => {
                 <i className="description-img fas fa-coins"></i>
                 <p className='description-text'>{`Price: ${mainData.price} TC`}</p>
               </div>
-
-              {/* <div className='description-box postlist-box'>
-            <i className="description-img fas fa-ticket-alt"></i>
-            <p className='description-text'>{`Your Code: ${mainData.ticket}`}</p>
-          </div> */}
-
+  
             </div>
 
             <div className='postlist-joined-box'>
@@ -179,14 +174,14 @@ const Sub = (props) => {
             <div className='description-box postlist-box description-detail-box'>
               <i className="description-img fas fa-book" style={{ margin: '5px 0 0 35px' }}></i>
               <p className='description-text'>Description</p>
-              <div className='description-detail-text-box'>
-                {
-                  mainData.description !== '' ?
-                    <p className='description-detail-text'>{`${mainData.description}`}</p>
-                    :
-                    <p className='description-detail-text'>This tue has not description.</p>
-                }
-              </div>
+
+              {
+                mainData.description === '' ?
+                <textarea className='description-detail-text-box' value='This tue has not any descriptons.' style={{minHeight: '80px'}} readOnly spellCheck={false} />
+                :
+                <textarea className='description-detail-text-box' value={`${mainData.description}`} readOnly spellCheck={false} /> 
+              }
+
               <button className="buy-button" type="button" data-hover={buttonState.statusText} onClick={() => confirmAlert(buyTicket, 'ท่านต้องการซื้อตั๋วใช่หรือไม่ ?', true, 'ท่านได้ซื้อตั๋วแล้ว', 'ยกเลิกการซื้อตั๋วแล้ว') } disabled={!buttonState.joinState} style={{ backgroundColor: `${buttonState.colorButton}` }} ><span>{`${postData.price} TC`}</span></button>
 
             </div>

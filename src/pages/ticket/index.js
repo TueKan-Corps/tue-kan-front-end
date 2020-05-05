@@ -108,16 +108,13 @@ const TicketDetail =(props)=> {
 
           <div className='description-box ticket-box description-detail-box'>
             <i className="description-img fas fa-book" style={{margin: '5px 0 0 40px'}}></i>
-            <p className='description-text'>Description</p>
-            <div className='description-detail-text-box'>
-              {
-                ticketData.description !== '' ?
-
-                <p className='description-detail-text'>{`${ticketData.description}`}</p>
-                :
-                <p className='description-detail-text'>This tue has not description.</p>
-              }
-            </div>
+            <p className='description-text'>Description</p> 
+            {
+              ticketData.description === '' ?
+              <textarea className='description-detail-text-box' value='This tue has not any descriptons.' style={{ minHeight: '80px' }} readOnly spellCheck={false} />
+              :
+              <textarea className='description-detail-text-box' value={`${ticketData.description}`} readOnly spellCheck={false} />
+            } 
           </div>
 
         </div>

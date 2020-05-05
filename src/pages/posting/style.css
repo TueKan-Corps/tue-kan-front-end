@@ -40,7 +40,7 @@
 }
 
 .posting-sub-container .detail-body .img-container .img-box { 
-  background: red;
+  !background: red;
   width: 80%;
   margin: 0 auto; 
   margin-top: 12.5%;
@@ -98,24 +98,26 @@
 
 .posting-sub-container .detail-body .description-detail-box .description-detail-text-box {
   width: 90%;
+  min-height: 120px;
+  !max-height: 200px;
   margin: 0 auto;
-  background: rgb(235, 235, 235);
-  border: 2px dashed #88ddff;
+  margin-left: 5%;
+  background: rgb(235, 235, 235); 
+  border: 2px dashed #69d4ff;
   box-sizing: border-box;
   border-radius: 5px;
   padding: 10px 30px 0px 30px;
   margin-top: 20px;
   margin-bottom: 20px;
-  max-height: 190px;
   overflow: auto;
-}
-
-.posting-sub-container .detail-body .description-detail-box .description-detail-text-box .description-detail-text {
-  text-align:justify;
-  text-justify:auto;
+  resize: none;
   font-size: 16px;
 }
 
+.posting-sub-container .detail-body .description-detail-box .description-detail-text-box:focus {
+  outline: none;
+}
+ 
 .posting-sub-container .detail-body .posting-joined-box {
   !background: coral;
   margin-bottom: 20px;
