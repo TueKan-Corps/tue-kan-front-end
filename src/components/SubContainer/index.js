@@ -89,6 +89,9 @@ const Sub = (props) => {
       });
     PayCoin(); 
     AddOwnerCoin();
+    setTimeout(() => {
+      window.location.reload();
+    }, 3000)
   }
     
   const PayCoin = () => {
