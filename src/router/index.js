@@ -27,6 +27,7 @@ import Login from '../pages/loginPage/index.js';
 import Profile from '../pages/profile/index.js';
 import CoinPayment from '../pages/coinPayment/index.js';
 import NotFound from '../pages/notFound/index.js';
+import ProfileView from '../pages/profileView/index.js';
 
 import accountAccess from '../components/avatar/accountAccess.js';
 
@@ -61,6 +62,11 @@ export default () => {
               <Route path="/profile">
                 <SideBar />
                 <Profile />
+              </Route>
+
+              <Route path="/view-profile">
+                <SideBar />
+                <ProfileView />
               </Route>
 
               <Route path="/home">

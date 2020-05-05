@@ -31,6 +31,7 @@ import {
   Switch,
   Route,
   useParams,
+  Link,
 } from "react-router-dom";
 import axios from 'axios';
 
@@ -153,9 +154,9 @@ const PostingDetail =(props)=> {
         <div className='body-container'>
 
           <div className='img-container'>
-            <div className='img-box'>
+            <Link className='img-box' to='/profile'>
               <img className='tutor-post-img' id={`tutor-post-img-${accountId}`} src={imgSrc} alt='tutor-img' />
-            </div>
+            </Link>
           </div>
 
           <div className='posting-description-box'>

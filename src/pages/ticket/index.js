@@ -31,6 +31,7 @@ import {
   Switch,
   Route,
   useParams,
+  Link
 } from "react-router-dom";
 import axios from 'axios';
 
@@ -62,9 +63,9 @@ const TicketDetail =(props)=> {
         <div className='body-container'>
 
           <div className='img-container'>
-            <div className='img-box'>
+            <Link className='img-box' to={`/view-profile/${ticketData.account_id}`}>
               <img className='tutor-img' src={imgSrc} alt='tutor-img' />
-            </div>
+            </Link>
           </div>
 
           <div className='ticket-description-box'>

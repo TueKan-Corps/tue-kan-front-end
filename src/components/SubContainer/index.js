@@ -36,6 +36,7 @@ import {
   Switch,
   Route,
   useParams,
+  Link,
 } from "react-router-dom";
 import axios from 'axios';
 
@@ -132,9 +133,9 @@ const Sub = (props) => {
         <DetailBody className='detail-body' background='rgb(255,238,238)'>
           <div className='body-container'>
             <div className='img-container'>
-              <div className='img-box'>
+              <Link className='img-box' to={`/view-profile/${mainData.account_id}`}>
                 <img className='tutor-img' src={imgSrc} alt='tutor-img' />
-              </div>
+              </Link>
             </div>
 
             <div className='postlist-description-box'>
@@ -240,7 +241,7 @@ class SubContainer extends React.Component {
               {/*
               if don't go to sub-cate, it show category.
               if go to sub-cate, it link to this sub-cate with nested route.
-            */}
+              */}
 
               {
                 this.state.loading &&
